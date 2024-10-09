@@ -70,6 +70,7 @@ public class VentanaDeCarga extends JFrame {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
+                        	new VentanaMuebles();
                             // Para cargar los datos de los ficheros, bd y datos de prueba
                         }
                     });
