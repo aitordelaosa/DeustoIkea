@@ -6,9 +6,10 @@ public class Mesa extends Mueble {
     protected double altura;
     protected int capacidad;
 	
+    
     public Mesa(int idProducto, int numeroProductos, double peso, double precio, String material, String color,
-			String estilo, double altura, int capacidad) {
-		super(idProducto, numeroProductos, peso, precio, material, color, estilo);
+			String descripcion, String rutaImagen, double altura, int capacidad) {
+		super(idProducto, numeroProductos, peso, precio, material, color, descripcion, rutaImagen);
 		this.altura = altura;
 		this.capacidad = capacidad;
 	}

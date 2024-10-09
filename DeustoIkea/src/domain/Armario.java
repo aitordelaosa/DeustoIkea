@@ -8,9 +8,11 @@ public class Armario extends Mueble {
     protected double anchura;
     protected double profundidad;
     
+    
 	public Armario(int idProducto, int numeroProductos, double peso, double precio, String material, String color,
-			String estilo, int numeroDePuertas, double altura, double anchura, double profundidad) {
-		super(idProducto, numeroProductos, peso, precio, material, color, estilo);
+			String descripcion, String rutaImagen, int numeroDePuertas, double altura, double anchura,
+			double profundidad) {
+		super(idProducto, numeroProductos, peso, precio, material, color, descripcion, rutaImagen);
 		this.numeroDePuertas = numeroDePuertas;
 		this.altura = altura;
 		this.anchura = anchura;

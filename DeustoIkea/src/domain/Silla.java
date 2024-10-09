@@ -8,14 +8,14 @@ public class Silla extends Mueble {
     protected double capacidadDeCarga;
 	
     public Silla(int idProducto, int numeroProductos, double peso, double precio, String material, String color,
-			String estilo, double altura, double ancho, double capacidadDeCarga) {
-		super(idProducto, numeroProductos, peso, precio, material, color, estilo);
+			String descripcion, String rutaImagen, double altura, double ancho, double capacidadDeCarga) {
+		super(idProducto, numeroProductos, peso, precio, material, color, descripcion, rutaImagen);
 		this.altura = altura;
 		this.ancho = ancho;
 		this.capacidadDeCarga = capacidadDeCarga;
 	}
 
-    public Silla() {
+	public Silla() {
 		super();
 		this.altura = 0.0;
 		this.ancho = 0.0;
