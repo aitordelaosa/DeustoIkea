@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -11,7 +11,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 public class VentanaDeCarga extends JFrame {
-    protected JButton botonCerrar, botonEntrar;
+	private static final long serialVersionUID = 1L;
+	
+	protected JButton botonCerrar, botonEntrar;
     protected JPanel panelAbajo, panelCentro, panelArriba;
     protected JProgressBar progressBar;
 

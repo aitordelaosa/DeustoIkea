@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.Objects;
-import clases.Producto;
 
 public class Producto {
 	private static final long serialVersionUID = 1L;

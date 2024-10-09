@@ -2,8 +2,6 @@ package domain;
 
 import java.time.LocalDate;
 
-import clases.Persona;
-
 public class Cliente extends Persona {
 	private static final long serialVersionUID = 1L;
 	
