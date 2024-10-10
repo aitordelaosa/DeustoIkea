@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -11,40 +12,46 @@ import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 public class VentanaDeCarga extends JFrame {
-	private static final long serialVersionUID = 1L;
-	
-	protected JButton botonCerrar, botonEntrar;
-    protected JPanel panelAbajo, panelCentro, panelArriba;
+    private static final long serialVersionUID = 1L;
+
+    protected JButton botonCerrar, botonEntrar;
+    protected JPanel panelAbajo, panelFoto, panelCentro;
+    protected JLabel labelImagen;
     protected JProgressBar progressBar;
 
     public VentanaDeCarga() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 500);
         setTitle("DeustoIkea");
+        
+        ImageIcon i = new ImageIcon("src/Imagenes/DeustoIkea_app_icon.png");
+        setIconImage(i.getImage());
 
         botonCerrar = new JButton("CERRAR");
         botonEntrar = new JButton("ENTRAR");
 
         panelAbajo = new JPanel();
         panelCentro = new JPanel();
-        panelArriba = new JPanel();
+        panelFoto = new JPanel();
+        
+		ImageIcon imIkea = new ImageIcon("src/Imagenes/DeustoIkea_app_icon.png");
+		Image imagen = imIkea.getImage();
+		Image imagenRedimensionada = imagen.getScaledInstance(325, 350, Image.SCALE_SMOOTH);
+		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
+		labelImagen = new JLabel(imagenRedimensionadaIcon);
+        panelFoto.add(labelImagen);
 
         panelAbajo.add(botonCerrar);
         panelAbajo.add(botonEntrar);
 
         progressBar = new JProgressBar(0, 100);
         progressBar.setStringPainted(true);
-        
-        ImageIcon iconoCarga = new ImageIcon("/DeustoIkea/Imagenes/FondoP3.webp");
-//        ImageIcon iconoCarga = new ImageIcon(getClass().getResource("/Imagenes/FondoP3.webp"));
-        JLabel labelImagen = new JLabel(iconoCarga);
-        
-        panelCentro.add(labelImagen);
-        panelArriba.add(progressBar);
+
+        panelCentro.add(progressBar);
 
         getContentPane().add(panelAbajo, BorderLayout.SOUTH);
+        getContentPane().add(panelFoto, BorderLayout.NORTH);
         getContentPane().add(panelCentro, BorderLayout.CENTER);
-        getContentPane().add(panelArriba, BorderLayout.NORTH);
 
         botonCerrar.addActionListener((e) -> {
             System.exit(0);
@@ -58,7 +65,7 @@ public class VentanaDeCarga extends JFrame {
                 @Override
                 protected Void doInBackground() throws Exception {
                     for (int i = 0; i <= 100; i++) {
-                        Thread.sleep(40);
+                        Thread.sleep(15);
                         progressBar.setValue(i);
                     }
                     return null;
@@ -70,8 +77,7 @@ public class VentanaDeCarga extends JFrame {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                        	new VentanaMuebles();
-                            // Para cargar los datos de los ficheros, bd y datos de prueba
+                            new VentanaMuebles();
                         }
                     });
                     dispose();
