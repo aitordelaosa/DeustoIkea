@@ -85,7 +85,7 @@ public class VentanaMuebles extends JFrame{
 
             labelImagen.setIcon(muebleSeleccionado.getImagen());
             labelDescripcion.setText(muebleSeleccionado.getDescripcion());
-            campoTexto.setText(muebleSeleccionado.getIdProducto());
+           // campoTexto.setText(muebleSeleccionado.getIdProducto());
         });
 		
 		setVisible(true);

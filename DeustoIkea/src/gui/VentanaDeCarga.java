@@ -35,8 +35,8 @@ public class VentanaDeCarga extends JFrame {
         progressBar = new JProgressBar(0, 100);
         progressBar.setStringPainted(true);
         
-//        ImageIcon iconoCarga = new ImageIcon("/DeustoIkea/Imagenes/FondoP3.webp");
-        ImageIcon iconoCarga = new ImageIcon(getClass().getResource("/Imagenes/FondoP3.webp"));
+        ImageIcon iconoCarga = new ImageIcon("/DeustoIkea/Imagenes/FondoP3.webp");
+//        ImageIcon iconoCarga = new ImageIcon(getClass().getResource("/Imagenes/FondoP3.webp"));
         JLabel labelImagen = new JLabel(iconoCarga);
         
         panelCentro.add(labelImagen);
