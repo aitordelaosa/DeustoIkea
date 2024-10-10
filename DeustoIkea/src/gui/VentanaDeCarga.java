@@ -65,7 +65,7 @@ public class VentanaDeCarga extends JFrame {
                 @Override
                 protected Void doInBackground() throws Exception {
                     for (int i = 0; i <= 100; i++) {
-                        Thread.sleep(15);
+                        Thread.sleep(2); //Poner entre 15 y 30
                         progressBar.setValue(i);
                     }
                     return null;

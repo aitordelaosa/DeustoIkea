@@ -2,12 +2,15 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import domain.Armario;
@@ -16,14 +19,16 @@ import domain.Mueble;
 import domain.Silla;
 import domain.Sofa;
 
-public class VentanaMuebles extends JFrame{
+public class VentanaMuebles extends JFrame {
+	private static final long serialVersionUID = 1L;
+	
 	protected JButton botonCerrar, botonSeleccionar, botonComprar;
 	protected JPanel panelAbajo, panelCentro, panelCentroD, panelCentroI, panelArriba, panelImagen;
 	protected JLabel labelImagen, labelDescripcion;
-	protected JTextField campoTexto;
-	protected String[] muebles = { "Silla", "Mesa", "Armario", "Sofá" };
+	protected JTextArea areaTexto;
+	protected String[] categoriasMuebles = { "Todos", "Silla", "Mesa", "Armario", "Sofá" };
 	protected JComboBox<String> comboDeMuebles;
-	protected Mueble[] listaMuebles;
+	protected ArrayList<Mueble> listaMuebles;
 	
 	public VentanaMuebles() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,19 +43,28 @@ public class VentanaMuebles extends JFrame{
 		panelCentro = new JPanel();
 		panelCentroD = new JPanel();
 		panelCentroI = new JPanel();
-		panelArriba = new JPanel();
+		panelArriba = new JPanel(new BorderLayout());
 		panelImagen = new JPanel();
 		 
-		campoTexto = new JTextField(20);
-		comboDeMuebles = new JComboBox<>(muebles);
+        areaTexto = new JTextArea(3, 40);
+        areaTexto.setLineWrap(true); // Permitir que el texto se ajuste a la línea
+        areaTexto.setWrapStyleWord(true); // Ajustar solo en palabras completas
+        areaTexto.setEditable(false);
+        areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de muebles asequibles y modernos.\n" +
+                          "Ofrecemos una amplia gama de muebles que se adaptan a todos los estilos y presupuestos.");
 		
-		// Inicialización temporal de los muebles
-        listaMuebles = new Mueble[] {
-            new Silla(),
-            new Mesa(),
-            new Armario(),
-            new Sofa()
-        };
+        JScrollPane scrollTexto = new JScrollPane(areaTexto);
+        scrollTexto.setBorder(null);  // Remover borde
+        panelArriba.add(scrollTexto, BorderLayout.NORTH); 
+        
+		comboDeMuebles = new JComboBox<>(categoriasMuebles);
+		
+		// Lista de muebles temp
+        listaMuebles = new ArrayList<>();
+        listaMuebles.add(new Silla());
+        listaMuebles.add(new Mesa());
+        listaMuebles.add(new Armario());
+        listaMuebles.add(new Sofa());
 		
 		panelAbajo.add(botonCerrar);
 		panelAbajo.add(botonSeleccionar);
@@ -60,7 +74,7 @@ public class VentanaMuebles extends JFrame{
 		panelCentro.add(panelCentroI);
         panelCentro.add(panelCentroD);
         
-        panelCentroD.add(campoTexto); //Donde ira el texto a cerca de nosotros y nuestros muebles
+//        panelCentroD.add(campoTexto);
         panelCentroI.add(comboDeMuebles);
         
         labelImagen = new JLabel();
@@ -76,19 +90,23 @@ public class VentanaMuebles extends JFrame{
 		botonCerrar.addActionListener((e) -> {
 			System.exit(0);
 		});
-		
-		campoTexto.setText("Bienvenido a DeustoIkea, tu tienda de muebles asequibles y modernos. Ofrecemos una amplia gama de muebles que se adaptan a todos los estilos y presupuestos.");
-		
+				
 		botonSeleccionar.addActionListener((e) -> {
-            int indice = comboDeMuebles.getSelectedIndex();
-            Mueble muebleSeleccionado = listaMuebles[indice];
-
-            labelImagen.setIcon(muebleSeleccionado.getImagen());
-            labelDescripcion.setText(muebleSeleccionado.getDescripcion());
-           // campoTexto.setText(muebleSeleccionado.getIdProducto());
+            String categoriaSeleccionada = (String) comboDeMuebles.getSelectedItem();
+            mostrarMueblesSegunCategoria(categoriaSeleccionada);
         });
 		
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}
+	
+	private void mostrarMueblesSegunCategoria(String categoria) {
+        for (Mueble mueble : listaMuebles) {
+            if (categoria.equals("Todos") || mueble.getClass().getSimpleName().equals(categoria)) {
+                labelImagen.setIcon(mueble.getImagen());
+                labelDescripcion.setText(mueble.getDescripcion());
+                break;
+            }
+        }
+    }
 }
