@@ -112,7 +112,7 @@ public class VentanaMuebles extends JFrame {
         labelDescripcion4 = new JLabel();
         labelDescripcion1.setText("<html><b>Sofá</b><br>Precio: $350<br>Peso: 40kg<br>Descripción: Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.</html>");
         labelDescripcion2.setText("<html><b>Armario</b><br>Precio: $200<br>Peso: 50kg<br>Descripción: Armario espacioso de dos puertas, con estantes internos para optimizar el almacenamiento.</html>");
-        labelDescripcion3.setText("<html><b>Silla</b><br>Precio: $75<br>Peso: 5kg<br>Descripción: Silla ergonómica con respaldo ajustable, perfecta para oficina o comedor.</html>");
+        labelDescripcion3.setText("<html><b>Silla</b><br>Precio: $75<br>Peso: 5kg<br>Descripción: Silla ergonómica, perfecta para oficina o comedor.</html>");
         labelDescripcion4.setText("<html><b>Mesa</b><br>Precio: $150<br>Peso: 20kg<br>Descripción: Mesa de comedor para seis personas, hecha de madera de alta calidad.</html>");
 //        labelDescripcion4.setText("Mesa \n" + "Precio: $150 \n" + "Peso: 20kg \n" + "Descripción: Mesa de comedor para seis personas, hecha de madera de alta calidad.");
         
@@ -130,7 +130,7 @@ public class VentanaMuebles extends JFrame {
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
 		getContentPane().add(panelArriba, BorderLayout.NORTH);
           
-
+		
 		botonCerrar.addActionListener((e) -> {
 			System.exit(0);
 		});
@@ -143,6 +143,7 @@ public class VentanaMuebles extends JFrame {
 		setLocationRelativeTo(null);
 	}
 	
+	@SuppressWarnings("unused")
 	private String mostrarDetalle(String objetoSeleccionado) {
 	    Datos datos = new Datos();
 	    Mueble muebleSeleccionado = null;
