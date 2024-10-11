@@ -11,6 +11,8 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
+import domain.Datos;
+
 public class VentanaDeCarga extends JFrame {
     private static final long serialVersionUID = 1L;
 
@@ -18,6 +20,8 @@ public class VentanaDeCarga extends JFrame {
     protected JPanel panelAbajo, panelFoto, panelCentro;
     protected JLabel labelImagen;
     protected JProgressBar progressBar;
+    
+    protected Datos datos;
 
     public VentanaDeCarga() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

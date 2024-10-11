@@ -2,15 +2,20 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+
+import domain.Datos;
+import domain.Mueble;
 
 
 public class VentanaMuebles extends JFrame {
@@ -20,9 +25,13 @@ public class VentanaMuebles extends JFrame {
 	protected JPanel panelAbajo, panelCentro, panelCentroD, panelCentroI, panelArriba;
 	protected JLabel labelImagen1, labelImagen2, labelImagen3, labelImagen4, labelDescripcion1, labelDescripcion2, labelDescripcion3, labelDescripcion4;
 	protected JTextArea areaTexto;
-//	protected ArrayList<Mueble> listaMuebles;
+	
+	private Datos datos;
+    private String objetoSeleccionado;
 	
 	public VentanaMuebles() {
+		this.datos = new Datos();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Muebles");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -69,6 +78,33 @@ public class VentanaMuebles extends JFrame {
         labelImagen3 = new JLabel(silla);
         labelImagen4 = new JLabel(mesa);
         
+        labelImagen1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                objetoSeleccionado = "Sofá";
+            }
+        });
+        
+        labelImagen2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                objetoSeleccionado = "Armario";
+            }
+        });
+        
+        labelImagen3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                objetoSeleccionado = "Silla";
+            }
+        });
+        
+        labelImagen4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                objetoSeleccionado = "Mesa";
+            }
+        });
         
         labelDescripcion1 = new JLabel();
         labelDescripcion2 = new JLabel();
@@ -99,22 +135,66 @@ public class VentanaMuebles extends JFrame {
 			System.exit(0);
 		});
 				
-//		botonSeleccionar.addActionListener((e) -> {
-//            String categoriaSeleccionada = (String) comboDeMuebles.getSelectedItem();
-//            mostrarMueblesSegunCategoria(categoriaSeleccionada);
-//        });
+		 botonSeleccionar.addActionListener((e) -> {
+            mostrarInformacionSeleccionada();
+        });
 		
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}
 	
-//	private void mostrarMueblesSegunCategoria(String categoria) {
-//        for (Mueble mueble : listaMuebles) {
-//            if (categoria.equals("Todos") || mueble.getClass().getSimpleName().equals(categoria)) {
-//                labelImagen.setIcon(mueble.getImagen());
-//                labelDescripcion.setText(mueble.getDescripcion());
-//                break;
-//            }
-//        }
-//    }
+	private String mostrarDetalle(String objetoSeleccionado) {
+	    Datos datos = new Datos();
+	    Mueble muebleSeleccionado = null;
+
+	    switch (objetoSeleccionado) {
+	        case "Sofá":
+	            muebleSeleccionado = datos.getSofa();
+	            break;
+	        case "Armario":
+	            muebleSeleccionado = datos.getArmario();
+	            break;
+	        case "Silla":
+	            muebleSeleccionado = datos.getSilla();
+	            break;
+	        case "Mesa":
+	            muebleSeleccionado = datos.getMesa();
+	            break;
+	    }
+
+	    if (muebleSeleccionado != null) {
+	        return datos.obtenerDetallesMueble(muebleSeleccionado);
+	    } else {
+	        return "No se encontraron detalles para el objeto seleccionado.";
+	    }
+	}
+	
+	 private void mostrarInformacionSeleccionada() {
+		    if (objetoSeleccionado.isEmpty()) {
+		        JOptionPane.showMessageDialog(this, "Por favor, selecciona un objeto primero.");
+		    } else {
+		        Mueble muebleSeleccionado = null;
+
+		        switch (objetoSeleccionado) {
+		            case "Sofá":
+		                muebleSeleccionado = datos.getSofa();
+		                break;
+		            case "Armario":
+		                muebleSeleccionado = datos.getArmario();
+		                break;
+		            case "Silla":
+		                muebleSeleccionado = datos.getSilla();
+		                break;
+		            case "Mesa":
+		                muebleSeleccionado = datos.getMesa();
+		                break;
+		        }
+
+		        if (muebleSeleccionado != null) {
+		            String detalles = datos.obtenerDetallesMueble(muebleSeleccionado);
+		            JOptionPane.showMessageDialog(this, detalles);
+		        }
+		    }
+		}
+	
 }
