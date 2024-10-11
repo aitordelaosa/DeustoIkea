@@ -47,6 +47,7 @@ public class VentanaMuebles extends JFrame {
 		panelCentroI = new JPanel();
 		panelArriba = new JPanel(new BorderLayout());
 		panelImagen = new JPanel();
+		panelDescripcion = new JPanel();
 		
 		texto1 = new JTextField(20);
 		texto2 = new JTextField(20);
