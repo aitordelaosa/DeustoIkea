@@ -16,7 +16,7 @@ import domain.Datos;
 public class VentanaDeCarga extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    protected JButton botonCerrar, botonEntrar;
+    protected JButton botonCerrar, botonEntrar, botonEntrarMuebles;
     protected JPanel panelAbajo, panelFoto, panelCentro;
     protected JLabel labelImagen;
     protected JProgressBar progressBar;
@@ -33,6 +33,7 @@ public class VentanaDeCarga extends JFrame {
 
         botonCerrar = new JButton("CERRAR");
         botonEntrar = new JButton("ENTRAR");
+        botonEntrarMuebles = new JButton("Muebles");
 
         panelAbajo = new JPanel();
         panelCentro = new JPanel();
@@ -47,6 +48,7 @@ public class VentanaDeCarga extends JFrame {
 
         panelAbajo.add(botonCerrar);
         panelAbajo.add(botonEntrar);
+        panelAbajo.add(botonEntrarMuebles);
 
         progressBar = new JProgressBar(0, 100);
         progressBar.setStringPainted(true);
@@ -59,6 +61,10 @@ public class VentanaDeCarga extends JFrame {
 
         botonCerrar.addActionListener((e) -> {
             System.exit(0);
+        });
+        
+        botonEntrarMuebles.addActionListener((e) -> {
+        	new VentanaMuebles();
         });
 
         botonEntrar.addActionListener((e) -> {
@@ -81,7 +87,7 @@ public class VentanaDeCarga extends JFrame {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            new VentanaMuebles();
+                            new VentanaInicioSesion();
                         }
                     });
                     dispose();
