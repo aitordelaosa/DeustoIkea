@@ -32,8 +32,7 @@ public class Datos {
         silla = new Silla(2, 15, 5.0, 75.0, "Plástico", "Negro", "Silla ergonómica, perfecta para oficina o comedor.", null, 1.0, 0.5, 120.0);
         armario = new Armario(3, 8, 50.0, 200.0, "Madera", "Blanco", "Armario espacioso de dos puertas, con estantes internos para optimizar el almacenamiento.", null, 2, 200.0, 100.0, 50.0);
         sofa = new Sofa(4, 5, 40.0, 350.0, "Tela", "Gris", "Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.", null, 3);
-        //Mirar si coincide la descripcion con la foto
-        //Cambiar html a txt en el String.format
+        
     }
 	
 	public String obtenerDetallesMueble(Mueble m) {

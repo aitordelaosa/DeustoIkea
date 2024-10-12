@@ -15,6 +15,7 @@ public class Cocina extends Producto {
 		this.descripcionC= "";
 		this.imagenC= null;
 	}
+	
 	public Cocina(int idProducto, int numeroProductos, double peso, double precio, 
 			String materialC ,String descripcionC, String rutaImagen) {
 		super(idProducto, numeroProductos, peso, precio);
@@ -24,21 +25,27 @@ public class Cocina extends Producto {
 		this.imagenC = new ImageIcon(rutaImagen);
 		
 	}
+	
 	public String getMaterialC() {
 		return materialC;
 	}
+	
 	public void setMaterialC(String materialC) {
 		this.materialC = materialC;
 	}
+	
 	public String getDescripcionC() {
 		return descripcionC;
 	}
+	
 	public void setDescripcionC(String descripcionC) {
 		this.descripcionC = descripcionC;
 	}
+	
 	public ImageIcon getImagenC() {
 		return imagenC;
 	}
+	
 	public void setImagenC(ImageIcon imagenC) {
 		this.imagenC = imagenC;
 	}
@@ -63,6 +70,7 @@ public class Cocina extends Producto {
 		return Objects.equals(descripcionC, other.descripcionC) && Objects.equals(imagenC, other.imagenC)
 				&& Objects.equals(materialC, other.materialC);
 	}
+	
 	@Override
 	public String toString() {
 		return "Cocina [material=" + materialC + ", descripcion=" + descripcionC+"]";
