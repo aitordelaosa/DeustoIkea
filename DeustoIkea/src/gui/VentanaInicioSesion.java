@@ -14,7 +14,7 @@ import domain.Datos;
 public class VentanaInicioSesion extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    protected JButton botonRegistro, botonCerrar, botonInicioSesion;
+    protected JButton botonRegistro, botonCerrar, botonInicioSesion, botonAtras;
     protected JPanel panelAbajo, panelArriba, panelEste, panelOeste, panelCentro, panelSuperiorCentro;
     protected JLabel lblNombreUsuario, lblContrasenia, lblRegistro, lblImagen, lblTexto;
     protected JTextField txtNombreUsuario;
@@ -32,6 +32,7 @@ public class VentanaInicioSesion extends JFrame {
         botonCerrar = new JButton("CERRAR");
         botonRegistro = new JButton("REGISTRATE");
         botonInicioSesion = new JButton("INICIO DE SESIÓN");
+        botonAtras = new JButton("VOLVER AL INICIO");
         
         panelAbajo = new JPanel();
         panelCentro = new JPanel();
@@ -76,6 +77,7 @@ public class VentanaInicioSesion extends JFrame {
         panelCentro.add(lblImagen, BorderLayout.SOUTH);
 				
 		panelAbajo.add(botonCerrar);
+		panelAbajo.add(botonAtras);
 		panelAbajo.add(botonInicioSesion);
 		panelAbajo.add(botonRegistro);
 		panelAbajo.add(lblRegistro);
@@ -92,6 +94,11 @@ public class VentanaInicioSesion extends JFrame {
 		getContentPane().add(panelArriba, BorderLayout.NORTH);
 		
 		botonCerrar.addActionListener((e)-> {
+			System.exit(0);
+		});
+		
+		botonAtras.addActionListener((e) -> {
+			new VentanaDeCarga();
 			dispose();
 		});
 

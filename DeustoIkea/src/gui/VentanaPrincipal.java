@@ -19,9 +19,9 @@ import domain.Datos;
 public class VentanaPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionOtro1, panelSeccionOtro2;
+    protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionOtro1, panelSeccionOtro2, panelAbajo;
     protected JLabel lblCocina, lblMuebles, lblOtro1, lblOtro2;
-    protected JButton botonCerrar;
+    protected JButton botonCerrar, botonAtras;
     protected JTable tabla;
     protected JScrollPane scrollPane;
     
@@ -33,6 +33,7 @@ public class VentanaPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         botonCerrar = new JButton("CERRAR");
+        botonAtras = new JButton("ATRAS");
 
         panelPrincipal = new JPanel(new GridLayout(2, 2, 20, 20)); // 2x2 grid con espacio de 20px entre secciones
         
@@ -40,9 +41,10 @@ public class VentanaPrincipal extends JFrame {
         panelSeccionMuebles = new JPanel();
         panelSeccionOtro1 = new JPanel();
         panelSeccionOtro2 = new JPanel();
+        panelAbajo = new JPanel();
         
-        ImageIcon cocina = new ImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon muebles = new ImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon cocina = new ImageIcon(new ImageIcon("src/Imagenes/Cocina1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon muebles = new ImageIcon(new ImageIcon("src/Imagenes/Muebles1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
         ImageIcon otro1 = new ImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
         ImageIcon otro2 = new ImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 //        ImageIcon cocina = new ImageIcon(new ImageIcon("src/Imagenes/cocina.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
@@ -59,25 +61,32 @@ public class VentanaPrincipal extends JFrame {
         panelSeccionMuebles.add(lblMuebles);
         panelSeccionOtro1.add(lblOtro1);
         panelSeccionOtro2.add(lblOtro2);
-
+        
+        panelAbajo.add(botonAtras);
+        panelAbajo.add(botonCerrar);
+        
         panelPrincipal.add(panelSeccionCocina);
         panelPrincipal.add(panelSeccionMuebles);
         panelPrincipal.add(panelSeccionOtro1);
         panelPrincipal.add(panelSeccionOtro2);
 
-        add(panelPrincipal, BorderLayout.CENTER);
+        getContentPane().add(panelAbajo, BorderLayout.SOUTH);
+        getContentPane().add(panelPrincipal, BorderLayout.NORTH);
+//        getContentPane().add(panelArriba, BorderLayout.NORTH);
         
         panelSeccionMuebles.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new VentanaMuebles();
+                dispose();
             }
         });
         
-//        panelSeccionCocina.addMouseListener(new MouseAdapter() {
-//            public void mouseClicked(MouseEvent e) {
-//                new VentanaCocina();
-//            }
-//        });
+        panelSeccionCocina.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new VentanaCocina();
+                dispose();
+            }
+        });
 //        
 //        panelSeccionOtro1.addMouseListener(new MouseAdapter() {
 //            public void mouseClicked(MouseEvent e) {
@@ -92,8 +101,13 @@ public class VentanaPrincipal extends JFrame {
 //        });
         
         botonCerrar.addActionListener((e)-> {
-			dispose();
+			System.exit(0);
 		});
+        
+        botonAtras.addActionListener((e) -> {
+        	new VentanaDeCarga();
+        	dispose();
+        });
         
 
         String[] columnas = {"ID", "Nombre", "Descripción", "Precio"};
@@ -106,7 +120,7 @@ public class VentanaPrincipal extends JFrame {
         DefaultTableModel modeloTabla = new DefaultTableModel(datos, columnas);
         tabla = new JTable(modeloTabla);
         scrollPane = new JScrollPane(tabla);
-        add(scrollPane, BorderLayout.SOUTH);
+        add(scrollPane, BorderLayout.CENTER);
 
         setLocationRelativeTo(null);
         setVisible(true);

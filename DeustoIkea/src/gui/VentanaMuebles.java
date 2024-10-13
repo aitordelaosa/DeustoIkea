@@ -21,7 +21,7 @@ import domain.Mueble;
 public class VentanaMuebles extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-	protected JButton botonCerrar, botonSeleccionar, botonComprar;
+	protected JButton botonAtras, botonSeleccionar, botonComprar;
 	protected JPanel panelAbajo, panelCentro, panelCentroD, panelCentroI, panelArriba;
 	protected JLabel labelImagen1, labelImagen2, labelImagen3, labelImagen4, labelDescripcion1, labelDescripcion2, labelDescripcion3, labelDescripcion4;
 	protected JTextArea areaTexto;
@@ -36,7 +36,7 @@ public class VentanaMuebles extends JFrame {
 		setTitle("Muebles");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-		botonCerrar = new JButton("CERRAR");
+		botonAtras = new JButton("ATRAS");
 		botonSeleccionar = new JButton("SELECCIONAR");
 		botonComprar = new JButton("COMPRAR");
 		
@@ -58,7 +58,7 @@ public class VentanaMuebles extends JFrame {
         scrollTexto.setBorder(null);  // Remover borde
         panelArriba.add(scrollTexto, BorderLayout.NORTH); 
 		
-		panelAbajo.add(botonCerrar);
+		panelAbajo.add(botonAtras);
 		panelAbajo.add(botonSeleccionar);
 		panelAbajo.add(botonComprar);
 		
@@ -131,8 +131,9 @@ public class VentanaMuebles extends JFrame {
 		getContentPane().add(panelArriba, BorderLayout.NORTH);
           
 		
-		botonCerrar.addActionListener((e) -> {
-			System.exit(0);
+		botonAtras.addActionListener((e) -> {
+			dispose();
+			new VentanaPrincipal();
 		});
 				
 		 botonSeleccionar.addActionListener((e) -> {
