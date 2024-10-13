@@ -4,9 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.logging.Level;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -45,12 +42,8 @@ public class VentanaInicioSesion extends JFrame {
         lblRegistro = new JLabel();
         lblFoto = new JLabel();  
         
-        JPanel panelContenedor = new JPanel();
-		panelContenedor.setLayout(new BorderLayout());
-		
 		lblNombreUsuario = new JLabel("USUARIO, EMAIL O TELÉFONO:");
 		lblNombreUsuario.setBorder(new EmptyBorder(0, 0, 10, 20));
-		lblNombreUsuario.setFont(new Font("Tw", Font.BOLD, 14));
 		txtNombreUsuario = new JTextField(20);
 		panelOeste.add(lblNombreUsuario);
 		panelOeste.add(txtNombreUsuario);
@@ -58,7 +51,6 @@ public class VentanaInicioSesion extends JFrame {
         
 		lblContrasenia = new JLabel("  CONTRASEÑA: ");
 		lblContrasenia.setBorder(new EmptyBorder(0, 0, 10, 20));
-		lblContrasenia.setFont(new Font("Tw", Font.BOLD, 14));
 		txtContrasenia = new JPasswordField(20);
 		
 		panelOeste.add(lblContrasenia);
@@ -73,7 +65,7 @@ public class VentanaInicioSesion extends JFrame {
         
 		panelEste = new JPanel();
 		panelEste.setLayout(new BoxLayout(panelEste, BoxLayout.Y_AXIS));
-		lblRegistro = new JLabel("¿No tienes cuenta? Regístrate aquí");
+		lblRegistro = new JLabel("¿No tienes cuenta? Regístrate aquí" + "\n");
 		lblRegistro.setBorder(new EmptyBorder(0, 0, 10, 20));
 		lblRegistro.setFont(new Font("Tw", Font.BOLD, 14));
 		
@@ -94,6 +86,12 @@ public class VentanaInicioSesion extends JFrame {
 		panelOeste.setBorder(new EmptyBorder(200, 200, 200, 200 ));
 		panelEste.setBorder(new EmptyBorder(200, 200, 200, 200 ));
 		
+		getContentPane().add(panelAbajo, BorderLayout.SOUTH);
+		getContentPane().add(panelCentro, BorderLayout.CENTER);
+		getContentPane().add(panelArriba, BorderLayout.NORTH);
+		getContentPane().add(panelEste, BorderLayout.EAST);
+		getContentPane().add(panelOeste, BorderLayout.WEST);
+		
 		botonAtras.addActionListener((e)-> {
 
 		});
@@ -110,35 +108,27 @@ public class VentanaInicioSesion extends JFrame {
         setVisible(true);
     }
    
-    private void iniciarSesion() {
-		String corrTlfUsu = txtNombreUsuario.getText();
-		char[] contChar = txtContrasenia.getPassword();
-		String contrasenia = new String(contChar);
-		
-		if(corrTlfUsu.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Inserte el teléfono, el mail o el nombre de usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-		}else if(contrasenia.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Inserte la contraseña", "ERROR", JOptionPane.ERROR_MESSAGE);
-		}else {
-			Cliente cliente = Restaurante.buscarUsuario(corrTlfUsu);
-//			Connection con = BD.initBD(Main.nombreBD);
-//			Cliente cliente = BD.buscarCliente(con, corrTlfUsu, corrTlfUsu, corrTlfUsu);
-			if(cliente==null || (!corrTlfUsu.equals(cliente.getCorreo()) && !corrTlfUsu.equals(cliente.getTelefono()) && !corrTlfUsu.equals(cliente.getNombreUsuario()))) {
-				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "ERROR", JOptionPane.ERROR_MESSAGE);
-			}else {
-				if(!contrasenia.equals(cliente.getContrasenia())) {
-					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ cliente.getNombreUsuario().toUpperCase(), "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
-					cli=cliente;
-					txtNombreUsuario.setText("");
-					txtContrasenia.setText("");
-					new VentanaCliente(vActual);
-			}
-		}
-		
-		}
-	}
+//    private void iniciarSesion() {
+//		String corrTlfUsu = txtNombreUsuario.getText();
+//		char[] contChar = txtContrasenia.getPassword();
+//		String contrasenia = new String(contChar);
+//		
+//		if(corrTlfUsu.isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "Inserte el teléfono, el mail o el nombre de usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+//		}else if(contrasenia.isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "Inserte la contraseña", "ERROR", JOptionPane.ERROR_MESSAGE);
+//		}else {
+//			if(!contrasenia.equals()) {
+//				JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+//			}else {
+//				JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
+//				txtNombreUsuario.setText("");
+//				txtContrasenia.setText("");
+//			}
+//		}
+//		
+//		}
+//	}
     
 }
 
