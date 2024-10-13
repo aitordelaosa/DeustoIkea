@@ -99,8 +99,10 @@ public class VentanaPrincipal extends JFrame {
         String[] columnas = {"ID", "Nombre", "Descripción", "Precio"};
         Object[][] datos = {
             {"1", "Producto 1", "Descripción del producto 1", "$10.99"},
-            {"2", "Producto 2", "Descripción del producto 2", "$20.99"}
+            {"2", "Producto 2", "Descripción del producto 2", "$20.99"},
+            {"3", "Producto 3", "Descripción del producto 3", "$30.99"}
         };
+        
         DefaultTableModel modeloTabla = new DefaultTableModel(datos, columnas);
         tabla = new JTable(modeloTabla);
         scrollPane = new JScrollPane(tabla);
