@@ -68,7 +68,7 @@ public class Datos {
         nevera = new Nevera(5, 12, 81.5, 699.90, "Aluminio", "Nevera con dos puertas, ideal para familias", null, 198.8, 70.2, 57.2, 150, "Nevera con congelador");
         horno = new Horno(6, 4, 67.2, 250.8, "Metal", "Horno con gran capacidad para tus mejores recetas", null, 59.5, 59.5, 56.9, 95, 2);
         encimera = new Encimera(7, 9, 34, 190.95, "Granito", "Elegante encimera para darle un toque moderno a tu cocina", null, 80.8, 23.9, "Blanco");
-        fregadero = new Fregadero(8, 9, 12.5, 250.8, "Metal", "Fregadero con dos cubetas y grifo incluido", null, 2, 28.6, true);
+        fregadero = new Fregadero(8, 9, 12.5, 280.87, "Metal", "Fregadero con dos cubetas y grifo incluido", null, 2, 28.6, true);
     }
 	//Muebles
 	public String obtenerDetallesMueble(Mueble m) {
