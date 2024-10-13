@@ -96,11 +96,12 @@ public class VentanaInicioSesion extends JFrame {
 		});
 
 		botonRegistro.addActionListener((e) -> {
-			
+//			new VentanaRegistro();
 		});
 
 		botonInicioSesion.addActionListener((e)-> {
-
+//			iniciarSesion();
+//			dispose();
 		});
         
         setLocationRelativeTo(null); 
@@ -113,32 +114,32 @@ public class VentanaInicioSesion extends JFrame {
         return new ImageIcon(newImg);
     }
     
-    private void iniciarSesion() {
-    	String user = txtNombreUsuario.getText();
-    	char[] contraa = txtContrasenia.getPassword();
-    	String contra = new String(contraa);
-    	
-    	if(user.isEmpty()) {
-    		JOptionPane.showMessageDialog(null, "Inserte un telefono, mail o nombre de usuario valido");
-    	}else if(contra.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
-		}else {
-			Cliente c = Datos.buscarCliente(user);
-			if(c==null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
-				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido");
-			}else {
-				if(!contra.equals(c.getContraseña())) {
-					JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-				}else {
-					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ c.getNombre().toUpperCase());
-					cliente=c;
-					txtNombreUsuario.setText("");
-					txtContrasenia.setText("");
-					new VentanaPrincipal();
-				}
-			}
-		}
-    }
+//    private void iniciarSesion() {
+//    	String user = txtNombreUsuario.getText();
+//    	char[] contraa = txtContrasenia.getPassword();
+//    	String contra = new String(contraa);
+//    	
+//    	if(user.isEmpty()) {
+//    		JOptionPane.showMessageDialog(null, "Inserte un telefono, mail o nombre de usuario valido");
+//    	}else if(contra.isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
+//		}else {
+//			Cliente c = Datos.buscarCliente(user);
+//			if(c==null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
+//				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido");
+//			}else {
+//				if(!contra.equals(c.getContraseña())) {
+//					JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+//				}else {
+//					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ c.getNombre().toUpperCase());
+//					cliente=c;
+//					txtNombreUsuario.setText("");
+//					txtContrasenia.setText("");
+//					new VentanaPrincipal();
+//				}
+//			}
+//		}
+//    }
    
 }
 
