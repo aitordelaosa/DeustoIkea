@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.*;
@@ -15,7 +14,7 @@ public class VentanaInicioSesion extends JFrame {
 
     protected JButton botonRegistro, botonAtras, botonInicioSesion;
     protected JPanel panelAbajo, panelArriba, panelEste, panelOeste, panelCentro;
-    protected JLabel lblNombreUsuario, lblContrasenia, lblRegistro, lblFoto;
+    protected JLabel lblNombreUsuario, lblContrasenia, lblRegistro;
     protected JTextField txtNombreUsuario;
     protected JPasswordField txtContrasenia;	
     
@@ -28,7 +27,7 @@ public class VentanaInicioSesion extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         botonAtras = new JButton("VOLVER");
-        botonRegistro = new JButton("                    REGISTRATE                   ");
+        botonRegistro = new JButton("REGISTRATE");
         botonInicioSesion = new JButton("INICIO DE SESIÓN");
         
         panelAbajo = new JPanel();
@@ -37,54 +36,38 @@ public class VentanaInicioSesion extends JFrame {
         panelEste = new JPanel();
         panelOeste = new JPanel();
         
-        lblNombreUsuario = new JLabel();
-        lblContrasenia = new JLabel();
-        lblRegistro = new JLabel();
-        lblFoto = new JLabel();  
+        lblNombreUsuario = new JLabel("USUARIO, EMAIL O TELÉFONO:");
+        lblContrasenia = new JLabel("CONTRASEÑA:");
+        lblRegistro = new JLabel("<---    ¿No tienes cuenta? Regístrate aquí");
         
-		lblNombreUsuario = new JLabel("USUARIO, EMAIL O TELÉFONO:");
 		lblNombreUsuario.setBorder(new EmptyBorder(0, 0, 10, 20));
-		txtNombreUsuario = new JTextField(20);
-		panelOeste.add(lblNombreUsuario);
-		panelOeste.add(txtNombreUsuario);
-		panelOeste.add(Box.createVerticalStrut(30));
-        
-		lblContrasenia = new JLabel("  CONTRASEÑA: ");
 		lblContrasenia.setBorder(new EmptyBorder(0, 0, 10, 20));
+		
+		txtNombreUsuario = new JTextField(20);
 		txtContrasenia = new JPasswordField(20);
-		
-		panelOeste.add(lblContrasenia);
-		panelOeste.add(txtContrasenia);
-		panelOeste.add(Box.createVerticalStrut(30));
-		
 		txtNombreUsuario.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		txtContrasenia.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		
 		txtNombreUsuario.setColumns(40);
 		txtContrasenia.setColumns(40);
-        
-		panelEste = new JPanel();
-		panelEste.setLayout(new BoxLayout(panelEste, BoxLayout.Y_AXIS));
-		lblRegistro = new JLabel("¿No tienes cuenta? Regístrate aquí" + "\n");
-		lblRegistro.setBorder(new EmptyBorder(0, 0, 10, 20));
-		lblRegistro.setFont(new Font("Tw", Font.BOLD, 14));
 		
+		panelOeste.add(lblNombreUsuario);
+		panelOeste.add(txtNombreUsuario);
+		panelOeste.add(Box.createVerticalStrut(20));
+       	panelOeste.add(lblContrasenia);
+		panelOeste.add(txtContrasenia);
+		panelOeste.add(Box.createVerticalStrut(20));
+        
+		lblRegistro.setBorder(new EmptyBorder(0, 0, 10, 20));
 		
 		panelEste.add(lblRegistro);
-		panelEste.add(botonRegistro);
-		panelEste.add(Box.createVerticalStrut(30));
-		
-		
-		panelAbajo = new JPanel();
-		panelAbajo.setLayout(new FlowLayout(FlowLayout.CENTER));
-		
-		
+		panelEste.add(Box.createVerticalStrut(20));
+				
 		panelAbajo.add(botonAtras);
-		
-		
 		panelAbajo.add(botonInicioSesion);
-		panelOeste.setBorder(new EmptyBorder(200, 200, 200, 200 ));
-		panelEste.setBorder(new EmptyBorder(200, 200, 200, 200 ));
+		panelAbajo.add(botonRegistro);
+		
+		panelOeste.setBorder(new EmptyBorder(50, 50, 50, 50));
+        panelEste.setBorder(new EmptyBorder(50, 50, 50, 50));
 		
 		getContentPane().add(panelAbajo, BorderLayout.SOUTH);
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
@@ -93,7 +76,7 @@ public class VentanaInicioSesion extends JFrame {
 		getContentPane().add(panelOeste, BorderLayout.WEST);
 		
 		botonAtras.addActionListener((e)-> {
-
+			dispose();
 		});
 
 		botonRegistro.addActionListener((e) -> {
