@@ -2,7 +2,14 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,9 +19,9 @@ import domain.Datos;
 public class VentanaInicioSesion extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    protected JButton botonRegistro, botonAtras, botonInicioSesion;
-    protected JPanel panelAbajo, panelArriba, panelEste, panelOeste, panelCentro;
-    protected JLabel lblNombreUsuario, lblContrasenia, lblRegistro;
+    protected JButton botonRegistro, botonCerrar, botonInicioSesion;
+    protected JPanel panelAbajo, panelArriba, panelEste, panelOeste, panelCentro, panelSuperiorCentro;
+    protected JLabel lblNombreUsuario, lblContrasenia, lblRegistro, lblImagen, lblTexto;
     protected JTextField txtNombreUsuario;
     protected JPasswordField txtContrasenia;	
     
@@ -26,22 +33,29 @@ public class VentanaInicioSesion extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        botonAtras = new JButton("VOLVER");
+        botonCerrar = new JButton("CERRAR");
         botonRegistro = new JButton("REGISTRATE");
         botonInicioSesion = new JButton("INICIO DE SESIÓN");
         
         panelAbajo = new JPanel();
         panelCentro = new JPanel();
         panelArriba = new JPanel();
+        panelSuperiorCentro = new JPanel();
         panelEste = new JPanel();
         panelOeste = new JPanel();
         
         lblNombreUsuario = new JLabel("USUARIO, EMAIL O TELÉFONO:");
         lblContrasenia = new JLabel("CONTRASEÑA:");
         lblRegistro = new JLabel("<---    ¿No tienes cuenta? Regístrate aquí");
+        lblTexto = new JLabel("Bienvenido a la ventana de Inicio de sesión");
+        
+        ImageIcon img = resizeImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg"), 600, 400);
+//        ImageIcon img = new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg");
+        lblImagen = new JLabel(img);
         
 		lblNombreUsuario.setBorder(new EmptyBorder(0, 0, 10, 20));
 		lblContrasenia.setBorder(new EmptyBorder(0, 0, 10, 20));
+		lblRegistro.setBorder(new EmptyBorder(0, 0, 10, 20));
 		
 		txtNombreUsuario = new JTextField(20);
 		txtContrasenia = new JPasswordField(20);
@@ -53,18 +67,26 @@ public class VentanaInicioSesion extends JFrame {
 		panelOeste.add(lblNombreUsuario);
 		panelOeste.add(txtNombreUsuario);
 		panelOeste.add(Box.createVerticalStrut(20));
-       	panelOeste.add(lblContrasenia);
-		panelOeste.add(txtContrasenia);
-		panelOeste.add(Box.createVerticalStrut(20));
-        
-		lblRegistro.setBorder(new EmptyBorder(0, 0, 10, 20));
-		
-		panelEste.add(lblRegistro);
+		panelEste.add(lblContrasenia);
+		panelEste.add(txtContrasenia);
 		panelEste.add(Box.createVerticalStrut(20));
+		
+		panelSuperiorCentro.setLayout(new GridLayout(1, 2));
+        panelSuperiorCentro.add(panelOeste);
+        panelSuperiorCentro.add(panelEste);
+        
+        panelCentro.setLayout(new BorderLayout());
+        panelCentro.add(panelSuperiorCentro, BorderLayout.NORTH);
+        panelCentro.add(lblImagen, BorderLayout.SOUTH);
 				
-		panelAbajo.add(botonAtras);
+		panelAbajo.add(botonCerrar);
 		panelAbajo.add(botonInicioSesion);
 		panelAbajo.add(botonRegistro);
+		panelAbajo.add(lblRegistro);
+		
+		panelCentro.add(lblImagen);
+		
+		panelArriba.add(lblTexto);
 		
 		panelOeste.setBorder(new EmptyBorder(50, 50, 50, 50));
         panelEste.setBorder(new EmptyBorder(50, 50, 50, 50));
@@ -72,10 +94,8 @@ public class VentanaInicioSesion extends JFrame {
 		getContentPane().add(panelAbajo, BorderLayout.SOUTH);
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
 		getContentPane().add(panelArriba, BorderLayout.NORTH);
-		getContentPane().add(panelEste, BorderLayout.EAST);
-		getContentPane().add(panelOeste, BorderLayout.WEST);
 		
-		botonAtras.addActionListener((e)-> {
+		botonCerrar.addActionListener((e)-> {
 			dispose();
 		});
 
@@ -89,6 +109,12 @@ public class VentanaInicioSesion extends JFrame {
         
         setLocationRelativeTo(null); 
         setVisible(true);
+    }
+    
+    private ImageIcon resizeImageIcon(ImageIcon originalIcon, int width, int height) {
+        Image img = originalIcon.getImage();
+        Image newImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(newImg);
     }
    
 //    private void iniciarSesion() {
