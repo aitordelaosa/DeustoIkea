@@ -45,7 +45,7 @@ public class Silla extends Mueble {
 	public void setCapacidadDeCarga(double capacidadDeCarga) {
 		this.capacidadDeCarga = capacidadDeCarga;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

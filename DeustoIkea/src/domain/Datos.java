@@ -59,10 +59,10 @@ public class Datos {
 //		int idProducto, int numeroProductos, double peso, double precio, String materialC, String descripcionC, String rutaImagen, int numCubetas, double profundidad, boolean grifo
 		
 		//Muebles
-        mesa = new Mesa(1, 10, 20.0, 150.0, "Madera", "Marrón", "Mesa de comedor para seis personas, hecha de madera de alta calidad.", null, 140.0, 6);
-        silla = new Silla(2, 15, 5.0, 75.0, "Plástico", "Negro", "Silla ergonómica, perfecta para oficina o comedor.", null, 120.3, 50, 120.0);
-        armario = new Armario(3, 8, 50.0, 200.0, "Madera", "Blanco", "Armario espacioso de dos puertas, con estantes internos para optimizar el almacenamiento.", null, 2, 200.0, 100.0, 50.0);
-        sofa = new Sofa(4, 5, 40.0, 350.0, "Tela", "Gris", "Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.", null, 3);
+        mesa = new Mesa(1, 10, 20.0, 150.0, "Madera", "Marrón", "Mesa de comedor para seis personas, hecha de madera de alta calidad.", "src/Imagenes/sofa.jpeg", 140.0, 6);
+        silla = new Silla(2, 15, 5.0, 75.0, "Plástico", "Negro", "Silla ergonómica, perfecta para oficina o comedor.", "src/Imagenes/Armario.jpeg", 120.3, 50, 120.0);
+        armario = new Armario(3, 8, 50.0, 200.0, "Madera", "Blanco", "Armario espacioso de dos puertas, con estantes internos para optimizar el almacenamiento.", "src/Imagenes/silla.jpeg", 2, 200.0, 100.0, 50.0);
+        sofa = new Sofa(4, 5, 40.0, 350.0, "Tela", "Gris", "Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.", "src/Imagenes/mesa.jpeg", 3);
         
         //Cocina
         nevera = new Nevera(5, 12, 81.5, 699.90, "Aluminio", "Nevera con dos puertas, ideal para familias", null, 198.8, 70.2, 57.2, 150, "Nevera con congelador");

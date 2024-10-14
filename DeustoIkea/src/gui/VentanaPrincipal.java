@@ -12,9 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 
+import domain.Armario;
 import domain.Datos;
+import domain.Mesa;
+import domain.Silla;
+import domain.Sofa;
 
 public class VentanaPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -22,8 +25,10 @@ public class VentanaPrincipal extends JFrame {
     protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionOtro1, panelSeccionOtro2, panelAbajo;
     protected JLabel lblCocina, lblMuebles, lblOtro1, lblOtro2;
     protected JButton botonCerrar, botonAtras;
-    protected JTable tabla;
-    protected JScrollPane scrollPane;
+    
+    protected ModeloMuebles modeloTablaMuebles;
+    protected JTable tablaMuebles;
+    protected JScrollPane scrollTablaMuebles;
     
     protected Datos datos;
 
@@ -109,18 +114,24 @@ public class VentanaPrincipal extends JFrame {
         	dispose();
         });
         
-
-        String[] columnas = {"ID", "Nombre", "Descripción", "Precio"};
-        Object[][] datos = {
-            {"1", "Producto 1", "Descripción del producto 1", "$10.99"},
-            {"2", "Producto 2", "Descripción del producto 2", "$20.99"},
-            {"3", "Producto 3", "Descripción del producto 3", "$30.99"}
-        };
+        Datos datos = new Datos();
+        Mesa mesa = datos.getMesa();
+        Silla silla = datos.getSilla();
+        Armario armario = datos.getArmario();
+        Sofa sofa = datos.getSofa();
         
-        DefaultTableModel modeloTabla = new DefaultTableModel(datos, columnas);
-        tabla = new JTable(modeloTabla);
-        scrollPane = new JScrollPane(tabla);
-        add(scrollPane, BorderLayout.CENTER);
+        modeloTablaMuebles = new ModeloMuebles(null);		
+		tablaMuebles = new JTable(modeloTablaMuebles);
+		tablaMuebles.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
+		tablaMuebles.getColumnModel().getColumn(4).setPreferredWidth(100);
+		tablaMuebles.setRowHeight(100);
+		scrollTablaMuebles = new JScrollPane(tablaMuebles);
+		add(scrollTablaMuebles, BorderLayout.CENTER);
+        
+		modeloTablaMuebles.addProducto(mesa);
+		modeloTablaMuebles.addProducto(silla);
+		modeloTablaMuebles.addProducto(armario);
+		modeloTablaMuebles.addProducto(sofa);
 
         setLocationRelativeTo(null);
         setVisible(true);
