@@ -88,6 +88,7 @@ public class VentanaCocina extends JFrame {
         labelDescripcion3 = new JLabel();
         labelDescripcion4 = new JLabel();
         
+        
         labelDescripcion1.setText("<html>Nevera<br>" + 
                 "Precio: 699.90<br>" + 
                 "Peso: 81.5kg<br>" + 
