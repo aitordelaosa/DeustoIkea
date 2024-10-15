@@ -9,11 +9,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import domain.Datos;
+import domain.Mueble;
 import domain.Nevera;
 
 public class VentanaCocina extends JFrame {
@@ -34,16 +36,16 @@ public class VentanaCocina extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
        
-        botonCerrar = new JButton("Cerrar");
+        botonCerrar = new JButton("Atras");
         botonSeleccionar = new JButton("Seleccionar");
         botonComprar = new JButton("Comprar");
 
         
         panelAbajo = new JPanel();  
-        panelArriba = new JPanel(new BorderLayout());  
-        panelCentro = new JPanel(new GridLayout(1, 2));  
-        panelCentroD = new JPanel(new GridLayout(2, 2)); 
-        panelCentroI = new JPanel(new GridLayout(2, 2));
+        panelArriba = new JPanel();  
+        panelCentro = new JPanel();  
+        panelCentroD = new JPanel(); 
+        panelCentroI = new JPanel();
 
         
         areaTexto = new JTextArea(3, 40);
@@ -69,29 +71,59 @@ public class VentanaCocina extends JFrame {
         labelImagen2 = new JLabel(horno);
         labelImagen3 = new JLabel(encimera);
         labelImagen4 = new JLabel(fregadero);
-      
-
-        panelCentroD.add(labelImagen1);
-        panelCentroD.add(labelImagen2);
-        panelCentroD.add(labelImagen3);
-        panelCentroD.add(labelImagen4);
         
+        panelCentro.setLayout(new GridLayout(1, 2));
         panelCentro.add(panelCentroI);
         panelCentro.add(panelCentroD);
+        
+        panelCentroI.setLayout(new GridLayout(2, 2));
+        panelCentroD.setLayout(new GridLayout(2, 2));
 
         panelAbajo.add(botonCerrar);
         panelAbajo.add(botonSeleccionar);
         panelAbajo.add(botonComprar);
+ 
+        labelDescripcion1 = new JLabel();
+        labelDescripcion2 = new JLabel();
+        labelDescripcion3 = new JLabel();
+        labelDescripcion4 = new JLabel();
+        
+        
+        labelDescripcion1.setText("<html>Nevera<br>" + 
+                "Precio: 699.90<br>" + 
+                "Peso: 81.5kg<br>" + 
+                "Nevera con dos puertas, ideal para familias.</html>");
+
+        labelDescripcion2.setText("<html>Horno<br>" + 
+                "Precio: 250.8<br>" + 
+                "Peso: 67.2kg<br>" + 
+                "Horno con gran capacidad para tus mejores recetas.</html>");
+
+        labelDescripcion3.setText("<html>Encimera<br>" + 
+                "Precio: 190.95<br>" + 
+                "Peso: 34kg<br>" + 
+                "Elegante encimera para darle un toque moderno a tu cocina.</html>");
+
+        labelDescripcion4.setText("<html>Fregadero<br>" + 
+                "Precio: 280.87<br>" + 
+                "Peso: 12.5kg<br>" + 
+                "Fregadero con dos cubetas y grifo incluido.</html>");
 
         
+        panelCentroI.add(labelImagen1);
+        panelCentroI.add(labelDescripcion1);
+        panelCentroI.add(labelImagen2);
+        panelCentroI.add(labelDescripcion2);
+        
+        panelCentroD.add(labelImagen3);
+        panelCentroD.add(labelDescripcion3);
+        panelCentroD.add(labelImagen4);
+        panelCentroD.add(labelDescripcion4);
         getContentPane().add(panelArriba, BorderLayout.NORTH);
         getContentPane().add(panelCentro, BorderLayout.CENTER);
         getContentPane().add(panelAbajo, BorderLayout.SOUTH);
-
         
-        botonCerrar.addActionListener((e) -> {
-            System.exit(0);
-        });
+       
         
         
         labelImagen1.addMouseListener(new MouseAdapter() {
@@ -122,19 +154,45 @@ public class VentanaCocina extends JFrame {
             }
         });
         
-        labelDescripcion1 = new JLabel();
-        labelDescripcion2 = new JLabel();
-        labelDescripcion3 = new JLabel();
-        labelDescripcion4 = new JLabel();
-        labelDescripcion1.setText("Nevera\n" + "Precio: 699.90 \n" + "Peso: 81.5kg \n" + "Descripción: Nevera con dos puertas, ideal para familias.");
-        labelDescripcion2.setText("Horno\n" + "Precio: 250.8 \n" + "Peso: 67.2kg \n" + "Horno con gran capacidad para tus mejores recetas");
-        labelDescripcion3.setText("Encimera\n" + "Precio: 190.95 \n" + "Peso: 34kg \n" + "Elegante encimera para darle un toque moderno a tu cocina");
-        labelDescripcion4.setText("Fregadero\n" + "Precio: 280.87 \n" + "Peso: 12.5kg \n" + "Fregadero con dos cubetas y grifo incluido");
-
+        botonCerrar.addActionListener((e) -> {
+            System.exit(0);
+        });
+        botonSeleccionar.addActionListener((e) -> {
+            mostrarInformacionSeleccionada();
+        });
         
         setVisible(true);
         setLocationRelativeTo(null); 
     }
+	
+	 private void mostrarInformacionSeleccionada() {
+		    if (objetoSeleccionado.isEmpty()) {
+		        JOptionPane.showMessageDialog(this, "Por favor, selecciona un objeto primero.");
+		    } else {
+		        Mueble muebleSeleccionado = null;
+
+		        switch (objetoSeleccionado) {
+		            case "Sofá":
+		                muebleSeleccionado = datos.getSofa();
+		                break;
+		            case "Armario":
+		                muebleSeleccionado = datos.getArmario();
+		                break;
+		            case "Silla":
+		                muebleSeleccionado = datos.getSilla();
+		                break;
+		            case "Mesa":
+		                muebleSeleccionado = datos.getMesa();
+		                break;
+		        }
+
+		        if (muebleSeleccionado != null) {
+		            String detalles = datos.obtenerDetallesMueble(muebleSeleccionado);
+		            JOptionPane.showMessageDialog(this, detalles);
+		        }
+		    }
+		}
+	
 
 	
 }
