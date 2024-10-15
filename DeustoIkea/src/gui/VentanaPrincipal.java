@@ -23,7 +23,7 @@ public class VentanaPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
 
     protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionOtro1, panelSeccionOtro2, panelAbajo;
-    protected JLabel lblCocina, lblMuebles, lblOtro1, lblOtro2;
+    protected JLabel lblCocina, lblMuebles, lblOtro1, lblOtro2, lblDescripcion;
     protected JButton botonCerrar, botonAtras;
     
     protected ModeloMuebles modeloTablaMuebles;
@@ -120,13 +120,22 @@ public class VentanaPrincipal extends JFrame {
         Armario armario = datos.getArmario();
         Sofa sofa = datos.getSofa();
         
+        lblDescripcion = new JLabel();
+        lblDescripcion.setText("<html><b>Algunos de nuestros articulos mas destacados: </b></html>");
+        lblDescripcion.setHorizontalAlignment(JLabel.CENTER);
+//        add(lblDescripcion, BorderLayout.CENTER);
+        JPanel panelDescripcion = new JPanel(new BorderLayout());
+        panelDescripcion.add(lblDescripcion, BorderLayout.NORTH);
+        
         modeloTablaMuebles = new ModeloMuebles(null);		
 		tablaMuebles = new JTable(modeloTablaMuebles);
 		tablaMuebles.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
 		tablaMuebles.getColumnModel().getColumn(4).setPreferredWidth(100);
 		tablaMuebles.setRowHeight(100);
 		scrollTablaMuebles = new JScrollPane(tablaMuebles);
-		add(scrollTablaMuebles, BorderLayout.CENTER);
+		panelDescripcion.add(scrollTablaMuebles, BorderLayout.CENTER);
+//		add(scrollTablaMuebles, BorderLayout.CENTER);
+		add(panelDescripcion, BorderLayout.CENTER);
         
 		modeloTablaMuebles.addProducto(mesa);
 		modeloTablaMuebles.addProducto(silla);
