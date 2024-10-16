@@ -163,8 +163,9 @@ public class VentanaRegistro extends JFrame{
 		getContentPane().add(pPrincipal);
 		new JScrollPane();
  	
-		btnAtras.addActionListener((e) -> {
-			new VentanaPrincipal();
+		btnAtras.addActionListener((e) -> { //Tenias puesto que el atras vaya a la ventana principal pero eso no tiene sentido. Y ahora hacen lo mismo los dos botones
+			dispose();
+			new VentanaInicioSesion();
 			/*vActual.setVisible(false);
 			vActual.dispose();*/
 		});
