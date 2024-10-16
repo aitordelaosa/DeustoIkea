@@ -46,6 +46,55 @@ public class ModeloMuebles extends DefaultTableModel {
 	}
 	
 	@Override
+	public void setValueAt(Object aValue, int row, int column) {
+	    Producto p = productos.get(row);
+	    
+	    if (p instanceof Silla) {
+	        Silla silla = (Silla) p;
+	        switch (column) {
+	            case 2:
+	                silla.setPrecio((Double) aValue);
+	                break;
+	            case 3:
+	                silla.setMaterial((String) aValue);
+	                break;
+	        }
+	    } else if (p instanceof Mesa) {
+	        Mesa mesa = (Mesa) p;
+	        switch (column) {
+	            case 2:
+	                mesa.setPrecio((Double) aValue);
+	                break;
+	            case 3:
+	                mesa.setMaterial((String) aValue);
+	                break;
+	        }
+	    } else if (p instanceof Mesa) {
+	        Sofa sofa = (Sofa) p;
+	        switch (column) {
+	            case 2:
+	                sofa.setPrecio((Double) aValue);
+	                break;
+	            case 3: // Material
+	                sofa.setMaterial((String) aValue);
+	                break;
+	        }
+	    } else {
+	    	Armario armario = (Armario) p;
+	        switch (column) {
+	            case 2:
+	                armario.setPrecio((Double) aValue);
+	                break;
+	            case 3:
+	                armario.setMaterial((String) aValue);
+	                break;
+	        }
+	    }
+
+	    fireTableCellUpdated(row, column);
+	}
+	
+	@Override
 	public Object getValueAt(int row, int column) {
 	    Producto p = productos.get(row);
 
@@ -114,7 +163,7 @@ public class ModeloMuebles extends DefaultTableModel {
 	
 	public void addProducto(Producto producto) {
 	    productos.add(producto);
-	    fireTableRowsInserted(productos.size() - 1, productos.size() - 1); // Notificar a la tabla que se ha añadido un nuevo producto
+	    fireTableRowsInserted(productos.size() - 1, productos.size() - 1);
 	}
 	
 }

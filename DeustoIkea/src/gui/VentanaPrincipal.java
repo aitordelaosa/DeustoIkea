@@ -131,6 +131,8 @@ public class VentanaPrincipal extends JFrame {
 		tablaMuebles = new JTable(modeloTablaMuebles);
 		tablaMuebles.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
 		tablaMuebles.getColumnModel().getColumn(4).setPreferredWidth(100);
+		tablaMuebles.getColumnModel().getColumn(2).setCellRenderer(new TableRenderer());
+		tablaMuebles.getColumnModel().getColumn(1).setCellRenderer(new TableRenderer());
 		tablaMuebles.setRowHeight(100);
 		scrollTablaMuebles = new JScrollPane(tablaMuebles);
 		panelDescripcion.add(scrollTablaMuebles, BorderLayout.CENTER);
