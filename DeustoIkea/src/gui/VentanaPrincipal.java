@@ -22,9 +22,9 @@ import domain.Sofa;
 public class VentanaPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionOtro1, panelSeccionOtro2, panelAbajo;
+    protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionOtro1, panelSeccionOtro2, panelAbajo, panelSuperior, panelSuperiorOeste, panelSuperiorEste;
     protected JLabel lblCocina, lblMuebles, lblOtro1, lblOtro2, lblDescripcion;
-    protected JButton botonCerrar, botonAtras;
+    protected JButton botonCerrar, botonAtras, botonPerfil, botonCarrito, botonAyuda, botonDescuentos;
     
     protected ModeloMuebles modeloTablaMuebles;
     protected JTable tablaMuebles;
@@ -39,6 +39,29 @@ public class VentanaPrincipal extends JFrame {
         
         botonCerrar = new JButton("CERRAR");
         botonAtras = new JButton("ATRAS");
+        
+        ImageIcon iconoPerfil = new ImageIcon(new ImageIcon("src/Imagenes/perfil1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("src/Imagenes/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoAyuda = new ImageIcon(new ImageIcon("src/Imagenes/ayuda1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoDescuentos = new ImageIcon(new ImageIcon("src/Imagenes/cupon.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        
+        botonPerfil = new JButton(iconoPerfil);
+        botonCarrito = new JButton(iconoCarrito);
+        botonAyuda = new JButton(iconoAyuda);
+        botonDescuentos = new JButton(iconoDescuentos);
+
+        panelSuperior = new JPanel(new BorderLayout());
+        panelSuperiorEste = new JPanel();
+        panelSuperiorOeste = new JPanel();
+        
+        JPanel panelBotonesPerfilCarrito = new JPanel(new BorderLayout());
+        panelSuperiorEste.add(botonCarrito);
+        panelSuperiorOeste.add(botonPerfil);
+        panelSuperiorOeste.add(botonAyuda);
+        panelSuperiorOeste.add(botonDescuentos);
+        panelBotonesPerfilCarrito.add(panelSuperiorEste, BorderLayout.EAST);
+        panelBotonesPerfilCarrito.add(panelSuperiorOeste, BorderLayout.WEST);
+        panelSuperior.add(panelBotonesPerfilCarrito, BorderLayout.NORTH);
 
         panelPrincipal = new JPanel(new GridLayout(2, 2, 20, 20)); // 2x2 grid con espacio de 20px entre secciones
         
@@ -74,9 +97,9 @@ public class VentanaPrincipal extends JFrame {
         panelPrincipal.add(panelSeccionMuebles);
         panelPrincipal.add(panelSeccionOtro1);
         panelPrincipal.add(panelSeccionOtro2);
-
-        getContentPane().add(panelAbajo, BorderLayout.SOUTH);
-        getContentPane().add(panelPrincipal, BorderLayout.NORTH);
+        
+//        getContentPane().add(panelAbajo, BorderLayout.SOUTH);
+//        getContentPane().add(panelPrincipal, BorderLayout.NORTH);
 //        getContentPane().add(panelArriba, BorderLayout.NORTH);
         
         panelSeccionMuebles.addMouseListener(new MouseAdapter() {
@@ -114,6 +137,14 @@ public class VentanaPrincipal extends JFrame {
         	dispose();
         });
         
+        botonPerfil.addActionListener((e) -> {
+//            new VentanaPerfil();
+        });
+
+        botonCarrito.addActionListener((e) -> {
+//            new VentanaCarrito();
+        });
+        
         Datos datos = new Datos();
         Mesa mesa = datos.getMesa();
         Silla silla = datos.getSilla();
@@ -134,10 +165,19 @@ public class VentanaPrincipal extends JFrame {
 		tablaMuebles.getColumnModel().getColumn(2).setCellRenderer(new TableRenderer());
 		tablaMuebles.getColumnModel().getColumn(1).setCellRenderer(new TableRenderer());
 		tablaMuebles.setRowHeight(100);
-		scrollTablaMuebles = new JScrollPane(tablaMuebles);
-		panelDescripcion.add(scrollTablaMuebles, BorderLayout.CENTER);
+//		scrollTablaMuebles = new JScrollPane(tablaMuebles);
+		panelDescripcion.add(tablaMuebles, BorderLayout.CENTER);
 //		add(scrollTablaMuebles, BorderLayout.CENTER);
-		add(panelDescripcion, BorderLayout.CENTER);
+//		add(panelDescripcion, BorderLayout.CENTER);
+		
+		//Panel contenedor para todo
+        JPanel panelContenedor = new JPanel(new BorderLayout());
+        panelSuperior.add(panelPrincipal, BorderLayout.CENTER);
+        panelContenedor.add(panelSuperior, BorderLayout.NORTH);
+        panelContenedor.add(panelAbajo, BorderLayout.SOUTH);
+	    panelContenedor.add(panelDescripcion, BorderLayout.CENTER);
+	    JScrollPane scrollPane = new JScrollPane(panelContenedor);
+	    getContentPane().add(scrollPane, BorderLayout.CENTER);
         
 		modeloTablaMuebles.addProducto(mesa);
 		modeloTablaMuebles.addProducto(silla);
