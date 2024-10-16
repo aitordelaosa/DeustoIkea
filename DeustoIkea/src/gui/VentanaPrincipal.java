@@ -133,17 +133,29 @@ public class VentanaPrincipal extends JFrame {
 		});
         
         botonAtras.addActionListener((e) -> {
-        	new VentanaDeCarga();
         	dispose();
+        	new VentanaDeCarga();
         });
         
         botonPerfil.addActionListener((e) -> {
+//        	dispose();
 //            new VentanaPerfil();
         });
 
         botonCarrito.addActionListener((e) -> {
+//        	dispose();
 //            new VentanaCarrito();
         });
+        
+        botonDescuentos.addActionListener((e) -> {
+//        	dispose();
+//          new VentanaDescuentos();
+      });
+        
+        botonAyuda.addActionListener((e) -> {
+//        	dispose();
+//          new VentanaAyuda();
+      });
         
         Datos datos = new Datos();
         Mesa mesa = datos.getMesa();
@@ -152,7 +164,7 @@ public class VentanaPrincipal extends JFrame {
         Sofa sofa = datos.getSofa();
         
         lblDescripcion = new JLabel();
-        lblDescripcion.setText("<html><b>Algunos de nuestros articulos mas destacados: </b></html>");
+        lblDescripcion.setText("<html><b>Algunos de nuestros muebles más destacados: </b></html>");
         lblDescripcion.setHorizontalAlignment(JLabel.CENTER);
 //        add(lblDescripcion, BorderLayout.CENTER);
         JPanel panelDescripcion = new JPanel(new BorderLayout());

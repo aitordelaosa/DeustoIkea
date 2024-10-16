@@ -21,9 +21,9 @@ import domain.Mueble;
 public class VentanaMuebles extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-	protected JButton botonAtras, botonSeleccionar, botonComprar;
-	protected JPanel panelAbajo, panelCentro, panelCentroD, panelCentroI, panelArriba;
-	protected JLabel labelImagen1, labelImagen2, labelImagen3, labelImagen4, labelDescripcion1, labelDescripcion2, labelDescripcion3, labelDescripcion4;
+	protected JButton botonAtras, botonSeleccionar, botonComprar, botonPerfil, botonCarrito;
+	protected JPanel panelAbajo, panelCentro, panelCentroD, panelCentroI, panelArriba, panelSuperior;
+	protected JLabel labelImagen1, labelImagen2, labelImagen3, labelImagen4, labelDescripcion1, labelDescripcion2, labelDescripcion3, labelDescripcion4, labelMuebles;
 	protected JTextArea areaTexto;
 	
 	private Datos datos;
@@ -40,11 +40,19 @@ public class VentanaMuebles extends JFrame {
 		botonSeleccionar = new JButton("SELECCIONAR");
 		botonComprar = new JButton("COMPRAR");
 		
+		ImageIcon iconoPerfil = new ImageIcon(new ImageIcon("src/Imagenes/perfil1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("src/Imagenes/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        botonPerfil = new JButton(iconoPerfil);
+        botonCarrito = new JButton(iconoCarrito);
+        ImageIcon iconoMuebles = new ImageIcon(new ImageIcon("src/Imagenes/seccion_muebles.png").getImage().getScaledInstance(200, 100, java.awt.Image.SCALE_SMOOTH));
+        labelMuebles = new JLabel(iconoMuebles);
+		
 		panelAbajo = new JPanel();
 		panelCentro = new JPanel();
 		panelCentroD = new JPanel();
 		panelCentroI = new JPanel();
 		panelArriba = new JPanel(new BorderLayout());
+		panelSuperior = new JPanel(new BorderLayout());
 		
         areaTexto = new JTextArea(3, 40);
         areaTexto.setLineWrap(true); // Permitir que el texto se ajuste a la línea
@@ -53,10 +61,20 @@ public class VentanaMuebles extends JFrame {
         areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de articulos asequibles y modernos.\n" +
                           "Ofrecemos una amplia gama de muebles que se adaptan a todos los estilos y presupuestos.");
         
-		
-        JScrollPane scrollTexto = new JScrollPane(areaTexto);
-        scrollTexto.setBorder(null);  // Remover borde
-        panelArriba.add(scrollTexto, BorderLayout.NORTH); 
+        JPanel panelBotonesPerfilCarrito = new JPanel(new BorderLayout());
+
+        panelBotonesPerfilCarrito.add(labelMuebles, BorderLayout.NORTH);
+        panelBotonesPerfilCarrito.add(botonPerfil, BorderLayout.WEST);
+        panelBotonesPerfilCarrito.add(botonCarrito, BorderLayout.EAST);
+        panelBotonesPerfilCarrito.add(areaTexto, BorderLayout.CENTER);
+        panelSuperior.add(panelBotonesPerfilCarrito, BorderLayout.NORTH);
+        
+//        JScrollPane scrollTexto = new JScrollPane(areaTexto);
+//        scrollTexto.setBorder(null);  // Remover borde
+//        panelArriba.add(scrollTexto, BorderLayout.NORTH); 
+        panelArriba.add(panelSuperior, BorderLayout.NORTH); 
+//        panelArriba.add(botonPerfil, BorderLayout.NORTH);
+//        panelArriba.add(botonCarrito, BorderLayout.NORTH);
 		
 		panelAbajo.add(botonAtras);
 		panelAbajo.add(botonSeleccionar);
