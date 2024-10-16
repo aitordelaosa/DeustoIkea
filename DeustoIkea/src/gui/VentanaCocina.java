@@ -30,6 +30,7 @@ public class VentanaCocina extends JFrame {
     private String objetoSeleccionado;
 	
 	public VentanaCocina() {
+		this.datos = new Datos();
         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Cocina");
