@@ -12,9 +12,9 @@ public class TableRenderer extends DefaultTableCellRenderer {
         Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         
         if (column == 2) {
-            cell.setBackground(java.awt.Color.darkGray);
+            cell.setBackground(java.awt.Color.BLUE);
         } else if (column == 1) {
-            cell.setBackground(java.awt.Color.GRAY);
+            cell.setBackground(java.awt.Color.CYAN);
         } else {
             cell.setBackground(java.awt.Color.WHITE);
         }

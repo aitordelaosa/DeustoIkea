@@ -53,8 +53,8 @@ public class VentanaCocina extends JFrame {
         areaTexto.setLineWrap(true);
         areaTexto.setWrapStyleWord(true);
         areaTexto.setEditable(false);
-        areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de muebles asequibles y modernos.\n" +
-                "Ofrecemos una amplia gama de muebles que se adaptan a todos los estilos y presupuestos.");
+        areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de articulos asequibles y modernos.\n" +
+                "Ofrecemos una amplia gama de articulos de cocina que se adaptan a todos los estilos y presupuestos.");
 
 
         JScrollPane scrollTexto = new JScrollPane(areaTexto); 

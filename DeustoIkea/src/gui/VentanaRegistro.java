@@ -25,7 +25,7 @@ public class VentanaRegistro extends JFrame{
 	private JLabel lblNombre, lblApellido, lblTlf, lblDireccion, lblEmail, lblNombreUsuario, lblContrasenia, lblRepetirContrasenia, lblInicioSesion;
 	private JTextField txtNombre, txtApellido, txtTlf, txtDireccion, txtEmail, txtNombreUsuario;
 	private JPasswordField txtContrasenia, txtRepetirContrasenia;
-	private JButton btnRegistro, btnAtras, btnInicioSesion;
+	private JButton btnRegistro, btnCerrar, btnInicioSesion;
 	//private JFrame vActual;
 	
 
@@ -144,8 +144,8 @@ public class VentanaRegistro extends JFrame{
 		pSur = new JPanel();
 		pSur.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
-		btnAtras = new JButton("VOLVER");
-		pSur.add(btnAtras);
+		btnCerrar = new JButton("CERRAR");
+		pSur.add(btnCerrar);
 		
 		btnRegistro = new JButton("REGISTRO");
 		pSur.add(btnRegistro);
@@ -163,9 +163,8 @@ public class VentanaRegistro extends JFrame{
 		getContentPane().add(pPrincipal);
 		new JScrollPane();
  	
-		btnAtras.addActionListener((e) -> { //Tenias puesto que el atras vaya a la ventana principal pero eso no tiene sentido. Y ahora hacen lo mismo los dos botones
-			dispose();
-			new VentanaInicioSesion();
+		btnCerrar.addActionListener((e) -> { 
+			System.exit(0);
 			/*vActual.setVisible(false);
 			vActual.dispose();*/
 		});

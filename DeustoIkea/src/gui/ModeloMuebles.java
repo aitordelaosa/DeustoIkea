@@ -75,7 +75,7 @@ public class ModeloMuebles extends DefaultTableModel {
 	            case 2:
 	                sofa.setPrecio((Double) aValue);
 	                break;
-	            case 3: // Material
+	            case 3:
 	                sofa.setMaterial((String) aValue);
 	                break;
 	        }

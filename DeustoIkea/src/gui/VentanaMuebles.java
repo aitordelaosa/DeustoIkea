@@ -50,7 +50,7 @@ public class VentanaMuebles extends JFrame {
         areaTexto.setLineWrap(true); // Permitir que el texto se ajuste a la línea
         areaTexto.setWrapStyleWord(true); // Ajustar solo en palabras completas
         areaTexto.setEditable(false);
-        areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de muebles asequibles y modernos.\n" +
+        areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de articulos asequibles y modernos.\n" +
                           "Ofrecemos una amplia gama de muebles que se adaptan a todos los estilos y presupuestos.");
         
 		
