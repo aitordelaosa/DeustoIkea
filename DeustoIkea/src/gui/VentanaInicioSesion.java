@@ -103,6 +103,7 @@ public class VentanaInicioSesion extends JFrame {
 		});
 
 		botonRegistro.addActionListener((e) -> {
+			dispose();
 			new VentanaRegistro();
 		});
 

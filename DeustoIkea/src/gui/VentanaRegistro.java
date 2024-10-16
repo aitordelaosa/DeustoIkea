@@ -173,6 +173,7 @@ public class VentanaRegistro extends JFrame{
 		btnInicioSesion.addActionListener((e) -> {
 			/*vActual.dispose();
 			vActual.setVisible(false);*/
+			dispose();
 			new VentanaInicioSesion();
 		});
 
