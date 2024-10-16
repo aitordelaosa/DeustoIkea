@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import domain.Cocina;
 import domain.Datos;
-import domain.Mueble;
-import domain.Nevera;
+
 
 public class VentanaCocina extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -155,7 +155,8 @@ public class VentanaCocina extends JFrame {
         });
         
         botonCerrar.addActionListener((e) -> {
-            System.exit(0);
+            dispose();
+            new VentanaPrincipal();
         });
         botonSeleccionar.addActionListener((e) -> {
             mostrarInformacionSeleccionada();
@@ -169,25 +170,25 @@ public class VentanaCocina extends JFrame {
 		    if (objetoSeleccionado.isEmpty()) {
 		        JOptionPane.showMessageDialog(this, "Por favor, selecciona un objeto primero.");
 		    } else {
-		        Mueble muebleSeleccionado = null;
+		        Cocina cocinaSeleccionada = null;
 
 		        switch (objetoSeleccionado) {
-		            case "Sofá":
-		                muebleSeleccionado = datos.getSofa();
+		            case "Nevera":
+		                cocinaSeleccionada = datos.getNevera();
 		                break;
-		            case "Armario":
-		                muebleSeleccionado = datos.getArmario();
+		            case "Horno":
+		            	cocinaSeleccionada = datos.getHorno();
 		                break;
-		            case "Silla":
-		                muebleSeleccionado = datos.getSilla();
+		            case "Encimera":
+		            	cocinaSeleccionada = datos.getEncimera();
 		                break;
-		            case "Mesa":
-		                muebleSeleccionado = datos.getMesa();
+		            case "Fregadero":
+		            	cocinaSeleccionada = datos.getFregadero();
 		                break;
 		        }
 
-		        if (muebleSeleccionado != null) {
-		            String detalles = datos.obtenerDetallesMueble(muebleSeleccionado);
+		        if (cocinaSeleccionada != null) {
+		            String detalles = datos.obtenerDetallesCocina(cocinaSeleccionada);
 		            JOptionPane.showMessageDialog(this, detalles);
 		        }
 		    }
