@@ -44,7 +44,7 @@ public class VentanaMuebles extends JFrame {
         ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("src/Imagenes/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         botonPerfil = new JButton(iconoPerfil);
         botonCarrito = new JButton(iconoCarrito);
-        ImageIcon iconoMuebles = new ImageIcon(new ImageIcon("src/Imagenes/seccion_muebles.png").getImage().getScaledInstance(200, 100, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoMuebles = new ImageIcon(new ImageIcon("src/Imagenes/Seccion_Muebles (1).png").getImage().getScaledInstance(200, 100, java.awt.Image.SCALE_SMOOTH));
         labelMuebles = new JLabel(iconoMuebles);
 		
 		panelAbajo = new JPanel();
@@ -63,7 +63,7 @@ public class VentanaMuebles extends JFrame {
         
         JPanel panelBotonesPerfilCarrito = new JPanel(new BorderLayout());
 
-        panelBotonesPerfilCarrito.add(labelMuebles, BorderLayout.NORTH);
+        panelBotonesPerfilCarrito.add(labelMuebles, BorderLayout.SOUTH);
         panelBotonesPerfilCarrito.add(botonPerfil, BorderLayout.WEST);
         panelBotonesPerfilCarrito.add(botonCarrito, BorderLayout.EAST);
         panelBotonesPerfilCarrito.add(areaTexto, BorderLayout.CENTER);
