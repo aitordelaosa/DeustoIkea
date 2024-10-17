@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -11,8 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 import domain.Datos;
 import domain.Mueble;
@@ -23,7 +25,7 @@ public class VentanaMuebles extends JFrame {
 	
 	protected JButton botonAtras, botonSeleccionar, botonComprar, botonPerfil, botonCarrito;
 	protected JPanel panelAbajo, panelCentro, panelCentroD, panelCentroI, panelArriba, panelSuperior;
-	protected JLabel labelImagen1, labelImagen2, labelImagen3, labelImagen4, labelDescripcion1, labelDescripcion2, labelDescripcion3, labelDescripcion4, labelMuebles;
+	protected JLabel labelImagen1, labelImagen2, labelImagen3, labelImagen4, labelDescripcion1, labelDescripcion2, labelDescripcion3, labelDescripcion4, textoMueble;
 	protected JTextArea areaTexto;
 	
 	private Datos datos;
@@ -44,8 +46,8 @@ public class VentanaMuebles extends JFrame {
         ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("src/Imagenes/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         botonPerfil = new JButton(iconoPerfil);
         botonCarrito = new JButton(iconoCarrito);
-        ImageIcon iconoMuebles = new ImageIcon(new ImageIcon("src/Imagenes/Seccion_Muebles (1).png").getImage().getScaledInstance(200, 100, java.awt.Image.SCALE_SMOOTH));
-        labelMuebles = new JLabel(iconoMuebles);
+//        ImageIcon iconoMuebles = new ImageIcon(new ImageIcon("src/Imagenes/Seccion_Muebles (1).png").getImage().getScaledInstance(200, 100, java.awt.Image.SCALE_SMOOTH));
+//        labelMuebles = new JLabel(iconoMuebles);
 		
 		panelAbajo = new JPanel();
 		panelCentro = new JPanel();
@@ -61,9 +63,16 @@ public class VentanaMuebles extends JFrame {
         areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de articulos asequibles y modernos.\n" +
                           "Ofrecemos una amplia gama de muebles que se adaptan a todos los estilos y presupuestos.");
         
+        textoMueble = new JLabel("Sección de Muebles");
+        textoMueble.setFont(new Font("Arial", Font.BOLD, 18));
+        textoMueble.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        Thread colorThread = new Thread(new CambioColorHilo());
+        colorThread.start();
+        
         JPanel panelBotonesPerfilCarrito = new JPanel(new BorderLayout());
 
-        panelBotonesPerfilCarrito.add(labelMuebles, BorderLayout.SOUTH);
+        panelBotonesPerfilCarrito.add(textoMueble, BorderLayout.SOUTH);
         panelBotonesPerfilCarrito.add(botonPerfil, BorderLayout.WEST);
         panelBotonesPerfilCarrito.add(botonCarrito, BorderLayout.EAST);
         panelBotonesPerfilCarrito.add(areaTexto, BorderLayout.CENTER);
@@ -215,6 +224,25 @@ public class VentanaMuebles extends JFrame {
 		            JOptionPane.showMessageDialog(this, detalles);
 		        }
 		    }
-		}
+	 }
+	 
+	 private class CambioColorHilo implements Runnable {
+	        private final Color[] colores = { Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW };
+	        private int indiceColor = 0;
+
+	        @Override
+	        public void run() {
+	            while (true) {
+	                try {
+	                    Thread.sleep(1000);
+	                } catch (InterruptedException e) {
+	                    e.printStackTrace();
+	                }
+
+	                textoMueble.setForeground(colores[indiceColor]);
+	                indiceColor = (indiceColor + 1) % colores.length;
+	            }
+	        }
+	    }
 	
 }
