@@ -148,8 +148,8 @@ public class VentanaPrincipal extends JFrame {
         });
         
         botonDescuentos.addActionListener((e) -> {
-//        	dispose();
-//          new VentanaDescuentos();
+        	dispose();
+          new VentanaDescuentos();
       });
         
         botonAyuda.addActionListener((e) -> {
