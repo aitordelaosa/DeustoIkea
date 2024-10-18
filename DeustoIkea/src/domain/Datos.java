@@ -1,5 +1,7 @@
 package domain;
 
+import java.time.LocalDate;
+
 public class Datos {
 	//Muebles
 	protected Mesa mesa;
@@ -12,6 +14,8 @@ public class Datos {
 	protected Encimera encimera;
 	protected Fregadero fregadero;
 	
+	protected Cliente cliente1, cliente2, cliente3, cliente4, cliente5;
+	protected Trabajador trabajador1, trabajador2, trabajador3, trabajador4, trabajador5;
 	
 	//Muebles
 	public Mesa getMesa() {
@@ -69,6 +73,20 @@ public class Datos {
         horno = new Horno(6, 4, 67.2, 250.8, "Metal", "Horno con gran capacidad para tus mejores recetas", null, 59.5, 59.5, 56.9, 95, 2);
         encimera = new Encimera(7, 9, 34, 190.95, "Granito", "Elegante encimera para darle un toque moderno a tu cocina", null, 80.8, 23.9, "Blanco");
         fregadero = new Fregadero(8, 9, 12.5, 280.87, "Metal", "Fregadero con dos cubetas y grifo incluido", null, 2, 28.6, true);
+        
+        //Trabajadores
+        trabajador1 = new Trabajador("12345678A", "Masculino", "Juan", "Pérez", "juan.perez@example.com", "Calle Falsa 123", LocalDate.of(1985, 5, 20), "password123", "600123456", 2500.0, 40);
+        trabajador2 = new Trabajador("87654321B", "Femenino", "Ana", "García", "ana.garcia@example.com", "Avenida Real 456", LocalDate.of(1990, 11, 15), "123", "672200294", 2300.0, 35);
+        trabajador3 = new Trabajador("45678912C", "Masculino", "Carlos", "López", "carlos.lopez@example.com", "Plaza Mayor 789", LocalDate.of(1978, 8, 10), "password789", "670456789", 2800.0, 45);
+        trabajador4 = new Trabajador("23456789D", "Femenino", "Lucía", "Ramírez", "lucia.ramirez@example.com", "Calle Olmo 987", LocalDate.of(1993, 3, 12), "luciaPass987", "610321654", 2100.0, 30);
+        trabajador5 = new Trabajador("34567890E", "Masculino", "Diego", "Morales", "diego.morales@example.com", "Avenida Verde 654", LocalDate.of(1982, 7, 25), "diegoPass654", "620654987", 2700.0, 50);
+
+        cliente1 = new Cliente("98765432A", "Femenino", "María", "Fernández", "maria.fernandez@example.com", "Calle Sol 123", LocalDate.of(1992, 2, 5), "mariaPass123", "620123456", LocalDate.of(2024, 1, 15));
+        cliente2 = new Cliente("23456789B", "Masculino", "Pedro", "Martínez", "pedro.martinez@example.com", "Avenida Luna 456", LocalDate.of(1987, 6, 30), "pedroPass456", "610987654", LocalDate.of(2023, 12, 1));
+        cliente3 = new Cliente("34567890C", "Femenino", "Lucía", "Sánchez", "lucia.sanchez@example.com", "Plaza Nueva 789", LocalDate.of(2000, 4, 18), "luciaPass789", "630456789", LocalDate.of(2024, 2, 20));
+        cliente4 = new Cliente("45678901D", "Masculino", "Luis", "Domínguez", "luis.dominguez@example.com", "Calle Azul 333", LocalDate.of(1995, 9, 10), "luisPass333", "640987321", LocalDate.of(2023, 11, 25));
+        cliente5 = new Cliente("56789012E", "Femenino", "Sara", "Rodríguez", "sara.rodriguez@example.com", "Avenida Amarilla 555", LocalDate.of(1988, 12, 3), "saraPass555", "650321987", LocalDate.of(2024, 3, 1));
+
     }
 	//Muebles
 	public String obtenerDetallesMueble(Mueble m) {
@@ -110,5 +128,17 @@ public class Datos {
 		}
 		
 		return detalles;
+	}
+	
+	//Iniciar sesion
+	public Cliente buscarCliente(String user) {
+	    Cliente[] clientes = {cliente1, cliente2, cliente3, cliente4, cliente5};
+	    
+	    for (Cliente c : clientes) {
+	        if (user.equals(c.getDni()) || user.equals(c.getEmail()) || user.equals(c.getTelefono())) {
+	            return c;
+	        }
+	    }
+	    return null;
 	}
 }

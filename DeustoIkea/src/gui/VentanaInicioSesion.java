@@ -25,9 +25,12 @@ public class VentanaInicioSesion extends JFrame {
     
     public VentanaInicioSesion() {
         setTitle("Inicio de Sesión");
-        setExtendedState(MAXIMIZED_BOTH);
+//        setExtendedState(MAXIMIZED_BOTH);
+        setSize(900, 800);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        datos = new Datos();
         
         botonCerrar = new JButton("CERRAR");
         botonRegistro = new JButton("REGISTRATE");
@@ -46,7 +49,7 @@ public class VentanaInicioSesion extends JFrame {
         lblRegistro = new JLabel("<---    ¿No tienes cuenta? Regístrate aquí");
         lblTexto = new JLabel("Bienvenido a la ventana de Inicio de sesión");
         
-        ImageIcon img = resizeImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg"), 600, 400);
+        ImageIcon img = resizeImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg"), 400, 300);
 //        ImageIcon img = new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg");
         lblImagen = new JLabel(img);
         
@@ -67,18 +70,18 @@ public class VentanaInicioSesion extends JFrame {
 		panelEste.add(lblContrasenia);
 		panelEste.add(txtContrasenia);
 		panelEste.add(Box.createVerticalStrut(20));
+		panelEste.add(botonInicioSesion);
 		
 		panelSuperiorCentro.setLayout(new GridLayout(1, 2));
         panelSuperiorCentro.add(panelOeste);
         panelSuperiorCentro.add(panelEste);
-        
+                
         panelCentro.setLayout(new BorderLayout());
         panelCentro.add(panelSuperiorCentro, BorderLayout.NORTH);
         panelCentro.add(lblImagen, BorderLayout.SOUTH);
 				
 		panelAbajo.add(botonCerrar);
 		panelAbajo.add(botonAtras);
-		panelAbajo.add(botonInicioSesion);
 		panelAbajo.add(botonRegistro);
 		panelAbajo.add(lblRegistro);
 		
@@ -108,8 +111,8 @@ public class VentanaInicioSesion extends JFrame {
 		});
 
 		botonInicioSesion.addActionListener((e)-> {
-//			iniciarSesion();
-//			dispose();
+			iniciarSesion();
+			dispose();
 		});
         
         setLocationRelativeTo(null); 
@@ -122,35 +125,32 @@ public class VentanaInicioSesion extends JFrame {
         return new ImageIcon(newImg);
     }
     
-//    private void iniciarSesion() {
-//    	String user = txtNombreUsuario.getText();
-//    	char[] contraa = txtContrasenia.getPassword();
-//    	String contra = new String(contraa);
-//    	
-//    	if(user.isEmpty()) {
-//    		JOptionPane.showMessageDialog(null, "Inserte un telefono, mail o nombre de usuario valido");
-//    	}else if(contra.isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
-//		}else {
-//			Cliente c = Datos.buscarCliente(user);
-//			if(c==null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
-//				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido");
-//			}else {
-//				if(!contra.equals(c.getContraseña())) {
-//					JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-//				}else {
-//					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ c.getNombre().toUpperCase());
-//					cliente=c;
-//					txtNombreUsuario.setText("");
-//					txtContrasenia.setText("");
-//					new VentanaPrincipal();
-//				}
-//			}
-//		}
-//    }
+    private void iniciarSesion() {
+    	String user = txtNombreUsuario.getText();
+    	char[] contraa = txtContrasenia.getPassword();
+    	String contra = new String(contraa);
+    	
+    	if(user.isEmpty()) {
+    		JOptionPane.showMessageDialog(null, "Inserte un telefono, mail o nombre de usuario valido");
+    	}else if(contra.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
+		}else {
+			Cliente c = datos.buscarCliente(user);
+			if(c==null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
+				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido");
+			}else {
+				if(!contra.equals(c.getContraseña())) {
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+				}else {
+					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ c.getNombre().toUpperCase());
+					cliente=c;
+					txtNombreUsuario.setText("");
+					txtContrasenia.setText("");
+					new VentanaPrincipal();
+				}
+			}
+		}
+    }
    
 }
-
-
-
 
