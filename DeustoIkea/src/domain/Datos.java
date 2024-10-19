@@ -75,7 +75,7 @@ public class Datos {
         fregadero = new Fregadero(8, 9, 12.5, 280.87, "Metal", "Fregadero con dos cubetas y grifo incluido", null, 2, 28.6, true);
         
         //Trabajadores
-        trabajador1 = new Trabajador("12345678A", "Masculino", "Juan", "Pérez", "juan.perez@example.com", "Calle Falsa 123", LocalDate.of(1985, 5, 20), "password123", "600123456", 2500.0, 40);
+        trabajador1 = new Trabajador("1A", "Masculino", "Juan", "Pérez", "juan.perez@example.com", "Calle Falsa 123", LocalDate.of(1985, 5, 20), "123", "600123456", 2500.0, 40);
         trabajador2 = new Trabajador("87654321B", "Femenino", "Ana", "García", "ana.garcia@example.com", "Avenida Real 456", LocalDate.of(1990, 11, 15), "123", "672200294", 2300.0, 35);
         trabajador3 = new Trabajador("45678912C", "Masculino", "Carlos", "López", "carlos.lopez@example.com", "Plaza Mayor 789", LocalDate.of(1978, 8, 10), "password789", "670456789", 2800.0, 45);
         trabajador4 = new Trabajador("23456789D", "Femenino", "Lucía", "Ramírez", "lucia.ramirez@example.com", "Calle Olmo 987", LocalDate.of(1993, 3, 12), "luciaPass987", "610321654", 2100.0, 30);
@@ -85,7 +85,7 @@ public class Datos {
         cliente2 = new Cliente("23456789B", "Masculino", "Pedro", "Martínez", "pedro.martinez@example.com", "Avenida Luna 456", LocalDate.of(1987, 6, 30), "pedroPass456", "610987654", LocalDate.of(2023, 12, 1));
         cliente3 = new Cliente("34567890C", "Femenino", "Lucía", "Sánchez", "lucia.sanchez@example.com", "Plaza Nueva 789", LocalDate.of(2000, 4, 18), "luciaPass789", "630456789", LocalDate.of(2024, 2, 20));
         cliente4 = new Cliente("45678901D", "Masculino", "Luis", "Domínguez", "luis.dominguez@example.com", "Calle Azul 333", LocalDate.of(1995, 9, 10), "luisPass333", "640987321", LocalDate.of(2023, 11, 25));
-        cliente5 = new Cliente("56789012E", "Femenino", "Sara", "Rodríguez", "sara.rodriguez@example.com", "Avenida Amarilla 555", LocalDate.of(1988, 12, 3), "saraPass555", "650321987", LocalDate.of(2024, 3, 1));
+        cliente5 = new Cliente("1A", "Femenino", "Sara", "Rodríguez", "sara.rodriguez@example.com", "Avenida Amarilla 555", LocalDate.of(1988, 12, 3), "123", "650321987", LocalDate.of(2024, 3, 1));
 
     }
 	//Muebles

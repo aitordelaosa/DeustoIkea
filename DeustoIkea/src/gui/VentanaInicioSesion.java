@@ -14,7 +14,7 @@ import domain.Datos;
 public class VentanaInicioSesion extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    protected JButton botonRegistro, botonCerrar, botonInicioSesion, botonAtras;
+    protected JButton botonRegistro, botonCerrar, botonInicioSesion, botonAtras, botonTrabajador;
     protected JPanel panelAbajo, panelArriba, panelEste, panelOeste, panelCentro, panelSuperiorCentro;
     protected JLabel lblNombreUsuario, lblContrasenia, lblRegistro, lblImagen, lblTexto;
     protected JTextField txtNombreUsuario;
@@ -36,6 +36,7 @@ public class VentanaInicioSesion extends JFrame {
         botonRegistro = new JButton("REGISTRATE");
         botonInicioSesion = new JButton("INICIO DE SESIÓN");
         botonAtras = new JButton("VOLVER AL INICIO");
+        botonTrabajador = new JButton("TRABAJADOR");
         
         panelAbajo = new JPanel();
         panelCentro = new JPanel();
@@ -81,6 +82,7 @@ public class VentanaInicioSesion extends JFrame {
         panelCentro.add(lblImagen, BorderLayout.SOUTH);
 				
 		panelAbajo.add(botonCerrar);
+		panelAbajo.add(botonTrabajador);
 		panelAbajo.add(botonAtras);
 		panelAbajo.add(botonRegistro);
 		panelAbajo.add(lblRegistro);
@@ -104,6 +106,10 @@ public class VentanaInicioSesion extends JFrame {
 			new VentanaDeCarga();
 			dispose();
 		});
+		
+		botonTrabajador.addActionListener((e) -> {
+            solicitarCodigoTrabajador();
+        });
 
 		botonRegistro.addActionListener((e) -> {
 			dispose();
@@ -112,7 +118,6 @@ public class VentanaInicioSesion extends JFrame {
 
 		botonInicioSesion.addActionListener((e)-> {
 			iniciarSesion();
-			dispose();
 		});
         
         setLocationRelativeTo(null); 
@@ -127,29 +132,42 @@ public class VentanaInicioSesion extends JFrame {
     
     private void iniciarSesion() {
     	String user = txtNombreUsuario.getText();
-    	char[] contraa = txtContrasenia.getPassword();
-    	String contra = new String(contraa);
-    	
+//    	char[] contraa = txtContrasenia.getPassword();
+//    	String contra = new String(contraa);
+    	String contra = new String(txtContrasenia.getPassword());
+    	    	
     	if(user.isEmpty()) {
     		JOptionPane.showMessageDialog(null, "Inserte un telefono, mail o nombre de usuario valido");
     	}else if(contra.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
 		}else {
 			Cliente c = datos.buscarCliente(user);
-			if(c==null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
-				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido");
-			}else {
+			if(c == null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
+			    JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE );
+			} else {
 				if(!contra.equals(c.getContraseña())) {
-					JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
-					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ c.getNombre().toUpperCase());
+					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ c.getNombre().toUpperCase(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
 					cliente=c;
 					txtNombreUsuario.setText("");
 					txtContrasenia.setText("");
+					dispose();
 					new VentanaPrincipal();
 				}
 			}
 		}
+    }
+    
+    private void solicitarCodigoTrabajador() {
+        String codigo = JOptionPane.showInputDialog(this, "Introduce el código de trabajador:");
+        if ("777".equals(codigo)) {
+            JOptionPane.showMessageDialog(this, "Acceso concedido");
+            dispose();
+//            new VentanaInicioTrabajador();
+        } else {
+            JOptionPane.showMessageDialog(this, "Código incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
    
 }
