@@ -138,13 +138,13 @@ public class VentanaPrincipal extends JFrame {
         });
         
         botonPerfil.addActionListener((e) -> {
-//        	dispose();
-//            new VentanaPerfil();
+        	dispose();
+            new VentanaPerfil();
         });
 
         botonCarrito.addActionListener((e) -> {
-//        	dispose();
-//            new VentanaCarrito();
+        	dispose();
+            new VentanaCarrito();
         });
         
         botonDescuentos.addActionListener((e) -> {
@@ -153,8 +153,8 @@ public class VentanaPrincipal extends JFrame {
       });
         
         botonAyuda.addActionListener((e) -> {
-//        	dispose();
-//          new VentanaAyuda();
+        	dispose();
+        	new VentanaAyuda();
       });
         
         Datos datos = new Datos();
@@ -177,8 +177,9 @@ public class VentanaPrincipal extends JFrame {
 		tablaMuebles.getColumnModel().getColumn(2).setCellRenderer(new TableRenderer());
 		tablaMuebles.getColumnModel().getColumn(1).setCellRenderer(new TableRenderer());
 		tablaMuebles.setRowHeight(100);
-//		scrollTablaMuebles = new JScrollPane(tablaMuebles);
-		panelDescripcion.add(tablaMuebles, BorderLayout.CENTER);
+		scrollTablaMuebles = new JScrollPane(tablaMuebles);
+		panelDescripcion.add(scrollTablaMuebles, BorderLayout.CENTER);
+//		panelDescripcion.add(tablaMuebles, BorderLayout.CENTER);
 //		add(scrollTablaMuebles, BorderLayout.CENTER);
 //		add(panelDescripcion, BorderLayout.CENTER);
 		
