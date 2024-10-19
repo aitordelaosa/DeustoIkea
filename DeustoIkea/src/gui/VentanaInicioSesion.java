@@ -164,7 +164,7 @@ public class VentanaInicioSesion extends JFrame {
         if ("777".equals(codigo)) {
             JOptionPane.showMessageDialog(this, "Acceso concedido");
             dispose();
-//            new VentanaInicioTrabajador();
+            new VentanaInicioTrabajador();
         } else {
             JOptionPane.showMessageDialog(this, "Código incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
         }
