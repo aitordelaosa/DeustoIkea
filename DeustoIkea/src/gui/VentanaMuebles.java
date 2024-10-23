@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 
 import domain.Datos;
 import domain.Mueble;
+import domain.Sofa;
 
 
 public class VentanaMuebles extends JFrame {
@@ -137,6 +138,8 @@ public class VentanaMuebles extends JFrame {
         labelDescripcion2 = new JLabel();
         labelDescripcion3 = new JLabel();
         labelDescripcion4 = new JLabel();
+        Sofa s = new Sofa(1, 1, 1, 1, "S", "C", "C", "C", 3);
+        //labelDescripcion1.setText(String.format("%s\nPeso: %dkg\nDescripción: %s\n", s.getClass().getName(), (int)s.getPeso(), s.getDescripcion()));
         labelDescripcion1.setText("<html><b>Sofá</b><br>Precio: $350<br>Peso: 40kg<br>Descripción: Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.</html>");
         labelDescripcion2.setText("<html><b>Armario</b><br>Precio: $200<br>Peso: 50kg<br>Descripción: Armario espacioso de dos puertas, con estantes internos para optimizar el almacenamiento.</html>");
         labelDescripcion3.setText("<html><b>Silla</b><br>Precio: $75<br>Peso: 5kg<br>Descripción: Silla ergonómica, perfecta para oficina o comedor.</html>");
