@@ -19,6 +19,11 @@ public class VentanaInicioSesion extends JFrame {
     protected JLabel lblNombreUsuario, lblContrasenia, lblRegistro, lblImagen, lblTexto;
     protected JTextField txtNombreUsuario;
     protected JPasswordField txtContrasenia;	
+    private static Cliente cli;
+    
+    public static Cliente getCliente() {
+		return cli;
+	}
     
     protected Datos datos;
     protected static Cliente cliente;
@@ -145,7 +150,7 @@ public class VentanaInicioSesion extends JFrame {
 			if(c == null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
 			    JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE );
 			} else {
-				if(!contra.equals(c.getContraseña())) {
+				if(!contra.equals(c.getContrasenia())) {
 					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
 					JOptionPane.showMessageDialog(null, "¡BIENVENID@! "+ c.getNombre().toUpperCase(), "Éxito", JOptionPane.INFORMATION_MESSAGE);

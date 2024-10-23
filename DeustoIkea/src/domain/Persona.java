@@ -13,11 +13,11 @@ public class Persona {
 	protected String email;
 	protected String direccion;
 	protected LocalDate fNacimiento;
-	protected String contraseña;
+	protected String contrasenia;
 	protected String telefono;
 	
 	public Persona(String dni, String genero, String nombre, String apellido, String email, String direccion,
-			LocalDate fNacimiento, String contraseña, String telefono) {
+			LocalDate fNacimiento, String contrasenia, String telefono) {
 		super();
 		this.dni = dni;
 		this.genero = genero;
@@ -26,7 +26,7 @@ public class Persona {
 		this.email = email;
 		this.direccion = direccion;
 		this.fNacimiento = fNacimiento;
-		this.contraseña = contraseña;
+		this.contrasenia = contrasenia;
 		this.telefono = telefono;
 	}
 	
@@ -39,7 +39,7 @@ public class Persona {
 		this.email = "";
 		this.direccion = "";
 		this.fNacimiento = LocalDate.now();
-		this.contraseña = "";
+		this.contrasenia = "";
 		this.telefono = "";
 	}
 
@@ -99,12 +99,12 @@ public class Persona {
 		this.fNacimiento = fNacimiento;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasenia() {
+		return contrasenia;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContraseñni(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
 	public String getTelefono() {
