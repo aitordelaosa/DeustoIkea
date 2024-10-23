@@ -22,7 +22,7 @@ import domain.Cocina;
 import domain.Sofa;
 
 
-public class VentanaMuebles extends JFrame {
+public class VentanaDespuesPrincipalPrueba extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	protected JButton botonAtras, botonSeleccionar, botonComprar, botonPerfil, botonCarrito;
@@ -34,7 +34,7 @@ public class VentanaMuebles extends JFrame {
     private String objetoSeleccionado;
     private int opcion;
 	
-	public VentanaMuebles() {
+	public VentanaDespuesPrincipalPrueba() {
 		this.datos = new Datos();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
