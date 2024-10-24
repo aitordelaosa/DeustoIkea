@@ -115,14 +115,14 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
         switch (code) {
         case 1:
             // Mostrar muebles
-//            ImageIcon sofa = new ImageIcon(new ImageIcon("src/Imagenes/sofa.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//            ImageIcon armario = new ImageIcon(new ImageIcon("src/Imagenes/Armario.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//            ImageIcon silla = new ImageIcon(new ImageIcon("src/Imagenes/silla.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//            ImageIcon mesa = new ImageIcon(new ImageIcon("src/Imagenes/mesa.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-        	ImageIcon sofa = new ImageIcon("src/Imagenes/sofa.jpeg");
-            ImageIcon armario = new ImageIcon("src/Imagenes/Armario.jpeg");
-            ImageIcon silla = new ImageIcon("src/Imagenes/silla.jpeg");
-            ImageIcon mesa = new ImageIcon("src/Imagenes/mesa.jpeg");
+            ImageIcon sofa = new ImageIcon(new ImageIcon("src/Imagenes/sofa.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+            ImageIcon armario = new ImageIcon(new ImageIcon("src/Imagenes/Armario.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+            ImageIcon silla = new ImageIcon(new ImageIcon("src/Imagenes/silla.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+            ImageIcon mesa = new ImageIcon(new ImageIcon("src/Imagenes/mesa.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+//        	ImageIcon sofa = new ImageIcon("src/Imagenes/sofa.jpeg");
+//            ImageIcon armario = new ImageIcon("src/Imagenes/Armario.jpeg");
+//            ImageIcon silla = new ImageIcon("src/Imagenes/silla.jpeg");
+//            ImageIcon mesa = new ImageIcon("src/Imagenes/mesa.jpeg");
             
             labelImagen1 = new JLabel(sofa);
             labelImagen2 = new JLabel(armario);
@@ -161,14 +161,14 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 
         case 2:
             // Mostrar elementos de cocina
-//            ImageIcon nevera = new ImageIcon(new ImageIcon("src/Imagenes/nevera.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//            ImageIcon horno = new ImageIcon(new ImageIcon("src/Imagenes/horno.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//            ImageIcon fregadero = new ImageIcon(new ImageIcon("src/Imagenes/fregadero.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//            ImageIcon encimera = new ImageIcon(new ImageIcon("src/Imagenes/encimera.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-        	ImageIcon nevera = new ImageIcon("src/Imagenes/Nevera.jpg");
-            ImageIcon horno = new ImageIcon("src/Imagenes/horno.jpg");
-            ImageIcon encimera = new ImageIcon("src/Imagenes/encimera.jpg");
-            ImageIcon fregadero = new ImageIcon("src/Imagenes/fregadero.jpg");
+            ImageIcon nevera = new ImageIcon(new ImageIcon("src/Imagenes/Nevera.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+            ImageIcon horno = new ImageIcon(new ImageIcon("src/Imagenes/horno.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+            ImageIcon fregadero = new ImageIcon(new ImageIcon("src/Imagenes/fregadero.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+            ImageIcon encimera = new ImageIcon(new ImageIcon("src/Imagenes/encimera.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+//        	ImageIcon nevera = new ImageIcon("src/Imagenes/Nevera.jpg");
+//            ImageIcon horno = new ImageIcon("src/Imagenes/horno.jpg");
+//            ImageIcon encimera = new ImageIcon("src/Imagenes/encimera.jpg");
+//            ImageIcon fregadero = new ImageIcon("src/Imagenes/fregadero.jpg");
             
             labelImagen1 = new JLabel(nevera);
             labelImagen2 = new JLabel(horno);
