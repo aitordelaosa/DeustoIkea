@@ -104,14 +104,16 @@ public class VentanaPrincipal extends JFrame {
         
         panelSeccionMuebles.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new VentanaMuebles();
+//                new VentanaMuebles();
+            	new VentanaDespuesPrincipalPrueba(1);
                 dispose();
             }
         });
         
         panelSeccionCocina.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new VentanaCocina();
+            	new VentanaDespuesPrincipalPrueba(2);
+//                new VentanaCocina();
                 dispose();
             }
         });
