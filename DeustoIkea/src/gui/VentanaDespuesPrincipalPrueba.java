@@ -19,7 +19,6 @@ import javax.swing.SwingConstants;
 import domain.Datos;
 import domain.Mueble;
 import domain.Cocina;
-import domain.Sofa;
 
 
 public class VentanaDespuesPrincipalPrueba extends JFrame {
@@ -170,11 +169,16 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
             ImageIcon horno = new ImageIcon("src/Imagenes/horno.jpg");
             ImageIcon encimera = new ImageIcon("src/Imagenes/encimera.jpg");
             ImageIcon fregadero = new ImageIcon("src/Imagenes/fregadero.jpg");
+            
+            labelImagen1 = new JLabel(nevera);
+            labelImagen2 = new JLabel(horno);
+            labelImagen3 = new JLabel(fregadero);
+            labelImagen4 = new JLabel(encimera);
         	
-            labelImagen1.setIcon(nevera);
-            labelImagen2.setIcon(horno);
-            labelImagen3.setIcon(fregadero);
-            labelImagen4.setIcon(encimera);
+//            labelImagen1.setIcon(nevera);
+//            labelImagen2.setIcon(horno);
+//            labelImagen3.setIcon(fregadero);
+//            labelImagen4.setIcon(encimera);
             
             labelImagen1.addMouseListener(new MouseAdapter() {
                 @Override
@@ -227,29 +231,34 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
                 break;
             case 2:
                 // Mostrar elementos cocina
-            	labelDescripcion1.setText("<html>Nevera<br>" + 
-                        "Precio: 699.90<br>" + 
-                        "Peso: 81.5kg<br>" + 
-                        "Nevera con dos puertas, ideal para familias.</html>");
-
-                labelDescripcion2.setText("<html>Horno<br>" + 
-                        "Precio: 250.8<br>" + 
-                        "Peso: 67.2kg<br>" + 
-                        "Horno con gran capacidad para tus mejores recetas.</html>");
-
-                labelDescripcion3.setText("<html>Encimera<br>" + 
-                        "Precio: 190.95<br>" + 
-                        "Peso: 34kg<br>" + 
-                        "Elegante encimera para darle un toque moderno a tu cocina.</html>");
-
-                labelDescripcion4.setText("<html>Fregadero<br>" + 
-                        "Precio: 280.87<br>" + 
-                        "Peso: 12.5kg<br>" + 
-                        "Fregadero con dos cubetas y grifo incluido.</html>");
-                break;
+//            	labelDescripcion1.setText("<html>Nevera<br>" + 
+//                        "Precio: 699.90<br>" + 
+//                        "Peso: 81.5kg<br>" + 
+//                        "Nevera con dos puertas, ideal para familias.</html>");
+//
+//                labelDescripcion2.setText("<html>Horno<br>" + 
+//                        "Precio: 250.8<br>" + 
+//                        "Peso: 67.2kg<br>" + 
+//                        "Horno con gran capacidad para tus mejores recetas.</html>");
+//
+//                labelDescripcion3.setText("<html>Encimera<br>" + 
+//                        "Precio: 190.95<br>" + 
+//                        "Peso: 34kg<br>" + 
+//                        "Elegante encimera para darle un toque moderno a tu cocina.</html>");
+//
+//                labelDescripcion4.setText("<html>Fregadero<br>" + 
+//                        "Precio: 280.87<br>" + 
+//                        "Peso: 12.5kg<br>" + 
+//                        "Fregadero con dos cubetas y grifo incluido.</html>");
+//                break;
+            	
+            	 labelDescripcion1.setText("<html><b>Nevera</b><br>Precio: $699.90<br>Peso: 81.5kg<br>Descripción: Nevera con dos puertas.</html>");
+                 labelDescripcion2.setText("<html><b>Horno</b><br>Precio: $250.8<br>Peso: 67.2kg<br>Descripción: Horno de gran capacidad.</html>");
+                 labelDescripcion3.setText("<html><b>Fregadero</b><br>Precio: $280.87<br>Peso: 12.5kg<br>Descripción: Fregadero con dos cubetas.</html>");
+                 labelDescripcion4.setText("<html><b>Encimera</b><br>Precio: $500.99<br>Peso: 100.7kg<br>Descripción: Encimera de granito.</html>");
+                 break;
             // Futuros casos
             default:
-                areaTexto.setText("Sección no reconocida.");
                 break;
         }
     
@@ -292,32 +301,60 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 		setLocationRelativeTo(null);
 	}
 	
-	@SuppressWarnings("unused")
-	private String mostrarDetalle(String objetoSeleccionado) {
-	    Datos datos = new Datos();
-	    Mueble muebleSeleccionado = null;
-
-	    switch (objetoSeleccionado) {
-	        case "Sofá":
-	            muebleSeleccionado = datos.getSofa();
-	            break;
-	        case "Armario":
-	            muebleSeleccionado = datos.getArmario();
-	            break;
-	        case "Silla":
-	            muebleSeleccionado = datos.getSilla();
-	            break;
-	        case "Mesa":
-	            muebleSeleccionado = datos.getMesa();
-	            break;
-	    }
-
-	    if (muebleSeleccionado != null) {
-	        return datos.obtenerDetallesMueble(muebleSeleccionado);
-	    } else {
-	        return "No se encontraron detalles para el objeto seleccionado.";
-	    }
-	}
+//	@SuppressWarnings("unused")
+//	private String mostrarDetalle(String objetoSeleccionado) {
+//	    Datos datos = new Datos();
+//	    Mueble muebleSeleccionado = null;
+//	    Cocina cocinaSeleccionada = null;
+//
+//	    switch (objetoSeleccionado) {
+//	        case "Sofá":
+//	            muebleSeleccionado = datos.getSofa();
+//	            break;
+//	        case "Armario":
+//	            muebleSeleccionado = datos.getArmario();
+//	            break;
+//	        case "Silla":
+//	            muebleSeleccionado = datos.getSilla();
+//	            break;
+//	        case "Mesa":
+//	            muebleSeleccionado = datos.getMesa();
+//	            break;
+//	        case "Nevera":
+//	        	cocinaSeleccionada = datos.getNevera();
+//	            break;
+//	        case "Horno":
+//	        	cocinaSeleccionada = datos.getHorno();
+//	            break;
+//	        case "Fregadero":
+//	        	cocinaSeleccionada = datos.getFregadero();
+//	            break;
+//	        case "Encimera":
+//	        	cocinaSeleccionada = datos.getEncimera();
+//	            break;
+//	        default:
+//	            return "No se encontró el objeto seleccionado.";
+//	    }
+//
+//	    if (muebleSeleccionado != null) {
+//	        return datos.obtenerDetallesMueble(muebleSeleccionado);
+////	    	return muebleSeleccionado.obtenerDetalles(); 
+//	    } else if (cocinaSeleccionada != null) {
+//	        return datos.obtenerDetallesCocina(cocinaSeleccionada);
+////	    	return cocinaSeleccionada.obtenerDetalles();
+//	    } else {
+//	        return "No se encontraron detalles para el objeto seleccionado.";
+//	    }
+//	}
+	
+//	private void mostrarDetalle(String objeto) {
+//        if (objeto == null) {
+//            JOptionPane.showMessageDialog(null, "No has seleccionado ningún objeto.");
+//        } else {
+//            String detalles = datos.obtenerDetallesMueble(objeto);
+//            JOptionPane.showMessageDialog(null, "Detalles del objeto seleccionado:\n" + detalles);
+//        }
+//    }
 	 
 	 private void mostrarInformacionSeleccionada() {
 		    if (objetoSeleccionado == null || objetoSeleccionado.isEmpty()) {
@@ -358,7 +395,7 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 		        if (muebleSeleccionado != null) {
 		            detalles = datos.obtenerDetallesMueble(muebleSeleccionado);
 		        } else if (cocinaSeleccionada != null) {
-		            detalles = datos.obtenerDetallesCocina(cocinaSeleccionada); // Método para obtener detalles de cocina
+		            detalles = datos.obtenerDetallesCocina(cocinaSeleccionada);
 		        } else {
 		            detalles = "No se encontraron detalles para el objeto seleccionado.";
 		        }
