@@ -1,46 +1,44 @@
 package domain;
 
-public class Inodoro {
-	private String tipo; // Suspendido, de tanque bajo, etc.
-	private double capacidadTanque; // En litros
+public class Inodoro extends Baño {
+    private String tipoDescarga;
+    private boolean tieneAsientoCalefaccionado;
 
-	// Constructor vacío
-	public Inodoro() {
-		this.tipo = "Desconocido";
-		this.capacidadTanque = 0.0;
-	}
+    // Constructor vacío
+    public Inodoro() {
+        super();
+        this.tipoDescarga = "";
+        this.tieneAsientoCalefaccionado = false;
+    }
 
-	// Constructor con parámetros
-	public Inodoro(String tipo, double capacidadTanque) {
-		this.tipo = tipo;
-		this.capacidadTanque = capacidadTanque;
-	}
+    // Constructor con parámetros
+    public Inodoro(int idProducto, int numeroProductos, double peso, double precio, 
+                   String materialB, String descripcionB, String rutaImagen, 
+                   String tipoDescarga, boolean tieneAsientoCalefaccionado) {
+        super(idProducto, numeroProductos, peso, precio, materialB, descripcionB, rutaImagen);
+        this.tipoDescarga = tipoDescarga;
+        this.tieneAsientoCalefaccionado = tieneAsientoCalefaccionado;
+    }
 
-	// Constructor de copia
-	public Inodoro(Inodoro otroInodoro) {
-		this.tipo = otroInodoro.tipo;
-		this.capacidadTanque = otroInodoro.capacidadTanque;
-	}
+    // Getters y Setters
+    public String getTipoDescarga() {
+        return tipoDescarga;
+    }
 
-	// Getters y Setters
-	public String getTipo() {
-		return tipo;
-	}
+    public void setTipoDescarga(String tipoDescarga) {
+        this.tipoDescarga = tipoDescarga;
+    }
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+    public boolean isTieneAsientoCalefaccionado() {
+        return tieneAsientoCalefaccionado;
+    }
 
-	public double getCapacidadTanque() {
-		return capacidadTanque;
-	}
+    public void setTieneAsientoCalefaccionado(boolean tieneAsientoCalefaccionado) {
+        this.tieneAsientoCalefaccionado = tieneAsientoCalefaccionado;
+    }
 
-	public void setCapacidadTanque(double capacidadTanque) {
-		this.capacidadTanque = capacidadTanque;
-	}
-
-	@Override
-	public String toString() {
-		return "Inodoro: " + tipo + ", Capacidad: " + capacidadTanque + " litros.";
-	}
+    @Override
+    public String toString() {
+        return super.toString() + " Inodoro [tipoDescarga=" + tipoDescarga + ", tieneAsientoCalefaccionado=" + tieneAsientoCalefaccionado + "]";
+    }
 }

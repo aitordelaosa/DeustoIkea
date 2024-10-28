@@ -1,46 +1,44 @@
 package domain;
 
-public class Bide {
-	 private String material; // Material del Bide
-	    private boolean incluyeGrifo;
+public class Bide extends Baño {
+    private boolean tieneCalefaccion;
+    private boolean esElectrico;
 
-	    // Constructor vacío
-	    public Bide() {
-	        this.material = "Desconocido";
-	        this.incluyeGrifo = false;
-	    }
+    // Constructor vacío
+    public Bide() {
+        super();
+        this.tieneCalefaccion = false;
+        this.esElectrico = false;
+    }
 
-	    // Constructor con parámetros
-	    public Bide(String material, boolean incluyeGrifo) {
-	        this.material = material;
-	        this.incluyeGrifo = incluyeGrifo;
-	    }
+    // Constructor con parámetros
+    public Bide(int idProducto, int numeroProductos, double peso, double precio, 
+                String materialB, String descripcionB, String rutaImagen, 
+                boolean tieneCalefaccion, boolean esElectrico) {
+        super(idProducto, numeroProductos, peso, precio, materialB, descripcionB, rutaImagen);
+        this.tieneCalefaccion = tieneCalefaccion;
+        this.esElectrico = esElectrico;
+    }
 
-	    // Constructor de copia
-	    public Bide(Bide otroBide) {
-	        this.material = otroBide.material;
-	        this.incluyeGrifo = otroBide.incluyeGrifo;
-	    }
+    // Getters y Setters
+    public boolean isTieneCalefaccion() {
+        return tieneCalefaccion;
+    }
 
-	    // Getters y Setters
-	    public String getMaterial() {
-	        return material;
-	    }
+    public void setTieneCalefaccion(boolean tieneCalefaccion) {
+        this.tieneCalefaccion = tieneCalefaccion;
+    }
 
-	    public void setMaterial(String material) {
-	        this.material = material;
-	    }
+    public boolean isEsElectrico() {
+        return esElectrico;
+    }
 
-	    public boolean isIncluyeGrifo() {
-	        return incluyeGrifo;
-	    }
+    public void setEsElectrico(boolean esElectrico) {
+        this.esElectrico = esElectrico;
+    }
 
-	    public void setIncluyeGrifo(boolean incluyeGrifo) {
-	        this.incluyeGrifo = incluyeGrifo;
-	    }
-
-	    @Override
-	    public String toString() {
-	        return "Bide de " + material + ", Incluye grifo: " + (incluyeGrifo ? "Sí" : "No");
-	    }
+    @Override
+    public String toString() {
+        return super.toString() + " Bide [tieneCalefaccion=" + tieneCalefaccion + ", esElectrico=" + esElectrico + "]";
+    }
 }
