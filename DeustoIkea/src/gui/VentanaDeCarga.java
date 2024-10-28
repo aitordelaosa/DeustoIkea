@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -24,9 +25,15 @@ public class VentanaDeCarga extends JFrame {
     protected Datos datos;
 
     public VentanaDeCarga() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 500);
         setTitle("DeustoIkea");
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         ImageIcon i = new ImageIcon("src/Imagenes/DeustoIkea_app_icon.png");
         setIconImage(i.getImage());
