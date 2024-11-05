@@ -293,7 +293,7 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 					200, java.awt.Image.SCALE_SMOOTH));
 			ImageIcon maceta= new ImageIcon(new ImageIcon("src/Imagenes/Maceta.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon pala = new ImageIcon(new ImageIcon("src/Imagenes/encimera.jpg").getImage()
+			ImageIcon pala = new ImageIcon(new ImageIcon("src/Imagenes/Pala.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 //        	ImageIcon barbacoa = new ImageIcon("src/Imagenes/Barbacoa.jpg");
 //            ImageIcon adelfas = new ImageIcon("src/Imagenes/adelfas-colores.jpg");
@@ -408,13 +408,13 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			break;
 		case 4: 
 			labelDescripcion1.setText(
-					"<html><b>Barbacoa</b><br>Precio: $200.60<br>Peso: 20kg<br>Descripción: Bidé compacto de fácil instalación.</html>");
+					"<html><b>Barbacoa</b><br>Precio: $50.99<br>Peso: 150kg<br>Descripción: resistente y duradera, ideal para exteriores. Incluye parrilla ajustable y espacio de almacenamiento,perfecta para disfrutar asados en el jardín.</html>");
 			labelDescripcion2.setText(
-					"<html><b>Ducha</b><br>Precio: $320.75<br>Peso: 30kg<br>Descripción: Ducha con sistema de hidromasaje y puerta de vidrio templado.</html>");
+					"<html><b>Planta</b><br>Precio: $21.99<br>Peso: 20kg<br>Descripción: Es una planta de exterior de tamaño medio, ideal para jardines y patios. Con follaje perenne y flores en tonos rosa, blanco o rojo.</html>");
 			labelDescripcion3.setText(
-					"<html><b>Inodoro</b><br>Precio: $180.50<br>Peso: 25kg<br>Descripción: Inodoro de porcelana con sistema de bajo consumo de agua.</html>");
+					"<html><b>Maceta</b><br>Precio: $10.75<br>Peso: 3.2kg<br>Descripción: Maceta para plantas tamaño mediano.</html>");
 			labelDescripcion4.setText(
-					"<html><b>Lavamanos</b><br>Precio: $150.45<br>Peso: 15kg<br>Descripción: Lavamanos de cerámica con grifo monomando.</html>");
+					"<html><b>Pala</b><br>Precio: $7.5<br>Peso: 1kg<br>Descripción: herramienta resistente con cabeza de acero para cavar y mover tierra, y mango de madera ergonómico para un agarre cómodo.</html>");
 			
 		// Futuros casos
 		default:
@@ -562,12 +562,16 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 				break;
 			case "Barbacoa":
 				jardineriaSeleccionado = datos.getBarbacoa();
+				break;
 			case "Planta":
 				jardineriaSeleccionado = datos.getPlanta();
+				break;
 			case "Maceta":
 				jardineriaSeleccionado = datos.getMaceta();
+				break;
 			case "Herramienta":
 				jardineriaSeleccionado = datos.getHerramienta();
+				break;
 				
 
 			}
