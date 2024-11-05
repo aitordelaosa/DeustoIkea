@@ -8,6 +8,7 @@ public class Datos {
 
 	protected List<Mueble> lMuebles;
 	protected List<Cocina> lCocina;
+	protected List<Jardineria> lJardineria;
 	protected List<Trabajador> lTrabajador;
 	protected List<Cliente> lCliente;
 	protected List<Baño> lBaño;
@@ -21,6 +22,13 @@ public class Datos {
 	protected Horno horno;
 	protected Encimera encimera;
 	protected Fregadero fregadero;
+	
+	//Jardineria
+	protected Maceta maceta;
+	protected Barbacoa barbacoa;
+	protected Planta planta;
+	protected Herramienta herramienta;
+
 
 	// Baño
 	protected Bide bide;
@@ -64,12 +72,32 @@ public class Datos {
 	public Fregadero getFregadero() {
 		return fregadero;
 	}
+	
+	//Jardineria
+	
+	public Maceta getMaceta() {
+		return maceta;
+	}
+
+	public Barbacoa getBarbacoa() {
+		return barbacoa;
+	}
+
+	public Planta getPlanta() {
+		return planta;
+	}
+
+	public Herramienta getHerramienta() {
+		return herramienta;
+	}
+
 
 	// Baño
 	public Ducha getDucha() {
 		return ducha;
 	}
 
+	
 	public Inodoro getInodoro() {
 		return inodoro;
 	}
@@ -133,6 +161,27 @@ public class Datos {
 		lBaño.add(ducha);
 		lBaño.add(lavamanos);
 		lBaño.add(inodoro);
+		
+		//Jardineria
+		
+		/*maceta = new Maceta(21, 3, 3.2, 10.75, true, "Cerámica", "Maceta para plantas tamaño mediano", 
+				"src/Imagenes/Maceta.jpg", 17.5);
+		
+		barbacoa = new Barbacoa(22, 5, 150000, 50.99, true, "Hormigón", "resistente y duradera, ideal para exteriores. Incluye parrilla ajustable y espacio de almacenamiento,perfecta para disfrutar asados en el jardín.", 
+				"src/Imagenes/Barbacoa.jpg", "Carbón", 19.0, false);
+		
+		planta = new Planta(23, 8, 20, 21.99, true, "madera", "Es una planta de exterior de tamaño medio, ideal para jardines y patios. Con follaje perenne y flores en tonos rosa, blanco o rojo", 
+				"src/Imagenes/adelfas-colores.jpg", 2.5, false, "Adelfa", 27.0);
+		
+		herramienta = new Herramienta(24, 4, 1, 7.5, false, "Madera", "herramienta resistente con cabeza de acero para cavar y mover tierra, y mango de madera ergonómico para un agarre cómodo",
+				"src/Imagenes/Pala.jpg", "Pala");
+		
+		lJardineria.add(maceta);
+		lJardineria.add(barbacoa);
+		lJardineria.add(planta);
+		lJardineria.add(herramienta);
+		*/
+		
 
 		// Cocina
 		nevera = new Nevera(5, 12, 81.5, 699.90, "Aluminio", "Nevera con dos puertas, ideal para familias",
@@ -247,6 +296,37 @@ public class Datos {
 		return detalles;
 	}
 
+	//jardineria
+	
+	/*public String obtenerDetallesJardineria(Jardineria j) {
+		String detalles = "";
+
+		
+		if (j instanceof Maceta) {
+			detalles = String.format(
+					"Maceta\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nColor: %s\nDescripción: %s\nAltura: %.2fm\nCapacidad: %d personas",
+					j.getIdProducto(), j.getPrecio(), j.getPeso(), mesa.getMaterial(), mesa.getColor(),
+					maceta.getDescripcion(), mesa.getAltura(), mesa.getCapacidad());
+		} else if (j instanceof Barbacoa) {
+			detalles = String.format(
+					"Barbacoa\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nColor: %s\nDescripción: %s\nAltura: %.2fm\nAncho: %.2fm\nCapacidad de carga: %.2fkg",
+					j.getIdProducto(), j.getPrecio(), j.getPeso(), silla.getMaterial(), silla.getColor(),
+					silla.getDescripcion(), silla.getAltura(), silla.getAncho(), silla.getCapacidadDeCarga());
+		} else if (j instanceof Planta) {
+			detalles = String.format(
+					"Planta\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nColor: %s\nDescripción: %s\nNúmero de puertas: %d\nAltura: %.2fm\nAnchura: %.2fm\nProfundidad: %.2fm",
+					j.getIdProducto(), j.getPrecio(), j.getPeso(), armario.getMaterial(), armario.getColor(),
+					armario.getDescripcion(), armario.getNumeroDePuertas(), armario.getAltura(), armario.getAnchura(),
+					armario.getProfundidad());
+		} else if (j instanceof Herramienta) {
+			detalles = String.format(
+					"Herramienta\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nColor: %s\nDescripción: %s\nCapacidad de asientos: %d",
+					j.getIdProducto(), j.getPrecio(), j.getPeso(), sofa.getMaterial(), sofa.getColor(),
+					sofa.getDescripcion(), sofa.getCapacidadDeAsientos());
+		}
+
+		return detalles;
+	}*/
 	// Baño
 	public String obtenerDetallesBaño(Baño b) {
 		String detalles;
@@ -303,4 +383,18 @@ public class Datos {
 		}
 		return null;
 	}
+	//Iniciar sesion como trabajador
+		public Trabajador buscarTrabajador(String user) {
+			Trabajador[] trabajadores = { trabajador1, trabajador2, trabajador3, trabajador4, trabajador5};
+			
+			for(Trabajador t : trabajadores) {
+				if(user.equals(t.dni)) {
+					return t;
+				}
+				
+			}
+			return null;
+			
+		}
+	
 }
