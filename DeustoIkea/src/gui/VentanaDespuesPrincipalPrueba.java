@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import domain.Datos;
+import domain.Jardineria;
 import domain.Mueble;
 import domain.Baño;
 import domain.Cocina;
@@ -43,8 +44,10 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			setTitle("Cocina");
 		} else if (code == 3) {
 			setTitle("Baño");
+		} else if (code == 4){
+			setTitle("Jardineria");
 		} else {
-			setTitle("Sección Desconocida");
+			setTitle("SECCION DESCONOCIDA");
 		}
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
@@ -76,7 +79,12 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de muebles asequibles y modernos.");
 		} else if (code == 2) {
 			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de electrodomésticos y artículos de cocina.");
+		} else if (code == 3) {
+			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de");
+		} else if (code == 4) {
+			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de Jardineria y herramientas.");
 		}
+			
 //        areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de articulos asequibles y modernos.\n" +
 //                          "Ofrecemos una amplia gama de muebles que se adaptan a todos los estilos y presupuestos.");
 
@@ -86,6 +94,8 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			textoMueble = new JLabel("Sección de Cocina");
 		} else if (code == 3) {
 			textoMueble = new JLabel("Seccion de Baño");
+		} else if (code == 4) {
+			textoMueble = new JLabel("Seccion de Jardineria");
 		}
 		textoMueble.setFont(new Font("Arial", Font.BOLD, 18));
 		textoMueble.setHorizontalAlignment(SwingConstants.CENTER);
@@ -274,6 +284,62 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			});
 
 			break;
+			
+		case 4:
+			// Mostrar elementos de Jardineria
+			ImageIcon barbacoa = new ImageIcon(new ImageIcon("src/Imagenes/Barbacoa.jpg").getImage().getScaledInstance(200,
+					200, java.awt.Image.SCALE_SMOOTH));
+			ImageIcon planta = new ImageIcon(new ImageIcon("src/Imagenes/adelfas-colores.jpg").getImage().getScaledInstance(200,
+					200, java.awt.Image.SCALE_SMOOTH));
+			ImageIcon maceta= new ImageIcon(new ImageIcon("src/Imagenes/Maceta.jpg").getImage()
+					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+			ImageIcon pala = new ImageIcon(new ImageIcon("src/Imagenes/encimera.jpg").getImage()
+					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+//        	ImageIcon barbacoa = new ImageIcon("src/Imagenes/Barbacoa.jpg");
+//            ImageIcon adelfas = new ImageIcon("src/Imagenes/adelfas-colores.jpg");
+//            ImageIcon maceta = new ImageIcon("src/Imagenes/maceta.jpg");
+//            ImageIcon pala = new ImageIcon("src/Imagenes/Pala.jpg");
+
+			labelImagen1 = new JLabel(barbacoa);
+			labelImagen2 = new JLabel(planta);
+			labelImagen3 = new JLabel(maceta);
+			labelImagen4 = new JLabel(pala);
+
+//            labelImagen1.setIcon(barbacoa);
+//            labelImagen2.setIcon(adelfas);
+//            labelImagen3.setIcon(maceta);
+//            labelImagen4.setIcon(pala);
+
+			labelImagen1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					objetoSeleccionado = "barbacoa";
+				}
+			});
+
+			labelImagen2.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					objetoSeleccionado = "adelfas";
+				}
+			});
+
+			labelImagen3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					objetoSeleccionado = "maceta";
+				}
+			});
+
+			labelImagen4.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					objetoSeleccionado = "pala";
+				}
+			});
+
+			break;
+			
 
 		default:
 			areaTexto.setText("Sección no reconocida.");
@@ -340,7 +406,16 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			labelDescripcion4.setText(
 					"<html><b>Lavamanos</b><br>Precio: $150.45<br>Peso: 15kg<br>Descripción: Lavamanos de cerámica con grifo monomando.</html>");
 			break;
-
+		case 4: 
+			labelDescripcion1.setText(
+					"<html><b>Barbacoa</b><br>Precio: $200.60<br>Peso: 20kg<br>Descripción: Bidé compacto de fácil instalación.</html>");
+			labelDescripcion2.setText(
+					"<html><b>Ducha</b><br>Precio: $320.75<br>Peso: 30kg<br>Descripción: Ducha con sistema de hidromasaje y puerta de vidrio templado.</html>");
+			labelDescripcion3.setText(
+					"<html><b>Inodoro</b><br>Precio: $180.50<br>Peso: 25kg<br>Descripción: Inodoro de porcelana con sistema de bajo consumo de agua.</html>");
+			labelDescripcion4.setText(
+					"<html><b>Lavamanos</b><br>Precio: $150.45<br>Peso: 15kg<br>Descripción: Lavamanos de cerámica con grifo monomando.</html>");
+			
 		// Futuros casos
 		default:
 			break;
@@ -446,6 +521,7 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			Mueble muebleSeleccionado = null;
 			Cocina cocinaSeleccionada = null;
 			Baño bañoSeleccionado = null;
+			Jardineria jardineriaSeleccionado = null;
 
 			switch (objetoSeleccionado) {
 			case "Sofá":
@@ -484,6 +560,15 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			case "Lavamanos":
 				bañoSeleccionado = datos.getLavamanos();
 				break;
+			case "Barbacoa":
+				jardineriaSeleccionado = datos.getBarbacoa();
+			case "Planta":
+				jardineriaSeleccionado = datos.getPlanta();
+			case "Maceta":
+				jardineriaSeleccionado = datos.getMaceta();
+			case "Herramienta":
+				jardineriaSeleccionado = datos.getHerramienta();
+				
 
 			}
 
@@ -494,7 +579,10 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 				detalles = datos.obtenerDetallesCocina(cocinaSeleccionada);
 			} else if(bañoSeleccionado != null){
 				detalles = datos.obtenerDetallesBaño(bañoSeleccionado);
-			}else{
+				
+			}else if(jardineriaSeleccionado !=null){
+				detalles = datos.obtenerDetallesJardineria(jardineriaSeleccionado);
+			}else {
 			detalles = "No se encontraron detalles para el objeto seleccionado.";
 			}
 
