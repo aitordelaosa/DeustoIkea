@@ -7,8 +7,8 @@ public class Planta extends Jardineria {
     private double diametro;
     private String tipoDePlanta;
 
-    public Planta(int idProducto, int numeroProductos, double peso, double precio, boolean esExterior, String material, double altura, boolean esFrutal, String tipoDePlanta) {
-        super(idProducto, numeroProductos, peso, precio, esExterior, material);
+    public Planta(int idProducto, int numeroProductos, double peso, double precio, boolean esExterior, String material, String descripcion, String rutaImagen, double altura, boolean esFrutal, String tipoDePlanta, double diametro) {
+        super(idProducto, numeroProductos, peso, precio, esExterior, material, descripcion, rutaImagen);
         this.altura = altura;
         this.diametro = diametro;
         this.tipoDePlanta = tipoDePlanta;
@@ -45,11 +45,6 @@ public class Planta extends Jardineria {
         this.tipoDePlanta = tipoDePlanta;
     }
 
-    @Override
-    public String toString() {
-        return "Planta [altura=" + altura + ", diametro=" + diametro + ", tipoDePlanta=" + tipoDePlanta + "]";
-    }
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,6 +67,10 @@ public class Planta extends Jardineria {
 				&& Objects.equals(tipoDePlanta, other.tipoDePlanta);
 	}
 
-    
-	
+	@Override
+	public String toString() {
+		return "Planta [altura=" + altura + ", diametro=" + diametro + ", tipoDePlanta=" + tipoDePlanta + "]";
+	}
+
+
 } 

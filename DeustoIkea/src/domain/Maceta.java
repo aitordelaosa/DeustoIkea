@@ -5,8 +5,9 @@ import java.util.Objects;
 public class Maceta extends Jardineria {
     private double diametro;
 
-    public Maceta(int idProducto, int numeroProductos, double peso, double precio, boolean esExterior, String material, double diametro) {
-        super(idProducto, numeroProductos, peso, precio, esExterior, material);
+    public Maceta(int idProducto, int numeroProductos, double peso, double precio, 
+    		boolean esExterior, String material, String descripcion, String rutaimagen, double diametro) {
+        super(idProducto, numeroProductos, peso, precio, esExterior, material, descripcion, rutaimagen );
         this.diametro = diametro;
     }
 
@@ -21,11 +22,6 @@ public class Maceta extends Jardineria {
 
     public void setDiametro(double diametro) {
         this.diametro = diametro;
-    }
-
-    @Override
-    public String toString() {
-        return "Maceta [diametro=" + diametro + "]";
     }
 
 	@Override
@@ -47,4 +43,11 @@ public class Maceta extends Jardineria {
 		Maceta other = (Maceta) obj;
 		return Double.doubleToLongBits(diametro) == Double.doubleToLongBits(other.diametro);
 	}
+
+	@Override
+	public String toString() {
+		return "Maceta [diametro=" + diametro + "]";
+	}
+
+ 
 }

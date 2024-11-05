@@ -7,8 +7,8 @@ public class Barbacoa extends Jardineria {
     private double superficieCoccion;  // Superficie de cocción en metros cuadrados
     private boolean tieneTapa;  // Indica si la barbacoa tiene tapa
 
-    public Barbacoa(int idProducto, int numeroProductos, double peso, double precio, boolean esExterior, String material, String tipoCombustible, double superficieCoccion, boolean tieneTapa) {
-        super(idProducto, numeroProductos, peso, precio, esExterior, material);
+    public Barbacoa(int idProducto, int numeroProductos, double peso, double precio, boolean esExterior, String material, String descripcion, String rutaImagen, String tipoCombustible, double superficieCoccion, boolean tieneTapa) {
+        super(idProducto, numeroProductos, peso, precio, esExterior, material, descripcion, rutaImagen);
         this.tipoCombustible = tipoCombustible;
         this.superficieCoccion = superficieCoccion;
         this.tieneTapa = tieneTapa;
@@ -45,11 +45,6 @@ public class Barbacoa extends Jardineria {
         this.tieneTapa = tieneTapa;
     }
 
-    @Override
-    public String toString() {
-        return "Barbacoa [tipoCombustible=" + tipoCombustible + ", superficieCoccion=" + superficieCoccion + " m², tieneTapa=" + tieneTapa + "]";
-    }
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,5 +65,12 @@ public class Barbacoa extends Jardineria {
 		return Double.doubleToLongBits(superficieCoccion) == Double.doubleToLongBits(other.superficieCoccion)
 				&& tieneTapa == other.tieneTapa && Objects.equals(tipoCombustible, other.tipoCombustible);
 	}
+
+	@Override
+	public String toString() {
+		return "Barbacoa [tipoCombustible=" + tipoCombustible + ", superficieCoccion=" + superficieCoccion
+				+ ", tieneTapa=" + tieneTapa + "]";
+	}
+
     
 }

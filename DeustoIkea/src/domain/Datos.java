@@ -164,7 +164,7 @@ public class Datos {
 		
 		//Jardineria
 		
-		/*maceta = new Maceta(21, 3, 3.2, 10.75, true, "Cerámica", "Maceta para plantas tamaño mediano", 
+		maceta = new Maceta(21, 3, 3.2, 10.75, true, "Cerámica", "Maceta para plantas tamaño mediano", 
 				"src/Imagenes/Maceta.jpg", 17.5);
 		
 		barbacoa = new Barbacoa(22, 5, 150000, 50.99, true, "Hormigón", "resistente y duradera, ideal para exteriores. Incluye parrilla ajustable y espacio de almacenamiento,perfecta para disfrutar asados en el jardín.", 
@@ -180,7 +180,7 @@ public class Datos {
 		lJardineria.add(barbacoa);
 		lJardineria.add(planta);
 		lJardineria.add(herramienta);
-		*/
+		
 		
 
 		// Cocina
@@ -298,7 +298,7 @@ public class Datos {
 
 	//jardineria
 	
-	/*public String obtenerDetallesJardineria(Jardineria j) {
+	public String obtenerDetallesJardineria(Jardineria j) {
 		String detalles = "";
 
 		
@@ -326,7 +326,7 @@ public class Datos {
 		}
 
 		return detalles;
-	}*/
+	}
 	// Baño
 	public String obtenerDetallesBaño(Baño b) {
 		String detalles;

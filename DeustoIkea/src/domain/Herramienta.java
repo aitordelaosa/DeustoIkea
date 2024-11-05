@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Herramienta extends Jardineria {
     private String tipo;
 
-    public Herramienta(int idProducto, int numeroProductos, double peso, double precio, boolean esExterior, String material, String tipo) {
-        super(idProducto, numeroProductos, peso, precio, esExterior, material);
+    public Herramienta(int idProducto, int numeroProductos, double peso, double precio, boolean esExterior, String material, String descripcion, String rutaImagen, String tipo) {
+        super(idProducto, numeroProductos, peso, precio, esExterior, material, descripcion, rutaImagen);
         this.tipo = tipo;
     }
 
@@ -21,11 +21,6 @@ public class Herramienta extends Jardineria {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    @Override
-    public String toString() {
-        return "Herramienta [tipo=" + tipo + "]";
     }
 
 	@Override
@@ -47,5 +42,11 @@ public class Herramienta extends Jardineria {
 		Herramienta other = (Herramienta) obj;
 		return Objects.equals(tipo, other.tipo);
 	}
-    
+
+	@Override
+	public String toString() {
+		return "Herramienta [tipo=" + tipo + "]";
+	}
+
+
 }
