@@ -121,8 +121,8 @@ public class Datos {
 		lavamanos = new Lavamanos(1, 10, 5.5, 150.0, "Cerámica", "Lavamanos moderno", "src/Imagenes/lavamanos.jpg",
 				"Monomando", true);
 
-		ducha = new Ducha(2, 5, 7.0, 250.0, "Acero inoxidable", "Ducha con rociador ajustable", "src/Imagenes/ducha.jpg",
-				"Circular", true);
+		ducha = new Ducha(2, 5, 7.0, 250.0, "Acero inoxidable", "Ducha con rociador ajustable",
+				"src/Imagenes/ducha.jpg", "Circular", true);
 
 		bide = new Bide(3, 8, 4.0, 120.0, "Porcelana", "Bide compacto", "src/Imagenes/bide.jpeg", true, false);
 
@@ -246,57 +246,50 @@ public class Datos {
 
 		return detalles;
 	}
-	//Baño
+
+	// Baño
 	public String obtenerDetallesBaño(Baño b) {
-	    String detalles;
+		String detalles;
 
-	    switch (b.getClass().getSimpleName()) {
-	        case "Ducha":
-	            Ducha ducha = (Ducha) b; // Hacer el cast a Ducha
-	            detalles = String.format(
-	                    "Ducha\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDescripción: %s\nImagen: %s\nTipo de rociador: %s\nTiene mampara: %s",
-	                    ducha.getIdProducto(), ducha.getPrecio(), ducha.getPeso(),
-	                    ducha.getMaterialB(), ducha.getDescripcionB(), 
-	                    ducha.getImagenB() != null ? ducha.getImagenB().toString() : "Sin imagen",
-	                    ducha.getTipoRociador(), ducha.isTieneMampara());
-	            break;
+		switch (b.getClass().getSimpleName()) {
+		case "Ducha":
+			Ducha ducha = (Ducha) b; // Hacer el cast a Ducha
+			detalles = String.format(
+					"Ducha\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDescripción:  %s\nTipo de rociador: %s\nTiene mampara: %s",
+					ducha.getIdProducto(), ducha.getPrecio(), ducha.getPeso(), ducha.getMaterialB(),
+					ducha.getDescripcionB(), ducha.getTipoRociador(), ducha.isTieneMampara());
+			break;
 
-	        case "Bide":
-	            Bide bide = (Bide) b; // Hacer el cast a Bide
-	            detalles = String.format(
-	                    "Bide\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDescripción: %s\nImagen: %s\nTiene calefacción: %s\nEs eléctrico: %s",
-	                    bide.getIdProducto(), bide.getPrecio(), bide.getPeso(),
-	                    bide.getMaterialB(), bide.getDescripcionB(),
-	                    bide.getImagenB() != null ? bide.getImagenB().toString() : "Sin imagen",
-	                    bide.isTieneCalefaccion(), bide.isEsElectrico());
-	            break;
+		case "Bide":
+			Bide bide = (Bide) b; // Hacer el cast a Bide
+			detalles = String.format(
+					"Bide\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDescripción:  %s\nTiene calefacción: %s\nEs eléctrico: %s",
+					bide.getIdProducto(), bide.getPrecio(), bide.getPeso(), bide.getMaterialB(), bide.getDescripcionB(),
+					bide.isTieneCalefaccion(), bide.isEsElectrico());
+			break;
 
-	        case "Inodoro":
-	            Inodoro inodoro = (Inodoro) b; // Hacer el cast a Inodoro
-	            detalles = String.format(
-	                    "Inodoro\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDescripción: %s\nImagen: %s\nTipo de descarga: %s\nTiene asiento calefaccionado: %s",
-	                    inodoro.getIdProducto(), inodoro.getPrecio(), inodoro.getPeso(),
-	                    inodoro.getMaterialB(), inodoro.getDescripcionB(),
-	                    inodoro.getImagenB() != null ? inodoro.getImagenB().toString() : "Sin imagen",
-	                    inodoro.getTipoDescarga(), inodoro.isTieneAsientoCalefaccionado());
-	            break;
+		case "Inodoro":
+			Inodoro inodoro = (Inodoro) b; // Hacer el cast a Inodoro
+			detalles = String.format(
+					"Inodoro\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDescripción:  %s\nTipo de descarga: %s\nTiene asiento calefaccionado: %s",
+					inodoro.getIdProducto(), inodoro.getPrecio(), inodoro.getPeso(), inodoro.getMaterialB(),
+					inodoro.getDescripcionB(), inodoro.getTipoDescarga(), inodoro.isTieneAsientoCalefaccionado());
+			break;
 
-	        case "Lavamanos":
-	            Lavamanos lavamanos = (Lavamanos) b; // Hacer el cast a Lavamanos
-	            detalles = String.format(
-	                    "Lavamanos\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDescripción: %s\nImagen: %s\nTipo de grifo: %s\nTiene almacenamiento: %s",
-	                    lavamanos.getIdProducto(), lavamanos.getPrecio(), lavamanos.getPeso(),
-	                    lavamanos.getMaterialB(), lavamanos.getDescripcionB(),
-	                    lavamanos.getImagenB() != null ? lavamanos.getImagenB().toString() : "Sin imagen",
-	                    lavamanos.getTipoGrifo(), lavamanos.isTieneAlmacenamiento());
-	            break;
+		case "Lavamanos":
+			Lavamanos lavamanos = (Lavamanos) b; // Hacer el cast a Lavamanos
+			detalles = String.format(
+					"Lavamanos\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDescripción:  %s\nTipo de grifo: %s\nTiene almacenamiento: %s",
+					lavamanos.getIdProducto(), lavamanos.getPrecio(), lavamanos.getPeso(), lavamanos.getMaterialB(),
+					lavamanos.getDescripcionB(), lavamanos.getTipoGrifo(), lavamanos.isTieneAlmacenamiento());
+			break;
 
-	        default:
-	            detalles = "El objeto proporcionado no es una ducha, bide, inodoro o lavamanos.";
-	            break;
-	    }
+		default:
+			detalles = "El objeto proporcionado no es una ducha, bide, inodoro o lavamanos.";
+			break;
+		}
 
-	    return detalles;
+		return detalles;
 	}
 
 	// Iniciar sesion

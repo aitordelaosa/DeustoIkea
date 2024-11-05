@@ -23,8 +23,8 @@ import domain.Sofa;
 public class VentanaPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionOtro1, panelSeccionOtro2, panelAbajo, panelSuperior, panelSuperiorOeste, panelSuperiorEste;
-    protected JLabel lblCocina, lblMuebles, lblOtro1, lblOtro2, lblDescripcion;
+    protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionBaño, panelSeccionOtro2, panelAbajo, panelSuperior, panelSuperiorOeste, panelSuperiorEste;
+    protected JLabel lblCocina, lblMuebles, lblBaño, lblOtro2, lblDescripcion;
     protected JButton botonCerrar, botonAtras, botonPerfil, botonCarrito, botonAyuda, botonDescuentos;
     
     protected ModeloMuebles modeloTablaMuebles;
@@ -74,13 +74,13 @@ public class VentanaPrincipal extends JFrame {
         
         panelSeccionCocina = new JPanel();
         panelSeccionMuebles = new JPanel();
-        panelSeccionOtro1 = new JPanel();
+        panelSeccionBaño = new JPanel();
         panelSeccionOtro2 = new JPanel();
         panelAbajo = new JPanel();
         
         ImageIcon cocina = new ImageIcon(new ImageIcon("src/Imagenes/Cocina1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
         ImageIcon muebles = new ImageIcon(new ImageIcon("src/Imagenes/Muebles1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon otro1 = new ImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon baño = new ImageIcon(new ImageIcon("src/Imagenes/baño.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
         ImageIcon otro2 = new ImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 //        ImageIcon cocina = new ImageIcon(new ImageIcon("src/Imagenes/cocina.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 //        ImageIcon muebles = new ImageIcon(new ImageIcon("src/Imagenes/muebles.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
@@ -89,12 +89,12 @@ public class VentanaPrincipal extends JFrame {
 
         lblCocina = new JLabel(cocina);
         lblMuebles = new JLabel(muebles);
-        lblOtro1 = new JLabel(otro1);
+        lblBaño = new JLabel(baño);
         lblOtro2 = new JLabel(otro2);
         
         panelSeccionCocina.add(lblCocina);
         panelSeccionMuebles.add(lblMuebles);
-        panelSeccionOtro1.add(lblOtro1);
+        panelSeccionBaño.add(lblBaño);
         panelSeccionOtro2.add(lblOtro2);
         
         panelAbajo.add(botonAtras);
@@ -102,7 +102,7 @@ public class VentanaPrincipal extends JFrame {
         
         panelPrincipal.add(panelSeccionCocina);
         panelPrincipal.add(panelSeccionMuebles);
-        panelPrincipal.add(panelSeccionOtro1);
+        panelPrincipal.add(panelSeccionBaño);
         panelPrincipal.add(panelSeccionOtro2);
         
 //        getContentPane().add(panelAbajo, BorderLayout.SOUTH);
@@ -125,11 +125,11 @@ public class VentanaPrincipal extends JFrame {
             }
         });
 //        
-//        panelSeccionOtro1.addMouseListener(new MouseAdapter() {
-//            public void mouseClicked(MouseEvent e) {
-//                new VentanaOtro1();
-//            }
-//        });
+        panelSeccionBaño.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new VentanaDespuesPrincipalPrueba(3);
+            }
+        });
 //        
 //        panelSeccionOtro2.addMouseListener(new MouseAdapter() {
 //            public void mouseClicked(MouseEvent e) {
