@@ -127,6 +127,7 @@ public class Datos {
 		lTrabajador = new ArrayList<>();
 		lCliente = new ArrayList<>();
 		lBaño = new ArrayList<>();
+		lJardineria = new ArrayList<>();
 
 		// Muebles
 		mesa = new Mesa(1, 10, 20.0, 150.0, "Madera", "Marrón",
