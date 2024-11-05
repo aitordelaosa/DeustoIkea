@@ -23,8 +23,8 @@ import domain.Sofa;
 public class VentanaPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionBaño, panelSeccionOtro2, panelAbajo, panelSuperior, panelSuperiorOeste, panelSuperiorEste;
-    protected JLabel lblCocina, lblMuebles, lblBaño, lblOtro2, lblDescripcion;
+    protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionBaño, panelSeccionJardineria, panelAbajo, panelSuperior, panelSuperiorOeste, panelSuperiorEste;
+    protected JLabel lblCocina, lblMuebles, lblBaño, lblJardineria, lblDescripcion;
     protected JButton botonCerrar, botonAtras, botonPerfil, botonCarrito, botonAyuda, botonDescuentos;
     
     protected ModeloMuebles modeloTablaMuebles;
@@ -75,13 +75,13 @@ public class VentanaPrincipal extends JFrame {
         panelSeccionCocina = new JPanel();
         panelSeccionMuebles = new JPanel();
         panelSeccionBaño = new JPanel();
-        panelSeccionOtro2 = new JPanel();
+        panelSeccionJardineria = new JPanel();
         panelAbajo = new JPanel();
         
         ImageIcon cocina = new ImageIcon(new ImageIcon("src/Imagenes/Cocina1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
         ImageIcon muebles = new ImageIcon(new ImageIcon("src/Imagenes/Muebles1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
         ImageIcon baño = new ImageIcon(new ImageIcon("src/Imagenes/baño.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon otro2 = new ImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon jardineria = new ImageIcon(new ImageIcon("src/Imagenes/Jardineria.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 //        ImageIcon cocina = new ImageIcon(new ImageIcon("src/Imagenes/cocina.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 //        ImageIcon muebles = new ImageIcon(new ImageIcon("src/Imagenes/muebles.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 //        ImageIcon otro1 = new ImageIcon(new ImageIcon("src/Imagenes/otro1.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
@@ -90,12 +90,12 @@ public class VentanaPrincipal extends JFrame {
         lblCocina = new JLabel(cocina);
         lblMuebles = new JLabel(muebles);
         lblBaño = new JLabel(baño);
-        lblOtro2 = new JLabel(otro2);
+        lblJardineria = new JLabel();
         
         panelSeccionCocina.add(lblCocina);
         panelSeccionMuebles.add(lblMuebles);
         panelSeccionBaño.add(lblBaño);
-        panelSeccionOtro2.add(lblOtro2);
+        panelSeccionJardineria.add(lblJardineria);
         
         panelAbajo.add(botonAtras);
         panelAbajo.add(botonCerrar);
@@ -103,7 +103,7 @@ public class VentanaPrincipal extends JFrame {
         panelPrincipal.add(panelSeccionCocina);
         panelPrincipal.add(panelSeccionMuebles);
         panelPrincipal.add(panelSeccionBaño);
-        panelPrincipal.add(panelSeccionOtro2);
+        panelPrincipal.add(panelSeccionJardineria);
         
 //        getContentPane().add(panelAbajo, BorderLayout.SOUTH);
 //        getContentPane().add(panelPrincipal, BorderLayout.NORTH);
@@ -130,12 +130,12 @@ public class VentanaPrincipal extends JFrame {
                 new VentanaDespuesPrincipalPrueba(3);
             }
         });
-//        
-//        panelSeccionOtro2.addMouseListener(new MouseAdapter() {
-//            public void mouseClicked(MouseEvent e) {
-//                new VentanaOtro2();
-//            }
-//        });
+     
+        panelSeccionJardineria.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+            	new VentanaDespuesPrincipalPrueba(4);
+            }
+        });
         
         botonCerrar.addActionListener((e)-> {
 			System.exit(0);
