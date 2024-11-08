@@ -1,8 +1,12 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -47,6 +51,8 @@ public class VentanaPrincipal extends JFrame {
         botonCerrar = new JButton("CERRAR");
         botonAtras = new JButton("ATRAS");
         
+        
+        
         ImageIcon iconoPerfil = new ImageIcon(new ImageIcon("src/Imagenes/perfil1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("src/Imagenes/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         ImageIcon iconoAyuda = new ImageIcon(new ImageIcon("src/Imagenes/ayuda1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
@@ -90,12 +96,92 @@ public class VentanaPrincipal extends JFrame {
         lblCocina = new JLabel(cocina);
         lblMuebles = new JLabel(muebles);
         lblBaño = new JLabel(baño);
-        lblJardineria = new JLabel();
+        lblJardineria = new JLabel(jardineria);
         
         panelSeccionCocina.add(lblCocina);
         panelSeccionMuebles.add(lblMuebles);
         panelSeccionBaño.add(lblBaño);
         panelSeccionJardineria.add(lblJardineria);
+        
+        JLabel lblTextoCocina = new JLabel("Cocina");
+        JLabel lblTextoMuebles = new JLabel("Muebles");
+        JLabel lblTextoBaño = new JLabel("Baño");
+        JLabel lblTextoJardineria = new JLabel("Jardinería");
+
+        
+        lblTextoCocina.setForeground(Color.BLACK);
+        lblTextoCocina.setFont(new Font("Arial", Font.BOLD, 16));
+        lblTextoCocina.setBounds(50, 80, 150, 30);
+
+        lblTextoMuebles.setForeground(Color.BLACK);
+        lblTextoMuebles.setFont(new Font("Arial", Font.BOLD, 16));
+        lblTextoMuebles.setBounds(50, 80, 150, 30);
+
+        lblTextoBaño.setForeground(Color.BLACK);
+        lblTextoBaño.setFont(new Font("Arial", Font.BOLD, 16));
+        lblTextoBaño.setBounds(50, 80, 150, 30);
+
+        lblTextoJardineria.setForeground(Color.BLACK);
+        lblTextoJardineria.setFont(new Font("Arial", Font.BOLD, 16));
+        lblTextoJardineria.setBounds(50, 80, 150, 30);
+
+       
+        
+        panelSeccionCocina.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                panelSeccionCocina.add(lblTextoCocina);
+                panelSeccionCocina.repaint();  
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                panelSeccionCocina.remove(lblTextoCocina);
+                panelSeccionCocina.repaint();  
+            }
+        });
+
+        panelSeccionMuebles.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                panelSeccionMuebles.add(lblTextoMuebles);
+                panelSeccionMuebles.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                panelSeccionMuebles.remove(lblTextoMuebles);
+                panelSeccionMuebles.repaint();
+            }
+        });
+
+        panelSeccionBaño.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                panelSeccionBaño.add(lblTextoBaño);
+                panelSeccionBaño.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                panelSeccionBaño.remove(lblTextoBaño);
+                panelSeccionBaño.repaint();
+            }
+        });
+
+        panelSeccionJardineria.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                panelSeccionJardineria.add(lblTextoJardineria);
+                panelSeccionJardineria.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                panelSeccionJardineria.remove(lblTextoJardineria);
+                panelSeccionJardineria.repaint();
+            }
+        });
         
         panelAbajo.add(botonAtras);
         panelAbajo.add(botonCerrar);
@@ -205,6 +291,19 @@ public class VentanaPrincipal extends JFrame {
 		modeloTablaMuebles.addProducto(silla);
 		modeloTablaMuebles.addProducto(armario);
 		modeloTablaMuebles.addProducto(sofa);
+		
+		panelContenedor.setFocusable(true);
+        panelContenedor.requestFocusInWindow();
+        panelContenedor.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_W) {
+                    dispose();
+                    new VentanaDeCarga();
+                }
+            }
+        });
+        
 
         setLocationRelativeTo(null);
         setVisible(true);

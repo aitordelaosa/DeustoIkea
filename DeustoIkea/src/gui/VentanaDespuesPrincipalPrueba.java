@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -50,6 +53,8 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			setTitle("SECCION DESCONOCIDA");
 		}
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+		
 
 		botonAtras = new JButton("ATRAS");
 		botonSeleccionar = new JButton("SELECCIONAR");
@@ -80,7 +85,7 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 		} else if (code == 2) {
 			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de electrodomésticos y artículos de cocina.");
 		} else if (code == 3) {
-			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de");
+			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de baños");
 		} else if (code == 4) {
 			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de Jardineria y herramientas.");
 		}
@@ -149,6 +154,11 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			labelImagen2 = new JLabel(armario);
 			labelImagen3 = new JLabel(silla);
 			labelImagen4 = new JLabel(mesa);
+			
+			labelImagen1.setToolTipText("Sofá - Perfecto para la sala de estar.");
+	        labelImagen2.setToolTipText("Armario - Gran capacidad de almacenamiento.");
+	        labelImagen3.setToolTipText("Silla - Ergonómica y cómoda.");
+	        labelImagen4.setToolTipText("Mesa - Ideal para el comedor.");
 
 			labelImagen1.addMouseListener(new MouseAdapter() {
 				@Override
@@ -199,7 +209,11 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			labelImagen2 = new JLabel(horno);
 			labelImagen3 = new JLabel(fregadero);
 			labelImagen4 = new JLabel(encimera);
-
+			
+			labelImagen1.setToolTipText("Nevera - Perfecto para tu cocina");
+	        labelImagen2.setToolTipText("Horno - Ideal para tus mejores recetas.");
+	        labelImagen3.setToolTipText("Fregadero - Deja tus platos relucientes.");
+	        labelImagen4.setToolTipText("Encimera - Ideal para cocinas modernas.");
 //            labelImagen1.setIcon(nevera);
 //            labelImagen2.setIcon(horno);
 //            labelImagen3.setIcon(fregadero);
@@ -254,6 +268,11 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			labelImagen2 = new JLabel(ducha);
 			labelImagen3 = new JLabel(inodoro);
 			labelImagen4 = new JLabel(lavamanos);
+			
+			labelImagen1.setToolTipText("Bide - Perfecto para cualquier baño.");
+	        labelImagen2.setToolTipText("Ducha - Amplia ducha para mass comodidad.");
+	        labelImagen3.setToolTipText("Inodoro - Con la tecnologia mas actual.");
+	        labelImagen4.setToolTipText("Lavamanos - Ideal para cualquier altura.");
 
 			labelImagen1.addMouseListener(new MouseAdapter() {
 				@Override
@@ -304,6 +323,11 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			labelImagen2 = new JLabel(planta);
 			labelImagen3 = new JLabel(maceta);
 			labelImagen4 = new JLabel(pala);
+			
+			labelImagen1.setToolTipText("Barbacoa - Ideal para tus comidas con amigos.");
+	        labelImagen2.setToolTipText("Planta - Elegancia.");
+	        labelImagen3.setToolTipText("Maceta - Perfecta para tus plantas.");
+	        labelImagen4.setToolTipText("Pala - Ideal para poder plantar tus plantas.");
 
 //            labelImagen1.setIcon(barbacoa);
 //            labelImagen2.setIcon(adelfas);
@@ -457,6 +481,7 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}
+	
 
 //	@SuppressWarnings("unused")
 //	private String mostrarDetalle(String objetoSeleccionado) {
@@ -512,6 +537,7 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 //            JOptionPane.showMessageDialog(null, "Detalles del objeto seleccionado:\n" + detalles);
 //        }
 //    }
+	
 
 	private void mostrarInformacionSeleccionada() {
 		if (objetoSeleccionado == null || objetoSeleccionado.isEmpty()) {
