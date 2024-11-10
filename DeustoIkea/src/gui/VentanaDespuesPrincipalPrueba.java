@@ -342,7 +342,7 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			labelImagen2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					objetoSeleccionado = "Adelfas";
+					objetoSeleccionado = "Planta";
 				}
 			});
 

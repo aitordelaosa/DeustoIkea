@@ -308,34 +308,37 @@ public class Datos {
 	//jardineria
 	
 	public String obtenerDetallesJardineria(Jardineria j) {
-		String detalles = "";
+	    String detalles = "";
 
-		
-		if (j instanceof Maceta) {
-			detalles = String.format(
-					"Maceta\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nColor: %s\nDescripción: %s\nAltura: %.2fm\nCapacidad: %d personas",
-					j.getIdProducto(), j.getPrecio(), j.getPeso(), mesa.getMaterial(), mesa.getColor(),
-					maceta.getDescripcion(), mesa.getAltura(), mesa.getCapacidad());
-		} else if (j instanceof Barbacoa) {
-			detalles = String.format(
-					"Barbacoa\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nColor: %s\nDescripción: %s\nAltura: %.2fm\nAncho: %.2fm\nCapacidad de carga: %.2fkg",
-					j.getIdProducto(), j.getPrecio(), j.getPeso(), silla.getMaterial(), silla.getColor(),
-					silla.getDescripcion(), silla.getAltura(), silla.getAncho(), silla.getCapacidadDeCarga());
-		} else if (j instanceof Planta) {
-			detalles = String.format(
-					"Planta\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nColor: %s\nDescripción: %s\nNúmero de puertas: %d\nAltura: %.2fm\nAnchura: %.2fm\nProfundidad: %.2fm",
-					j.getIdProducto(), j.getPrecio(), j.getPeso(), armario.getMaterial(), armario.getColor(),
-					armario.getDescripcion(), armario.getNumeroDePuertas(), armario.getAltura(), armario.getAnchura(),
-					armario.getProfundidad());
-		} else if (j instanceof Herramienta) {
-			detalles = String.format(
-					"Herramienta\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nColor: %s\nDescripción: %s\nCapacidad de asientos: %d",
-					j.getIdProducto(), j.getPrecio(), j.getPeso(), sofa.getMaterial(), sofa.getColor(),
-					sofa.getDescripcion(), sofa.getCapacidadDeAsientos());
-		}
+	    if (j instanceof Maceta) {
+	        Maceta maceta = (Maceta) j;
+	        detalles = String.format(
+	            "Maceta\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDescripción: %s\nDiametro: %.2f",
+	            maceta.getIdProducto(), maceta.getPrecio(), maceta.getPeso(), maceta.getMaterial(),
+	            maceta.getDescripcion(), maceta.getDiametro());
+	    } else if (j instanceof Barbacoa) {
+	        Barbacoa barbacoa = (Barbacoa) j;
+	        detalles = String.format(
+	            "Barbacoa\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nSuperficie: %s\nDescripción: %s\nCombustible: %s",
+	            barbacoa.getIdProducto(), barbacoa.getPrecio(), barbacoa.getPeso(), barbacoa.getMaterial(),
+	            barbacoa.getSuperficieCoccion(), barbacoa.getDescripcion(), barbacoa.getTipoCombustible());
+	    } else if (j instanceof Planta) {
+	        Planta planta = (Planta) j;
+	        detalles = String.format(
+	            "Planta\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nDiametro: %.2f\nDescripción: %s\nTipo de Planta: %s\nAltura: %.2f",
+	            planta.getIdProducto(), planta.getPrecio(), planta.getPeso(), planta.getMaterial(), planta.getDiametro(),
+	            planta.getDescripcion(), planta.getTipoDePlanta(), planta.getAltura());
+	    } else if (j instanceof Herramienta) {
+	        Herramienta herramienta = (Herramienta) j;
+	        detalles = String.format(
+	            "Herramienta\nId: %d\nPrecio: $%.2f\nPeso: %.2fkg\nMaterial: %s\nTipo de Herramienta: %s\nDescripción: %s",
+	            herramienta.getIdProducto(), herramienta.getPrecio(), herramienta.getPeso(), herramienta.getMaterial(),
+	            herramienta.getTipo(), herramienta.getDescripcion());
+	    }
 
-		return detalles;
+	    return detalles;
 	}
+	
 	// Baño
 	public String obtenerDetallesBaño(Baño b) {
 		String detalles;
