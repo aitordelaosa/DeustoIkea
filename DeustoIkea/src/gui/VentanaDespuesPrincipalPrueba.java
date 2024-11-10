@@ -335,28 +335,28 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			labelImagen1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					objetoSeleccionado = "barbacoa";
+					objetoSeleccionado = "Barbacoa";
 				}
 			});
 
 			labelImagen2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					objetoSeleccionado = "adelfas";
+					objetoSeleccionado = "Adelfas";
 				}
 			});
 
 			labelImagen3.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					objetoSeleccionado = "maceta";
+					objetoSeleccionado = "Maceta";
 				}
 			});
 
 			labelImagen4.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					objetoSeleccionado = "pala";
+					objetoSeleccionado = "Pala";
 				}
 			});
 
@@ -593,7 +593,7 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			case "Maceta":
 				jardineriaSeleccionado = datos.getMaceta();
 				break;
-			case "Herramienta":
+			case "Pala":
 				jardineriaSeleccionado = datos.getHerramienta();
 				break;
 				
