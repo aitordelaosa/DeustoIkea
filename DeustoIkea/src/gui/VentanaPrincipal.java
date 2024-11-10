@@ -139,6 +139,11 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionCocina.remove(lblTextoCocina);
                 panelSeccionCocina.repaint();  
             }
+            public void mouseClicked(MouseEvent e) {
+            	new VentanaDespuesPrincipalPrueba(2);
+//                new VentanaCocina();
+                dispose();
+            }
         });
 
         panelSeccionMuebles.addMouseListener(new MouseAdapter() {
@@ -153,6 +158,11 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionMuebles.remove(lblTextoMuebles);
                 panelSeccionMuebles.repaint();
             }
+            public void mouseClicked(MouseEvent e) {
+//              new VentanaMuebles();
+          	new VentanaDespuesPrincipalPrueba(1);
+              dispose();
+          }
         });
 
         panelSeccionBaño.addMouseListener(new MouseAdapter() {
@@ -166,6 +176,9 @@ public class VentanaPrincipal extends JFrame {
             public void mouseExited(MouseEvent e) {
                 panelSeccionBaño.remove(lblTextoBaño);
                 panelSeccionBaño.repaint();
+            }
+            public void mouseClicked(MouseEvent e) {
+                new VentanaDespuesPrincipalPrueba(3);
             }
         });
 
@@ -181,6 +194,9 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionJardineria.remove(lblTextoJardineria);
                 panelSeccionJardineria.repaint();
             }
+            public void mouseClicked(MouseEvent e) {
+            	new VentanaDespuesPrincipalPrueba(4);
+            }
         });
         
         panelAbajo.add(botonAtras);
@@ -195,33 +211,8 @@ public class VentanaPrincipal extends JFrame {
 //        getContentPane().add(panelPrincipal, BorderLayout.NORTH);
 //        getContentPane().add(panelArriba, BorderLayout.NORTH);
         
-        panelSeccionMuebles.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-//                new VentanaMuebles();
-            	new VentanaDespuesPrincipalPrueba(1);
-                dispose();
-            }
-        });
-        
-        panelSeccionCocina.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-            	new VentanaDespuesPrincipalPrueba(2);
-//                new VentanaCocina();
-                dispose();
-            }
-        });
 //        
-        panelSeccionBaño.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                new VentanaDespuesPrincipalPrueba(3);
-            }
-        });
-     
-        panelSeccionJardineria.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-            	new VentanaDespuesPrincipalPrueba(4);
-            }
-        });
+        
         
         botonCerrar.addActionListener((e)-> {
 			System.exit(0);
@@ -267,8 +258,8 @@ public class VentanaPrincipal extends JFrame {
         
         modeloTablaMuebles = new ModeloMuebles(null);		
 		tablaMuebles = new JTable(modeloTablaMuebles);
-		tablaMuebles.getColumnModel().getColumn(4).setCellRenderer(new ImageRenderer());
-		tablaMuebles.getColumnModel().getColumn(4).setPreferredWidth(100);
+		tablaMuebles.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+		tablaMuebles.getColumnModel().getColumn(0).setPreferredWidth(100);
 		tablaMuebles.getColumnModel().getColumn(2).setCellRenderer(new TableRenderer());
 		tablaMuebles.getColumnModel().getColumn(1).setCellRenderer(new TableRenderer());
 		tablaMuebles.setRowHeight(100);

@@ -1,12 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -33,7 +31,7 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 	protected JLabel labelImagen1, labelImagen2, labelImagen3, labelImagen4, labelDescripcion1, labelDescripcion2,
 			labelDescripcion3, labelDescripcion4, textoMueble;
 	protected JTextArea areaTexto;
-
+	@SuppressWarnings("unused")
 	private Datos datos;
 	private String objetoSeleccionado;
 
@@ -306,18 +304,18 @@ public class VentanaDespuesPrincipalPrueba extends JFrame {
 			
 		case 4:
 			// Mostrar elementos de Jardineria
-			ImageIcon barbacoa = new ImageIcon(new ImageIcon("src/Imagenes/Barbacoa.jpg").getImage().getScaledInstance(200,
+			ImageIcon barbacoa = new ImageIcon(new ImageIcon("src/Imagenes/barbacoa-40-cm.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
 			ImageIcon planta = new ImageIcon(new ImageIcon("src/Imagenes/adelfas-colores.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
 			ImageIcon maceta= new ImageIcon(new ImageIcon("src/Imagenes/Maceta.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon pala = new ImageIcon(new ImageIcon("src/Imagenes/Pala.jpg").getImage()
+			ImageIcon pala = new ImageIcon(new ImageIcon("src/Imagenes/pala2.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 //        	ImageIcon barbacoa = new ImageIcon("src/Imagenes/Barbacoa.jpg");
 //            ImageIcon adelfas = new ImageIcon("src/Imagenes/adelfas-colores.jpg");
 //            ImageIcon maceta = new ImageIcon("src/Imagenes/maceta.jpg");
-//            ImageIcon pala = new ImageIcon("src/Imagenes/Pala.jpg");
+//            ImageIcon pala = new ImageIcon("src/Imagenes/Pala.png");
 
 			labelImagen1 = new JLabel(barbacoa);
 			labelImagen2 = new JLabel(planta);

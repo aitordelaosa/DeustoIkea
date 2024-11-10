@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Persona {
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	protected String dni;

@@ -1,8 +1,8 @@
 package domain;
 
 import java.time.LocalDate;
-
 public class Cliente extends Persona {
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	protected LocalDate ultimoLogin;

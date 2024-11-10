@@ -3,6 +3,7 @@ package domain;
 import java.util.Objects;
 
 public class Producto {
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	protected int idProducto;

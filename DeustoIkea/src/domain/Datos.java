@@ -1,6 +1,7 @@
 package domain;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Datos {
 	protected List<Trabajador> lTrabajador;
 	protected List<Cliente> lCliente;
 	protected List<Baño> lBaño;
+	private static List<Producto>productos;
 	// Muebles
 	protected Mesa mesa;
 	protected Silla silla;
@@ -109,7 +111,13 @@ public class Datos {
 	public Bide getBide() {
 		return bide;
 	}
+	public static List<Producto> getProductos() {
+		return productos;
+	}
 
+	public static void setProductos(List<Producto> productos) {
+		Datos.productos = productos;
+	}
 	public Datos() {
 //		mesa: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, double altura, int capacidad
 //		silla: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, double altura, double ancho, double capacidadDeCarga
@@ -397,6 +405,12 @@ public class Datos {
 			return null;
 			
 		}
+		/*public String formatearDescripcion(Producto m) {
+		    return String.format(
+		        "<html><b>%s</b><br>Precio: $%.2f<br>Peso: %.2fkg<br>Descripción: %s</html>",
+		        m.getClass().getSimpleName(), m.getPrecio(), m.getPeso(), m.getDescripcionB()
+		    );
 		
+		}*/
 	
 }

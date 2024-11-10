@@ -3,6 +3,7 @@ package domain;
 import java.time.LocalDate;
 
 public class Trabajador extends Persona{
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	protected double salario;

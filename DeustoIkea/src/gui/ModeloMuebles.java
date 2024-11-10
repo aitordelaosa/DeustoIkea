@@ -16,7 +16,7 @@ public class ModeloMuebles extends DefaultTableModel {
 	private static final long serialVersionUID = 1L;
 	
 	protected ArrayList<Producto> productos;
-	protected ArrayList<String> titulos = new ArrayList<>(Arrays.asList("ID PRODUCTO", "PESO", "PRECIO", "MATERIAL", "IMAGEN"));
+	protected ArrayList<String> titulos = new ArrayList<>(Arrays.asList("IMAGEN", "PESO", "PRECIO", "MATERIAL", "ID PRODUCTO"));
 	
 	public ModeloMuebles(ArrayList<Producto> p) {
 //		productos = p;
@@ -101,61 +101,62 @@ public class ModeloMuebles extends DefaultTableModel {
 	    if (p instanceof Silla) {
 	        Silla silla = (Silla) p;
 	        switch (column) {
-	            case 0: return silla.getIdProducto();
+	            case 0: 
+	            	ImageIcon image = silla.getImagen();
+                if (image != null) {
+                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
+                }
+                return null;
 	            case 1: return silla.getPeso();
 	            case 2: return silla.getPrecio();
 	            case 3: return silla.getMaterial();
-	            case 4:
-	                ImageIcon image = silla.getImagen();
-	                if (image != null) {
-	                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
-	                }
-	                return null;
+	            case 4: return silla.getIdProducto();
+	                
 	            default: return null;
 	        }
 	    } else if (p instanceof Mesa) {
 	        Mesa mesa = (Mesa) p;
 	        switch (column) {
-	            case 0: return mesa.getIdProducto();
-	            case 1: return mesa.getPeso();
-	            case 2: return mesa.getPrecio();
-	            case 3: return mesa.getMaterial();
-	            case 4:
+	            case 0: 
 	            	ImageIcon image = mesa.getImagen();
 	                if (image != null) {
 	                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
 	                }
 	                return null;
+	            case 1: return mesa.getPeso();
+	            case 2: return mesa.getPrecio();
+	            case 3: return mesa.getMaterial();
+	            case 4: return mesa.getIdProducto();
 	            default: return null;
 	        }
 	    } else if (p instanceof Sofa) {
 	        Sofa sofa = (Sofa) p;
 	        switch (column) {
-	            case 0: return sofa.getIdProducto();
+	            case 0: 
+	            	ImageIcon image = sofa.getImagen();
+                if (image != null) {
+                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
+                }
+                return null;
 	            case 1: return sofa.getPeso();
 	            case 2: return sofa.getPrecio();
 	            case 3: return sofa.getMaterial();
-	            case 4:
-	            	ImageIcon image = sofa.getImagen();
-	                if (image != null) {
-	                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
-	                }
-	                return null;
+	            case 4: return sofa.getIdProducto();
 	            default: return null;
 	        }
 	    } else {
 	        Armario armario = (Armario) p;
 	        switch (column) {
-	            case 0: return armario.getIdProducto();
-	            case 1: return armario.getPeso();
-	            case 2: return armario.getPrecio();
-	            case 3: return armario.getMaterial();
-	            case 4:
+	            case 0: 
 	            	ImageIcon image = armario.getImagen();
 	                if (image != null) {
 	                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
 	                }
 	                return null;
+	            case 1: return armario.getPeso();
+	            case 2: return armario.getPrecio();
+	            case 3: return armario.getMaterial();
+	            case 4: return armario.getIdProducto();
 	            default: return null;
 	        }
 	    }

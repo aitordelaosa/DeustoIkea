@@ -2,6 +2,7 @@ package domain;
 
 import java.util.Objects;
 
+
 import javax.swing.ImageIcon;
 
 public class Cocina extends Producto {

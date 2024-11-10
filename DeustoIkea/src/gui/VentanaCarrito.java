@@ -1,17 +1,24 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.GraphicsEnvironment;
 
+import java.awt.GraphicsEnvironment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+import domain.Datos;
+
 
 public class VentanaCarrito extends JFrame{
 	private static final long serialVersionUID = 1L;
-	
+	private ModeloCarrito modeloCarrito;
+	private JTable tablaProductos;
+	private JScrollPane scrollTablaProductos;
 	protected JButton botonAtras;
-	protected JPanel panelPrincipal, panelBotones;
+	protected JPanel panelPrincipal, panelBotones, panelCentro;
 	
 	public VentanaCarrito() {
         setTitle("Carrito");
@@ -28,18 +35,29 @@ public class VentanaCarrito extends JFrame{
         
         panelBotones = new JPanel();
         panelPrincipal = new JPanel(new BorderLayout());
+        panelCentro= new JPanel();
+        panelCentro.setLayout(new BorderLayout());
         
         panelBotones.add(botonAtras);
         
-        panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
-        getContentPane().add(panelPrincipal, BorderLayout.CENTER);
-        add(panelPrincipal);
         
         botonAtras.addActionListener((e) -> {
 			dispose();
 			new VentanaPrincipal();
 		});
         
+        modeloCarrito = new ModeloCarrito(Datos.getProductos());
+        tablaProductos = new JTable(modeloCarrito);
+        this.tablaProductos.setRowHeight(50);
+        JScrollPane scrollPane = new JScrollPane(tablaProductos);
+        scrollTablaProductos = new JScrollPane(tablaProductos);
+        
+        panelCentro.add(scrollTablaProductos, BorderLayout.CENTER);
+        panelPrincipal.add(panelCentro, BorderLayout.CENTER);
+        panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
+        getContentPane().add(panelPrincipal, BorderLayout.CENTER);
+        getContentPane().add(scrollPane);
+        add(panelPrincipal);
         
         setVisible(true);
     }
