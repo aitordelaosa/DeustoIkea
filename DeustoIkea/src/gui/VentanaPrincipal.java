@@ -140,7 +140,8 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionCocina.repaint();  
             }
             public void mouseClicked(MouseEvent e) {
-            	new VentanaDespuesPrincipalPrueba(2);
+//            	new VentanaDespuesPrincipalPrueba(2);
+            	new VentanaPostPrincipal(2);
 //                new VentanaCocina();
                 dispose();
             }
@@ -160,7 +161,8 @@ public class VentanaPrincipal extends JFrame {
             }
             public void mouseClicked(MouseEvent e) {
 //              new VentanaMuebles();
-          	new VentanaDespuesPrincipalPrueba(1);
+//          	new VentanaDespuesPrincipalPrueba(1);
+          	new VentanaPostPrincipal(1);
               dispose();
           }
         });
@@ -178,7 +180,8 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionBaño.repaint();
             }
             public void mouseClicked(MouseEvent e) {
-                new VentanaDespuesPrincipalPrueba(3);
+//                new VentanaDespuesPrincipalPrueba(3);
+                new VentanaPostPrincipal(3);
             }
         });
 
@@ -195,7 +198,8 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionJardineria.repaint();
             }
             public void mouseClicked(MouseEvent e) {
-            	new VentanaDespuesPrincipalPrueba(4);
+//            	new VentanaDespuesPrincipalPrueba(4);
+            	new VentanaPostPrincipal(4);
             }
         });
         
