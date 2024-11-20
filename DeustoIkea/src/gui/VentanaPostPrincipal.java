@@ -63,8 +63,8 @@ public class VentanaPostPrincipal extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		botonAtras = new JButton("ATRAS");
-		botonSeleccionar = new JButton("SELECCIONAR");
-		botonComprar = new JButton("COMPRAR");
+//		botonSeleccionar = new JButton("SELECCIONAR");
+		botonComprar = new JButton("AÑADIR AL CARRITO");
 
 		ImageIcon iconoPerfil = new ImageIcon(new ImageIcon("src/Imagenes/perfil1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
 		ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("src/Imagenes/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
@@ -120,7 +120,7 @@ public class VentanaPostPrincipal extends JFrame {
 		panelArriba.add(panelSuperior, BorderLayout.NORTH);
 
 		panelAbajo.add(botonAtras);
-		panelAbajo.add(botonSeleccionar);
+//		panelAbajo.add(botonSeleccionar);
 		panelAbajo.add(botonComprar);
 
 		panelCentro.setLayout(new GridLayout(1, 2));
@@ -541,9 +541,9 @@ public class VentanaPostPrincipal extends JFrame {
 			new VentanaPrincipal();
 		});
 
-		botonSeleccionar.addActionListener((e) -> {
-			mostrarInformacionSeleccionada();
-		});
+//		botonSeleccionar.addActionListener((e) -> {
+//			mostrarInformacionSeleccionada();
+//		});
 
 		botonPerfil.addActionListener((e) -> {
 			dispose();
