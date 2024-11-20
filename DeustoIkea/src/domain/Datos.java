@@ -226,15 +226,15 @@ public class Datos {
 
 		// Clientes
 		cliente1 = new Cliente("98765432A", "Femenino", "María", "Fernández", "maria.fernandez@example.com",
-				"Calle Sol 123", LocalDate.of(1992, 2, 5), "mariaPass123", "620123456", LocalDate.of(2024, 1, 15));
+				"Calle Sol 123", LocalDate.of(1992, 2, 5), "mariaPass123", "620123456", LocalDate.of(2024, 1, 15), Descuento.Descuento_10);
 		cliente2 = new Cliente("23456789B", "Masculino", "Pedro", "Martínez", "pedro.martinez@example.com",
-				"Avenida Luna 456", LocalDate.of(1987, 6, 30), "pedroPass456", "610987654", LocalDate.of(2023, 12, 1));
+				"Avenida Luna 456", LocalDate.of(1987, 6, 30), "pedroPass456", "610987654", LocalDate.of(2023, 12, 1), Descuento.Descuento_20);
 		cliente3 = new Cliente("34567890C", "Femenino", "Lucía", "Sánchez", "lucia.sanchez@example.com",
-				"Plaza Nueva 789", LocalDate.of(2000, 4, 18), "luciaPass789", "630456789", LocalDate.of(2024, 2, 20));
+				"Plaza Nueva 789", LocalDate.of(2000, 4, 18), "luciaPass789", "630456789", LocalDate.of(2024, 2, 20), null);
 		cliente4 = new Cliente("45678901D", "Masculino", "Luis", "Domínguez", "luis.dominguez@example.com",
-				"Calle Azul 333", LocalDate.of(1995, 9, 10), "luisPass333", "640987321", LocalDate.of(2023, 11, 25));
+				"Calle Azul 333", LocalDate.of(1995, 9, 10), "luisPass333", "640987321", LocalDate.of(2023, 11, 25), Descuento.Descuento_15);
 		cliente5 = new Cliente("1A", "Femenino", "Sara", "Rodríguez", "sara.rodriguez@example.com",
-				"Avenida Amarilla 555", LocalDate.of(1988, 12, 3), "123", "650321987", LocalDate.of(2024, 3, 1));
+				"Avenida Amarilla 555", LocalDate.of(1988, 12, 3), "123", "650321987", LocalDate.of(2024, 3, 1), Descuento.Descuento_15);
 		lCliente.add(cliente1);
 		lCliente.add(cliente2);
 		lCliente.add(cliente3);
