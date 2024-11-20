@@ -555,6 +555,47 @@ public class VentanaPostPrincipal extends JFrame {
 			new VentanaCarrito();
 		});
 		
+		botonComprar.addActionListener((e) -> {
+		    String c = JOptionPane.showInputDialog(
+		        null, 
+		        "Ingrese la cantidad que desea añadir al carrito:", 
+		        "Seleccionar cantidad", 
+		        JOptionPane.PLAIN_MESSAGE
+		    );
+
+		    if (c != null) {
+		        try {
+		            int cantidad = Integer.parseInt(c);
+
+		            if ((cantidad > 0) && (cantidad < 4)) {
+		                System.out.println("Cantidad añadida al carrito: " + cantidad);
+		                // actualizar el carrito
+		            } else if (cantidad > 4){
+		                JOptionPane.showMessageDialog(
+		                    null, 
+		                    "Por favor, ingrese una cantidad válida menor a 4.", 
+		                    "Cantidad no válida", 
+		                    JOptionPane.WARNING_MESSAGE
+		                );
+		            } else {
+		                JOptionPane.showMessageDialog(
+			                    null, 
+			                    "Por favor, ingrese una cantidad válida mayor a 0.", 
+			                    "Cantidad no válida", 
+			                    JOptionPane.WARNING_MESSAGE
+			                );
+			            }
+		        } catch (NumberFormatException ex) {
+		            JOptionPane.showMessageDialog(
+		                null, 
+		                "Por favor, ingrese un número válido.", 
+		                "Entrada no válida", 
+		                JOptionPane.ERROR_MESSAGE
+		            );
+		        }
+		    }
+		});
+		
 		// Evento de teclado 
 		addKeyListener(new KeyAdapter() {
             @Override
