@@ -9,17 +9,21 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
 import domain.Armario;
+import domain.Cliente;
 import domain.Datos;
+import domain.Descuento;
 import domain.Mesa;
 import domain.Silla;
 import domain.Sofa;
@@ -36,6 +40,7 @@ public class VentanaPrincipal extends JFrame {
     protected JScrollPane scrollTablaMuebles;
     
     protected Datos datos;
+    private Cliente cliente;
 
     public VentanaPrincipal() {
         setTitle("Ventana Principal - DeustoIkea");
@@ -47,6 +52,9 @@ public class VentanaPrincipal extends JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
+		cliente = new Cliente("98765432A", "Femenino", "María", "Fernández", "maria.fernandez@example.com",
+				"Calle Sol 123", LocalDate.of(1992, 2, 5), "mariaPass123", "620123456", LocalDate.of(2024, 1, 15), Descuento.Descuento_10);
         
         botonCerrar = new JButton("CERRAR");
         botonAtras = new JButton("ATRAS");
@@ -290,6 +298,37 @@ public class VentanaPrincipal extends JFrame {
                 if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_W) {
                     dispose();
                     new VentanaDeCarga();
+                }
+            }
+        });
+        
+        panelContenedor.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_D) {
+                    String codigo = JOptionPane.showInputDialog(VentanaPrincipal.this, "Introduce el código de descuento:");
+
+                    if (codigo != null) {
+                        Descuento descuento = null;
+                        switch (codigo.trim().toUpperCase()) {
+                            case "DESCUENTO_10":
+                                descuento = Descuento.Descuento_10;
+                                break;
+                            case "DESCUENTO_15":
+                                descuento = Descuento.Descuento_15;
+                                break;
+                            case "DESCUENTO_20":
+                                descuento = Descuento.Descuento_20;
+                                break;
+                        }
+
+                        if (descuento != null) {
+                            cliente.setDescuento(descuento);
+                            JOptionPane.showMessageDialog(VentanaPrincipal.this, "Descuento del " + descuento.name() + " aplicado.");
+                        } else {
+                            JOptionPane.showMessageDialog(VentanaPrincipal.this, "Código de descuento no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
                 }
             }
         });
