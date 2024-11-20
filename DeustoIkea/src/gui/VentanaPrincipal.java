@@ -209,13 +209,7 @@ public class VentanaPrincipal extends JFrame {
         panelPrincipal.add(panelSeccionCocina);
         panelPrincipal.add(panelSeccionMuebles);
         panelPrincipal.add(panelSeccionBaño);
-        panelPrincipal.add(panelSeccionJardineria);
-        
-//        getContentPane().add(panelAbajo, BorderLayout.SOUTH);
-//        getContentPane().add(panelPrincipal, BorderLayout.NORTH);
-//        getContentPane().add(panelArriba, BorderLayout.NORTH);
-        
-//        
+        panelPrincipal.add(panelSeccionJardineria);   
         
         
         botonCerrar.addActionListener((e)-> {
@@ -289,6 +283,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		panelContenedor.setFocusable(true);
         panelContenedor.requestFocusInWindow();
+        //Funcion control+W para volver a la ventana de carga
         panelContenedor.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
