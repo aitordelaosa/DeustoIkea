@@ -1,6 +1,9 @@
 package gui;
 
 import javax.swing.*;
+
+import domain.Cliente;
+
 import java.awt.*;
 
 public class VentanaDescuentos extends JFrame {
@@ -9,8 +12,8 @@ public class VentanaDescuentos extends JFrame {
 	protected JButton botonAtras, botonMisDescuentos;
 	protected JPanel panelPrincipal, panelImagenes, panelBotones;
 	protected JLabel descuento1, descuento2, descuento3;
-
-	public VentanaDescuentos() {
+	
+	public VentanaDescuentos(Cliente cliente) {
         setTitle("Descuentos Especiales");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -66,9 +69,13 @@ public class VentanaDescuentos extends JFrame {
 		});
         
         botonMisDescuentos.addActionListener((e) -> {
-//			dispose();
-//			new VentanaPrincipal();
-		});
+            if (cliente == null) {
+                JOptionPane.showMessageDialog(this, "Error: No se encontró información del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                dispose();
+                new VentanaDescuentosPersonales(cliente);
+            }
+        });
 
         setVisible(true);
     }

@@ -225,7 +225,7 @@ public class VentanaPrincipal extends JFrame {
         
         botonDescuentos.addActionListener((e) -> {
         	dispose();
-        	new VentanaDescuentos();
+        	new VentanaDescuentos(cliente);
       });
         
         botonAyuda.addActionListener((e) -> {
