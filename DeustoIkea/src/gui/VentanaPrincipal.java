@@ -41,7 +41,8 @@ public class VentanaPrincipal extends JFrame {
     protected Datos datos;
     private Cliente cliente;
 
-    public VentanaPrincipal() {
+    public VentanaPrincipal(Cliente cliente) {
+    	this.cliente = cliente;
         setTitle("Ventana Principal - DeustoIkea");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -138,7 +139,7 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionCocina.repaint();  
             }
             public void mouseClicked(MouseEvent e) {
-            	new VentanaPostPrincipal(2);
+            	new VentanaPostPrincipal(2, cliente);
                 dispose();
             }
         });
@@ -156,7 +157,7 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionMuebles.repaint();
             }
             public void mouseClicked(MouseEvent e) {
-          	new VentanaPostPrincipal(1);
+          	new VentanaPostPrincipal(1, cliente);
               dispose();
           }
         });
@@ -174,7 +175,7 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionBaño.repaint();
             }
             public void mouseClicked(MouseEvent e) {
-                new VentanaPostPrincipal(3);
+                new VentanaPostPrincipal(3, cliente);
             }
         });
 
@@ -191,7 +192,7 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionJardineria.repaint();
             }
             public void mouseClicked(MouseEvent e) {
-            	new VentanaPostPrincipal(4);
+            	new VentanaPostPrincipal(4, cliente);
             }
         });
         
@@ -215,23 +216,27 @@ public class VentanaPrincipal extends JFrame {
         
         botonPerfil.addActionListener((e) -> {
         	dispose();
-            new VentanaPerfil();
+            new VentanaPerfil(cliente);
         });
 
         botonCarrito.addActionListener((e) -> {
         	dispose();
-            new VentanaCarrito();
+            new VentanaCarrito(cliente);
         });
         
         botonDescuentos.addActionListener((e) -> {
-        	dispose();
-        	new VentanaDescuentos(cliente);
-      });
+            if (cliente != null) {
+                new VentanaDescuentos(cliente);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error: No se pudo cargar la información del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
         
         botonAyuda.addActionListener((e) -> {
         	dispose();
-        	new VentanaAyuda();
-      });
+        	new VentanaAyuda(cliente);
+        });
         
         Datos datos = new Datos();
         Mesa mesa = datos.getMesa();

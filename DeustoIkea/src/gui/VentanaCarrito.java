@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import domain.Cliente;
 import domain.Datos;
 
 
@@ -20,7 +21,10 @@ public class VentanaCarrito extends JFrame{
 	protected JButton botonAtras;
 	protected JPanel panelPrincipal, panelBotones, panelCentro;
 	
-	public VentanaCarrito() {
+	private Cliente cliente;
+	
+	public VentanaCarrito(Cliente cliente) {
+		this.cliente = cliente;
         setTitle("Carrito");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -43,7 +47,7 @@ public class VentanaCarrito extends JFrame{
         
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal();
+			new VentanaPrincipal(cliente);
 		});
         
         modeloCarrito = new ModeloCarrito(Datos.getProductos());

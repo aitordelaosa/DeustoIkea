@@ -7,13 +7,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import domain.Cliente;
+
 public class VentanaAyuda extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	protected JButton botonAtras;
 	protected JPanel panelPrincipal, panelBotones;
 	
-	public VentanaAyuda() {
+	private Cliente cliente;
+	
+	public VentanaAyuda(Cliente cliente) {
+		this.cliente = cliente;
         setTitle("Ayuda");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -37,7 +42,7 @@ public class VentanaAyuda extends JFrame{
         
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal();
+			new VentanaPrincipal(cliente);
 		});
         
         

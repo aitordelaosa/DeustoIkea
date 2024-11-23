@@ -166,7 +166,7 @@ public class VentanaInicioSesion extends JFrame {
 					txtNombreUsuario.setText("");
 					txtContrasenia.setText("");
 					dispose();
-					new VentanaPrincipal();
+					new VentanaPrincipal(c);
 				}
 			}
 		}

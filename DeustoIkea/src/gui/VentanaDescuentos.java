@@ -65,7 +65,7 @@ public class VentanaDescuentos extends JFrame {
         
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal();
+			new VentanaPrincipal(cliente);
 		});
         
         botonMisDescuentos.addActionListener((e) -> {

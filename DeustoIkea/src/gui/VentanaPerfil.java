@@ -31,7 +31,8 @@ public class VentanaPerfil extends JFrame{
 	@SuppressWarnings("unused")
 	private Cliente cliente;
 	
-	public VentanaPerfil() {
+	public VentanaPerfil(Cliente cliente) {
+		this.cliente = cliente;
         setTitle("Perfil");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
@@ -58,7 +59,7 @@ public class VentanaPerfil extends JFrame{
         botonAtras = new JButton("ATRAS");
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal();
+			new VentanaPrincipal(cliente);
 		});
         
         pSur.add(botonAtras);

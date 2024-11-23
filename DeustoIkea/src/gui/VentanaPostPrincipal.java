@@ -25,6 +25,7 @@ import domain.Datos;
 import domain.Jardineria;
 import domain.Mueble;
 import domain.Baño;
+import domain.Cliente;
 import domain.Cocina;
 
 public class VentanaPostPrincipal extends JFrame {
@@ -41,9 +42,11 @@ public class VentanaPostPrincipal extends JFrame {
 	
 	private Datos datos;
 	private String objetoSeleccionado;
+	private Cliente cliente;
 
-	public VentanaPostPrincipal(int code) {
+	public VentanaPostPrincipal(int code, Cliente cliente) {
 		this.datos = new Datos();
+		this.cliente = cliente;
 		
 		Border borderResaltado = BorderFactory.createLineBorder(Color.WHITE, 2);
 
@@ -538,7 +541,7 @@ public class VentanaPostPrincipal extends JFrame {
 
 		botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal();
+			new VentanaPrincipal(cliente);
 		});
 
 //		botonSeleccionar.addActionListener((e) -> {
@@ -547,12 +550,12 @@ public class VentanaPostPrincipal extends JFrame {
 
 		botonPerfil.addActionListener((e) -> {
 			dispose();
-			new VentanaPerfil();
+			new VentanaPerfil(cliente);
 		});
 
 		botonCarrito.addActionListener((e) -> {
 			dispose();
-			new VentanaCarrito();
+			new VentanaCarrito(cliente);
 		});
 		
 		botonComprar.addActionListener((e) -> {
