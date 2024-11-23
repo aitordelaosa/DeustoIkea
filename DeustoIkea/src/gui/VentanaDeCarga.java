@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
@@ -17,7 +18,7 @@ import domain.Datos;
 public class VentanaDeCarga extends JFrame {
     private static final long serialVersionUID = 1L;
 
-    protected JButton botonCerrar, botonEntrar, botonPrincipal;
+    protected JButton botonCerrar, botonEntrar, botonAyudaInicio;
     protected JPanel panelAbajo, panelFoto, panelCentro;
     protected JLabel labelImagen;
     protected JProgressBar progressBar;
@@ -40,7 +41,7 @@ public class VentanaDeCarga extends JFrame {
 
         botonCerrar = new JButton("CERRAR");
         botonEntrar = new JButton("ENTRAR");
-        botonPrincipal = new JButton("Principal");
+        botonAyudaInicio = new JButton("AYUDA_INICIO");
 
         panelAbajo = new JPanel();
         panelCentro = new JPanel();
@@ -55,7 +56,7 @@ public class VentanaDeCarga extends JFrame {
 
         panelAbajo.add(botonCerrar);
         panelAbajo.add(botonEntrar);
-        panelAbajo.add(botonPrincipal);
+        panelAbajo.add(botonAyudaInicio);
 
         progressBar = new JProgressBar(0, 100);
         progressBar.setStringPainted(true);
@@ -70,9 +71,13 @@ public class VentanaDeCarga extends JFrame {
             System.exit(0);
         });
         
-        botonPrincipal.addActionListener((e) -> {
-        	dispose();
-        	new VentanaPrincipal();
+        botonAyudaInicio.addActionListener((e) -> { 
+            JOptionPane.showMessageDialog(
+                null, 
+                "Usuario: 1A\nContraseña: 123", 
+                "Ayuda de Inicio de Sesión", 
+                JOptionPane.INFORMATION_MESSAGE
+            );
         });
 
         botonEntrar.addActionListener((e) -> {

@@ -9,7 +9,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.time.LocalDate;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -52,14 +51,9 @@ public class VentanaPrincipal extends JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
-		cliente = new Cliente("98765432A", "Femenino", "María", "Fernández", "maria.fernandez@example.com",
-				"Calle Sol 123", LocalDate.of(1992, 2, 5), "mariaPass123", "620123456", LocalDate.of(2024, 1, 15), Descuento.Descuento_10);
         
         botonCerrar = new JButton("CERRAR");
         botonAtras = new JButton("ATRAS");
-        
-        
         
         ImageIcon iconoPerfil = new ImageIcon(new ImageIcon("src/Imagenes/perfil1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("src/Imagenes/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
@@ -96,10 +90,6 @@ public class VentanaPrincipal extends JFrame {
         ImageIcon muebles = new ImageIcon(new ImageIcon("src/Imagenes/Muebles1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
         ImageIcon baño = new ImageIcon(new ImageIcon("src/Imagenes/baño.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
         ImageIcon jardineria = new ImageIcon(new ImageIcon("src/Imagenes/Jardineria.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//        ImageIcon cocina = new ImageIcon(new ImageIcon("src/Imagenes/cocina.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//        ImageIcon muebles = new ImageIcon(new ImageIcon("src/Imagenes/muebles.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//        ImageIcon otro1 = new ImageIcon(new ImageIcon("src/Imagenes/otro1.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-//        ImageIcon otro2 = new ImageIcon(new ImageIcon("src/Imagenes/otro2.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 
         lblCocina = new JLabel(cocina);
         lblMuebles = new JLabel(muebles);
@@ -148,9 +138,7 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionCocina.repaint();  
             }
             public void mouseClicked(MouseEvent e) {
-//            	new VentanaDespuesPrincipalPrueba(2);
             	new VentanaPostPrincipal(2);
-//                new VentanaCocina();
                 dispose();
             }
         });
@@ -168,8 +156,6 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionMuebles.repaint();
             }
             public void mouseClicked(MouseEvent e) {
-//              new VentanaMuebles();
-//          	new VentanaDespuesPrincipalPrueba(1);
           	new VentanaPostPrincipal(1);
               dispose();
           }
@@ -188,7 +174,6 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionBaño.repaint();
             }
             public void mouseClicked(MouseEvent e) {
-//                new VentanaDespuesPrincipalPrueba(3);
                 new VentanaPostPrincipal(3);
             }
         });
@@ -206,7 +191,6 @@ public class VentanaPrincipal extends JFrame {
                 panelSeccionJardineria.repaint();
             }
             public void mouseClicked(MouseEvent e) {
-//            	new VentanaDespuesPrincipalPrueba(4);
             	new VentanaPostPrincipal(4);
             }
         });
@@ -258,7 +242,6 @@ public class VentanaPrincipal extends JFrame {
         lblDescripcion = new JLabel();
         lblDescripcion.setText("<html><b>Algunos de nuestros muebles más destacados: </b></html>");
         lblDescripcion.setHorizontalAlignment(JLabel.CENTER);
-//        add(lblDescripcion, BorderLayout.CENTER);
         JPanel panelDescripcion = new JPanel(new BorderLayout());
         panelDescripcion.add(lblDescripcion, BorderLayout.NORTH);
         
@@ -271,9 +254,6 @@ public class VentanaPrincipal extends JFrame {
 		tablaMuebles.setRowHeight(100);
 		scrollTablaMuebles = new JScrollPane(tablaMuebles);
 		panelDescripcion.add(scrollTablaMuebles, BorderLayout.CENTER);
-//		panelDescripcion.add(tablaMuebles, BorderLayout.CENTER);
-//		add(scrollTablaMuebles, BorderLayout.CENTER);
-//		add(panelDescripcion, BorderLayout.CENTER);
 		
 		//Panel contenedor para todo
         JPanel panelContenedor = new JPanel(new BorderLayout());
@@ -291,6 +271,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		panelContenedor.setFocusable(true);
         panelContenedor.requestFocusInWindow();
+        
         //Funcion control+W para volver a la ventana de carga
         panelContenedor.addKeyListener(new KeyAdapter() {
             @Override
@@ -302,6 +283,7 @@ public class VentanaPrincipal extends JFrame {
             }
         });
         
+      //Funcion control+D para conseguir descuento
         panelContenedor.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -311,13 +293,13 @@ public class VentanaPrincipal extends JFrame {
                     if (codigo != null) {
                         Descuento descuento = null;
                         switch (codigo.trim().toUpperCase()) {
-                            case "DESCUENTO_10":
+                            case "10":
                                 descuento = Descuento.Descuento_10;
                                 break;
-                            case "DESCUENTO_15":
+                            case "15":
                                 descuento = Descuento.Descuento_15;
                                 break;
-                            case "DESCUENTO_20":
+                            case "20":
                                 descuento = Descuento.Descuento_20;
                                 break;
                         }

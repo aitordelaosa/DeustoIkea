@@ -25,7 +25,7 @@ import domain.Trabajador;
 public class VentanaInicioTrabajador extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
-	protected JButton botonAtras, botonIniciarSesion, botonCerrar;
+	protected JButton botonAtras, botonIniciarSesion, botonCerrar, botonAyudaInicio;
 	protected JPanel panelPrincipal, panelBotones, panelCentro;
 	protected JLabel lblNombreUsuario, lblContrasenia, lblTexto;
 	protected JTextField txtNombreUsuario;
@@ -55,6 +55,7 @@ public class VentanaInicioTrabajador extends JFrame{
 		botonAtras = new JButton("ATRÁS");
         botonCerrar = new JButton("CERRAR");
         botonIniciarSesion = new JButton("INICIAR SESIÓN");
+        botonAyudaInicio = new JButton("AYUDA_INICIO");
 
         lblTexto = new JLabel("Bienvenido a la ventana de Inicio de Sesión", JLabel.CENTER);
         lblTexto.setFont(new Font("Arial", Font.BOLD, 16));
@@ -88,6 +89,7 @@ public class VentanaInicioTrabajador extends JFrame{
         panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         panelBotones.add(botonAtras);
         panelBotones.add(botonCerrar);
+        panelBotones.add(botonAyudaInicio);
         
         panelPrincipal = new JPanel(new BorderLayout());
         panelPrincipal.add(lblTexto, BorderLayout.NORTH);
@@ -107,6 +109,15 @@ public class VentanaInicioTrabajador extends JFrame{
         
         botonIniciarSesion.addActionListener((e) -> {
         	iniciarSesion();
+        });
+        
+        botonAyudaInicio.addActionListener((e) -> { 
+            JOptionPane.showMessageDialog(
+                null, 
+                "Usuario: 1A\nContraseña: 123", 
+                "Ayuda de Inicio de Sesión", 
+                JOptionPane.INFORMATION_MESSAGE
+            );
         });
         
         txtContrasenia.addKeyListener(new KeyAdapter() {
