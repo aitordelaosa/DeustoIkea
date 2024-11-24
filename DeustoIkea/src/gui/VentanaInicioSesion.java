@@ -31,7 +31,7 @@ public class VentanaInicioSesion extends JFrame {
 	protected Datos datos;
 	protected static Cliente cliente;
 
-	public VentanaInicioSesion() {
+	public VentanaInicioSesion(Cliente c) {
 		setTitle("Inicio de Sesión");
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
 				.getWidth();
@@ -43,6 +43,7 @@ public class VentanaInicioSesion extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		datos = new Datos();
+		this.cliente = c;
 
 		botonCerrar = new JButton("CERRAR");
 		botonRegistro = new JButton("REGISTRATE");

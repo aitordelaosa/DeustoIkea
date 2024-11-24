@@ -100,7 +100,7 @@ public class VentanaInicioTrabajador extends JFrame{
         
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaInicioSesion();
+			new VentanaInicioSesion(null);
 		});
         
         botonCerrar.addActionListener((e) -> {

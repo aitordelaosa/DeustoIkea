@@ -4,10 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
+import java.time.LocalDate;
+import java.util.Random;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -17,24 +20,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import domain.Cliente;
+import domain.Descuento;
 
 public class VentanaRegistro extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel pSur, pPrincipal, pEste, pOeste;
-	private JLabel lblNombre, lblApellido, lblTlf, lblDireccion, lblEmail, lblNombreUsuario, lblContrasenia, lblRepetirContrasenia, lblInicioSesion;
-	private JTextField txtNombre, txtApellido, txtTlf, txtDireccion, txtEmail, txtNombreUsuario;
+	private JLabel lblNombre, lblApellido, lblTlf, lblDireccion, lblEmail, lblNombreUsuario, lblContrasenia, lblRepetirContrasenia, lblInicioSesion, lblFNac, lblGenero, lblDni;
+	private JTextField txtNombre, txtApellido, txtTlf, txtDireccion, txtEmail, txtNombreUsuario, txtFNac, txtDni;
 	private JPasswordField txtContrasenia, txtRepetirContrasenia;
-	private JButton btnRegistro, btnCerrar, btnInicioSesion;
-	//private JFrame vActual;
+	private JComboBox<String> comboGenero;
+	private JButton btnRegistro, btnCerrar, btnInicioSesion;	
 	
-
-	
-	public VentanaRegistro(/*JFrame va*/) {
-
-		super();
-	
-		//vActual = this;
+	public VentanaRegistro() {
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
@@ -121,6 +120,31 @@ public class VentanaRegistro extends JFrame{
 		pOeste.add(txtRepetirContrasenia);
 		pOeste.add(Box.createVerticalStrut(30));
 	
+		lblFNac = new JLabel("FECHA DE NACIMIENTO:");
+		lblFNac.setBorder(new EmptyBorder(0, 0, 10, 20));
+		lblFNac.setFont(new Font("Tw", Font.BOLD, 14));
+		txtFNac = new JTextField(20);
+		pOeste.add(lblFNac);
+		pOeste.add(txtFNac);
+		pOeste.add(Box.createVerticalStrut(30));
+
+		lblGenero = new JLabel("GÉNERO:");
+		lblGenero.setBorder(new EmptyBorder(0, 0, 10, 20));
+		lblGenero.setFont(new Font("Tw", Font.BOLD, 14));
+		String[] generos = { "Masculino", "Femenino", "Otro" };
+		comboGenero = new JComboBox<>(generos);
+		pOeste.add(lblGenero);
+		pOeste.add(comboGenero);
+		pOeste.add(Box.createVerticalStrut(30));
+		
+		lblDni = new JLabel("DNI:");
+        lblDni.setBorder(new EmptyBorder(0, 0, 10, 20));
+        lblDni.setFont(new Font("Tw", Font.BOLD, 14));
+        txtDni = new JTextField(20);
+        pOeste.add(lblDni);
+        pOeste.add(txtDni);
+        pOeste.add(Box.createVerticalStrut(30));
+
 		txtNombre.setColumns(40);
 		txtApellido.setColumns(40);
 		txtTlf.setColumns(40);
@@ -129,7 +153,9 @@ public class VentanaRegistro extends JFrame{
 	   	txtNombreUsuario.setColumns(40);
 	   	txtContrasenia.setColumns(40);
 		txtRepetirContrasenia.setColumns(40);
-	
+		txtFNac.setColumns(40);
+		txtDni.setColumns(40);
+
 		pEste = new JPanel();
 		pEste.setLayout(new BoxLayout(pEste, BoxLayout.Y_AXIS));
 		lblInicioSesion = new JLabel("¿Ya tienes cuenta? Inicia sesión aquí");
@@ -160,53 +186,63 @@ public class VentanaRegistro extends JFrame{
 		pPrincipal.add(pOeste, BorderLayout.WEST);
 		pPrincipal.add(pSur, BorderLayout.SOUTH);
 		
-		getContentPane().add(pPrincipal);
-		new JScrollPane();
+		JScrollPane scrollPane = new JScrollPane(pPrincipal);
+	    scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+	    
+	    getContentPane().add(scrollPane);
  	
 		btnCerrar.addActionListener((e) -> { 
 			System.exit(0);
-			/*vActual.setVisible(false);
-			vActual.dispose();*/
 		});
 		
 		btnInicioSesion.addActionListener((e) -> {
-			/*vActual.dispose();
-			vActual.setVisible(false);*/
 			dispose();
-			new VentanaInicioSesion();
+			new VentanaInicioSesion(null);
 		});
 
-		
 		btnRegistro.addActionListener((e) -> {
-			JOptionPane.showMessageDialog(null,"Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
-			/*String nombre = txtNombre.getText();
-			String apellido = txtApellido.getText();
-			String telefono = txtTlf.getText();
-			String direccion = txtDireccion.getText();
-			String correo = txtEmail.getText();
-			String nombreUsuario = txtNombreUsuario.getText();
-			String contrasenia = new String(txtContrasenia.getPassword());
-			String contRep = new String(txtRepetirContrasenia.getPassword());
-			
-			if(contrasenia.equals(contRep)) {
-			
-				if (Restaurante.registroCliente(nomfichClientes, nombre, apellido, telefono, direccion, correo, Persona.getContador(), 75, nombreUsuario, contrasenia,vActual)
-						) {
-					JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
-					new VentanaInicioSesion(vActual);
-					vActual.dispose();
-					
+            String nombre = txtNombre.getText();
+            String apellido = txtApellido.getText();
+            String telefono = txtTlf.getText();
+            String direccion = txtDireccion.getText();
+            String correo = txtEmail.getText();
+            String nombreUsuario = txtNombreUsuario.getText();
+            String contrasenia = new String(txtContrasenia.getPassword());
+            String contRep = new String(txtRepetirContrasenia.getPassword());
+            String fechaNacimiento = txtFNac.getText();
+            String genero = (String) comboGenero.getSelectedItem();
+            String dni = txtDni.getText().trim();
 
-				} else {
-					JOptionPane.showMessageDialog(vActual, "Registro NO realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+            if (dni.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El campo DNI no puede estar vacío.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-				}
-			}else {
-				JOptionPane.showMessageDialog(vActual, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);
-			}*/
-		});	
-		
+            LocalDate fechaNac = null;
+            try {
+                String[] fechaParts = fechaNacimiento.split("/");
+                int dia = Integer.parseInt(fechaParts[0]);
+                int mes = Integer.parseInt(fechaParts[1]);
+                int ano = Integer.parseInt(fechaParts[2]);
+                fechaNac = LocalDate.of(ano, mes, dia);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Fecha de nacimiento inválida. Formato: dd/mm/yyyy", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (contrasenia.equals(contRep)) {
+                Cliente c = new Cliente(dni, genero, nombre, apellido, correo, direccion, fechaNac, contrasenia, telefono, LocalDate.now(), Descuento.Descuento_15);
+                JOptionPane.showMessageDialog(null, "¡Registro exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                new VentanaInicioSesion(c);
+            } else {
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+			
 		setVisible(true);
 	}
-}
 	
+}
+
+

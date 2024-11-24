@@ -95,7 +95,7 @@ public class VentanaDeCarga extends JFrame {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            new VentanaInicioSesion();
+                            new VentanaInicioSesion(null);
                         }
                     });
                     dispose();
