@@ -22,8 +22,10 @@ public class VentanaCarrito extends JFrame{
 	protected JPanel panelPrincipal, panelBotones, panelCentro;
 	
 	private Cliente cliente;
+	private int codigo;
 	
-	public VentanaCarrito(Cliente cliente) {
+	public VentanaCarrito(Cliente cliente, int codigo) {
+		this.codigo = codigo;
 		this.cliente = cliente;
         setTitle("Carrito");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
@@ -47,7 +49,7 @@ public class VentanaCarrito extends JFrame{
         
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal(cliente);
+			new VentanaPrincipal(cliente, codigo);
 		});
         
         modeloCarrito = new ModeloCarrito(Datos.getProductos());

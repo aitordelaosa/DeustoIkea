@@ -34,7 +34,10 @@ public class VentanaRegistro extends JFrame{
 	private JComboBox<String> comboGenero;
 	private JButton btnRegistro, btnCerrar, btnInicioSesion;	
 	
-	public VentanaRegistro() {
+	private int codigo;
+	
+	public VentanaRegistro(int codigo) {
+		this.codigo = codigo;
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
@@ -198,7 +201,7 @@ public class VentanaRegistro extends JFrame{
 		
 		btnInicioSesion.addActionListener((e) -> {
 			dispose();
-			new VentanaInicioSesion(null);
+			new VentanaInicioSesion(null, codigo);
 		});
 
 		btnRegistro.addActionListener((e) -> {
@@ -236,7 +239,7 @@ public class VentanaRegistro extends JFrame{
                 SistemaUsuarios.getInstancia().agregarCliente(c);
                 JOptionPane.showMessageDialog(null, "¡Registro exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
-                new VentanaInicioSesion(null);
+                new VentanaInicioSesion(null, codigo);
             } else {
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);
             }

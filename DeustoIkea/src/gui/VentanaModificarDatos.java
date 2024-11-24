@@ -6,8 +6,10 @@ import domain.Cliente;
 
 public class VentanaModificarDatos extends JFrame {
     private static final long serialVersionUID = 1L;
+    private int codigo;
 
-    public VentanaModificarDatos(Cliente cliente, JFrame ventanaAnterior) {
+    public VentanaModificarDatos(Cliente cliente, JFrame ventanaAnterior, int codigo) {
+    	this.codigo = codigo;
         setTitle("Modificar Datos");
         setSize(400, 400);
         setLocationRelativeTo(null);
@@ -30,7 +32,7 @@ public class VentanaModificarDatos extends JFrame {
             cliente.setTelefono(txtTelefono.getText());
             cliente.setDireccion(txtDireccion.getText());
             ventanaAnterior.dispose();
-            new VentanaPerfil(cliente);
+            new VentanaPerfil(cliente, codigo);
             dispose();
         });
 

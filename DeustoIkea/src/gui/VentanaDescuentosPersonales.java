@@ -10,8 +10,11 @@ public class VentanaDescuentosPersonales extends JFrame {
 
     private JLabel etiquetaDescuento;
     private JButton botonCerrar, botonAtras;
+    
+    private int codigo;
 
-    public VentanaDescuentosPersonales(Cliente cliente) {
+    public VentanaDescuentosPersonales(Cliente cliente, int codigo) {
+    	this.codigo = codigo;
         setTitle("Mis Descuentos Personales");
         setTitle("Descuentos Especiales");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
@@ -83,7 +86,7 @@ public class VentanaDescuentosPersonales extends JFrame {
         botonAtras = new JButton("Atrás");
         botonAtras.addActionListener((e) -> {
             dispose();
-            new VentanaPrincipal(cliente);
+            new VentanaPrincipal(cliente, codigo);
         });
 
         panelBotones.add(botonAtras);

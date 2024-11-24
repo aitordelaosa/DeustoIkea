@@ -14,6 +14,7 @@ public class VentanaAyuda extends JFrame {
 
     @SuppressWarnings("unused")
 	private Cliente cliente;
+    private int codigo;
 
     public VentanaAyuda(Cliente cliente) {
         this.cliente = cliente;
@@ -63,7 +64,7 @@ public class VentanaAyuda extends JFrame {
 
         botonAtras.addActionListener((e) -> {
             dispose();
-            new VentanaPrincipal(cliente);
+            new VentanaPrincipal(cliente, codigo);
         });
 
         setVisible(true);

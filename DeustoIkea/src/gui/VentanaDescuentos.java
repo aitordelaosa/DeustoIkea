@@ -13,7 +13,10 @@ public class VentanaDescuentos extends JFrame {
 	protected JPanel panelPrincipal, panelImagenes, panelBotones;
 	protected JLabel descuento1, descuento2, descuento3;
 	
-	public VentanaDescuentos(Cliente cliente) {
+	private int codigo;
+	
+	public VentanaDescuentos(Cliente cliente, int codigo) {
+		this.codigo = codigo;
         setTitle("Descuentos Especiales");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -65,7 +68,7 @@ public class VentanaDescuentos extends JFrame {
         
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal(cliente);
+			new VentanaPrincipal(cliente, codigo);
 		});
         
         botonMisDescuentos.addActionListener((e) -> {
@@ -73,7 +76,7 @@ public class VentanaDescuentos extends JFrame {
                 JOptionPane.showMessageDialog(this, "Error: No se encontró información del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 dispose();
-                new VentanaDescuentosPersonales(cliente);
+                new VentanaDescuentosPersonales(cliente, codigo);
             }
         });
 

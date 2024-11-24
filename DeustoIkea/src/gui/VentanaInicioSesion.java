@@ -31,8 +31,10 @@ public class VentanaInicioSesion extends JFrame {
 
 	protected Datos datos;
 	protected static Cliente cliente;
+	private int code;
 
-	public VentanaInicioSesion(Cliente c) {
+	public VentanaInicioSesion(Cliente c, int code) {
+		this.code = code;
 		setTitle("Inicio de Sesión");
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
 				.getWidth();
@@ -127,7 +129,7 @@ public class VentanaInicioSesion extends JFrame {
 
 		botonRegistro.addActionListener((e) -> {
 			dispose();
-			new VentanaRegistro();
+			new VentanaRegistro(code);
 		});
 
 		botonInicioSesion.addActionListener((e) -> {
@@ -221,7 +223,7 @@ public class VentanaInicioSesion extends JFrame {
 	            txtNombreUsuario.setText("");
 	            txtContrasenia.setText("");
 	            dispose();
-	            new VentanaPrincipal(c);
+	            new VentanaPrincipal(c, code);
 	        }
 	    }
 	}
@@ -237,7 +239,7 @@ public class VentanaInicioSesion extends JFrame {
 		if ("777".equals(codigo)) {
 			JOptionPane.showMessageDialog(this, "Acceso concedido");
 			dispose();
-			new VentanaInicioTrabajador();
+			new VentanaInicioTrabajador(code);
 		} else {
 			JOptionPane.showMessageDialog(this, "Código incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
 		}

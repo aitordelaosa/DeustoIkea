@@ -3,7 +3,11 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,15 +23,17 @@ public class VentanaDeCarga extends JFrame {
     private static final long serialVersionUID = 1L;
 
     protected JButton botonCerrar, botonEntrar, botonAyudaInicio;
-    protected JPanel panelAbajo, panelFoto, panelCentro;
+    protected JPanel panelAbajo, panelFoto, panelCentro, panelCombo, panelSuperior;
     protected JLabel labelImagen;
     protected JProgressBar progressBar;
     
     protected Datos datos;
+    
+    private int codigo;
 
     public VentanaDeCarga() {
         setTitle("DeustoIkea");
-        setSize(800, 500);
+        setSize(800, 520);
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
@@ -41,6 +47,8 @@ public class VentanaDeCarga extends JFrame {
         panelAbajo = new JPanel();
         panelCentro = new JPanel();
         panelFoto = new JPanel();
+        panelCombo = new JPanel();
+        panelSuperior = new JPanel();
         
 		ImageIcon imIkea = new ImageIcon("src/Imagenes/DeustoIkea_app_icon.png");
 		Image imagen = imIkea.getImage();
@@ -55,11 +63,31 @@ public class VentanaDeCarga extends JFrame {
 
         progressBar = new JProgressBar(0, 100);
         progressBar.setStringPainted(true);
-
+        
         panelCentro.add(progressBar);
 
+        String[] opciones = {"Datos de prueba", "Base de datos"};
+        JComboBox<String> comboBox = new JComboBox<>(opciones);
+        comboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (comboBox.getSelectedIndex() == 0) {
+                    codigo = 0;
+                } else {
+                    codigo = 1;
+                }
+            }
+        });
+        
+        panelCombo.add(new JLabel("Seleccionar carga: "));
+        panelCombo.add(comboBox);
+        
+        panelSuperior.setLayout(new BorderLayout());
+        panelSuperior.add(panelCombo, BorderLayout.NORTH);
+        panelSuperior.add(panelFoto, BorderLayout.CENTER);
+        
         getContentPane().add(panelAbajo, BorderLayout.SOUTH);
-        getContentPane().add(panelFoto, BorderLayout.NORTH);
+        getContentPane().add(panelSuperior, BorderLayout.NORTH);
         getContentPane().add(panelCentro, BorderLayout.CENTER);
 
         botonCerrar.addActionListener((e) -> {
@@ -95,7 +123,7 @@ public class VentanaDeCarga extends JFrame {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            new VentanaInicioSesion(null);
+                            new VentanaInicioSesion(null, codigo);
                         }
                     });
                     dispose();

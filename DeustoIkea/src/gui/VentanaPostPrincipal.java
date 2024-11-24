@@ -44,8 +44,10 @@ public class VentanaPostPrincipal extends JFrame {
 	private Datos datos;
 	private String objetoSeleccionado;
 	private Cliente cliente;
+	private int codigo;
 
-	public VentanaPostPrincipal(int code, Cliente cliente) {
+	public VentanaPostPrincipal(int code, Cliente cliente, int codigo) {
+		this.codigo = codigo;
 		this.datos = new Datos();
 		this.cliente = cliente;
 		
@@ -548,7 +550,7 @@ public class VentanaPostPrincipal extends JFrame {
 
 		botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal(cliente);
+			new VentanaPrincipal(cliente, codigo);
 		});
 
 //		botonSeleccionar.addActionListener((e) -> {
@@ -557,12 +559,12 @@ public class VentanaPostPrincipal extends JFrame {
 
 		botonPerfil.addActionListener((e) -> {
 			dispose();
-			new VentanaPerfil(cliente);
+			new VentanaPerfil(cliente, codigo);
 		});
 
 		botonCarrito.addActionListener((e) -> {
 			dispose();
-			new VentanaCarrito(cliente);
+			new VentanaCarrito(cliente, codigo);
 		});
 		
 		botonComprar.addActionListener((e) -> {

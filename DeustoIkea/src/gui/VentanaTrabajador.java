@@ -37,8 +37,10 @@ public class VentanaTrabajador extends JFrame {
         "src/Imagenes/fregadero.jpg"
     };
     private int indiceImagen = 0;
+    private int codigo;
 
-    public VentanaTrabajador() {
+    public VentanaTrabajador(int codigo) {
+    	this.codigo = codigo;
         setTitle("Ventana-Trabajador");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -96,7 +98,7 @@ public class VentanaTrabajador extends JFrame {
 
         botonAtras.addActionListener((e) -> {
             dispose();
-            new VentanaInicioTrabajador();
+            new VentanaInicioTrabajador(codigo);
         });
 
         botonCerrar.addActionListener((e) -> {

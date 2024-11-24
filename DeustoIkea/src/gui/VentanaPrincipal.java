@@ -40,8 +40,10 @@ public class VentanaPrincipal extends JFrame {
     
     protected Datos datos;
     private Cliente cliente;
+    private int codigo;
 
-    public VentanaPrincipal(Cliente cliente) {
+    public VentanaPrincipal(Cliente cliente, int codigo) {
+    	this.codigo = codigo;
     	this.cliente = cliente;
         setTitle("Ventana Principal - DeustoIkea");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
@@ -148,7 +150,7 @@ public class VentanaPrincipal extends JFrame {
                 lblTextoCocina.setVisible(false);
             }
             public void mouseClicked(MouseEvent e) {
-            	new VentanaPostPrincipal(2, cliente);
+            	new VentanaPostPrincipal(2, cliente, codigo);
                 dispose();
             }
         });
@@ -168,7 +170,7 @@ public class VentanaPrincipal extends JFrame {
             	lblTextoMuebles.setVisible(false);
             }
             public void mouseClicked(MouseEvent e) {
-          	new VentanaPostPrincipal(1, cliente);
+          	new VentanaPostPrincipal(1, cliente, codigo);
               dispose();
           }
         });
@@ -188,7 +190,7 @@ public class VentanaPrincipal extends JFrame {
             	lblTextoBaño.setVisible(false);
             }
             public void mouseClicked(MouseEvent e) {
-                new VentanaPostPrincipal(3, cliente);
+                new VentanaPostPrincipal(3, cliente, codigo);
             }
         });
 
@@ -207,7 +209,7 @@ public class VentanaPrincipal extends JFrame {
                 lblTextoJardineria.setVisible(false);
             }
             public void mouseClicked(MouseEvent e) {
-            	new VentanaPostPrincipal(4, cliente);
+            	new VentanaPostPrincipal(4, cliente, codigo);
             }
         });
         
@@ -231,17 +233,17 @@ public class VentanaPrincipal extends JFrame {
         
         botonPerfil.addActionListener((e) -> {
         	dispose();
-            new VentanaPerfil(cliente);
+            new VentanaPerfil(cliente, codigo);
         });
 
         botonCarrito.addActionListener((e) -> {
         	dispose();
-            new VentanaCarrito(cliente);
+            new VentanaCarrito(cliente, codigo);
         });
         
         botonDescuentos.addActionListener((e) -> {
             if (cliente != null) {
-                new VentanaDescuentos(cliente);
+                new VentanaDescuentos(cliente, codigo);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Error: No se pudo cargar la información del cliente.", "Error", JOptionPane.ERROR_MESSAGE);

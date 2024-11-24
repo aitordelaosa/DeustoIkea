@@ -38,8 +38,10 @@ public class VentanaInicioTrabajador extends JFrame{
 
 	protected Datos datos;
 	protected static Trabajador trabajador;
+	private int codigo;
 	
-	public VentanaInicioTrabajador() {
+	public VentanaInicioTrabajador(int codigo) {
+		this.codigo = codigo;
 		datos = new Datos();
 		
         setTitle("Inicio Sesion - Trabajador");
@@ -100,7 +102,7 @@ public class VentanaInicioTrabajador extends JFrame{
         
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaInicioSesion(null);
+			new VentanaInicioSesion(null, codigo);
 		});
         
         botonCerrar.addActionListener((e) -> {
@@ -165,7 +167,7 @@ public class VentanaInicioTrabajador extends JFrame{
 					txtNombreUsuario.setText("");
 					txtContrasenia.setText("");
 					dispose();
-					new VentanaTrabajador();
+					new VentanaTrabajador(codigo);
 				}
 			}
 		}

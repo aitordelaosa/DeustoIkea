@@ -27,8 +27,10 @@ public class VentanaPerfil extends JFrame{
     private JPasswordField contrasenia;
     private JCheckBox mostrarContrasenia;
 	private Cliente cliente;
+	private int codigo;
 	
-	public VentanaPerfil(Cliente cliente) {
+	public VentanaPerfil(Cliente cliente, int codigo) {
+		this.codigo = codigo;
 		this.cliente = cliente;
         setTitle("Perfil");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -53,11 +55,11 @@ public class VentanaPerfil extends JFrame{
         botonAtras = new JButton("ATRAS");
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal(cliente);
+			new VentanaPrincipal(cliente, codigo);
 		});
         
         botonModificarDatos.addActionListener((e) -> {
-            new VentanaModificarDatos(cliente, this);
+            new VentanaModificarDatos(cliente, this, codigo);
         });
         
         pSur.add(botonAtras);
