@@ -106,8 +106,7 @@ public class VentanaPrincipal extends JFrame {
         JLabel lblTextoMuebles = new JLabel("Muebles");
         JLabel lblTextoBaño = new JLabel("Baño");
         JLabel lblTextoJardineria = new JLabel("Jardinería");
-
-        
+     
         lblTextoCocina.setForeground(Color.BLACK);
         lblTextoCocina.setFont(new Font("Arial", Font.BOLD, 16));
         lblTextoCocina.setBounds(50, 80, 150, 30);
@@ -123,20 +122,30 @@ public class VentanaPrincipal extends JFrame {
         lblTextoJardineria.setForeground(Color.BLACK);
         lblTextoJardineria.setFont(new Font("Arial", Font.BOLD, 16));
         lblTextoJardineria.setBounds(50, 80, 150, 30);
-
-       
+        
+        panelSeccionCocina.add(lblTextoCocina);
+        panelSeccionMuebles.add(lblTextoMuebles);
+        panelSeccionBaño.add(lblTextoBaño);
+        panelSeccionJardineria.add(lblTextoJardineria);
+        
+        lblTextoBaño.setVisible(false);
+        lblTextoMuebles.setVisible(false);
+        lblTextoCocina.setVisible(false);
+        lblTextoJardineria.setVisible(false);
         
         panelSeccionCocina.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                panelSeccionCocina.add(lblTextoCocina);
-                panelSeccionCocina.repaint();  
+//                panelSeccionCocina.add(lblTextoCocina);
+//                panelSeccionCocina.repaint(); 
+            	lblTextoCocina.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                panelSeccionCocina.remove(lblTextoCocina);
-                panelSeccionCocina.repaint();  
+//                panelSeccionCocina.remove(lblTextoCocina);
+//                panelSeccionCocina.repaint();  
+                lblTextoCocina.setVisible(false);
             }
             public void mouseClicked(MouseEvent e) {
             	new VentanaPostPrincipal(2, cliente);
@@ -147,14 +156,16 @@ public class VentanaPrincipal extends JFrame {
         panelSeccionMuebles.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                panelSeccionMuebles.add(lblTextoMuebles);
-                panelSeccionMuebles.repaint();
+//                panelSeccionMuebles.add(lblTextoMuebles);
+//                panelSeccionMuebles.repaint();
+                lblTextoMuebles.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                panelSeccionMuebles.remove(lblTextoMuebles);
-                panelSeccionMuebles.repaint();
+//                panelSeccionMuebles.remove(lblTextoMuebles);
+//                panelSeccionMuebles.repaint();
+            	lblTextoMuebles.setVisible(false);
             }
             public void mouseClicked(MouseEvent e) {
           	new VentanaPostPrincipal(1, cliente);
@@ -165,14 +176,16 @@ public class VentanaPrincipal extends JFrame {
         panelSeccionBaño.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                panelSeccionBaño.add(lblTextoBaño);
-                panelSeccionBaño.repaint();
+//                panelSeccionBaño.add(lblTextoBaño);
+//                panelSeccionBaño.repaint();
+            	lblTextoBaño.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                panelSeccionBaño.remove(lblTextoBaño);
-                panelSeccionBaño.repaint();
+//                panelSeccionBaño.remove(lblTextoBaño);
+//                panelSeccionBaño.repaint();
+            	lblTextoBaño.setVisible(false);
             }
             public void mouseClicked(MouseEvent e) {
                 new VentanaPostPrincipal(3, cliente);
@@ -182,14 +195,16 @@ public class VentanaPrincipal extends JFrame {
         panelSeccionJardineria.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                panelSeccionJardineria.add(lblTextoJardineria);
-                panelSeccionJardineria.repaint();
+//                panelSeccionJardineria.add(lblTextoJardineria);
+//                panelSeccionJardineria.repaint();
+            	lblTextoJardineria.setVisible(true);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                panelSeccionJardineria.remove(lblTextoJardineria);
-                panelSeccionJardineria.repaint();
+//                panelSeccionJardineria.remove(lblTextoJardineria);
+//                panelSeccionJardineria.repaint();
+                lblTextoJardineria.setVisible(false);
             }
             public void mouseClicked(MouseEvent e) {
             	new VentanaPostPrincipal(4, cliente);

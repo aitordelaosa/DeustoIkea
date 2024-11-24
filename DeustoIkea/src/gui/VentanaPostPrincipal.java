@@ -69,7 +69,8 @@ public class VentanaPostPrincipal extends JFrame {
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getHeight();
         setSize(anchoP, altoP);
-//		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setResizable(false);
 		
 		botonAtras = new JButton("ATRAS");
 //		botonSeleccionar = new JButton("SELECCIONAR");
@@ -135,9 +136,6 @@ public class VentanaPostPrincipal extends JFrame {
 		panelCentro.setLayout(new GridLayout(1, 2));
 		panelCentro.add(panelCentroI);
 		panelCentro.add(panelCentroD);
-
-		panelCentroI.setLayout(new GridLayout(2, 2));
-		panelCentroD.setLayout(new GridLayout(2, 2));
 
 		switch (code) {
 		case 1:
@@ -530,6 +528,9 @@ public class VentanaPostPrincipal extends JFrame {
 		default:
 			break;
 		}
+		
+		panelCentroI.setLayout(new GridLayout(2, 2));
+		panelCentroD.setLayout(new GridLayout(2, 2));
 
 		panelCentroI.add(labelImagen1);
 		panelCentroI.add(labelDescripcion1);
