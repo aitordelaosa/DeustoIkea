@@ -19,7 +19,6 @@ public class ModeloMuebles extends DefaultTableModel {
 	protected ArrayList<String> titulos = new ArrayList<>(Arrays.asList("IMAGEN", "PESO", "PRECIO", "MATERIAL", "ID PRODUCTO"));
 	
 	public ModeloMuebles(ArrayList<Producto> p) {
-//		productos = p;
 		productos = (p != null) ? p : new ArrayList<>();
 	}
 	
