@@ -3,6 +3,8 @@ package domain;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
+
 public class Persona {
 	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
@@ -16,9 +18,11 @@ public class Persona {
 	protected LocalDate fNacimiento;
 	protected String contrasenia;
 	protected String telefono;
+	protected int id;
+	static int contador = 1;
 	
 	public Persona(String dni, String genero, String nombre, String apellido, String email, String direccion,
-			LocalDate fNacimiento, String contrasenia, String telefono) {
+			LocalDate fNacimiento, String contrasenia, String telefono,int id) {
 		super();
 		this.dni = dni;
 		this.genero = genero;
@@ -29,6 +33,8 @@ public class Persona {
 		this.fNacimiento = fNacimiento;
 		this.contrasenia = contrasenia;
 		this.telefono = telefono;
+		this.id = contador;
+		contador++;
 	}
 	
 	public Persona() {
@@ -42,6 +48,15 @@ public class Persona {
 		this.fNacimiento = LocalDate.now();
 		this.contrasenia = "";
 		this.telefono = "";
+		this.id = contador;
+		contador++;
+	}
+	public static int getContador() {
+		return contador;
+	}
+
+	public static void setContador(int contador) {
+		Persona.contador = contador;
 	}
 
 	public String getDni() {
@@ -118,7 +133,7 @@ public class Persona {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellido, dni, fNacimiento, nombre);
+		return Objects.hash(apellido, contrasenia, direccion, dni, email, fNacimiento, genero, id, nombre, telefono);
 	}
 
 	@Override
@@ -130,9 +145,20 @@ public class Persona {
 		if (getClass() != obj.getClass())
 			return false;
 		Persona other = (Persona) obj;
-		return Objects.equals(apellido, other.apellido) && Objects.equals(dni, other.dni)
-				&& Objects.equals(fNacimiento, other.fNacimiento)
-				&& Objects.equals(nombre, other.nombre);
+		return Objects.equals(apellido, other.apellido) && Objects.equals(contrasenia, other.contrasenia)
+				&& Objects.equals(direccion, other.direccion) && Objects.equals(dni, other.dni)
+				&& Objects.equals(email, other.email) && Objects.equals(fNacimiento, other.fNacimiento)
+				&& Objects.equals(genero, other.genero) && id == other.id && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(telefono, other.telefono);
 	}
+
+	@Override
+	public String toString() {
+		return "Persona [dni=" + dni + ", genero=" + genero + ", nombre=" + nombre + ", apellido=" + apellido
+				+ ", email=" + email + ", direccion=" + direccion + ", fNacimiento=" + fNacimiento + ", contrasenia="
+				+ contrasenia + ", telefono=" + telefono + ", id=" + id + "]";
+	}
+
+	
 	
 }

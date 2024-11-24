@@ -10,8 +10,8 @@ public class Cliente extends Persona {
 	protected Descuento descuento;
 	
 	public Cliente(String dni, String genero, String nombre, String apellido, String email, String direccion,
-			LocalDate fNacimiento, String contraseña, String telefono, LocalDate ultimoLogin, Descuento descuento) {
-		super(dni, genero, nombre, apellido, email, direccion, fNacimiento, contraseña, telefono);
+			LocalDate fNacimiento, String contraseña, String telefono, int id, LocalDate ultimoLogin, Descuento descuento) {
+		super(dni, genero, nombre, apellido, email, direccion, fNacimiento, contraseña, telefono,id);
 		
 		this.ultimoLogin = ultimoLogin;
 		this.descuento = descuento;

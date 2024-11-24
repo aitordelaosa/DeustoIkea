@@ -10,8 +10,8 @@ public class Trabajador extends Persona{
 	protected int horasTrabajadas;
 	
 	public Trabajador(String dni, String genero, String nombre, String apellido, String email, String direccion,
-			LocalDate fNacimiento, String contraseña, String telefono, double salario, int horasTrabajadas) {
-		super(dni, genero, nombre, apellido, email, direccion, fNacimiento, contraseña, telefono);
+			LocalDate fNacimiento, String contraseña, String telefono, int id, double salario, int horasTrabajadas) {
+		super(dni, genero, nombre, apellido, email, direccion, fNacimiento, contraseña, telefono,id);
 		this.salario = salario;
 		this.horasTrabajadas = horasTrabajadas;
 	}
