@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -129,6 +131,24 @@ public class VentanaInicioSesion extends JFrame {
 		botonInicioSesion.addActionListener((e) -> {
 			iniciarSesion();
 		});
+		
+		txtContrasenia.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    iniciarSesion();
+                }
+            }
+        });
+        
+        txtNombreUsuario.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    iniciarSesion();
+                }
+            }
+        });
 
 		setLocationRelativeTo(null);
 		setVisible(true);

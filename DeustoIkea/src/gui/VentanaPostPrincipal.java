@@ -69,7 +69,7 @@ public class VentanaPostPrincipal extends JFrame {
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getHeight();
         setSize(anchoP, altoP);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+//		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		botonAtras = new JButton("ATRAS");
 //		botonSeleccionar = new JButton("SELECCIONAR");
