@@ -17,18 +17,15 @@ import javax.swing.JPasswordField;
 
 import domain.Cliente;
 
-
-
 public class VentanaPerfil extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
-	protected JButton botonAtras;
+	protected JButton botonAtras, botonModificarDatos;
 	private JPanel pCentro, pPrincipal, pContenedor, pSur;
     private JLabel lbNombre, nombre, lbApellidos, apellidos, lbTelefono, telefono, lbCorreo, correo, lbDireccion,
             direccion, lbDNI, DNI, lbContrasenia;
     private JPasswordField contrasenia;
     private JCheckBox mostrarContrasenia;
-	@SuppressWarnings("unused")
 	private Cliente cliente;
 	
 	public VentanaPerfil(Cliente cliente) {
@@ -39,10 +36,7 @@ public class VentanaPerfil extends JFrame{
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
         setSize(anchoP, altoP);
         setExtendedState(MAXIMIZED_BOTH);
-        setResizable(false);
-        
-        this.cliente = VentanaInicioSesion.getCliente();
-        
+        setResizable(false);        
         
         pCentro = new JPanel();
         pCentro.setLayout(new GridLayout(8, 2, 5, 5)); 
@@ -55,55 +49,60 @@ public class VentanaPerfil extends JFrame{
         
         pSur = new JPanel();
         
-        
+        botonModificarDatos = new JButton("MODIFICAR DATOS");
         botonAtras = new JButton("ATRAS");
         botonAtras.addActionListener((e) -> {
 			dispose();
 			new VentanaPrincipal(cliente);
 		});
         
+        botonModificarDatos.addActionListener((e) -> {
+            new VentanaModificarDatos(cliente, this);
+        });
+        
         pSur.add(botonAtras);
+        pSur.add(botonModificarDatos);
         
         lbNombre = new JLabel("Nombre");
         lbNombre.setFont(new Font("Tw", Font.BOLD, 14));
         nombre = new JLabel();
-        nombre.setText(""/*cliente.getNombre()*/);
+        nombre.setText(cliente.getNombre());
         nombre.setFont(new Font("Tw", Font.PLAIN, 14));
         
         lbApellidos = new JLabel("Apellidos:");
         lbApellidos.setFont(new Font("Tw", Font.BOLD, 14));
         apellidos = new JLabel();
-        apellidos.setText(""/*cliente.getApellido()*/);
+        apellidos.setText(cliente.getApellido());
         apellidos.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbTelefono = new JLabel("Teléfono:");
         lbTelefono.setFont(new Font("Tw", Font.BOLD, 14));
         telefono = new JLabel();
-        telefono.setText(""/*cliente.getTelefono()*/);
+        telefono.setText(cliente.getTelefono());
         telefono.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbCorreo = new JLabel("Email:");
         lbCorreo.setFont(new Font("Tw", Font.BOLD, 14));
         correo = new JLabel();
-        correo.setText(""/*cliente.getEmail()*/);
+        correo.setText(cliente.getEmail());
         correo.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbDireccion = new JLabel("Dirección:");
         lbDireccion.setFont(new Font("Tw", Font.BOLD, 14));
         direccion = new JLabel();
-        direccion.setText(""/*cliente.getDireccion()*/);
+        direccion.setText(cliente.getDireccion());
         direccion.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbDNI = new JLabel("DNI:");
         lbDNI.setFont(new Font("Tw", Font.BOLD, 14));
         DNI = new JLabel();
-        DNI.setText(""/*cliente.getDni()*/);
+        DNI.setText(cliente.getDni());
         DNI.setFont(new Font("Tw", Font.PLAIN, 14));
 
         lbContrasenia = new JLabel("Contraseña:");
         lbContrasenia.setFont(new Font("Tw", Font.BOLD, 14));
         contrasenia = new JPasswordField();
-        contrasenia.setText(""/*cliente.getContrasenia()*/);
+        contrasenia.setText(cliente.getContrasenia());
         contrasenia.setEditable(false); 
         contrasenia.setFont(new Font("Tw", Font.PLAIN, 14));
 
