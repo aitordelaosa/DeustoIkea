@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import domain.Cliente;
 import domain.Descuento;
+import domain.SistemaUsuarios;
 
 public class VentanaRegistro extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -231,10 +232,11 @@ public class VentanaRegistro extends JFrame{
             }
 
             if (contrasenia.equals(contRep)) {
-                Cliente c = new Cliente(dni, genero, nombre, apellido, correo, direccion, fechaNac, contrasenia, telefono, LocalDate.now(), Descuento.Descuento_15);
+                Cliente c = new Cliente(dni, genero, nombre, apellido, correo, direccion, fechaNac, contrasenia, telefono, 77, LocalDate.now(), Descuento.Descuento_15);
+                SistemaUsuarios.getInstancia().agregarCliente(c);
                 JOptionPane.showMessageDialog(null, "¡Registro exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
-                new VentanaInicioSesion(c);
+                new VentanaInicioSesion(null);
             } else {
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);
             }

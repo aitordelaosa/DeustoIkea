@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import domain.Cliente;
 import domain.Datos;
+import domain.SistemaUsuarios;
 
 public class VentanaInicioSesion extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -161,37 +162,70 @@ public class VentanaInicioSesion extends JFrame {
 		return new ImageIcon(newImg);
 	}
 
+//	private void iniciarSesion() {
+//		String user = txtNombreUsuario.getText();
+//		String contra = new String(txtContrasenia.getPassword());
+//
+//		if (user.isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "Inserte un telefono, mail o nombre de usuario valido");
+//		} else if (contra.isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
+//		} else {
+//			Cliente c = datos.buscarCliente(user);
+//			if (c == null
+//					|| (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
+//				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido",
+//						"Error", JOptionPane.ERROR_MESSAGE);
+//			} else {
+//				if (!contra.equals(c.getContrasenia())) {
+//					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+//				} else {
+//					JOptionPane.showMessageDialog(null, "¡BIENVENID@! " + c.getNombre().toUpperCase(), "Éxito",
+//							JOptionPane.INFORMATION_MESSAGE);
+//					cliente = c;
+//					txtNombreUsuario.setText("");
+//					txtContrasenia.setText("");
+//					dispose();
+//					new VentanaPrincipal(c);
+//				}
+//			}
+//		}
+//	}
+	
 	private void iniciarSesion() {
-		String user = txtNombreUsuario.getText();
-//    	char[] contraa = txtContrasenia.getPassword();
-//    	String contra = new String(contraa);
-		String contra = new String(txtContrasenia.getPassword());
+	    String user = txtNombreUsuario.getText();
+	    String contra = new String(txtContrasenia.getPassword());
 
-		if (user.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Inserte un telefono, mail o nombre de usuario valido");
-		} else if (contra.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
-		} else {
-			Cliente c = datos.buscarCliente(user);
-			if (c == null
-					|| (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
-				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido",
-						"Error", JOptionPane.ERROR_MESSAGE);
-			} else {
-				if (!contra.equals(c.getContrasenia())) {
-					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, "¡BIENVENID@! " + c.getNombre().toUpperCase(), "Éxito",
-							JOptionPane.INFORMATION_MESSAGE);
-					cliente = c;
-					txtNombreUsuario.setText("");
-					txtContrasenia.setText("");
-					dispose();
-					new VentanaPrincipal(c);
-				}
-			}
-		}
+	    if (user.isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "Inserte un teléfono, mail o nombre de usuario válido");
+	        return;
+	    } else if (contra.isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "Inserte la contraseña");
+	        return;
+	    }
+
+	    Cliente c = SistemaUsuarios.getInstancia().buscarCliente(user);
+
+	    if (c == null) {
+	        c = datos.buscarCliente(user);
+	    }
+
+	    if (c == null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
+	        JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE);
+	    } else {
+	        if (!contra.equals(c.getContrasenia())) {
+	            JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+	        } else {
+	            JOptionPane.showMessageDialog(null, "¡BIENVENID@! " + c.getNombre().toUpperCase(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+	            cliente = c;
+	            txtNombreUsuario.setText("");
+	            txtContrasenia.setText("");
+	            dispose();
+	            new VentanaPrincipal(c);
+	        }
+	    }
 	}
+
 
 	private void solicitarCodigoTrabajador() {
 		String codigo = JOptionPane.showInputDialog(this, "Introduce el código de trabajador:");
