@@ -27,12 +27,7 @@ public class VentanaDeCarga extends JFrame {
 
     public VentanaDeCarga() {
         setTitle("DeustoIkea");
-        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
-                .getWidth();
-        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
-                .getHeight();
-        setSize(anchoP, altoP);
-        setExtendedState(MAXIMIZED_BOTH);
+        setSize(800, 500);
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         

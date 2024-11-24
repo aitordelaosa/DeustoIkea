@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -63,6 +64,11 @@ public class VentanaPostPrincipal extends JFrame {
 			setTitle("SECCION DESCONOCIDA");
 		}
 		
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
+                .getHeight();
+        setSize(anchoP, altoP);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		botonAtras = new JButton("ATRAS");
