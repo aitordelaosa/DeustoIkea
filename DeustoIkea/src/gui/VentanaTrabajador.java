@@ -55,6 +55,9 @@ public class VentanaTrabajador extends JFrame {
         panelBotones = new JPanel();
         panelPrincipal = new JPanel(new BorderLayout());
         
+        panelBotones.add(botonAtras);
+        panelBotones.add(botonCerrar);
+        
         panelDerecho = new JPanel();
         panelDerecho.setPreferredSize(new Dimension(600, altoP));
         panelDerecho.setBackground(Color.WHITE);
