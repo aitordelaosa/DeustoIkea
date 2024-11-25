@@ -166,8 +166,8 @@ public class VentanaInicioSesion extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_I) {
-                    txtNombreUsuario.setText("1A");
-                    txtContrasenia.setText("123");
+                    txtNombreUsuario.setText("maria.fernandez@gmail.com");
+                    txtContrasenia.setText("mariaPass1238976");
                     JOptionPane.showMessageDialog(null, "Usuario y contraseña predeterminados cargados.");
                     iniciarSesion();
                 }

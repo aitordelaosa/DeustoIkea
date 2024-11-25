@@ -211,11 +211,11 @@ public class Datos {
 		trabajador1 = new Trabajador("1A", "Masculino", "Juan", "Pérez", "juan.perez@example.com", "Calle Falsa 123",
 				LocalDate.of(1985, 5, 20), "123", "600123456", 0, 2500.0, 40);
 		trabajador2 = new Trabajador("87654321B", "Femenino", "Ana", "García", "ana.garcia@example.com",
-				"Avenida Real 456", LocalDate.of(1990, 11, 15), "123", "672200294", 1, 2300.0, 35);
+				"Avenida Real 456", LocalDate.of(1990, 11, 15), "123993973", "672200294", 1, 2300.0, 35);
 		trabajador3 = new Trabajador("45678912C", "Masculino", "Carlos", "López", "carlos.lopez@example.com",
 				"Plaza Mayor 789", LocalDate.of(1978, 8, 10), "password789", "670456789", 2, 2800.0, 45);
 		trabajador4 = new Trabajador("23456789D", "Femenino", "Lucía", "Ramírez", "lucia.ramirez@example.com",
-				"Calle Olmo 987", LocalDate.of(1993, 3, 12), "luciaPass987", "610321654", 3, 2100.0, 30);
+				"Calle Olmo 987", LocalDate.of(1993, 3, 12), "luciaPass9878494", "610321654", 3, 2100.0, 30);
 		trabajador5 = new Trabajador("34567890E", "Masculino", "Diego", "Morales", "diego.morales@example.com",
 				"Avenida Verde 654", LocalDate.of(1982, 7, 25), "diegoPass654", "620654987", 4, 2700.0, 50);
 		lTrabajador.add(trabajador1);
@@ -225,8 +225,8 @@ public class Datos {
 		lTrabajador.add(trabajador5);
 
 		// Clientes
-		cliente1 = new Cliente("98765432A", "Femenino", "María", "Fernández", "maria.fernandez@example.com",
-				"Calle Sol 123", LocalDate.of(1992, 2, 5), "mariaPass123", "620123456", 0, LocalDate.of(2024, 1, 15), Descuento.Descuento_10);
+		cliente1 = new Cliente("98765432A", "Femenino", "María", "Fernández", "maria.fernandez@gmail.com",
+				"Calle Sol 123", LocalDate.of(1992, 2, 5), "mariaPass1238976", "620123456", 0, LocalDate.of(2024, 1, 15), Descuento.Descuento_10);
 		cliente2 = new Cliente("23456789B", "Masculino", "Pedro", "Martínez", "pedro.martinez@example.com",
 				"Avenida Luna 456", LocalDate.of(1987, 6, 30), "pedroPass456", "610987654", 1, LocalDate.of(2023, 12, 1), Descuento.Descuento_20);
 		cliente3 = new Cliente("34567890C", "Femenino", "Lucía", "Sánchez", "lucia.sanchez@example.com",

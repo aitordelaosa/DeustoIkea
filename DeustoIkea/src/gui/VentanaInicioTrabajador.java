@@ -149,8 +149,8 @@ public class VentanaInicioTrabajador extends JFrame{
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_I) {
-                    txtNombreUsuario.setText("1A");
-                    txtContrasenia.setText("123");
+                    txtNombreUsuario.setText("87654321B");
+                    txtContrasenia.setText("123993973");
                     JOptionPane.showMessageDialog(null, "Usuario y contraseña de trabajador predeterminado cargados.");
                     iniciarSesion();
                 }
