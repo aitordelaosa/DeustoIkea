@@ -176,11 +176,9 @@ public class VentanaInicioTrabajador extends JFrame{
 			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
 		} else {
 			Trabajador t = datos.buscarTrabajador(user);
-			if (t == null
-					|| (!user.equals(t.getDni()) && !user.equals(t.getEmail()) && !user.equals(t.getTelefono()))) {
-				JOptionPane.showMessageDialog(null, "Nombre de trabajador, correo electrónico o teléfono no válido",
-						"Error", JOptionPane.ERROR_MESSAGE);
-			} else {
+			if (t == null) {
+	            JOptionPane.showMessageDialog(null, "Nombre de trabajador, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE);
+	        } else {
 				if (!contra.equals(t.getContrasenia())) {
 					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {

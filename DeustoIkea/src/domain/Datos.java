@@ -396,18 +396,17 @@ public class Datos {
 		return null;
 	}
 	//Iniciar sesion como trabajador
-		public Trabajador buscarTrabajador(String user) {
-			Trabajador[] trabajadores = { trabajador1, trabajador2, trabajador3, trabajador4, trabajador5};
-			
-			for(Trabajador t : trabajadores) {
-				if(user.equals(t.dni)) {
-					return t;
-				}
-				
-			}
-			return null;
-			
+	public Trabajador buscarTrabajador(String user) {
+		Trabajador[] trabajadores = { trabajador1, trabajador2, trabajador3, trabajador4, trabajador5};
+		
+		for(Trabajador t : trabajadores) {
+			if (user.equals(t.getDni()) || user.equals(t.getEmail()) || user.equals(t.getTelefono())) {
+				return t;
+			}	
 		}
+		return null;
+		
+	}
 		/*public String formatearDescripcion(Producto m) {
 		    return String.format(
 		        "<html><b>%s</b><br>Precio: $%.2f<br>Peso: %.2fkg<br>Descripción: %s</html>",
