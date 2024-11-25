@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 
@@ -19,6 +20,8 @@ public class TableRenderer extends DefaultTableCellRenderer {
 	    }
 	    
 	    cell.setFont(font);
+	    
+	    setHorizontalAlignment(SwingConstants.CENTER);
 
 	    if (column == 0) {
 	        cell.setBackground(new java.awt.Color(210, 238, 255));
@@ -33,10 +36,18 @@ public class TableRenderer extends DefaultTableCellRenderer {
 	    }
 
 	    if (isSelected) {
-	        cell.setBackground(java.awt.Color.LIGHT_GRAY);
-	    }
+            cell.setBackground(new Color(135, 206, 250));
+            cell.setForeground(Color.WHITE);
+        } else {
+            cell.setForeground(Color.BLACK);
+        }
+	    
+	    if (hasFocus) {
+            ((JComponent) cell).setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+        } else {
+            ((JComponent) cell).setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
+        }
 
-	    ((JComponent) cell).setBorder(BorderFactory.createLineBorder(java.awt.Color.DARK_GRAY, 1));
 	    return cell;
 	}
 
