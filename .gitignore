@@ -6,3 +6,6 @@
 # Archivos de compilación de Java
 bin/
 target/
+
+# Archivos generados por macOS
+.DS_Store
