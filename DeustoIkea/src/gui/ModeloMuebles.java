@@ -11,6 +11,12 @@ import domain.Mesa;
 import domain.Producto;
 import domain.Silla;
 import domain.Sofa;
+import domain.Baño;
+import domain.Bide;
+import domain.Barbacoa;
+import domain.Fregadero;
+import domain.Ducha;
+import domain.Encimera;
 
 public class ModeloMuebles extends DefaultTableModel {
 	private static final long serialVersionUID = 1L;
@@ -78,6 +84,46 @@ public class ModeloMuebles extends DefaultTableModel {
 	                sofa.setMaterial((String) aValue);
 	                break;
 	        }
+	    } else if (p instanceof Bide) {
+	        Bide baño = (Bide) p;
+	        switch (column) {
+	            case 1:
+	                baño.setPrecio((Double) aValue);
+	                break;
+	            case 2:
+	                baño.setMaterialB((String) aValue);
+	                break;
+	        }
+	    } else if (p instanceof Encimera) {
+	    	Encimera b = (Encimera) p;
+	        switch (column) {
+	            case 1:
+	                b.setPrecio((Double) aValue);
+	                break;
+	            case 2:
+	                b.setMaterialC((String) aValue);
+	                break;
+	        }
+	    } else if (p instanceof Fregadero) {
+	    	Fregadero f = (Fregadero) p;
+	        switch (column) {
+	            case 1:
+	                f.setPrecio((Double) aValue);
+	                break;
+	            case 2:
+	                f.setMaterialC((String) aValue);
+	                break;
+	        }
+	    } else if (p instanceof Ducha) {
+	    	Ducha d = (Ducha) p;
+	        switch (column) {
+	            case 1:
+	                d.setPrecio((Double) aValue);
+	                break;
+	            case 2:
+	                d.setMaterialB((String) aValue);
+	                break;
+	        }
 	    } else {
 	    	Armario armario = (Armario) p;
 	        switch (column) {
@@ -141,6 +187,66 @@ public class ModeloMuebles extends DefaultTableModel {
 	            case 1: return sofa.getPrecio();
 	            case 2: return sofa.getMaterial();
 	            case 3: return sofa.getIdProducto();
+	            default: return null;
+	        }
+	    } else if (p instanceof Bide) {
+	    	Bide b = (Bide) p;
+	        switch (column) {
+	            case 4: 
+	            	ImageIcon image = b.getImagenB();
+                if (image != null) {
+                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
+                }
+                return null;
+	            case 0: return b.getPeso();
+	            case 1: return b.getPrecio();
+	            case 2: return b.getMaterialB();
+	            case 3: return b.getIdProducto();
+	            default: return null;
+	        }
+	    } else if (p instanceof Ducha) {
+	    	Ducha d = (Ducha) p;
+	        switch (column) {
+	            case 4: 
+	            	ImageIcon image = d.getImagenB();
+                if (image != null) {
+                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
+                }
+                return null;
+	            case 0: return d.getPeso();
+	            case 1: return d.getPrecio();
+	            case 2: return d.getMaterialB();
+	            case 3: return d.getIdProducto();
+	            default: return null;
+	        }
+	    } else if (p instanceof Encimera) {
+	    	Encimera b = (Encimera) p;
+	        switch (column) {
+	            case 4: 
+	            	ImageIcon image = b.getImagenC();
+                if (image != null) {
+                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
+                }
+                return null;
+	            case 0: return b.getPeso();
+	            case 1: return b.getPrecio();
+	            case 2: return b.getMaterialC();
+	            case 3: return b.getIdProducto();
+	            default: return null;
+	        }
+	    } else if (p instanceof Fregadero) {
+	    	Fregadero f = (Fregadero) p;
+	        switch (column) {
+	            case 4: 
+	            	ImageIcon image = f.getImagenC();
+                if (image != null) {
+                    return new ImageIcon(image.getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH));
+                }
+                return null;
+	            case 0: return f.getPeso();
+	            case 1: return f.getPrecio();
+	            case 2: return f.getMaterialC();
+	            case 3: return f.getIdProducto();
 	            default: return null;
 	        }
 	    } else {

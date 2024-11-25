@@ -23,6 +23,7 @@ public class VentanaDescuentosPersonales extends JFrame {
                 .getHeight();
         setSize(anchoP, altoP);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setExtendedState(MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 

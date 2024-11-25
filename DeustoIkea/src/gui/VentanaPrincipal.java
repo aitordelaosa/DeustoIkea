@@ -20,9 +20,14 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
 import domain.Armario;
+import domain.Barbacoa;
+import domain.Bide;
 import domain.Cliente;
 import domain.Datos;
 import domain.Descuento;
+import domain.Ducha;
+import domain.Encimera;
+import domain.Fregadero;
 import domain.Mesa;
 import domain.Silla;
 import domain.Sofa;
@@ -260,9 +265,13 @@ public class VentanaPrincipal extends JFrame {
         Silla silla = datos.getSilla();
         Armario armario = datos.getArmario();
         Sofa sofa = datos.getSofa();
+        Bide bide = datos.getBide();
+        Fregadero fregadero = datos.getFregadero();
+        Ducha ducha = datos.getDucha();
+        Encimera encimera= datos.getEncimera();
         
         lblDescripcion = new JLabel();
-        lblDescripcion.setText("<html><b>Algunos de nuestros muebles más destacados: </b></html>");
+        lblDescripcion.setText("<html><b>Algunos de nuestros productos más destacados: </b></html>");
         lblDescripcion.setHorizontalAlignment(JLabel.CENTER);
         JPanel panelDescripcion = new JPanel(new BorderLayout());
         panelDescripcion.add(lblDescripcion, BorderLayout.NORTH);
@@ -292,6 +301,10 @@ public class VentanaPrincipal extends JFrame {
 		modeloTablaMuebles.addProducto(silla);
 		modeloTablaMuebles.addProducto(armario);
 		modeloTablaMuebles.addProducto(sofa);
+		modeloTablaMuebles.addProducto(bide);
+		modeloTablaMuebles.addProducto(encimera);
+		modeloTablaMuebles.addProducto(ducha);
+		modeloTablaMuebles.addProducto(encimera);
 		
 		panelContenedor.setFocusable(true);
         panelContenedor.requestFocusInWindow();
