@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -140,7 +141,29 @@ public class VentanaInicioTrabajador extends JFrame{
             }
         });
         
+        this.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_I) {
+                    txtNombreUsuario.setText("1A");
+                    txtContrasenia.setText("123");
+                    JOptionPane.showMessageDialog(null, "Usuario y contraseña de trabajador predeterminado cargados.");
+                    iniciarSesion();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        }); 
+        
         setVisible(true);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
     }
 	
 	private void iniciarSesion() {

@@ -5,8 +5,11 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -18,7 +21,8 @@ import domain.SistemaUsuarios;
 public class VentanaInicioSesion extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	protected JButton botonRegistro, botonCerrar, botonInicioSesion, botonAtras, botonTrabajador;
+	protected JButton botonRegistro, botonCerrar, botonAtras, botonTrabajador;
+//	protected JButton botonInicioSesion;
 	protected JPanel panelAbajo, panelArriba, panelEste, panelOeste, panelCentro, panelSuperiorCentro;
 	protected JLabel lblNombreUsuario, lblContrasenia, lblRegistro, lblImagen, lblTexto;
 	protected JTextField txtNombreUsuario;
@@ -50,7 +54,7 @@ public class VentanaInicioSesion extends JFrame {
 
 		botonCerrar = new JButton("CERRAR");
 		botonRegistro = new JButton("REGISTRATE");
-		botonInicioSesion = new JButton("INICIO DE SESIÓN");
+//		botonInicioSesion = new JButton("INICIO DE SESIÓN");
 		botonAtras = new JButton("VOLVER AL INICIO");
 		botonTrabajador = new JButton("TRABAJADOR");
 
@@ -87,7 +91,7 @@ public class VentanaInicioSesion extends JFrame {
 		panelEste.add(lblContrasenia);
 		panelEste.add(txtContrasenia);
 		panelEste.add(Box.createVerticalStrut(20));
-		panelEste.add(botonInicioSesion);
+//		panelEste.add(botonInicioSesion);
 
 		panelSuperiorCentro.setLayout(new GridLayout(1, 2));
 		panelSuperiorCentro.add(panelOeste);
@@ -132,9 +136,9 @@ public class VentanaInicioSesion extends JFrame {
 			new VentanaRegistro(code);
 		});
 
-		botonInicioSesion.addActionListener((e) -> {
-			iniciarSesion();
-		});
+//		botonInicioSesion.addActionListener((e) -> {
+//			iniciarSesion();
+//		});
 		
 		txtContrasenia.addKeyListener(new KeyAdapter() {
             @Override
@@ -153,9 +157,31 @@ public class VentanaInicioSesion extends JFrame {
                 }
             }
         });
+        
+        this.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
 
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_I) {
+                    txtNombreUsuario.setText("1A");
+                    txtContrasenia.setText("123");
+                    JOptionPane.showMessageDialog(null, "Usuario y contraseña predeterminados cargados.");
+                    iniciarSesion();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });      
+        
 		setLocationRelativeTo(null);
 		setVisible(true);
+		setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
 	}
 
 	private ImageIcon resizeImageIcon(ImageIcon originalIcon, int width, int height) {
