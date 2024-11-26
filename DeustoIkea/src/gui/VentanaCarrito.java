@@ -4,17 +4,22 @@ import java.awt.BorderLayout;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+
 import domain.Cliente;
 import domain.Datos;
+import domain.Producto;
 
 
 public class VentanaCarrito extends JFrame{
@@ -22,7 +27,8 @@ public class VentanaCarrito extends JFrame{
 	private ModeloCarrito modeloCarrito;
 	private JTable tablaProductos;
 	private JScrollPane scrollTablaProductos;
-	protected JButton botonAtras, eliminarProducto, pagar, aplicarDescuento;
+	protected JButton botonAtras, pagar, aplicarDescuento;
+	//protected JButton eliminarProducto;
 	protected JPanel panelPrincipal, panelBotones, panelIzq, panelDrch;
 	protected JLabel lblDerecha, lblIzquierda, lblDerecha1, lblIzquierda1;
 	
@@ -53,7 +59,7 @@ public class VentanaCarrito extends JFrame{
         lblIzquierda1 = new JLabel(iconoI1);
         
         botonAtras = new JButton("ATRAS");
-        eliminarProducto = new JButton("ELIMINAR PRODUCTO");
+        //eliminarProducto = new JButton("ELIMINAR PRODUCTO");
         pagar = new JButton("PAGAR");
         aplicarDescuento = new JButton("APLICAR DESCUENTOS");
         
@@ -68,7 +74,7 @@ public class VentanaCarrito extends JFrame{
         panelBotones.add(botonAtras);
         panelBotones.add(pagar);
         panelBotones.add(aplicarDescuento);
-        panelBotones.add(eliminarProducto);
+        //panelBotones.add(eliminarProducto);
            
         botonAtras.addActionListener((e) -> {
 			dispose();
@@ -80,6 +86,40 @@ public class VentanaCarrito extends JFrame{
         this.tablaProductos.setRowHeight(50);
         JScrollPane scrollPane = new JScrollPane(tablaProductos);
         scrollTablaProductos = new JScrollPane(tablaProductos);
+        
+        tablaProductos.addMouseListener(new MouseAdapter() {
+	        @Override
+	        public void mouseClicked(MouseEvent e) {
+	            if (e.getClickCount() == 2) {
+	                int filaSeleccionada = tablaProductos.getSelectedRow();
+	                if (filaSeleccionada != -1) {
+	                    Producto productoSeleccionado = modeloCarrito.getProductoAtRow(filaSeleccionada);
+
+	                    int opcion = JOptionPane.showOptionDialog(null,
+	                            "Seleccione una acción para el producto seleccionado:",
+	                            "Opciones del Producto", JOptionPane.YES_NO_CANCEL_OPTION,
+	                            JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Eliminar", "Modificar Cantidad"}, null);
+
+	                    if (opcion == JOptionPane.YES_OPTION) {
+	                        int confirmacion = JOptionPane.showConfirmDialog(null,
+	                                "¿Está seguro que desea eliminar el producto de la cesta?",
+	                                "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+	                        if (confirmacion == JOptionPane.YES_OPTION) {
+	                        	modeloCarrito.eliminarProducto(productoSeleccionado);
+	                        }
+	                    } else if (opcion == JOptionPane.NO_OPTION) {
+	                        String cantidadStr = JOptionPane.showInputDialog(null, "Ingrese la nueva cantidad:");
+	                        if (cantidadStr != null && !cantidadStr.isEmpty()) {
+	                            int nuevaCantidad = Integer.parseInt(cantidadStr);
+	                            productoSeleccionado.setNumeroProductos(nuevaCantidad);
+	                            modeloCarrito.actualizarTabla();
+	                        }
+	                    } 
+	                }
+	            }
+	        }
+	    });
         
         panelDrch.add(lblDerecha);
         panelIzq.add(lblIzquierda);
