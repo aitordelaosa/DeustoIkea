@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
+
+import domain.BD;
 import domain.Cliente;
 
 public class VentanaModificarDatos extends JFrame {
@@ -31,6 +33,13 @@ public class VentanaModificarDatos extends JFrame {
             cliente.setNombre(txtNombre.getText());
             cliente.setTelefono(txtTelefono.getText());
             cliente.setDireccion(txtDireccion.getText());
+            if(codigo==1) {
+           	 if (BD.actualizarCliente(cliente)) {
+                    JOptionPane.showMessageDialog(this, "Datos actualizados en la base de datos.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al actualizar los datos en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+           }
             ventanaAnterior.dispose();
             new VentanaPerfil(cliente, codigo);
             dispose();

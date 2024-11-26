@@ -160,6 +160,20 @@ public class BD {
 	        e.printStackTrace();
 	    }
 	}
+	public static boolean actualizarCliente(Cliente cliente) {
+	    String sql = "UPDATE Cliente SET Nombre = ?, Telefono = ?, Direccion = ? WHERE Dni = ?";
+	    try (PreparedStatement stmt = con.prepareStatement(sql)) {
+	        stmt.setString(1, cliente.getNombre());
+	        stmt.setString(2, cliente.getTelefono());
+	        stmt.setString(3, cliente.getDireccion());
+	        stmt.setString(4, cliente.getDni());
+	        int rowsUpdated = stmt.executeUpdate();
+	        return rowsUpdated > 0; 
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
 }
 
 

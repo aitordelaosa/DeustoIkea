@@ -12,8 +12,6 @@ import gui.VentanaDeCarga;
 public class Main {
 
 	public static void main(String[] args) {
-		BD.initBD("src/data/DeustoIkea.db");
-		BD.crearTablas();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

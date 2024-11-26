@@ -17,6 +17,7 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
+import domain.BD;
 import domain.Datos;
 
 public class VentanaDeCarga extends JFrame {
@@ -123,6 +124,8 @@ public class VentanaDeCarga extends JFrame {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
+                        	BD.initBD("DeustoIkea/src/data/DeustoIkea.db");
+                    		BD.crearTablas();
                             new VentanaInicioSesion(null, codigo);
                         }
                     });
