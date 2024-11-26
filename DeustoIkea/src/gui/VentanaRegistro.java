@@ -29,8 +29,8 @@ public class VentanaRegistro extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel pSur, pPrincipal, pEste, pOeste;
-	private JLabel lblNombre, lblApellido, lblTlf, lblDireccion, lblEmail, lblNombreUsuario, lblContrasenia, lblRepetirContrasenia, lblInicioSesion, lblFNac, lblGenero, lblDni;
-	private JTextField txtNombre, txtApellido, txtTlf, txtDireccion, txtEmail, txtNombreUsuario, txtFNac, txtDni;
+	private JLabel lblNombre, lblApellido, lblTlf, lblDireccion, lblEmail, lblContrasenia, lblRepetirContrasenia, lblInicioSesion, lblFNac, lblGenero, lblDni;
+	private JTextField txtNombre, txtApellido, txtTlf, txtDireccion, txtEmail, txtFNac, txtDni;
 	private JPasswordField txtContrasenia, txtRepetirContrasenia;
 	private JComboBox<String> comboGenero;
 	private JButton btnRegistro, btnCerrar, btnInicioSesion;	
@@ -99,12 +99,7 @@ public class VentanaRegistro extends JFrame{
 		pOeste.add(txtEmail);
 		pOeste.add(Box.createVerticalStrut(30));
 	
-		lblNombreUsuario = new JLabel("NOMBRE DE USUARIO:");
-		lblNombreUsuario.setBorder(new EmptyBorder(0, 0, 10, 20));
-		lblNombreUsuario.setFont(new Font("Tw", Font.BOLD, 14));
-		txtNombreUsuario = new JTextField(20);
-		pOeste.add(lblNombreUsuario);
-		pOeste.add(txtNombreUsuario);
+		
 		pOeste.add(Box.createVerticalStrut(30));
 	
 		lblContrasenia = new JLabel("  CONTRASEÑA: ");
@@ -155,7 +150,7 @@ public class VentanaRegistro extends JFrame{
 		txtTlf.setColumns(40);
 	 	txtDireccion.setColumns(40);
 	   	txtEmail.setColumns(40);
-	   	txtNombreUsuario.setColumns(40);
+	
 	   	txtContrasenia.setColumns(40);
 		txtRepetirContrasenia.setColumns(40);
 		txtFNac.setColumns(40);
@@ -211,7 +206,7 @@ public class VentanaRegistro extends JFrame{
             String telefono = txtTlf.getText();
             String direccion = txtDireccion.getText();
             String correo = txtEmail.getText();
-            String nombreUsuario = txtNombreUsuario.getText();
+          
             String contrasenia = new String(txtContrasenia.getPassword());
             String contRep = new String(txtRepetirContrasenia.getPassword());
             String fechaNacimiento = txtFNac.getText();
@@ -241,7 +236,7 @@ public class VentanaRegistro extends JFrame{
                     SistemaUsuarios.getInstancia().agregarCliente(c);
             		
             	} else {
-            		BD.insertarCliente(dni, genero, nombreUsuario, apellido, correo, direccion, fechaNac, contrasenia, telefono, codigo, LocalDate.now(), Descuento.Descuento_15);
+            		BD.insertarCliente(dni, genero, nombre, apellido, correo, direccion, fechaNac, contrasenia, telefono, codigo, LocalDate.now(), Descuento.Descuento_15);
             	}
                 JOptionPane.showMessageDialog(null, "¡Registro exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 dispose();

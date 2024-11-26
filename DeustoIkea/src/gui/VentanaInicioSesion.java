@@ -66,7 +66,7 @@ public class VentanaInicioSesion extends JFrame {
 		panelEste = new JPanel();
 		panelOeste = new JPanel();
 
-		lblNombreUsuario = new JLabel("USUARIO, EMAIL O TELÉFONO:");
+		lblNombreUsuario = new JLabel("DNI, EMAIL O TELÉFONO:");
 		lblContrasenia = new JLabel("CONTRASEÑA:");
 		lblRegistro = new JLabel("<---    ¿No tienes cuenta? Regístrate aquí");
 		lblTexto = new JLabel("Bienvenido a la ventana de Inicio de sesión");
@@ -226,7 +226,7 @@ public class VentanaInicioSesion extends JFrame {
 	    String contra = new String(txtContrasenia.getPassword());
 
 	    if (user.isEmpty()) {
-	        JOptionPane.showMessageDialog(null, "Inserte un teléfono, mail o nombre de usuario válido");
+	        JOptionPane.showMessageDialog(null, "Inserte un teléfono, mail o DNI válido");
 	        return;
 	    } else if (contra.isEmpty()) {
 	        JOptionPane.showMessageDialog(null, "Inserte la contraseña");
@@ -243,14 +243,14 @@ public class VentanaInicioSesion extends JFrame {
 	        }
 
 	        if (c == null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
-	            JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE);
+	            JOptionPane.showMessageDialog(null, "DNI, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE);
 	            return;
 	        }
 	    } else if (code == 1) {
 	        c = BD.buscarCliente(user, contra);
 
 	        if (c == null) {
-	            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+	            JOptionPane.showMessageDialog(null, "UDNI, correo electrónico, teléfono o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
 	            return;
 	        }
 	    }
