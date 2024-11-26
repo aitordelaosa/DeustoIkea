@@ -51,7 +51,7 @@ public class VentanaPostPrincipal extends JFrame {
 		this.codigo = codigo;
 		this.datos = new Datos();
 		this.cliente = cliente;
-		ventanaCarrito = new VentanaCarrito(cliente, codigo);
+//		ventanaCarrito = new VentanaCarrito(cliente, codigo);
 		
 		Border borderResaltado = BorderFactory.createLineBorder(Color.WHITE, 2);
 
