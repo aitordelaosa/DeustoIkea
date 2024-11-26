@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -117,4 +118,48 @@ public class BD {
 	private static long convertirFecha(LocalDate fecha) {
 		return Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime();
 	}
+	
+	public static Cliente buscarCliente(String user, String password) {
+	    String sql = "SELECT * FROM Cliente WHERE (Dni = ? OR Email = ? OR Telefono = ?) AND Contraseña = ?";
+	    try (PreparedStatement stmt = con.prepareStatement(sql)) {
+	        stmt.setString(1, user);
+	        stmt.setString(2, user);
+	        stmt.setString(3, user);
+	        stmt.setString(4, password);
+
+	        var rs = stmt.executeQuery();
+
+	        if (rs.next()) {
+	            String dni = rs.getString("Dni");
+	            String genero = rs.getString("Genero");
+	            String nombre = rs.getString("Nombre");
+	            String apellido = rs.getString("Apellido");
+	            String email = rs.getString("Email");
+	            String direccion = rs.getString("Direccion");
+	            LocalDate fechaNacimiento = Instant.ofEpochMilli(rs.getLong("Fecha")).atZone(ZoneId.systemDefault()).toLocalDate();
+	            String telefono = rs.getString("Telefono");
+	            int id = rs.getInt("id");
+	            LocalDate ultimoLogin = Instant.ofEpochMilli(rs.getLong("UltimoLogin")).atZone(ZoneId.systemDefault()).toLocalDate();
+	            Descuento descuento = Descuento.valueOf(rs.getString("Descuento"));
+
+	            return new Cliente(dni, genero, nombre, apellido, email, direccion,
+	                    fechaNacimiento, password, telefono, id, ultimoLogin, descuento);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+	public static void actualizarUltimoLogin(String dni) {
+	    String sql = "UPDATE Cliente SET UltimoLogin = ? WHERE Dni = ?";
+	    try (PreparedStatement stmt = con.prepareStatement(sql)) {
+	        stmt.setLong(1, LocalDate.now().toEpochDay());
+	        stmt.setString(2, dni);
+	        stmt.executeUpdate();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 }
+
+

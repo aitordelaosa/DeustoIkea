@@ -14,6 +14,7 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import domain.BD;
 import domain.Cliente;
 import domain.Datos;
 import domain.SistemaUsuarios;
@@ -232,25 +233,40 @@ public class VentanaInicioSesion extends JFrame {
 	        return;
 	    }
 
-	    Cliente c = SistemaUsuarios.getInstancia().buscarCliente(user);
+	    Cliente c = null;
 
-	    if (c == null) {
-	        c = datos.buscarCliente(user);
+	    if (code == 0) {
+	        c = SistemaUsuarios.getInstancia().buscarCliente(user);
+
+	        if (c == null) {
+	            c = datos.buscarCliente(user);
+	        }
+
+	        if (c == null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
+	            JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE);
+	            return;
+	        }
+	    } else if (code == 1) {
+	        c = BD.buscarCliente(user, contra);
+
+	        if (c == null) {
+	            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+	            return;
+	        }
 	    }
 
-	    if (c == null || (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
-	        JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE);
-	    } else {
-	        if (!contra.equals(c.getContrasenia())) {
-	            JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-	        } else {
-	            JOptionPane.showMessageDialog(null, "¡BIENVENID@! " + c.getNombre().toUpperCase(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
-	            cliente = c;
-	            txtNombreUsuario.setText("");
-	            txtContrasenia.setText("");
-	            dispose();
-	            new VentanaPrincipal(c, code);
+	    if (c != null && !contra.equals(c.getContrasenia())) {
+	        JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+	    } else if (c != null) {
+	        JOptionPane.showMessageDialog(null, "¡BIENVENID@! " + c.getNombre().toUpperCase(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+	        if (code == 1) {
+	            BD.actualizarUltimoLogin(c.getDni());
 	        }
+	        cliente = c;
+	        txtNombreUsuario.setText("");
+	        txtContrasenia.setText("");
+	        dispose();
+	        new VentanaPrincipal(c, code);
 	    }
 	}
 

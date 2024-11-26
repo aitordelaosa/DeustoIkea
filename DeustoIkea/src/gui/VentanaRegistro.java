@@ -241,7 +241,7 @@ public class VentanaRegistro extends JFrame{
                     SistemaUsuarios.getInstancia().agregarCliente(c);
             		
             	} else {
-            		BD.insertarCliente(dni, genero, nombreUsuario, apellido, genero, direccion, fechaNac, contrasenia, telefono, codigo, LocalDate.now(), Descuento.Descuento_15);
+            		BD.insertarCliente(dni, genero, nombreUsuario, apellido, correo, direccion, fechaNac, contrasenia, telefono, codigo, LocalDate.now(), Descuento.Descuento_15);
             	}
                 JOptionPane.showMessageDialog(null, "¡Registro exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
