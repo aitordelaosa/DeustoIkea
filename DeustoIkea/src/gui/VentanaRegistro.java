@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import domain.BD;
 import domain.Cliente;
 import domain.Descuento;
 import domain.SistemaUsuarios;
@@ -235,8 +236,13 @@ public class VentanaRegistro extends JFrame{
             }
 
             if (contrasenia.equals(contRep)) {
-                Cliente c = new Cliente(dni, genero, nombre, apellido, correo, direccion, fechaNac, contrasenia, telefono, 77, LocalDate.now(), Descuento.Descuento_15);
-                SistemaUsuarios.getInstancia().agregarCliente(c);
+            	if(codigo== 0) {
+                    Cliente c = new Cliente(dni, genero, nombre, apellido, correo, direccion, fechaNac, contrasenia, telefono, 77, LocalDate.now(), Descuento.Descuento_15);
+                    SistemaUsuarios.getInstancia().agregarCliente(c);
+            		
+            	} else {
+            		BD.insertarCliente(dni, genero, nombreUsuario, apellido, genero, direccion, fechaNac, contrasenia, telefono, codigo, LocalDate.now(), Descuento.Descuento_15);
+            	}
                 JOptionPane.showMessageDialog(null, "¡Registro exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 new VentanaInicioSesion(null, codigo);

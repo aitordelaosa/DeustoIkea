@@ -1,9 +1,13 @@
 package domain;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class BD {
 	private static Connection con;
@@ -84,5 +88,33 @@ public class BD {
 		}
 	}
 	
-	
+	public static void insertarCliente(String dni, String genero, String nombre, String apellido, String email, 
+            String direccion, LocalDate fechaNacimiento, String contraseña, 
+            String telefono, int id, LocalDate ultimoLogin, Descuento descuento) {
+			String sql = "INSERT INTO Cliente (Dni, Genero, Nombre, Apellido, Email, Direccion, Fecha, Contraseña, " +
+						"Telefono, id, UltimoLogin, Descuento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+					pstmt.setString(1, dni);
+					pstmt.setString(2, genero);
+					pstmt.setString(3, nombre);
+					pstmt.setString(4, apellido);
+					pstmt.setString(5, email);
+					pstmt.setString(6, direccion);
+					pstmt.setLong(7, convertirFecha(fechaNacimiento));
+					pstmt.setString(8, contraseña);
+					pstmt.setString(9, telefono);
+					pstmt.setInt(10, id);
+					pstmt.setLong(11, convertirFecha(ultimoLogin));
+					pstmt.setString(12, descuento.name());
+					
+					pstmt.executeUpdate();
+					System.out.println("Cliente insertado correctamente en la base de datos.");
+				} catch (SQLException e) {
+					System.err.println("Error al insertar el cliente: " + e.getMessage());
+				}
+}
+
+	private static long convertirFecha(LocalDate fecha) {
+		return Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime();
+	}
 }
