@@ -124,7 +124,7 @@ public class VentanaDeCarga extends JFrame {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                        	BD.initBD("DeustoIkea/src/data/DeustoIkea.db");
+                        	BD.initBD("src/data/DeustoIkea.db");
                     		BD.crearTablas();
                             new VentanaInicioSesion(null, codigo);
                         }
