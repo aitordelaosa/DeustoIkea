@@ -45,11 +45,13 @@ public class VentanaPostPrincipal extends JFrame {
 	private String objetoSeleccionado;
 	private Cliente cliente;
 	private int codigo;
+	private VentanaCarrito ventanaCarrito;
 
 	public VentanaPostPrincipal(int code, Cliente cliente, int codigo) {
 		this.codigo = codigo;
 		this.datos = new Datos();
 		this.cliente = cliente;
+		ventanaCarrito = new VentanaCarrito(cliente, codigo);
 		
 		Border borderResaltado = BorderFactory.createLineBorder(Color.WHITE, 2);
 
@@ -607,6 +609,61 @@ public class VentanaPostPrincipal extends JFrame {
 		        }
 		    }
 		});
+		
+//		botonComprar.addActionListener((e) -> {
+//		    String c = JOptionPane.showInputDialog(
+//		        null,
+//		        "Ingrese la cantidad que desea añadir al carrito:",
+//		        "Seleccionar cantidad",
+//		        JOptionPane.PLAIN_MESSAGE
+//		    );
+//
+//		    if (c != null) {
+//		        try {
+//		            int cantidad = Integer.parseInt(c);
+//
+//		            if ((cantidad > 0) && (cantidad < 4)) {
+//		                // Determinar el producto seleccionado
+//		                String productoSeleccionado = "Sofá"; // Ejemplo: reemplazar con lógica para el producto actual
+//		                double precioUnitario = 350.0; // Ejemplo: reemplazar con el precio real del producto
+//
+//		                // Verificar si existe una instancia de VentanaCarrito
+//		                if (ventanaCarrito == null || !ventanaCarrito.isDisplayable()) {
+//		                    ventanaCarrito = new VentanaCarrito(cliente, cantidad); // Crear una nueva instancia si no existe
+//		                }
+//
+//		                // Añadir al carrito
+//		                ventanaCarrito.añadirAlCarrito(productoSeleccionado, cantidad, precioUnitario);
+//
+//		                // Mostrar la ventana del carrito
+//		                ventanaCarrito.setVisible(true);
+//
+//		                System.out.println("Producto añadido al carrito: " + productoSeleccionado + ", cantidad: " + cantidad);
+//		            } else if (cantidad >= 4) {
+//		                JOptionPane.showMessageDialog(
+//		                    null,
+//		                    "Por favor, ingrese una cantidad válida menor a 4.",
+//		                    "Cantidad no válida",
+//		                    JOptionPane.WARNING_MESSAGE
+//		                );
+//		            } else {
+//		                JOptionPane.showMessageDialog(
+//		                    null,
+//		                    "Por favor, ingrese una cantidad válida mayor a 0.",
+//		                    "Cantidad no válida",
+//		                    JOptionPane.WARNING_MESSAGE
+//		                );
+//		            }
+//		        } catch (NumberFormatException ex) {
+//		            JOptionPane.showMessageDialog(
+//		                null,
+//		                "Por favor, ingrese un número válido.",
+//		                "Entrada no válida",
+//		                JOptionPane.ERROR_MESSAGE
+//		            );
+//		        }
+//		    }
+//		});
 		
 		// Evento de teclado 
 		addKeyListener(new KeyAdapter() {

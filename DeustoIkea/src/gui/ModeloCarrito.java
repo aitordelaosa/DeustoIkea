@@ -9,7 +9,7 @@ import domain.Producto;
 
 @SuppressWarnings("serial")
 public class ModeloCarrito extends DefaultTableModel{
-	private List<String> titulos = Arrays.asList("NOMBRE", "CANTIDAD", "PRECIO");
+	private List<String> titulos = Arrays.asList("ID", "NOMBRE", "CANTIDAD", "PRECIO");
 	private List<Producto> lProductos;
 
 	public ModeloCarrito(List<Producto> lProductos) {
@@ -44,9 +44,10 @@ public class ModeloCarrito extends DefaultTableModel{
 	public Object getValueAt(int row, int column) {
 		Producto p = lProductos.get(row);
 		switch(column) {
-			case 0: return p.getClass().getSimpleName();
-			case 1: return p.getNumeroProductos();
-			case 2:return p.getPrecio()*p.getNumeroProductos();
+			case 0: return p.getIdProducto();
+			case 1: return p.getClass().getSimpleName();
+			case 2: return p.getNumeroProductos();
+			case 3:return p.getPrecio()*p.getNumeroProductos();
 			default: return null;
 		}
 	}
