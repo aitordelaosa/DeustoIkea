@@ -4,6 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.Timer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +17,10 @@ import javax.swing.JTree;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+
+import domain.Cliente;
+import domain.Datos;
+import domain.Trabajador;
 
 public class VentanaTrabajador extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -136,17 +144,108 @@ public class VentanaTrabajador extends JFrame {
     }
 
     private void verClientes() {
-        JOptionPane.showMessageDialog(this, "Mostrando clientes...");
+//        JOptionPane.showMessageDialog(this, "Mostrando clientes...");
+    	 Object[] options = {"Mostrar"};
+         
+         JOptionPane.showOptionDialog(this, 
+             "Mostrando clientes...",
+             "Información",
+             JOptionPane.DEFAULT_OPTION, 
+             JOptionPane.INFORMATION_MESSAGE, 
+             null,
+             options,
+             options[0]
+         );
+        Timer timer = new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cargarClientes();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+    }
+    
+    private void cargarClientes() {
+        List<Cliente> clientes = new Datos().lCliente;
+        
+        StringBuilder mensaje = new StringBuilder("Clientes:\n");
+        for (Cliente cliente : clientes) {
+            mensaje.append(cliente.getNombre()).append(" ").append(cliente.getApellido()).append("\n").append(cliente.getDni()).append("\n").append(cliente.getTelefono()).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(this, mensaje.toString());
     }
 
     private void verTrabajadores() {
-        JOptionPane.showMessageDialog(this, "Mostrando trabajadores...");
+//        JOptionPane.showMessageDialog(this, "Mostrando trabajadores...");
+    	Object[] options = {"Mostrar"};
+        
+        JOptionPane.showOptionDialog(this, 
+            "Mostrando trabajadores...",
+            "Información",
+            JOptionPane.DEFAULT_OPTION, 
+            JOptionPane.INFORMATION_MESSAGE, 
+            null,
+            options,
+            options[0]
+        );
+       Timer timer = new Timer(500, new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               cargarTrabajadores();
+           }
+       });
+       timer.setRepeats(false);
+       timer.start();
     }
 
+    private void cargarTrabajadores() {
+        List<Trabajador> trabajadores = new Datos().lTrabajador;
+        
+        StringBuilder mensaje = new StringBuilder("Trabajadores:\n");
+        for (Trabajador trabajador : trabajadores) {
+            mensaje.append(trabajador.getNombre()).append(" ").append(trabajador.getApellido()).append("\n");
+        }
+
+        JOptionPane.showMessageDialog(this, mensaje.toString());
+    }
+    
     private void eliminarClientes() {
-        JOptionPane.showMessageDialog(this, "Eliminando clientes...");
+        String user = JOptionPane.showInputDialog(this, "Introduce el nombre del cliente a eliminar:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
+
+        if (user != null && !user.trim().isEmpty()) {
+            Object[] options = {"Eliminar"};
+
+            JOptionPane.showOptionDialog(this, 
+                "Eliminando cliente: " + user,
+                "Información",
+                JOptionPane.DEFAULT_OPTION, 
+                JOptionPane.INFORMATION_MESSAGE, 
+                null, 
+                options, 
+                options[0]
+            );
+
+            Timer timer = new Timer(500, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    realizarEliminacion(user);
+                }
+            });
+
+            timer.setRepeats(false);
+            timer.start();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se ha introducido un nombre válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
+    private void realizarEliminacion(String user) {
+    	Datos datos = new Datos();
+		datos.eliminarCliente(user);
+    }
+    
     private void verActividad() {
         JOptionPane.showMessageDialog(this, "Mostrando actividad...");
     }

@@ -3,15 +3,18 @@ package domain;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 public class Datos {
 
 	protected List<Mueble> lMuebles;
 	protected List<Cocina> lCocina;
 	protected List<Jardineria> lJardineria;
-	protected List<Trabajador> lTrabajador;
-	protected List<Cliente> lCliente;
+	public List<Trabajador> lTrabajador;
+	public List<Cliente> lCliente;
 	protected List<Baño> lBaño;
 	private static List<Producto>productos;
 	// Muebles
@@ -407,6 +410,31 @@ public class Datos {
 		return null;
 		
 	}
+	
+//	public void eliminarCliente(String user) {
+//		for (Cliente c : lCliente) {
+//			if (user.equals(c.getDni()) || user.equals(c.getEmail()) || user.equals(c.getTelefono())) {
+//				lCliente.remove(c);
+//			}
+//		}
+//	}
+	
+	public void eliminarCliente(String user) {
+	    Iterator<Cliente> iterator = lCliente.iterator();
+	    
+	    while (iterator.hasNext()) {
+	        Cliente c = iterator.next();
+	        
+	        if (user.equals(c.getDni()) || user.equals(c.getEmail()) || user.equals(c.getTelefono())) {
+	            iterator.remove();
+	            JOptionPane.showMessageDialog(null, "Cliente eliminado: " + c.getDni());
+	            return;
+	        }
+	    }
+	    
+	    JOptionPane.showMessageDialog(null, "Cliente no encontrado.");
+	}
+
 		/*public String formatearDescripcion(Producto m) {
 		    return String.format(
 		        "<html><b>%s</b><br>Precio: $%.2f<br>Peso: %.2fkg<br>Descripción: %s</html>",
