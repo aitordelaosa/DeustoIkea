@@ -82,7 +82,7 @@ public class VentanaTrabajador extends JFrame {
         DefaultMutableTreeNode clientes = new DefaultMutableTreeNode("Ver Clientes");
         DefaultMutableTreeNode trabajadores = new DefaultMutableTreeNode("Ver Trabajadores");
         DefaultMutableTreeNode eliminarClientes = new DefaultMutableTreeNode("Eliminar Clientes");
-        DefaultMutableTreeNode buscarTrabajador = new DefaultMutableTreeNode("BuscarTrabajador");
+        DefaultMutableTreeNode buscarTrabajador = new DefaultMutableTreeNode("Buscar Trabajador");
         DefaultMutableTreeNode muebles = new DefaultMutableTreeNode("Mostrar Muebles Disponibles");
         DefaultMutableTreeNode cocina = new DefaultMutableTreeNode("Mostrar elementos de Cocina Disponibles");
         DefaultMutableTreeNode jardin = new DefaultMutableTreeNode("Mostrar elementos de Jardineria Disponibles");
