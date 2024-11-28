@@ -31,7 +31,7 @@ public class VentanaDeCarga extends JFrame {
     protected Datos datos;
     
     private int codigo;
-
+    public static VentanaPrincipal vp;
     public VentanaDeCarga() {
         setTitle("DeustoIkea");
         setSize(800, 520);

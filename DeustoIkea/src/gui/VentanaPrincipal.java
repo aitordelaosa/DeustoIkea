@@ -9,6 +9,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,6 +31,7 @@ import domain.Ducha;
 import domain.Encimera;
 import domain.Fregadero;
 import domain.Mesa;
+import domain.Producto;
 import domain.Silla;
 import domain.Sofa;
 
@@ -46,8 +49,11 @@ public class VentanaPrincipal extends JFrame {
     protected Datos datos;
     private Cliente cliente;
     private int codigo;
-
+    public static  List<Producto> lp;
+	public static  Producto productoSeleccionado;
+	
     public VentanaPrincipal(Cliente cliente, int codigo) {
+    	lp = new ArrayList<Producto>();
     	this.codigo = codigo;
     	this.cliente = cliente;
         setTitle("Ventana Principal - DeustoIkea");
@@ -243,7 +249,7 @@ public class VentanaPrincipal extends JFrame {
 
         botonCarrito.addActionListener((e) -> {
         	dispose();
-            new VentanaCarrito(cliente, codigo);
+            new VentanaCarrito(cliente, codigo, null);
         });
         
         botonDescuentos.addActionListener((e) -> {
@@ -354,6 +360,6 @@ public class VentanaPrincipal extends JFrame {
         
 
         setLocationRelativeTo(null);
-        setVisible(true);
+        //setVisible(true);
     }
 }

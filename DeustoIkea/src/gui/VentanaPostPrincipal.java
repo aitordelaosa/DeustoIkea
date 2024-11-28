@@ -10,6 +10,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,6 +27,7 @@ import javax.swing.border.Border;
 import domain.Datos;
 import domain.Jardineria;
 import domain.Mueble;
+import domain.Producto;
 import domain.Baño;
 import domain.Cliente;
 import domain.Cocina;
@@ -46,7 +49,7 @@ public class VentanaPostPrincipal extends JFrame {
 	private Cliente cliente;
 	private int codigo;
 	private VentanaCarrito ventanaCarrito;
-
+	
 	public VentanaPostPrincipal(int code, Cliente cliente, int codigo) {
 		this.codigo = codigo;
 		this.datos = new Datos();
@@ -566,7 +569,7 @@ public class VentanaPostPrincipal extends JFrame {
 
 		botonCarrito.addActionListener((e) -> {
 			dispose();
-			new VentanaCarrito(cliente, codigo);
+			new VentanaCarrito(cliente, codigo, VentanaPrincipal.lp);
 		});
 		
 		botonComprar.addActionListener((e) -> {
@@ -584,6 +587,8 @@ public class VentanaPostPrincipal extends JFrame {
 		            if ((cantidad > 0) && (cantidad < 4)) {
 		                System.out.println("Cantidad añadida al carrito: " + cantidad);
 		                // actualizar el carrito
+		                VentanaPrincipal.productoSeleccionado.setNumeroProductos(cantidad);
+		                VentanaPrincipal.lp.add(VentanaPrincipal.productoSeleccionado);
 		            } else if (cantidad > 4){
 		                JOptionPane.showMessageDialog(
 		                    null, 
@@ -653,54 +658,70 @@ public class VentanaPostPrincipal extends JFrame {
 			switch (objetoSeleccionado) {
 			case "Sofá":
 				muebleSeleccionado = datos.getSofa();
+				VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
 				break;
 			case "Armario":
 				muebleSeleccionado = datos.getArmario();
+				VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
 				break;
 			case "Silla":
 				muebleSeleccionado = datos.getSilla();
+				VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
 				break;
 			case "Mesa":
 				muebleSeleccionado = datos.getMesa();
+				VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
 				break;
 				
 			case "Nevera":
 				cocinaSeleccionada = datos.getNevera();
+				VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
 				break;
 			case "Horno":
 				cocinaSeleccionada = datos.getHorno();
+				VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
 				break;
 			case "Encimera":
 				cocinaSeleccionada = datos.getEncimera();
+				VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
 				break;
 			case "Fregadero":
 				cocinaSeleccionada = datos.getFregadero();
+				VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
 				break;
 				
 			case "Bide":
 				bañoSeleccionado = datos.getBide();
+				VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
 				break;
 			case "Ducha":
 				bañoSeleccionado = datos.getDucha();
+				VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
 				break;
 			case "Inodoro":
 				bañoSeleccionado = datos.getInodoro();
+				VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
 				break;
 			case "Lavamanos":
 				bañoSeleccionado = datos.getLavamanos();
+				VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
 				break;
 				
 			case "Barbacoa":
 				jardineriaSeleccionado = datos.getBarbacoa();
+				VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
 				break;
 			case "Planta":
 				jardineriaSeleccionado = datos.getPlanta();
+				VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
 				break;
 			case "Maceta":
 				jardineriaSeleccionado = datos.getMaceta();
+				VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
 				break;
 			case "Pala":
 				jardineriaSeleccionado = datos.getHerramienta();
+				VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
 				break;
 				
 			}
@@ -720,6 +741,7 @@ public class VentanaPostPrincipal extends JFrame {
 				detalles = "No se encontraron detalles para el objeto seleccionado.";
 			}
 			JOptionPane.showMessageDialog(this, detalles);
+			
 		}
 	}
 

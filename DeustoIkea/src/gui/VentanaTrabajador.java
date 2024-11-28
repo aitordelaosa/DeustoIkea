@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.Timer;
 
@@ -13,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -24,6 +27,7 @@ import domain.Cocina;
 import domain.Datos;
 import domain.Jardineria;
 import domain.Mueble;
+import domain.Tipo;
 import domain.Trabajador;
 
 public class VentanaTrabajador extends JFrame {
@@ -151,6 +155,8 @@ public class VentanaTrabajador extends JFrame {
                 mostrarCocinaDisponibles();
                 break;
             case "Mostrar elementos de Baño Disponibles":
+            	Modelo modelo = new Modelo(new ArrayList<>(), Arrays.asList("TI1","Tit2"), Tipo.Baño);
+            	JTable tabla = new JTable(modelo);
                 mostrarBañoDisponibles();
                 break;
             case "Mostrar elementos de Jardineria Disponibles":

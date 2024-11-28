@@ -6,6 +6,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,7 +36,7 @@ public class VentanaCarrito extends JFrame{
 	private Cliente cliente;
 	private int codigo;
 	
-	public VentanaCarrito(Cliente cliente, int codigo) {
+	public VentanaCarrito(Cliente cliente, int codigo, List<Producto> lp) {
 		this.codigo = codigo;
 		this.cliente = cliente;
         setTitle("Carrito");
@@ -78,10 +79,12 @@ public class VentanaCarrito extends JFrame{
            
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal(cliente, codigo);
+			//new VentanaPrincipal(cliente, codigo);
+			VentanaDeCarga.vp.setVisible(true);
 		});
         
-        modeloCarrito = new ModeloCarrito(Datos.getProductos());
+        //modeloCarrito = new ModeloCarrito(Datos.getProductos());
+        modeloCarrito = new ModeloCarrito(lp);
         tablaProductos = new JTable(modeloCarrito);
         this.tablaProductos.setRowHeight(50);
         JScrollPane scrollPane = new JScrollPane(tablaProductos);
