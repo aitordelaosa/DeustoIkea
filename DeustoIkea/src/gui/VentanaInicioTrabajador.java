@@ -188,7 +188,7 @@ public class VentanaInicioTrabajador extends JFrame{
 					txtNombreUsuario.setText("");
 					txtContrasenia.setText("");
 					dispose();
-					new VentanaTrabajador(codigo);
+					new VentanaTrabajador(codigo, datos);
 				}
 			}
 		}

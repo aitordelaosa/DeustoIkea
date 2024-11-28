@@ -387,7 +387,6 @@ public class Datos {
 		return detalles;
 	}
 
-	// Iniciar sesion
 	public Cliente buscarCliente(String user) {
 		Cliente[] clientes = { cliente1, cliente2, cliente3, cliente4, cliente5 };
 
@@ -398,7 +397,7 @@ public class Datos {
 		}
 		return null;
 	}
-	//Iniciar sesion como trabajador
+	
 	public Trabajador buscarTrabajador(String user) {
 		Trabajador[] trabajadores = { trabajador1, trabajador2, trabajador3, trabajador4, trabajador5};
 		
@@ -411,29 +410,52 @@ public class Datos {
 		
 	}
 	
-//	public void eliminarCliente(String user) {
-//		for (Cliente c : lCliente) {
-//			if (user.equals(c.getDni()) || user.equals(c.getEmail()) || user.equals(c.getTelefono())) {
-//				lCliente.remove(c);
-//			}
-//		}
-//	}
+    public Trabajador buscarTrabajadorPorDni(String dni) {
+        for (Trabajador trabajador : lTrabajador) {
+            if (trabajador.getDni().equals(dni)) {
+                return trabajador;
+            }
+        }
+        return null;
+    }
+
+    public Trabajador buscarTrabajadorPorTelefono(String telefono) {
+        for (Trabajador trabajador : lTrabajador) {
+            if (trabajador.getTelefono().equals(telefono)) {
+                return trabajador;
+            }
+        }
+        return null;
+    }
+
+    public Trabajador buscarTrabajadorPorEmail(String email) {
+        for (Trabajador trabajador : lTrabajador) {
+            if (trabajador.getEmail().equals(email)) {
+                return trabajador;
+            }
+        }
+        return null;
+    }
 	
 	public void eliminarCliente(String user) {
-	    Iterator<Cliente> iterator = lCliente.iterator();
-	    
-	    while (iterator.hasNext()) {
-	        Cliente c = iterator.next();
+	    for (int i = 0; i < lCliente.size(); i++) {
+	        Cliente c = lCliente.get(i);
 	        
 	        if (user.equals(c.getDni()) || user.equals(c.getEmail()) || user.equals(c.getTelefono())) {
-	            iterator.remove();
-	            JOptionPane.showMessageDialog(null, "Cliente eliminado: " + c.getDni());
+	            lCliente.remove(i);
+	            JOptionPane.showMessageDialog(null, "Cliente eliminado: " + c.getNombre());
 	            return;
 	        }
 	    }
 	    
 	    JOptionPane.showMessageDialog(null, "Cliente no encontrado.");
 	}
+
+
+    public List<Cliente> verClientes() {
+        return this.lCliente;
+    }
+
 
 		/*public String formatearDescripcion(Producto m) {
 		    return String.format(

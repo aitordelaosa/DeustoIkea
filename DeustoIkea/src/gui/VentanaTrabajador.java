@@ -46,9 +46,11 @@ public class VentanaTrabajador extends JFrame {
     };
     private int indiceImagen = 0;
     private int codigo;
+    private Datos datos;
 
-    public VentanaTrabajador(int codigo) {
+    public VentanaTrabajador(int codigo, Datos datos) {
     	this.codigo = codigo;
+    	this.datos = datos;
         setTitle("Ventana-Trabajador");
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getWidth();
@@ -166,12 +168,26 @@ public class VentanaTrabajador extends JFrame {
         timer.start();
     }
     
+//    private void cargarClientes() {
+//        List<Cliente> clientes = new Datos().lCliente;
+//        
+//        StringBuilder mensaje = new StringBuilder("Clientes:\n");
+//        for (Cliente cliente : clientes) {
+//            mensaje.append(cliente.getNombre()).append(" ").append(cliente.getApellido()).append("\n").append(cliente.getDni()).append("\n").append(cliente.getTelefono()).append("\n").append(cliente.getEmail()).append("\n");
+//        }
+//
+//        JOptionPane.showMessageDialog(this, mensaje.toString());
+//    }
+    
     private void cargarClientes() {
-        List<Cliente> clientes = new Datos().lCliente;
+        List<Cliente> clientes = datos.verClientes();
         
         StringBuilder mensaje = new StringBuilder("Clientes:\n");
         for (Cliente cliente : clientes) {
-            mensaje.append(cliente.getNombre()).append(" ").append(cliente.getApellido()).append("\n").append(cliente.getDni()).append("\n").append(cliente.getTelefono()).append("\n");
+            mensaje.append(cliente.getNombre()).append(" ").append(cliente.getApellido()).append("\n")
+                   .append(cliente.getDni()).append("\n")
+                   .append(cliente.getTelefono()).append("\n")
+                   .append(cliente.getEmail()).append("\n\n");
         }
 
         JOptionPane.showMessageDialog(this, mensaje.toString());
@@ -212,7 +228,7 @@ public class VentanaTrabajador extends JFrame {
     }
     
     private void eliminarClientes() {
-        String user = JOptionPane.showInputDialog(this, "Introduce el nombre del cliente a eliminar:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
+        String user = JOptionPane.showInputDialog(this, "Introduce el Dni, telefono o email del cliente a eliminar:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
 
         if (user != null && !user.trim().isEmpty()) {
             Object[] options = {"Eliminar"};
