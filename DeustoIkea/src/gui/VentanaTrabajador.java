@@ -18,8 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
+import domain.Baño;
 import domain.Cliente;
+import domain.Cocina;
 import domain.Datos;
+import domain.Jardineria;
+import domain.Mueble;
 import domain.Trabajador;
 
 public class VentanaTrabajador extends JFrame {
@@ -78,15 +82,21 @@ public class VentanaTrabajador extends JFrame {
         DefaultMutableTreeNode clientes = new DefaultMutableTreeNode("Ver Clientes");
         DefaultMutableTreeNode trabajadores = new DefaultMutableTreeNode("Ver Trabajadores");
         DefaultMutableTreeNode eliminarClientes = new DefaultMutableTreeNode("Eliminar Clientes");
-        DefaultMutableTreeNode actividad = new DefaultMutableTreeNode("Ver Actividad");
+        DefaultMutableTreeNode buscarTrabajador = new DefaultMutableTreeNode("BuscarTrabajador");
         DefaultMutableTreeNode muebles = new DefaultMutableTreeNode("Mostrar Muebles Disponibles");
+        DefaultMutableTreeNode cocina = new DefaultMutableTreeNode("Mostrar elementos de Cocina Disponibles");
+        DefaultMutableTreeNode jardin = new DefaultMutableTreeNode("Mostrar elementos de Jardineria Disponibles");
+        DefaultMutableTreeNode baño = new DefaultMutableTreeNode("Mostrar elementos de Baño Disponibles");
         DefaultMutableTreeNode stock = new DefaultMutableTreeNode("Rellenar Stock");
 
         raiz.add(clientes);
         raiz.add(trabajadores);
         raiz.add(eliminarClientes);
-        raiz.add(actividad);
+        raiz.add(buscarTrabajador);
         raiz.add(muebles);
+        raiz.add(cocina);
+        raiz.add(jardin);
+        raiz.add(baño);
         raiz.add(stock);
 
         arbolFunciones = new JTree(raiz);
@@ -131,11 +141,20 @@ public class VentanaTrabajador extends JFrame {
             case "Eliminar Clientes":
                 eliminarClientes();
                 break;
-            case "Ver Actividad":
-                verActividad();
+            case "Buscar Trabajador":
+            	buscarTrabajador();
                 break;
             case "Mostrar Muebles Disponibles":
                 mostrarMueblesDisponibles();
+                break;
+            case "Mostrar elementos de Cocina Disponibles":
+                mostrarCocinaDisponibles();
+                break;
+            case "Mostrar elementos de Baño Disponibles":
+                mostrarBañoDisponibles();
+                break;
+            case "Mostrar elementos de Jardineria Disponibles":
+                mostrarJardineriaDisponibles();
                 break;
             case "Rellenar Stock":
                 rellenarStock();
@@ -262,13 +281,137 @@ public class VentanaTrabajador extends JFrame {
 		datos.eliminarCliente(user);
     }
     
-    private void verActividad() {
-        JOptionPane.showMessageDialog(this, "Mostrando actividad...");
+    private void buscarTrabajador() {
+        String criterio = JOptionPane.showInputDialog(this, "Buscar trabajador por:\n1. DNI\n2. Teléfono\n3. Email");
+        
+        if (criterio == null) {
+            return;
+        }
+        
+        String dato = JOptionPane.showInputDialog(this, "Ingrese el " + criterio + " del trabajador:");
+        if (dato == null || dato.isEmpty()) {
+            return;
+        }
+        
+        Trabajador trabajador = null;
+        switch (criterio) {
+            case "1":
+                trabajador = datos.buscarTrabajadorPorDni(dato); // Usamos el método de Datos
+                break;
+            case "2":
+                trabajador = datos.buscarTrabajadorPorTelefono(dato); // Usamos el método de Datos
+                break;
+            case "3":
+                trabajador = datos.buscarTrabajadorPorEmail(dato); // Usamos el método de Datos
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Criterio inválido.");
+                return;
+        }
+
+        if (trabajador != null) {
+            String mensaje = "Trabajador encontrado:\n";
+            mensaje += "Nombre: " + trabajador.getNombre() + " " + trabajador.getApellido() + "\n";
+            mensaje += "DNI: " + trabajador.getDni() + "\n";
+            mensaje += "Teléfono: " + trabajador.getTelefono() + "\n";
+            mensaje += "Email: " + trabajador.getEmail() + "\n";
+            mensaje += "Salario: " + trabajador.getSalario() + "\n";
+            mensaje += "Horas trabajadas: " + trabajador.getHorasTrabajadas() + "\n";
+            JOptionPane.showMessageDialog(this, mensaje);
+        } else {
+            JOptionPane.showMessageDialog(this, "Trabajador no encontrado.");
+        }
     }
 
     private void mostrarMueblesDisponibles() {
-        JOptionPane.showMessageDialog(this, "Mostrando muebles disponibles...");
+        List<Mueble> mueblesDisponibles = datos.obtenerMueblesDisponibles();
+
+        if (mueblesDisponibles == null || mueblesDisponibles.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay muebles disponibles.");
+            return;
+        }
+
+        StringBuilder mensaje = new StringBuilder("Muebles disponibles:\n");
+
+        for (Mueble mueble : mueblesDisponibles) {
+            mensaje.append("ID: ").append(mueble.getIdProducto()).append("\n");
+            mensaje.append("Precio: ").append(mueble.getPrecio()).append("\n");
+            mensaje.append("Peso: ").append(mueble.getPeso()).append("\n");
+            mensaje.append("Material: ").append(mueble.getMaterial()).append("\n");
+            mensaje.append("Descripción: ").append(mueble.getDescripcion()).append("\n");
+            mensaje.append("------------------------------\n");
+        }
+
+        JOptionPane.showMessageDialog(this, mensaje.toString());
     }
+    
+    private void mostrarCocinaDisponibles() {
+        List<Cocina> cocinaDisponibles = datos.obtenerElementosCocinaDisponibles();
+
+        if (cocinaDisponibles == null || cocinaDisponibles.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay elementos de cocina disponibles.");
+            return;
+        }
+
+        StringBuilder mensaje = new StringBuilder("Elementos de cocina disponibles:\n");
+
+        for (Cocina cocina : cocinaDisponibles) {
+            mensaje.append("ID: ").append(cocina.getIdProducto()).append("\n");
+            mensaje.append("Precio: ").append(cocina.getPrecio()).append("\n");
+            mensaje.append("Peso: ").append(cocina.getPeso()).append("\n");
+            mensaje.append("Material: ").append(cocina.getMaterialC()).append("\n");
+            mensaje.append("Descripción: ").append(cocina.getDescripcionC()).append("\n");
+            mensaje.append("------------------------------\n");
+        }
+
+        JOptionPane.showMessageDialog(this, mensaje.toString());
+    }
+    
+    private void mostrarBañoDisponibles() {
+        List<Baño> bañoDisponibles = datos.obtenerElementosBañoDisponibles();
+
+        if (bañoDisponibles == null || bañoDisponibles.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay elementos de baño disponibles.");
+            return;
+        }
+
+        StringBuilder mensaje = new StringBuilder("Elementos de baño disponibles:\n");
+
+        for (Baño baño : bañoDisponibles) {
+            mensaje.append("ID: ").append(baño.getIdProducto()).append("\n");
+            mensaje.append("Precio: ").append(baño.getPrecio()).append("\n");
+            mensaje.append("Peso: ").append(baño.getPeso()).append("\n");
+            mensaje.append("Material: ").append(baño.getMaterialB()).append("\n");
+            mensaje.append("Descripción: ").append(baño.getDescripcionB()).append("\n");
+            mensaje.append("------------------------------\n");
+        }
+
+        JOptionPane.showMessageDialog(this, mensaje.toString());
+    }
+    
+    private void mostrarJardineriaDisponibles() {
+        List<Jardineria> jardinDisponibles = datos.obtenerElementosJardineriaDisponibles();
+
+        if (jardinDisponibles == null || jardinDisponibles.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay elementos de jardinería disponibles.");
+            return;
+        }
+
+        StringBuilder mensaje = new StringBuilder("Elementos de jardinería disponibles:\n");
+
+        for (Jardineria jardin : jardinDisponibles) {
+            mensaje.append("ID: ").append(jardin.getIdProducto()).append("\n");
+            mensaje.append("Precio: ").append(jardin.getPrecio()).append("\n");
+            mensaje.append("Peso: ").append(jardin.getPeso()).append("\n");
+            mensaje.append("Material: ").append(jardin.getMaterial()).append("\n");
+            mensaje.append("Descripción: ").append(jardin.getDescripcion()).append("\n");
+            mensaje.append("------------------------------\n");
+        }
+
+        JOptionPane.showMessageDialog(this, mensaje.toString());
+    }
+
+
 
     private void rellenarStock() {
         JOptionPane.showMessageDialog(this, "Rellenando stock...");

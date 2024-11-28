@@ -455,6 +455,39 @@ public class Datos {
     public List<Cliente> verClientes() {
         return this.lCliente;
     }
+    
+    public List<Mueble> obtenerMueblesDisponibles() {
+        List<Mueble> mueblesDisponibles = new ArrayList<>();
+        
+        mueblesDisponibles.addAll(lMuebles);
+
+        return mueblesDisponibles;
+    }
+    
+    public List<Baño> obtenerElementosBañoDisponibles() {
+        List<Baño> bañoDisponibles = new ArrayList<>();
+        
+        bañoDisponibles.addAll(lBaño);
+
+        return bañoDisponibles;
+    }
+    
+    public List<Jardineria> obtenerElementosJardineriaDisponibles() {
+        List<Jardineria> jardinDisponibles = new ArrayList<>();
+        
+        jardinDisponibles.addAll(lJardineria);
+
+        return jardinDisponibles;
+    }
+    
+    public List<Cocina> obtenerElementosCocinaDisponibles() {
+        List<Cocina> cocinaDisponibles = new ArrayList<>();
+        
+        cocinaDisponibles.addAll(lCocina);
+
+        return cocinaDisponibles;
+    }
+
 
 
 		/*public String formatearDescripcion(Producto m) {
