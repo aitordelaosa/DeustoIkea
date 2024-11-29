@@ -44,7 +44,17 @@ public class Trabajador extends Persona{
 
 	@Override
 	public String toString() {
-		return "Trabajador";
-	}
-		
+	    return "Trabajador{" +
+	           "DNI='" + getDni() + '\'' +
+	           ", Género='" + getGenero() + '\'' +
+	           ", Nombre='" + getNombre() + '\'' +
+	           ", Apellido='" + getApellido() + '\'' +
+	           ", Email='" + getEmail() + '\'' +
+	           ", Dirección='" + getDireccion() + '\'' +
+	           ", Fecha de Nacimiento='" + getfNacimiento() + '\'' +
+	           ", Teléfono='" + getTelefono() + '\'' +
+	           ", Salario=" + salario +
+	           ", Horas Trabajadas=" + horasTrabajadas +
+	           '}';
+	}	
 }

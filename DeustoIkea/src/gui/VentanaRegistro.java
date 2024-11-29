@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Random;
 
@@ -231,12 +232,20 @@ public class VentanaRegistro extends JFrame{
             }
 
             if (contrasenia.equals(contRep)) {
+            	int ultimoId = 0;
+				try {
+					ultimoId = BD.obtenerUltimoIdCliente();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                int nuevoId = ultimoId + 1;
             	if(codigo== 0) {
                     Cliente c = new Cliente(dni, genero, nombre, apellido, correo, direccion, fechaNac, contrasenia, telefono, 77, LocalDate.now(), Descuento.Descuento_15);
                     SistemaUsuarios.getInstancia().agregarCliente(c);
             		
             	} else {
-            		BD.insertarCliente(dni, genero, nombre, apellido, correo, direccion, fechaNac, contrasenia, telefono, codigo, LocalDate.now(), Descuento.Descuento_15);
+            		BD.insertarCliente(dni, genero, nombre, apellido, correo, direccion, fechaNac, contrasenia, telefono, nuevoId, LocalDate.now(), Descuento.Descuento_15);
             	}
                 JOptionPane.showMessageDialog(null, "¡Registro exitoso!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 dispose();

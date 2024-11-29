@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BD {
 	private static Connection con;
@@ -114,6 +117,19 @@ public class BD {
 					System.err.println("Error al insertar el cliente: " + e.getMessage());
 				}
 }
+	
+	public static int obtenerUltimoIdCliente() throws SQLException {
+	    String sql = "SELECT MAX(id) AS ultimoId FROM Cliente";
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+	        if (rs.next()) {
+	            return rs.getInt("ultimoId");
+	        } else {
+	            return 0; 
+	        }
+	    }
+	}
+	
 
 	private static long convertirFecha(LocalDate fecha) {
 		return Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime();
@@ -174,6 +190,66 @@ public class BD {
 	        return false;
 	    }
 	}
+	public static List<Cliente> ObtenerListaCliente() {
+	    String sql = "SELECT * FROM Cliente";
+	    List<Cliente> lC = new ArrayList<>();
+	    try {
+	        Statement st = con.createStatement();
+	        ResultSet rs = st.executeQuery(sql);
+	        while (rs.next()) {
+	            String dni = rs.getString("Dni");
+	            String genero = rs.getString("Genero");
+	            String nombre = rs.getString("Nombre");
+	            String apellido = rs.getString("Apellido");
+	            String email = rs.getString("Email");
+	            String direccion = rs.getString("Direccion");
+	            LocalDate fNacimiento = Instant.ofEpochMilli(rs.getLong("Fecha")).atZone(ZoneId.systemDefault()).toLocalDate();
+	            String contraseña = rs.getString("Contraseña");
+	            String telefono = rs.getString("Telefono");
+	            int id = rs.getInt("id");
+	            LocalDate ultimoLogin = Instant.ofEpochMilli(rs.getLong("UltimoLogin")).atZone(ZoneId.systemDefault()).toLocalDate();
+	            Descuento descuento = Descuento.valueOf(rs.getString("Descuento"));
+
+	            Cliente cliente = new Cliente(dni, genero, nombre, apellido, email, direccion, fNacimiento, 
+	                                           contraseña, telefono, id, ultimoLogin, descuento);
+	            lC.add(cliente);
+	        }
+	        rs.close();
+	        st.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return lC;
+	}
+	public static List<Trabajador> ObtenerListaTrabajador() {
+	    String sql = "SELECT * FROM Trabajador";
+	    List<Trabajador> lT = new ArrayList<>();
+	    try {
+	        Statement st = con.createStatement();
+	        ResultSet rs = st.executeQuery(sql);
+	        while (rs.next()) {
+	            String dni = rs.getString("Dni");
+	            String genero = rs.getString("Genero");
+	            String nombre = rs.getString("Nombre");
+	            String apellido = rs.getString("Apellido");
+	            String email = rs.getString("Email");
+	            String direccion = rs.getString("Direccion");
+	            LocalDate fNacimiento = Instant.ofEpochMilli(rs.getLong("fNacimiento")).atZone(ZoneId.systemDefault()).toLocalDate();
+	            String contraseña = rs.getString("Contraseña");
+	            String telefono = rs.getString("Telefono");
+	            int id = rs.getInt("id");
+	            double salario = rs.getDouble("Salario");
+	            int horasTrabajadas = rs.getInt("HorasTrabajadas");
+	            Trabajador trabajador= new Trabajador(dni, genero, nombre, apellido, email, direccion, fNacimiento, contraseña, telefono, id, salario, horasTrabajadas);
+	            lT.add(trabajador);
+	        }
+	        rs.close();
+	        st.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return lT;
+	}  
 }
 
 

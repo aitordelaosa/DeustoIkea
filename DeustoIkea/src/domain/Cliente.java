@@ -39,9 +39,20 @@ public class Cliente extends Persona {
         this.descuento = descuento;
     }
 
-	@Override
+    @Override
 	public String toString() {
-		return "Cliente";
+	    return "Cliente{" +
+	           "DNI='" + dni + '\'' +
+	           ", Género='" + genero + '\'' +
+	           ", Nombre='" + nombre + '\'' +
+	           ", Apellido='" + apellido + '\'' +
+	           ", Email='" + email + '\'' +
+	           ", Dirección='" + direccion + '\'' +
+	           ", Fecha de Nacimiento='" + fNacimiento + '\'' +
+	           ", Teléfono='" + telefono + '\'' +
+	           ", Último Login='" + ultimoLogin + '\'' +
+	           ", Descuento='" + descuento + '\'' +
+	           '}';
 	}
 	
 }
