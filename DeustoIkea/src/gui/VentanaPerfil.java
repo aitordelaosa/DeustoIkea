@@ -55,7 +55,8 @@ public class VentanaPerfil extends JFrame{
         botonAtras = new JButton("ATRAS");
         botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal(cliente, codigo);
+			//new VentanaPrincipal(cliente, codigo);
+			VentanaDeCarga.vp.setVisible(true);
 		});
         
         botonModificarDatos.addActionListener((e) -> {

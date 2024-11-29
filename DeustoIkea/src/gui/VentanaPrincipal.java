@@ -249,7 +249,7 @@ public class VentanaPrincipal extends JFrame {
 
         botonCarrito.addActionListener((e) -> {
         	dispose();
-            new VentanaCarrito(cliente, codigo, null);
+            new VentanaCarrito(cliente, codigo, VentanaPrincipal.lp);
         });
         
         botonDescuentos.addActionListener((e) -> {

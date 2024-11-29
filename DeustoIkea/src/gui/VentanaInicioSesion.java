@@ -250,7 +250,7 @@ public class VentanaInicioSesion extends JFrame {
 	        c = BD.buscarCliente(user, contra);
 
 	        if (c == null) {
-	            JOptionPane.showMessageDialog(null, "UDNI, correo electrónico, teléfono o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+	            JOptionPane.showMessageDialog(null, "DNI, correo electrónico, teléfono o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
 	            return;
 	        }
 	    }

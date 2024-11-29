@@ -64,7 +64,8 @@ public class VentanaAyuda extends JFrame {
 
         botonAtras.addActionListener((e) -> {
             dispose();
-            new VentanaPrincipal(cliente, codigo);
+           // new VentanaPrincipal(cliente, codigo);
+           VentanaDeCarga.vp.setVisible(true);
         });
 
         setVisible(true);

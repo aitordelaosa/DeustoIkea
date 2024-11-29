@@ -87,7 +87,8 @@ public class VentanaDescuentosPersonales extends JFrame {
         botonAtras = new JButton("Atrás");
         botonAtras.addActionListener((e) -> {
             dispose();
-            new VentanaPrincipal(cliente, codigo);
+            //new VentanaPrincipal(cliente, codigo);
+            VentanaDeCarga.vp.setVisible(true);
         });
 
         panelBotones.add(botonAtras);

@@ -555,7 +555,8 @@ public class VentanaPostPrincipal extends JFrame {
 
 		botonAtras.addActionListener((e) -> {
 			dispose();
-			new VentanaPrincipal(cliente, codigo);
+			//new VentanaPrincipal(cliente, codigo);
+			VentanaDeCarga.vp.setVisible(true);
 		});
 
 //		botonSeleccionar.addActionListener((e) -> {
