@@ -116,7 +116,7 @@ public class BD {
 				} catch (SQLException e) {
 					System.err.println("Error al insertar el cliente: " + e.getMessage());
 				}
-}
+	}
 	
 	public static int obtenerUltimoIdCliente() throws SQLException {
 	    String sql = "SELECT MAX(id) AS ultimoId FROM Cliente";
