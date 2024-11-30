@@ -192,6 +192,535 @@ public class BD {
 		}
 	}
 	
+	//Nose si será necesario este método
+	public static List<Producto> obtenerListaProductos(Connection con) {
+	    String sql = "SELECT * FROM Producto";
+	    List<Producto> listaProductos = new ArrayList<>();
+
+	    try (Statement st = con.createStatement();
+	         ResultSet rs = st.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+
+	            Producto producto = new Producto(idProducto, numeroProductos, peso, precio);
+
+	            listaProductos.add(producto);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaProductos;
+	}
+	
+	//                                                                       Tipos de Muebles
+	
+	public static List<Armario> obtenerListaArmarios(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
+	               m.Material, m.Color, m.Descripcion, m.RutaImagen,
+	               a.NumeroDePuertas, a.Altura, a.Anchura, a.Profundidad
+	        FROM Producto p
+	        INNER JOIN Mueble m ON p.idProducto = m.idProducto
+	        INNER JOIN Armario a ON m.idProducto = a.idProducto
+	    """;
+	    List<Armario> listaArmarios = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String color = rs.getString("Color");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            int numeroDePuertas = rs.getInt("NumeroDePuertas");
+	            double altura = rs.getDouble("Altura");
+	            double anchura = rs.getDouble("Anchura");
+	            double profundidad = rs.getDouble("Profundidad");
+
+	            Armario armario = new Armario(
+	                idProducto, numeroProductos, peso, precio,
+	                material, color, descripcion, rutaImagen,
+	                numeroDePuertas, altura, anchura, profundidad
+	            );
+
+	            listaArmarios.add(armario);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaArmarios;
+	}
+	
+	
+	public static List<Mesa> obtenerListaMesas(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
+	               m.Material, m.Color, m.Descripcion, m.RutaImagen,
+	               me.Altura, me.Capacidad
+	        FROM Producto p
+	        INNER JOIN Mueble m ON p.idProducto = m.idProducto
+	        INNER JOIN Mesa me ON m.idProducto = me.idProducto
+	    """;
+	    List<Mesa> listaMesas = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String color = rs.getString("Color");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            double altura = rs.getDouble("Altura");
+	            int capacidad = rs.getInt("Capacidad");
+
+	            Mesa mesa = new Mesa(
+	                idProducto, numeroProductos, peso, precio,
+	                material, color, descripcion, rutaImagen,
+	                altura, capacidad
+	            );
+
+	            listaMesas.add(mesa);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaMesas;
+	}
+	
+	
+	public static List<Silla> obtenerListaSillas(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               m.Material, m.Color, m.Descripcion, m.RutaImagen,
+	               s.Altura, s.Anchura, s.CapacidadDeCarga
+	        FROM Producto p
+	        INNER JOIN Mueble m ON p.idProducto = m.idProducto
+	        INNER JOIN Silla s ON m.idProducto = s.idProducto
+	    """;
+	    List<Silla> listaSillas = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String color = rs.getString("Color");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            double altura = rs.getDouble("Altura");
+	            double anchura = rs.getDouble("Anchura");
+	            double capacidadDeCarga = rs.getDouble("CapacidadDeCarga");
+
+	            Silla silla = new Silla(
+	                idProducto, numeroProductos, peso, precio,
+	                material, color, descripcion, rutaImagen,
+	                altura, anchura, capacidadDeCarga
+	            );
+
+	            listaSillas.add(silla);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaSillas;
+	}
+
+	public static List<Sofa> obtenerListaSofas(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               m.Material, m.Color, m.Descripcion, m.RutaImagen,
+	               s.CapacidadDeAsientos
+	        FROM Producto p
+	        INNER JOIN Mueble m ON p.idProducto = m.idProducto
+	        INNER JOIN Sofa s ON m.idProducto = s.idProducto
+	    """;
+	    List<Sofa> listaSofas = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String color = rs.getString("Color");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            int capacidadDeAsientos = rs.getInt("CapacidadDeAsientos");
+
+	            Sofa sofa = new Sofa(
+	                idProducto, numeroProductos, peso, precio,
+	                material, color, descripcion, rutaImagen,
+	                capacidadDeAsientos
+	            );
+
+	            listaSofas.add(sofa);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaSofas;
+	}
+
+	//                                                                         Tipos de Cocina
+	public static List<Encimera> obtenerListaEncimeras(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               c.Material, c.Descripcion, c.RutaImagen,
+	               e.resistenciaCalor, e.Grosor, e.Color
+	        FROM Producto p
+	        INNER JOIN Cocina c ON p.idProducto = c.idProducto
+	        INNER JOIN Encimera e ON c.idProducto = e.idProducto
+	    """;
+	    List<Encimera> listaEncimeras = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            double resistenciaCalor = rs.getDouble("resistenciaCalor");
+	            double grosor = rs.getDouble("Grosor");
+	            String color = rs.getString("Color");
+
+	            Encimera encimera = new Encimera(
+	                idProducto, numeroProductos, peso, precio,
+	                material, descripcion, rutaImagen,
+	                resistenciaCalor, grosor, color
+	            );
+
+	            listaEncimeras.add(encimera);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaEncimeras;
+	}
+	
+	public static List<Fregadero> obtenerListaFregaderos(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               c.Material, c.Descripcion, c.RutaImagen,
+	               f.numCubetas, f.Profundidad, f.Grifo
+	        FROM Producto p
+	        INNER JOIN Cocina c ON p.idProducto = c.idProducto
+	        INNER JOIN Fregadero f ON c.idProducto = f.idProducto
+	    """;
+	    List<Fregadero> listaFregaderos = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            int numCubetas = rs.getInt("numCubetas");
+	            double profundidad = rs.getDouble("Profundidad");
+	            boolean grifo = rs.getBoolean("Grifo");  
+
+	            Fregadero fregadero = new Fregadero(
+	                idProducto, numeroProductos, peso, precio,
+	                material, descripcion, rutaImagen,
+	                numCubetas, profundidad, grifo
+	            );
+
+	            listaFregaderos.add(fregadero);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaFregaderos;
+	}
+
+	public static List<Horno> obtenerListaHornos(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               c.Material, c.Descripcion, c.RutaImagen,
+	               h.Altura, h.Anchura, h.Profundidad, h.Potencia, h.NumeroBandejas
+	        FROM Producto p
+	        INNER JOIN Cocina c ON p.idProducto = c.idProducto
+	        INNER JOIN Horno h ON c.idProducto = h.idProducto
+	    """;
+	    List<Horno> listaHornos = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            double altura = rs.getDouble("Altura");
+	            double anchura = rs.getDouble("Anchura");
+	            double profundidad = rs.getDouble("Profundidad");
+	            int potencia = rs.getInt("Potencia");
+	            int numeroBandejas = rs.getInt("NumeroBandejas");
+
+	            Horno horno = new Horno(
+	                idProducto, numeroProductos, peso, precio,
+	                material, descripcion, rutaImagen,
+	                altura, anchura, profundidad, potencia, numeroBandejas
+	            );
+
+	            listaHornos.add(horno);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaHornos;
+	}
+	
+	public static List<Nevera> obtenerListaNeveras(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               c.Material, c.Descripcion, c.RutaImagen,
+	               n.Altura, n.Anchura, n.Profundidad, n.Capacidad, n.tipoNevera
+	        FROM Producto p
+	        INNER JOIN Cocina c ON p.idProducto = c.idProducto
+	        INNER JOIN Nevera n ON c.idProducto = n.idProducto
+	    """;
+	    List<Nevera> listaNeveras = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            double altura = rs.getDouble("Altura");
+	            double anchura = rs.getDouble("Anchura");
+	            double profundidad = rs.getDouble("Profundidad");
+	            double capacidad = rs.getDouble("Capacidad");
+	            String tipoNevera = rs.getString("tipoNevera");
+
+	            Nevera nevera = new Nevera(
+	                idProducto, numeroProductos, peso, precio,
+	                material, descripcion, rutaImagen,
+	                altura, anchura, profundidad, capacidad, tipoNevera
+	            );
+
+	            listaNeveras.add(nevera);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaNeveras;
+	    
+	}
+ //                                                                                 Tipos de Baño
+	
+	public static List<Inodoro> obtenerListaInodoros(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               b.Material, b.Descripcion, b.RutaImagen,
+	               i.tipoDescarga, i.tieneAsientoCalefaccionado
+	        FROM Producto p
+	        INNER JOIN Baño b ON p.idProducto = b.idProducto
+	        INNER JOIN Inodoro i ON b.idProducto = i.idProducto
+	    """;
+	    List<Inodoro> listaInodoros = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            String tipoDescarga = rs.getString("tipoDescarga");
+	            boolean tieneAsientoCalefaccionado = rs.getBoolean("tieneAsientoCalefaccionado");
+
+	            
+	            Inodoro inodoro = new Inodoro(
+	                idProducto, numeroProductos, peso, precio,
+	                material, descripcion, rutaImagen,
+	                tipoDescarga, tieneAsientoCalefaccionado
+	            );
+
+	            listaInodoros.add(inodoro);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaInodoros;
+	}
+	
+	public static List<Lavamanos> obtenerListaLavamanos(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               b.Material, b.Descripcion, b.RutaImagen,
+	               l.tipoGrifo, l.tieneAlmacenamiento
+	        FROM Producto p
+	        INNER JOIN Baño b ON p.idProducto = b.idProducto
+	        INNER JOIN Lavamanos l ON b.idProducto = l.idProducto
+	    """;
+	    List<Lavamanos> listaLavamanos = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            String tipoGrifo = rs.getString("tipoGrifo");
+	            boolean tieneAlmacenamiento = rs.getBoolean("tieneAlmacenamiento");
+
+	            Lavamanos lavamanos = new Lavamanos(
+	                idProducto, numeroProductos, peso, precio,
+	                material, descripcion, rutaImagen,
+	                tipoGrifo, tieneAlmacenamiento
+	            );
+
+	            listaLavamanos.add(lavamanos);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaLavamanos;
+	}
+
+	public static List<Ducha> obtenerListaDuchas(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               b.Material, b.Descripcion, b.RutaImagen,
+	               d.tipoRociador, d.tieneMampara
+	        FROM Producto p
+	        INNER JOIN Baño b ON p.idProducto = b.idProducto
+	        INNER JOIN Ducha d ON b.idProducto = d.idProducto
+	    """;
+	    List<Ducha> listaDuchas = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            String tipoRociador = rs.getString("tipoRociador");
+	            boolean tieneMampara = rs.getBoolean("tieneMampara");
+
+	            Ducha ducha = new Ducha(
+	                idProducto, numeroProductos, peso, precio,
+	                material, descripcion, rutaImagen,
+	                tipoRociador, tieneMampara
+	            );
+
+	            listaDuchas.add(ducha);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaDuchas;
+	}
+	
+	public static List<Bide> obtenerListaBides(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
+	               b.Material, b.Descripcion, b.RutaImagen,
+	               bi.tieneCalefaccion, bi.esElectrico
+	        FROM Producto p
+	        INNER JOIN Baño b ON p.idProducto = b.idProducto
+	        INNER JOIN Bide bi ON b.idProducto = bi.idProducto
+	    """;
+	    List<Bide> listaBides = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            boolean tieneCalefaccion = rs.getBoolean("tieneCalefaccion");
+	            boolean esElectrico = rs.getBoolean("esElectrico");
+	            
+	            Bide bide = new Bide(
+	                idProducto, numeroProductos, peso, precio,
+	                material, descripcion, rutaImagen,
+	                tieneCalefaccion, esElectrico
+	            );
+
+	            listaBides.add(bide);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaBides;
+	}
+//                                                                             Tipos de Jardineria
+
 	public static void insertarCliente(String dni, String genero, String nombre, String apellido, String email, 
             String direccion, LocalDate fechaNacimiento, String contraseña, 
             String telefono, int id, LocalDate ultimoLogin, Descuento descuento) {
