@@ -56,36 +56,67 @@ public class BD {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Trabajador(Dni String, Genero String, Nombre String, Apellido String, Email String, Direccion String, fNacimiento long, Contraseña String, Telefono String, id int, Salario double, HorasTrabajadas int)";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Armario(idProducto int, NumProductos int, Peso double, Precio double, Material String, Color String, Descripcion String, RutaImagen String, NumeroDePuertas int, Altura double, Anchura double, Profundidad double)";
+			
+			//Tabla para la Clase Producto
+			sql = "CREATE TABLE IF NOT EXISTS Producto(idProducto INT PRIMARY KEY, NumeroProductos int, Peso double, Precio double)";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Mesa(idProducto int, NumProductos int, Peso double, Precio double, Material String, Color String, Descripcion String, RutaImagen String, Altura double, Capacidad int)";
+			
+			
+			//Tablas para las clases que heredan de Producto
+			sql = "CREATE TABLE IF NOT EXISTS Mueble(idProducto INT PRIMARY KEY, Material String, Color String, Descripcion String, RutaImagen String, FOREIGN KEY (idProducto) REFERENCES Producto(idProducto))";
+			stmt.executeUpdate(sql);	
+			sql = "CREATE TABLE IF NOT EXISTS Cocina(idProducto INT PRIMARY KEY, Material String, Descripcion String, RutaImagen String, FOREIGN KEY (idProducto) REFERENCES Producto(idProducto))";
+			stmt.executeUpdate(sql);	
+			sql = "CREATE TABLE IF NOT EXISTS Baño(idProducto INT PRIMARY KEY, Material String, Descripcion String, RutaImagen String, FOREIGN KEY (idProducto) REFERENCES Producto(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Silla(idProducto int, NumProductos int, Peso double, Precio double, Material String, Color String, Descripcion String, RutaImagen String, Altura double, Anchura double, CapacidadDeCarga double)";
+			sql = "CREATE TABLE IF NOT EXISTS Jardineria(idProducto INT PRIMARY KEY, esExterior String, Material String, Descripcion String, RutaImagem String, FOREIGN KEY (idProducto) REFERENCES Producto(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Barbacoa(idProducto int, NumProductos int, Peso double, Precio double, esExterior String, Material String, Descripcion String, RutaImagem String, tipoCombustible String, superficieCoccion double, tieneTapa String)";
+			
+			
+			//tablas para clases que heredan de Mueble
+			
+			sql = "CREATE TABLE IF NOT EXISTS Armario(idProducto INT PRIMARY KEY, NumeroDePuertas int, Altura double, Anchura double, Profundidad double, FOREIGN KEY (idProducto) REFERENCES Mueble(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Planta(idProducto int, NumProductos int, Peso double, Precio double, esExterior String, Material String, Descripcion String, RutaImagem String, Altura double, esFrutal String, TipoDePlanta String, Diametro double)";
+			sql = "CREATE TABLE IF NOT EXISTS Mesa(idProducto INT PRIMARY KEY, Altura double, Capacidad int, FOREIGN KEY (idProducto) REFERENCES Mueble(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Maceta(idProducto int, NumProductos int, Peso double, Precio double, esExterior String, Material String, Descripcion String, RutaImagem String, Diametro double)";
+			sql = "CREATE TABLE IF NOT EXISTS Silla(idProducto INT PRIMARY KEY, Altura double, Anchura double, CapacidadDeCarga double, FOREIGN KEY (idProducto) REFERENCES Mueble(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Herramienta(idProducto int, NumProductos int, Peso double, Precio double, esExterior String, Material String, Descripcion String, RutaImagem String, tipo String)";
+			sql = "CREATE TABLE IF NOT EXISTS Sofa(idProducto INT PRIMARY KEY, CapacidadDeAsientos int, FOREIGN KEY (idProducto) REFERENCES Mueble(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Inodoro(idProducto int, NumProductos int, Peso double, Precio double, MaterialB String, Descripcion String, rutaImagen String, tipoDescarga String, tieneAsientoCalefaccionado String)";
+			
+			//Tablas para las clases que heredan de Jardineria
+			
+			sql = "CREATE TABLE IF NOT EXISTS Barbacoa(idProducto INT PRIMARY KEY, tipoCombustible String, superficieCoccion double, tieneTapa String, FOREIGN KEY (idProducto) REFERENCES Jardineria(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Lavamanos(idProducto int, NumProductos int, Peso double, Precio double, MaterialB String, Descripcion String, rutaImagen String, tipoGrifo String,  tieneAlmacenamiento String)";
+			sql = "CREATE TABLE IF NOT EXISTS Planta(idProducto INT PRIMARY KEY,Altura double, TipoDePlanta String, Diametro double, FOREIGN KEY (idProducto) REFERENCES Jardineria(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Ducha(idProducto int, NumProductos int, Peso double, Precio double, MaterialB String, Descripcion String, rutaImagen String, tipoRociador String, tieneMampara String)";
+			sql = "CREATE TABLE IF NOT EXISTS Maceta(idProducto INT PRIMARY KEY, Diametro double, FOREIGN KEY (idProducto) REFERENCES Jardineria(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Bide(idProducto int, NumProductos int, Peso double, Precio double, MaterialB String, Descripcion String, rutaImagen String, tieneCalefaccion String, esElectrico String)";
+			sql = "CREATE TABLE IF NOT EXISTS Herramienta(idProducto INT PRIMARY KEY, Tipo String, FOREIGN KEY (idProducto) REFERENCES Jardineria(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Encimera(idProducto int, NumProductos int, Peso double, Precio double, MaterialC String, DescripcionC String, rutaImagen String, resistenciaCalor String, Grosor String, Color String )";
+			
+			//Tablas para las clases que heredan de Baño
+			
+			sql = "CREATE TABLE IF NOT EXISTS Inodoro(idProducto INT PRIMARY KEY, tipoDescarga String, tieneAsientoCalefaccionado String, FOREIGN KEY (idProducto) REFERENCES Baño(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Fregadero(idProducto int, NumProductos int, Peso double, Precio double, MaterialC String, DescripcionC String, rutaImagen String, numCubetas int, Profundidad double, Grifo String)";
+			sql = "CREATE TABLE IF NOT EXISTS Lavamanos(idProducto INT PRIMARY KEY, tipoGrifo String,  tieneAlmacenamiento String, FOREIGN KEY (idProducto) REFERENCES Baño(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Horno(idProducto int, NumProductos int, Peso double, Precio double, MaterialC String, DescripcionC String, rutaImagen String, Altura double, Anchura double, Profundida double, Potencia int, NumeroBandejas int)";
+			sql = "CREATE TABLE IF NOT EXISTS Ducha(idProducto INT PRIMARY KEY, tieneMampara String, FOREIGN KEY (idProducto) REFERENCES Baño(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Nevera(idProducto int, NumProductos int, Peso double, Precio double, MaterialC String, DescripcionC String, rutaImagen String, Altura double, Anchura double, Profundida double, Capacidad double, tipoNevera String)";
+			sql = "CREATE TABLE IF NOT EXISTS Bide(idProducto INT PRIMARY KEY, tieneCalefaccion String, esElectrico String, FOREIGN KEY (idProducto) REFERENCES Baño(idProducto))";
 			stmt.executeUpdate(sql);
+			
+			//Tablas para las clases que heredan de Cocina
+			
+			sql = "CREATE TABLE IF NOT EXISTS Encimera(idProducto INT PRIMARY KEY, resistenciaCalor String, Grosor String, Color String, FOREIGN KEY (idProducto) REFERENCES Cocina(idProducto))";
+			stmt.executeUpdate(sql);
+			sql = "CREATE TABLE IF NOT EXISTS Fregadero(idProducto INT PRIMARY KEY, numCubetas int, Profundidad double, Grifo String, FOREIGN KEY (idProducto) REFERENCES Cocina(idProducto))";
+			stmt.executeUpdate(sql);
+			sql = "CREATE TABLE IF NOT EXISTS Horno(idProducto INT PRIMARY KEY, Altura double, Anchura double, Profundida double, Potencia int, NumeroBandejas int, FOREIGN KEY (idProducto) REFERENCES Cocina(idProducto))";
+			stmt.executeUpdate(sql);
+			sql = "CREATE TABLE IF NOT EXISTS Nevera(idProducto INT PRIMARY KEY, Altura double, Anchura double, Profundida double, Capacidad double, tipoNevera String, FOREIGN KEY (idProducto) REFERENCES Cocina(idProducto))";
+			stmt.executeUpdate(sql);
+			
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
