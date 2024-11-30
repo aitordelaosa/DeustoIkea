@@ -123,6 +123,75 @@ public class BD {
 		}
 	}
 	
+	public static void borrarTabla(Connection con) throws SQLException{
+		String sqlCliente = "DROP TABLE IF EXISTS Cliente";
+		String sqlTrabajador= "DROP TABLE IF EXISTS Trabajador";
+		
+		String sqlProducto= "DROP TABLE IF EXISTS Producto";
+		
+		String sqlMueble= "DROP TABLE IF EXISTS Mueble";
+		String sqlCocina= "DROP TABLE IF EXISTS Cocina";
+		String sqlBaño= "DROP TABLE IF EXISTS Baño";
+		String sqlJardineria= "DROP TABLE IF EXISTS Jardineria";
+		
+		String sqlArmario= "DROP TABLE IF EXISTS Armario";
+		String sqlSilla= "DROP TABLE IF EXISTS Silla";
+		String sqlSofa= "DROP TABLE IF EXISTS Sofa";
+		String sqlMesa= "DROP TABLE IF EXISTS Mesa";
+		
+		String sqlBarbacoa= "DROP TABLE IF EXISTS Barbacoa";
+		String sqlPlanta= "DROP TABLE IF EXISTS Planta";
+		String sqlMaceta= "DROP TABLE IF EXISTS Maceta";
+		String sqlHerramienta= "DROP TABLE IF EXISTS Herramienta";
+		
+		String sqlInodoro= "DROP TABLE IF EXISTS Inodoro";
+		String sqlLavamanos= "DROP TABLE IF EXISTS Lavamanos";
+		String sqlDucha= "DROP TABLE IF EXISTS Ducha";
+		String sqlBide= "DROP TABLE IF EXISTS Bide";
+		
+		String sqlEncimera= "DROP TABLE IF EXISTS Encimera";
+		String sqlFregadero= "DROP TABLE IF EXISTS Fregadero";
+		String sqlHorno= "DROP TABLE IF EXISTS Horno";
+		String sqlNevera= "DROP TABLE IF EXISTS Nevera";
+		
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sqlCliente);
+			st.executeUpdate(sqlTrabajador);
+			
+			st.executeUpdate(sqlProducto);
+			
+			st.executeUpdate(sqlMueble);
+			st.executeUpdate(sqlCocina);
+			st.executeUpdate(sqlBaño);
+			st.executeUpdate(sqlJardineria);
+			
+			st.executeUpdate(sqlArmario);
+			st.executeUpdate(sqlSilla);
+			st.executeUpdate(sqlSofa);
+			st.executeUpdate(sqlMesa);
+			
+			st.executeUpdate(sqlBarbacoa);
+			st.executeUpdate(sqlPlanta);
+			st.executeUpdate(sqlMaceta);
+			st.executeUpdate(sqlHerramienta);
+			
+			st.executeUpdate(sqlInodoro);
+			st.executeUpdate(sqlLavamanos);
+			st.executeUpdate(sqlDucha);
+			st.executeUpdate(sqlBide);
+			
+			st.executeUpdate(sqlEncimera);
+			st.executeUpdate(sqlFregadero);
+			st.executeUpdate(sqlHorno);
+			st.executeUpdate(sqlNevera);
+			
+			
+		} catch (SQLException e) {
+			throw e;
+		}
+	}
+	
 	public static void insertarCliente(String dni, String genero, String nombre, String apellido, String email, 
             String direccion, LocalDate fechaNacimiento, String contraseña, 
             String telefono, int id, LocalDate ultimoLogin, Descuento descuento) {
