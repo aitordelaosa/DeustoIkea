@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,12 +17,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
+import domain.BD;
 import domain.Baño;
 import domain.Cliente;
 import domain.Cocina;
@@ -55,6 +59,9 @@ public class VentanaTrabajador extends JFrame {
     private int indiceImagen = 0;
     private int codigo;
     private Datos datos;
+    private JTable tabla;
+    private JScrollPane scrollpane;
+    private Modelo modelo;
 
     public VentanaTrabajador(int codigo, Datos datos) {
     	this.codigo = codigo;
@@ -129,7 +136,9 @@ public class VentanaTrabajador extends JFrame {
             System.exit(0);
         });
 
-        iniciarHiloAnimacion();
+        if (codigo==0) {
+        	iniciarHiloAnimacion();
+        }
 
         setVisible(true);
     }
@@ -155,8 +164,6 @@ public class VentanaTrabajador extends JFrame {
                 mostrarCocinaDisponibles();
                 break;
             case "Mostrar elementos de Baño Disponibles":
-            	Modelo modelo = new Modelo(new ArrayList<>(), Arrays.asList("TI1","Tit2"), Tipo.Baño);
-            	JTable tabla = new JTable(modelo);
                 mostrarBañoDisponibles();
                 break;
             case "Mostrar elementos de Jardineria Disponibles":
@@ -171,28 +178,111 @@ public class VentanaTrabajador extends JFrame {
     }
 
     private void verClientes() {
-//        JOptionPane.showMessageDialog(this, "Mostrando clientes...");
-    	 Object[] options = {"Mostrar"};
-         
-         JOptionPane.showOptionDialog(this, 
-             "Mostrando clientes...",
-             "Información",
-             JOptionPane.DEFAULT_OPTION, 
-             JOptionPane.INFORMATION_MESSAGE, 
-             null,
-             options,
-             options[0]
-         );
-        Timer timer = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cargarClientes();
-            }
-        });
-        timer.setRepeats(false);
-        timer.start();
-    }
-    
+//      JOptionPane.showMessageDialog(this, "Mostrando clientes...");
+  	if(codigo ==0) {
+  		Object[] options = {"Mostrar"};
+          
+          JOptionPane.showOptionDialog(this, 
+              "Mostrando clientes...",
+              "Información",
+              JOptionPane.DEFAULT_OPTION, 
+              JOptionPane.INFORMATION_MESSAGE, 
+              null,
+              options,
+              options[0]
+          );
+         Timer timer = new Timer(500, new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 cargarClientes();
+             }
+         });
+         timer.setRepeats(false);
+         timer.start();
+     } else {
+  	List<Object[]> datos = new ArrayList<>();
+		List<String> titulos = new ArrayList<>();
+
+	        
+   	  List<Cliente> clientes = BD.ObtenerListaCliente(); 
+      titulos = Arrays.asList("DNI", "Género", "Nombre", "Apellido", "Email", 
+                               "Dirección", "Fecha Nacimiento", "Contraseña", 
+                               "Teléfono", "ID", "Ultimo Login", "Descuento");
+
+      for (Cliente c : clientes) {
+          datos.add(new Object[]{
+              c.getDni(), c.getGenero(), c.getNombre(), c.getApellido(),
+              c.getEmail(), c.getDireccion(), c.getfNacimiento(),
+              c.getContrasenia(), c.getTelefono(), c.getContador(), c.getUltimoLogin(),
+              c.getDescuento()
+          });
+      }
+
+      modelo = new Modelo(datos, titulos);
+      tabla = new JTable(modelo);
+      
+      
+      scrollpane = new JScrollPane(tabla);
+      System.out.println("Datos iniciales en el modelo:");
+      for (int i = 0; i < modelo.getRowCount(); i++) {
+          for (int j = 0; j < modelo.getColumnCount(); j++) {
+              System.out.print(modelo.getValueAt(i, j) + "\t");
+          }
+          System.out.println();
+      }
+     
+      tabla.addKeyListener(new KeyAdapter() {
+          @Override
+          public void keyPressed(KeyEvent e) {
+              if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                  try {
+                      System.out.println("Tecla BACK_SPACE presionada.");
+
+                      int selectedRow = tabla.getSelectedRow();
+                      System.out.println("Fila seleccionada: " + selectedRow);
+                      if (selectedRow < 0 || selectedRow >= modelo.getRowCount()) {
+                          JOptionPane.showMessageDialog(
+                              VentanaTrabajador.this,
+                              "No se ha seleccionado una fila válida para eliminar.",
+                              "Aviso",
+                              JOptionPane.INFORMATION_MESSAGE
+                          );
+                          return;
+                      }
+
+                      String dniCliente = (String) modelo.getValueAt(selectedRow, 0);
+                      System.out.println("DNI del cliente seleccionado: " + dniCliente);
+
+                      int response = JOptionPane.showConfirmDialog(
+                          VentanaTrabajador.this,
+                          "¿Seguro que quieres borrar al cliente con DNI: " + dniCliente + "?",
+                          "Confirmación",
+                          JOptionPane.YES_NO_OPTION,
+                          JOptionPane.WARNING_MESSAGE
+                      );
+
+                      if (response == JOptionPane.YES_OPTION) {
+                          modelo.removeRow(selectedRow);
+                          System.out.println("Fila eliminada correctamente: " + selectedRow);
+                          BD.eliminarCliente(dniCliente);
+                      }
+                  } catch (Exception ex) {
+                      System.err.println("Error al manejar el evento de teclado:");
+                      ex.printStackTrace();
+                  }
+              }
+          }
+      });
+      
+      panelDerecho.setLayout(new BorderLayout());
+      panelDerecho.removeAll();
+      panelDerecho.add(scrollpane, BorderLayout.CENTER);
+      panelDerecho.revalidate();
+      panelDerecho.repaint();
+   		        
+   		  }
+  	   
+     }
 //    private void cargarClientes() {
 //        List<Cliente> clientes = new Datos().lCliente;
 //        
@@ -219,27 +309,65 @@ public class VentanaTrabajador extends JFrame {
     }
 
     private void verTrabajadores() {
-//        JOptionPane.showMessageDialog(this, "Mostrando trabajadores...");
-    	Object[] options = {"Mostrar"};
+//      JOptionPane.showMessageDialog(this, "Mostrando trabajadores...");
+  	if(codigo ==0) {
+  		Object[] options = {"Mostrar"};
+  		JOptionPane.showOptionDialog(this, 
+  	            "Mostrando trabajadores...",
+  	            "Información",
+  	            JOptionPane.DEFAULT_OPTION, 
+  	            JOptionPane.INFORMATION_MESSAGE, 
+  	            null,
+  	            options,
+  	            options[0]
+  	        );
+  	       Timer timer = new Timer(500, new ActionListener() {
+  	           @Override
+  	           public void actionPerformed(ActionEvent e) {
+  	               cargarTrabajadores();
+  	           }
+  	       });
+  	       timer.setRepeats(false);
+  	       timer.start();
+  	} else {
+  		List<Object[]> datos = new ArrayList<>();
+  		List<String> titulos = new ArrayList<>();
+
+  		        
+  	  List<Trabajador> trabajadores = BD.ObtenerListaTrabajador(); 
+     titulos = Arrays.asList("DNI", "Género", "Nombre", "Apellido", "Email", 
+                              "Dirección", "Fecha Nacimiento", "Contraseña", 
+                              "Teléfono", "ID", "Salario", "Horas Trabajadas");
+
+     for (Trabajador t : trabajadores) {
+         datos.add(new Object[]{
+             t.getDni(), t.getGenero(), t.getNombre(), t.getApellido(),
+             t.getEmail(), t.getDireccion(), t.getfNacimiento(),
+             t.getContrasenia(), t.getTelefono(), t.getContador(), t.getSalario(),
+             t.getHorasTrabajadas()
+         });
+     }
+
+     Modelo modelo = new Modelo(datos, titulos);
+     JTable tabla = new JTable(modelo);
+     
+     JScrollPane scrollPane = new JScrollPane(tabla);
+     
+     
+ 
+
+     panelDerecho.setLayout(new BorderLayout());
+     panelDerecho.removeAll();
+     panelDerecho.add(scrollPane, BorderLayout.CENTER);
+     panelDerecho.revalidate();
+     panelDerecho.repaint();
+  		        
+  		  }
+  		
+  	}
         
-        JOptionPane.showOptionDialog(this, 
-            "Mostrando trabajadores...",
-            "Información",
-            JOptionPane.DEFAULT_OPTION, 
-            JOptionPane.INFORMATION_MESSAGE, 
-            null,
-            options,
-            options[0]
-        );
-       Timer timer = new Timer(500, new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               cargarTrabajadores();
-           }
-       });
-       timer.setRepeats(false);
-       timer.start();
-    }
+        
+    
 
     private void cargarTrabajadores() {
         List<Trabajador> trabajadores = new Datos().lTrabajador;

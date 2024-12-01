@@ -2,63 +2,66 @@ package gui;
 
 import java.util.List;
 
+
 import javax.swing.table.DefaultTableModel;
 
 import domain.Armario;
 import domain.Baño;
 import domain.Tipo;
 
-public class Modelo extends DefaultTableModel{
-		private List<Object> lista;
-		private List<String> lTitulos;
-		private Tipo tipo;
-		
-		public Modelo(List<Object> l, List<String> lt, Tipo t) {
-			lista = l;
-			lTitulos = lt;
-			tipo = t;
-		}
 
-		@Override
-		public int getRowCount() {
-			if(lista == null) {
-				return 0;
-				
-			}
-			return lista.size();
-		}
 
-		@Override
-		public int getColumnCount() {
-			return lTitulos.size();
-		}
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
-		@Override
-		public String getColumnName(int column) {
-			return lTitulos.get(column);
-		}
+public class Modelo extends DefaultTableModel {
+    private static final long serialVersionUID = 1L;
+    private List<Object[]> data;
+    private List<String> titulos;
 
-		@Override
-		public Object getValueAt(int row, int column) {
-			switch (tipo) {
-				case Tipo.Armario:
-						Armario a = (Armario) lista.get(row);
-						switch(column) {
-							case 0: return a.getDescripcion();
-							case 1: return a.getColor();
-							default: return null;
-						}
-				case Tipo.Baño:
-						Baño b = (Baño)lista.get(row);
-						switch(column) {
-							case 0: return b.getIdProducto();
-							case 1: return b.getDescripcionB();
-							default: return null;
-						}	
-				default: return null;
-				
-			}
-		}
-		
-		
+    public Modelo(List<Object[]> data, List<String> titulos) {
+        this.data = data;
+        this.titulos = titulos;
+    }
+
+    @Override
+    public int getRowCount() {
+        return data == null ? 0 : data.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return titulos == null ? 0 : titulos.size();
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        return titulos.get(column);
+    }
+
+    @Override
+    public Object getValueAt(int row, int column) {
+        return data.get(row)[column];
+    }
+    
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return false; 
+    }
+
+    public void removeRow(int row) {
+        if (row >= 0 && row < data.size()) {
+            data.remove(row);
+            fireTableRowsDeleted(row, row); 
+        } else {
+            throw new IndexOutOfBoundsException("Índice fuera de rango: " + row);
+        }
+    }
+
+    
+    public void actualizarDatos(List<Object[]> nuevosDatos, List<String> nuevosTitulos) {
+        this.data = nuevosDatos;
+        this.titulos = nuevosTitulos;
+        fireTableStructureChanged(); 
+    }
 }

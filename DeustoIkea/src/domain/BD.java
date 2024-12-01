@@ -1036,6 +1036,17 @@ public class BD {
 	    }
 	    return lT;
 	}  
+	public static boolean eliminarCliente(String dni) {
+        String sql = "DELETE FROM Cliente WHERE id = ?";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, dni);
+            int filas = pstmt.executeUpdate();
+            return filas > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar el cliente: " + e.getMessage());
+            return false;
+        }
+    }
 }
 
 
