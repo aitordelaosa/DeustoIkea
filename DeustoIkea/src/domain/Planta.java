@@ -7,7 +7,7 @@ public class Planta extends Jardineria {
     private double diametro;
     private String tipoDePlanta;
 
-    public Planta(int idProducto, int numeroProductos, double peso, double precio, boolean esExterior, String material, String descripcion, String rutaImagen, double altura, boolean esFrutal, String tipoDePlanta, double diametro) {
+    public Planta(int idProducto, int numeroProductos, double peso, double precio, boolean esExterior, String material, String descripcion, String rutaImagen, double altura, String tipoDePlanta, double diametro) {
         super(idProducto, numeroProductos, peso, precio, esExterior, material, descripcion, rutaImagen);
         this.altura = altura;
         this.diametro = diametro;

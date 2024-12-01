@@ -720,6 +720,163 @@ public class BD {
 	    return listaBides;
 	}
 //                                                                             Tipos de Jardineria
+	
+	public static List<Barbacoa> obtenerListaBarbacoas(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
+	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen,
+	               b.tipoCombustible, b.superficieCoccion, b.tieneTapa
+	        FROM Producto p
+	        INNER JOIN Jardineria j ON p.idProducto = j.idProducto
+	        INNER JOIN Barbacoa b ON j.idProducto = b.idProducto
+	    """;
+	    List<Barbacoa> listaBarbacoas = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            boolean esExterior = rs.getBoolean("esExterior");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            String tipoCombustible = rs.getString("tipoCombustible");
+	            double superficieCoccion = rs.getDouble("superficieCoccion");
+	            boolean tieneTapa = rs.getBoolean("tieneTapa");
+
+	            Barbacoa barbacoa = new Barbacoa(
+	                idProducto, numeroProductos, peso, precio, 
+	                esExterior, material, descripcion, rutaImagen,
+	                tipoCombustible, superficieCoccion, tieneTapa
+	            );
+
+	            listaBarbacoas.add(barbacoa);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaBarbacoas;
+	}
+	
+	public static List<Planta> obtenerListaPlantas(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
+	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen,
+	               pl.Altura, pl.Diametro, pl.TipoDePlanta
+	        FROM Producto p
+	        INNER JOIN Jardineria j ON p.idProducto = j.idProducto
+	        INNER JOIN Planta pl ON j.idProducto = pl.idProducto
+	    """;
+	    List<Planta> listaPlantas = new ArrayList<>();
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            boolean esExterior = rs.getBoolean("esExterior");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            double altura = rs.getDouble("Altura");
+	            double diametro = rs.getDouble("Diametro");
+	            String tipoDePlanta = rs.getString("TipoDePlanta");
+
+	            Planta planta = new Planta(
+	                idProducto, numeroProductos, peso, precio, 
+	                esExterior, material, descripcion, rutaImagen, 
+	                altura, tipoDePlanta, diametro
+	            );
+
+	            listaPlantas.add(planta);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaPlantas;
+	}
+	
+	public static List<Maceta> obtenerListaMacetas(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
+	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen, 
+	               m.Diametro
+	        FROM Producto p
+	        INNER JOIN Jardineria j ON p.idProducto = j.idProducto
+	        INNER JOIN Maceta m ON j.idProducto = m.idProducto
+	    """;
+
+	    List<Maceta> listaMacetas = new ArrayList<>();
+
+	    try (Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            boolean esExterior = rs.getBoolean("esExterior");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            double diametro = rs.getDouble("Diametro");
+
+	            Maceta maceta = new Maceta(idProducto, numeroProductos, peso, precio, 
+	                                       esExterior, material, descripcion, 
+	                                       rutaImagen, diametro);
+	            listaMacetas.add(maceta);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaMacetas;
+	}
+	
+	public static List<Herramienta> obtenerListaHerramientas(Connection con) {
+	    String sql = """
+	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
+	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen, 
+	               h.Tipo
+	        FROM Producto p
+	        INNER JOIN Jardineria j ON p.idProducto = j.idProducto
+	        INNER JOIN Herramienta h ON j.idProducto = h.idProducto
+	    """;
+
+	    List<Herramienta> listaHerramientas = new ArrayList<>();
+
+	    try (Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
+	        while (rs.next()) {
+	            int idProducto = rs.getInt("idProducto");
+	            int numeroProductos = rs.getInt("NumeroProductos");
+	            double peso = rs.getDouble("Peso");
+	            double precio = rs.getDouble("Precio");
+	            boolean esExterior = rs.getBoolean("esExterior");
+	            String material = rs.getString("Material");
+	            String descripcion = rs.getString("Descripcion");
+	            String rutaImagen = rs.getString("RutaImagen");
+	            String tipo = rs.getString("Tipo");
+
+	            Herramienta herramienta = new Herramienta(idProducto, numeroProductos, peso, precio, 
+	                                                      esExterior, material, descripcion, 
+	                                                      rutaImagen, tipo);
+	            listaHerramientas.add(herramienta);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaHerramientas;
+	}
+
 
 	public static void insertarCliente(String dni, String genero, String nombre, String apellido, String email, 
             String direccion, LocalDate fechaNacimiento, String contraseña, 

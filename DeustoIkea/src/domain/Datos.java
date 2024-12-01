@@ -183,7 +183,7 @@ public class Datos {
 				"src/Imagenes/Barbacoa.jpg", "Carbón", 19.0, false);
 		
 		planta = new Planta(23, 8, 20, 21.99, true, "madera", "Es una planta de exterior de tamaño medio, ideal para jardines y patios. Con follaje perenne y flores en tonos rosa, blanco o rojo", 
-				"src/Imagenes/adelfas-colores.jpg", 2.5, false, "Adelfa", 27.0);
+				"src/Imagenes/adelfas-colores.jpg", 2.5,"Adelfa", 27.0);
 		
 		herramienta = new Herramienta(24, 4, 1, 7.5, false, "Madera", "herramienta resistente con cabeza de acero para cavar y mover tierra, y mango de madera ergonómico para un agarre cómodo",
 				"src/Imagenes/Pala.jpg", "Pala");
