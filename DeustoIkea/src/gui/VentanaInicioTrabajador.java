@@ -20,6 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import domain.BD;
 import domain.Datos;
 import domain.Trabajador;
 
@@ -175,11 +176,23 @@ public class VentanaInicioTrabajador extends JFrame{
 		} else if (contra.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
 		} else {
-			Trabajador t = datos.buscarTrabajador(user);
-			if (t == null) {
-	            JOptionPane.showMessageDialog(null, "Nombre de trabajador, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE);
-	        } else {
-				if (!contra.equals(t.getContrasenia())) {
+			Trabajador t = null;
+
+			if (codigo == 0) {
+			    t = datos.buscarTrabajador(user); 
+			    if (t == null) {
+			        JOptionPane.showMessageDialog(null, "Nombre de trabajador, correo electrónico o teléfono no válido", "Error", JOptionPane.ERROR_MESSAGE);
+			        return; 
+			    }
+			} else if (codigo == 1) {
+			    t = BD.buscarTrabajador(user, contra); 
+			    if (t == null) {
+			        JOptionPane.showMessageDialog(null, "DNI, correo electrónico, teléfono o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+			        return; 
+			    }
+			
+			
+		if (!contra.equals(t.getContrasenia())) {
 					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
 				} else {
 					JOptionPane.showMessageDialog(null, "¡BIENVENID@! " + t.getNombre().toUpperCase(), "Éxito",

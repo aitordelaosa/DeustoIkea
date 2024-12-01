@@ -1036,6 +1036,40 @@ public class BD {
 	    }
 	    return lT;
 	}  
+	public static Trabajador buscarTrabajador(String user, String password) {
+	    String sql = "SELECT * FROM Trabajador WHERE (Dni = ? OR Email = ? OR Telefono = ?) AND Contraseña = ?";
+	    try (PreparedStatement stmt = con.prepareStatement(sql)) {
+	        stmt.setString(1, user); // Buscar por DNI
+	        stmt.setString(2, user); // Buscar por Email
+	        stmt.setString(3, user); // Buscar por Teléfono
+	        stmt.setString(4, password); // Validar contraseña
+
+	        var rs = stmt.executeQuery();
+
+	        if (rs.next()) {
+	            // Extraer datos del ResultSet
+	            String dni = rs.getString("Dni");
+	            String genero = rs.getString("Genero");
+	            String nombre = rs.getString("Nombre");
+	            String apellido = rs.getString("Apellido");
+	            String email = rs.getString("Email");
+	            String direccion = rs.getString("Direccion");
+	            LocalDate fechaNacimiento = Instant.ofEpochMilli(rs.getLong("fNacimiento"))
+	                                    .atZone(ZoneId.systemDefault()).toLocalDate();
+	            String telefono = rs.getString("Telefono");
+	            int id = rs.getInt("id");
+	            double salario = rs.getDouble("Salario");
+	            int horasTrabajadas = rs.getInt("HorasTrabajadas");
+
+	            // Crear y devolver un nuevo objeto Trabajador
+	            return new Trabajador(dni, genero, nombre, apellido, email, direccion, 
+	                                  fechaNacimiento, password, telefono, id, salario, horasTrabajadas);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace(); // Manejar errores
+	    }
+	    return null; // Si no se encuentra ningún trabajador
+	}
 	public static boolean eliminarCliente(String dni) {
         String sql = "DELETE FROM Cliente WHERE id = ?";
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
