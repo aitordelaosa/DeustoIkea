@@ -123,7 +123,7 @@ public class BD {
 		}
 	}
 	
-	public static void borrarTabla(Connection con) throws SQLException{
+	public static void borrarTabla() throws SQLException{
 		String sqlCliente = "DROP TABLE IF EXISTS Cliente";
 		String sqlTrabajador= "DROP TABLE IF EXISTS Trabajador";
 		
@@ -193,7 +193,7 @@ public class BD {
 	}
 	
 	//Nose si será necesario este método
-	public static List<Producto> obtenerListaProductos(Connection con) {
+	public static List<Producto> obtenerListaProductos() {
 	    String sql = "SELECT * FROM Producto";
 	    List<Producto> listaProductos = new ArrayList<>();
 
@@ -220,7 +220,7 @@ public class BD {
 	
 	//                                                                       Tipos de Muebles
 	
-	public static List<Armario> obtenerListaArmarios(Connection con) {
+	public static List<Armario> obtenerListaArmarios() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
 	               m.Material, m.Color, m.Descripcion, m.RutaImagen,
@@ -264,7 +264,7 @@ public class BD {
 	}
 	
 	
-	public static List<Mesa> obtenerListaMesas(Connection con) {
+	public static List<Mesa> obtenerListaMesas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
 	               m.Material, m.Color, m.Descripcion, m.RutaImagen,
@@ -306,7 +306,7 @@ public class BD {
 	}
 	
 	
-	public static List<Silla> obtenerListaSillas(Connection con) {
+	public static List<Silla> obtenerListaSillas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               m.Material, m.Color, m.Descripcion, m.RutaImagen,
@@ -348,7 +348,7 @@ public class BD {
 	    return listaSillas;
 	}
 
-	public static List<Sofa> obtenerListaSofas(Connection con) {
+	public static List<Sofa> obtenerListaSofas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               m.Material, m.Color, m.Descripcion, m.RutaImagen,
@@ -389,7 +389,7 @@ public class BD {
 	}
 
 	//                                                                         Tipos de Cocina
-	public static List<Encimera> obtenerListaEncimeras(Connection con) {
+	public static List<Encimera> obtenerListaEncimeras() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               c.Material, c.Descripcion, c.RutaImagen,
@@ -430,7 +430,7 @@ public class BD {
 	    return listaEncimeras;
 	}
 	
-	public static List<Fregadero> obtenerListaFregaderos(Connection con) {
+	public static List<Fregadero> obtenerListaFregaderos() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               c.Material, c.Descripcion, c.RutaImagen,
@@ -471,7 +471,7 @@ public class BD {
 	    return listaFregaderos;
 	}
 
-	public static List<Horno> obtenerListaHornos(Connection con) {
+	public static List<Horno> obtenerListaHornos() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               c.Material, c.Descripcion, c.RutaImagen,
@@ -514,7 +514,7 @@ public class BD {
 	    return listaHornos;
 	}
 	
-	public static List<Nevera> obtenerListaNeveras(Connection con) {
+	public static List<Nevera> obtenerListaNeveras() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               c.Material, c.Descripcion, c.RutaImagen,
@@ -559,7 +559,7 @@ public class BD {
 	}
  //                                                                                 Tipos de Baño
 	
-	public static List<Inodoro> obtenerListaInodoros(Connection con) {
+	public static List<Inodoro> obtenerListaInodoros() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               b.Material, b.Descripcion, b.RutaImagen,
@@ -600,7 +600,7 @@ public class BD {
 	    return listaInodoros;
 	}
 	
-	public static List<Lavamanos> obtenerListaLavamanos(Connection con) {
+	public static List<Lavamanos> obtenerListaLavamanos() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               b.Material, b.Descripcion, b.RutaImagen,
@@ -640,7 +640,7 @@ public class BD {
 	    return listaLavamanos;
 	}
 
-	public static List<Ducha> obtenerListaDuchas(Connection con) {
+	public static List<Ducha> obtenerListaDuchas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               b.Material, b.Descripcion, b.RutaImagen,
@@ -680,7 +680,7 @@ public class BD {
 	    return listaDuchas;
 	}
 	
-	public static List<Bide> obtenerListaBides(Connection con) {
+	public static List<Bide> obtenerListaBides() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               b.Material, b.Descripcion, b.RutaImagen,
@@ -721,7 +721,7 @@ public class BD {
 	}
 //                                                                             Tipos de Jardineria
 	
-	public static List<Barbacoa> obtenerListaBarbacoas(Connection con) {
+	public static List<Barbacoa> obtenerListaBarbacoas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
 	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen,
@@ -763,7 +763,7 @@ public class BD {
 	    return listaBarbacoas;
 	}
 	
-	public static List<Planta> obtenerListaPlantas(Connection con) {
+	public static List<Planta> obtenerListaPlantas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
 	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen,
@@ -805,7 +805,7 @@ public class BD {
 	    return listaPlantas;
 	}
 	
-	public static List<Maceta> obtenerListaMacetas(Connection con) {
+	public static List<Maceta> obtenerListaMacetas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
 	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen, 
@@ -841,7 +841,7 @@ public class BD {
 	    return listaMacetas;
 	}
 	
-	public static List<Herramienta> obtenerListaHerramientas(Connection con) {
+	public static List<Herramienta> obtenerListaHerramientas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
 	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen, 
