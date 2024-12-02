@@ -955,7 +955,7 @@ public class BD {
 	public static void actualizarUltimoLogin(String dni) {
 	    String sql = "UPDATE Cliente SET UltimoLogin = ? WHERE Dni = ?";
 	    try (PreparedStatement stmt = con.prepareStatement(sql)) {
-	        stmt.setLong(1, LocalDate.now().toEpochDay());
+	        stmt.setDate(1, Date.valueOf(LocalDate.now()));
 	        stmt.setString(2, dni);
 	        stmt.executeUpdate();
 	    } catch (Exception e) {
@@ -1071,7 +1071,7 @@ public class BD {
 	    return null; // Si no se encuentra ningún trabajador
 	}
 	public static boolean eliminarCliente(String dni) {
-        String sql = "DELETE FROM Cliente WHERE id = ?";
+        String sql = "DELETE FROM Cliente WHERE Dni = ?";
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, dni);
             int filas = pstmt.executeUpdate();
