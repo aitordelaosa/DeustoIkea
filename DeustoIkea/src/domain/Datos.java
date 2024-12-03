@@ -179,7 +179,7 @@ public class Datos {
 		maceta = new Maceta(21, 3, 3.2, 10.75, true, "Cerámica", "Maceta para plantas tamaño mediano", 
 				"src/Imagenes/Maceta.jpg", 17.5);
 		
-		barbacoa = new Barbacoa(22, 5, 150000, 50.99, true, "Hormigón", "resistente y duradera, ideal para exteriores. Incluye parrilla ajustable y espacio de almacenamiento,perfecta para disfrutar asados en el jardín.", 
+		barbacoa = new Barbacoa(22, 5, 150, 50.99, true, "Hormigón", "resistente y duradera, ideal para exteriores. Incluye parrilla ajustable y espacio de almacenamiento,perfecta para disfrutar asados en el jardín.", 
 				"src/Imagenes/Barbacoa.jpg", "Carbón", 19.0, false);
 		
 		planta = new Planta(23, 8, 20, 21.99, true, "madera", "Es una planta de exterior de tamaño medio, ideal para jardines y patios. Con follaje perenne y flores en tonos rosa, blanco o rojo", 
