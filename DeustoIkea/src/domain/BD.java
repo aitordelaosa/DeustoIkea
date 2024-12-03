@@ -102,7 +102,7 @@ public class BD {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Lavamanos(idProducto INT PRIMARY KEY, tipoGrifo String,  tieneAlmacenamiento String, FOREIGN KEY (idProducto) REFERENCES Baño(idProducto))";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Ducha(idProducto INT PRIMARY KEY, tieneMampara String, FOREIGN KEY (idProducto) REFERENCES Baño(idProducto))";
+			sql = "CREATE TABLE IF NOT EXISTS Ducha(idProducto INT PRIMARY KEY, tipoRociador String, tieneMampara String, FOREIGN KEY (idProducto) REFERENCES Baño(idProducto))";
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Bide(idProducto INT PRIMARY KEY, tieneCalefaccion String, esElectrico String, FOREIGN KEY (idProducto) REFERENCES Baño(idProducto))";
 			stmt.executeUpdate(sql);
@@ -490,7 +490,7 @@ public class BD {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               c.Material, c.Descripcion, c.RutaImagen,
-	               h.Altura, h.Anchura, h.Profundidad, h.Potencia, h.NumeroBandejas
+	               h.Altura, h.Anchura, h.Profundida, h.Potencia, h.NumeroBandejas
 	        FROM Producto p
 	        INNER JOIN Cocina c ON p.idProducto = c.idProducto
 	        INNER JOIN Horno h ON c.idProducto = h.idProducto
@@ -510,7 +510,7 @@ public class BD {
 	            String rutaImagen = rs.getString("RutaImagen");
 	            double altura = rs.getDouble("Altura");
 	            double anchura = rs.getDouble("Anchura");
-	            double profundidad = rs.getDouble("Profundidad");
+	            double profundidad = rs.getDouble("Profundida");
 	            int potencia = rs.getInt("Potencia");
 	            int numeroBandejas = rs.getInt("NumeroBandejas");
 
@@ -533,7 +533,7 @@ public class BD {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               c.Material, c.Descripcion, c.RutaImagen,
-	               n.Altura, n.Anchura, n.Profundidad, n.Capacidad, n.tipoNevera
+	               n.Altura, n.Anchura, n.Profundida, n.Capacidad, n.tipoNevera
 	        FROM Producto p
 	        INNER JOIN Cocina c ON p.idProducto = c.idProducto
 	        INNER JOIN Nevera n ON c.idProducto = n.idProducto
@@ -553,7 +553,7 @@ public class BD {
 	            String rutaImagen = rs.getString("RutaImagen");
 	            double altura = rs.getDouble("Altura");
 	            double anchura = rs.getDouble("Anchura");
-	            double profundidad = rs.getDouble("Profundidad");
+	            double profundidad = rs.getDouble("Profundida");
 	            double capacidad = rs.getDouble("Capacidad");
 	            String tipoNevera = rs.getString("tipoNevera");
 
@@ -665,7 +665,7 @@ public class BD {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
 	               b.Material, b.Descripcion, b.RutaImagen,
-	               d.tipoRociador, d.tieneMampara
+	               d.tieneMampara
 	        FROM Producto p
 	        INNER JOIN Baño b ON p.idProducto = b.idProducto
 	        INNER JOIN Ducha d ON b.idProducto = d.idProducto
@@ -752,7 +752,7 @@ public class BD {
 	public static List<Barbacoa> obtenerListaBarbacoas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
-	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen,
+	               j.esExterior, j.Material, j.Descripcion, j.RutaImagem,
 	               b.tipoCombustible, b.superficieCoccion, b.tieneTapa
 	        FROM Producto p
 	        INNER JOIN Jardineria j ON p.idProducto = j.idProducto
@@ -771,7 +771,7 @@ public class BD {
 	            boolean esExterior = rs.getBoolean("esExterior");
 	            String material = rs.getString("Material");
 	            String descripcion = rs.getString("Descripcion");
-	            String rutaImagen = rs.getString("RutaImagen");
+	            String rutaImagen = rs.getString("RutaImagem");
 	            String tipoCombustible = rs.getString("tipoCombustible");
 	            double superficieCoccion = rs.getDouble("superficieCoccion");
 	            boolean tieneTapa = rs.getBoolean("tieneTapa");
@@ -794,7 +794,7 @@ public class BD {
 	public static List<Planta> obtenerListaPlantas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
-	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen,
+	               j.esExterior, j.Material, j.Descripcion, j.RutaImagem,
 	               pl.Altura, pl.Diametro, pl.TipoDePlanta
 	        FROM Producto p
 	        INNER JOIN Jardineria j ON p.idProducto = j.idProducto
@@ -813,7 +813,7 @@ public class BD {
 	            boolean esExterior = rs.getBoolean("esExterior");
 	            String material = rs.getString("Material");
 	            String descripcion = rs.getString("Descripcion");
-	            String rutaImagen = rs.getString("RutaImagen");
+	            String rutaImagen = rs.getString("RutaImagem");
 	            double altura = rs.getDouble("Altura");
 	            double diametro = rs.getDouble("Diametro");
 	            String tipoDePlanta = rs.getString("TipoDePlanta");
@@ -836,7 +836,7 @@ public class BD {
 	public static List<Maceta> obtenerListaMacetas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
-	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen, 
+	               j.esExterior, j.Material, j.Descripcion, j.RutaImagem, 
 	               m.Diametro
 	        FROM Producto p
 	        INNER JOIN Jardineria j ON p.idProducto = j.idProducto
@@ -854,7 +854,7 @@ public class BD {
 	            boolean esExterior = rs.getBoolean("esExterior");
 	            String material = rs.getString("Material");
 	            String descripcion = rs.getString("Descripcion");
-	            String rutaImagen = rs.getString("RutaImagen");
+	            String rutaImagen = rs.getString("RutaImagem");
 	            double diametro = rs.getDouble("Diametro");
 
 	            Maceta maceta = new Maceta(idProducto, numeroProductos, peso, precio, 
@@ -872,7 +872,7 @@ public class BD {
 	public static List<Herramienta> obtenerListaHerramientas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
-	               j.esExterior, j.Material, j.Descripcion, j.RutaImagen, 
+	               j.esExterior, j.Material, j.Descripcion, j.RutaImagem, 
 	               h.Tipo
 	        FROM Producto p
 	        INNER JOIN Jardineria j ON p.idProducto = j.idProducto
@@ -890,7 +890,7 @@ public class BD {
 	            boolean esExterior = rs.getBoolean("esExterior");
 	            String material = rs.getString("Material");
 	            String descripcion = rs.getString("Descripcion");
-	            String rutaImagen = rs.getString("RutaImagen");
+	            String rutaImagen = rs.getString("RutaImagem");
 	            String tipo = rs.getString("Tipo");
 
 	            Herramienta herramienta = new Herramienta(idProducto, numeroProductos, peso, precio, 
@@ -1109,6 +1109,25 @@ public class BD {
             return false;
         }
     }
+	public static List<Producto> obtenerListaProductosV(){
+		List<Producto> listaProductos = new ArrayList<Producto>(obtenerListaArmarios());
+		listaProductos.addAll(obtenerListaMesas());
+		listaProductos.addAll(obtenerListaSillas());
+		listaProductos.addAll(obtenerListaSofas());
+		listaProductos.addAll(obtenerListaBarbacoas());
+		listaProductos.addAll(obtenerListaHerramientas());
+		listaProductos.addAll(obtenerListaMacetas());
+		listaProductos.addAll(obtenerListaPlantas());
+		listaProductos.addAll(obtenerListaBides());
+		listaProductos.addAll(obtenerListaDuchas());
+		listaProductos.addAll(obtenerListaInodoros());
+		listaProductos.addAll(obtenerListaLavamanos());
+		listaProductos.addAll(obtenerListaEncimeras());
+		listaProductos.addAll(obtenerListaFregaderos());
+		listaProductos.addAll(obtenerListaNeveras());
+		listaProductos.addAll(obtenerListaHornos());
+		return listaProductos;
+	}
 }
 
 

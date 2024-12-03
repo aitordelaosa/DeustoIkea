@@ -31,6 +31,7 @@ import domain.Cocina;
 import domain.Datos;
 import domain.Jardineria;
 import domain.Mueble;
+import domain.Producto;
 import domain.Tipo;
 import domain.Trabajador;
 
@@ -99,16 +100,24 @@ public class VentanaTrabajador extends JFrame {
         DefaultMutableTreeNode jardin = new DefaultMutableTreeNode("Mostrar elementos de Jardineria Disponibles");
         DefaultMutableTreeNode baño = new DefaultMutableTreeNode("Mostrar elementos de Baño Disponibles");
         DefaultMutableTreeNode stock = new DefaultMutableTreeNode("Rellenar Stock");
+        DefaultMutableTreeNode productos = new DefaultMutableTreeNode("Ver Productos");
+        
 
         raiz.add(clientes);
         raiz.add(trabajadores);
-        raiz.add(eliminarClientes);
-        raiz.add(buscarTrabajador);
-        raiz.add(muebles);
-        raiz.add(cocina);
-        raiz.add(jardin);
-        raiz.add(baño);
-        raiz.add(stock);
+        if (codigo ==0) {
+        	raiz.add(eliminarClientes);
+            raiz.add(buscarTrabajador);
+            raiz.add(muebles);
+            raiz.add(cocina);
+            raiz.add(jardin);
+            raiz.add(baño);
+            raiz.add(stock);
+        	
+        } else {
+        	raiz.add(productos);
+        }
+        
 
         arbolFunciones = new JTree(raiz);
         arbolFunciones.setRootVisible(true);
@@ -143,7 +152,11 @@ public class VentanaTrabajador extends JFrame {
         setVisible(true);
     }
 
-    private void ejecutarFuncion(String seleccion) {
+   
+    	private void ejecutarFuncion(String seleccion) {
+    	
+    			
+    
         switch (seleccion) {
             case "Ver Clientes":
                 verClientes();
@@ -172,9 +185,14 @@ public class VentanaTrabajador extends JFrame {
             case "Rellenar Stock":
                 rellenarStock();
                 break;
+            case "Ver Productos":
+            	verProductos();
+            	break;
             default:
                 JOptionPane.showMessageDialog(this, "Función no implementada");
         }
+        
+    
     }
 
     private void verClientes() {
@@ -575,5 +593,34 @@ public class VentanaTrabajador extends JFrame {
         });
         hiloAnimacion.start();
     }
+   private void verProductos() {
+	   List<Object[]> datos = new ArrayList<>();
+ 		List<String> titulos = new ArrayList<>();
+ 		List<Producto> Productos = BD.obtenerListaProductosV(); 
+ 	     titulos = Arrays.asList("Nombre", "ID", "Numero", "Peso", "Precio");
+ 	     
+ 	    for (Producto p : Productos ) {
+ 	         datos.add(new Object[]{
+ 	        		 p.getClass().getSimpleName(), p.getIdProducto(), p.getNumeroProductos(), p.getPeso(), p.getPrecio()
+ 	            
+ 	         });
+ 	     }
+ 	   Modelo modelo = new Modelo(datos, titulos);
+ 	     JTable tabla = new JTable(modelo);
+ 	     
+ 	     JScrollPane scrollPane = new JScrollPane(tabla);
+ 	     
+ 	     
+ 	 
+
+ 	     panelDerecho.setLayout(new BorderLayout());
+ 	     panelDerecho.removeAll();
+ 	     panelDerecho.add(scrollPane, BorderLayout.CENTER);
+ 	     panelDerecho.revalidate();
+ 	     panelDerecho.repaint();
+ 	  		        
+ 	  		  }
+	   
+   
 }
 
