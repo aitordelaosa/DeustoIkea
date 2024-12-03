@@ -115,22 +115,32 @@ public class VentanaPostPrincipal extends JFrame {
 
 		if (code == 1) {
 			textoMueble = new JLabel("Sección de Muebles");
+			
 			if(codigo==1) {
 				lista = BD.obtenerListaMuebles();
 			}
 			
 		} else if (code == 2) {
 			textoMueble = new JLabel("Sección de Cocina");
+			
 			if (codigo ==1) {
 				lista = BD.obtenerListaCocinas();
 			}
 			
 		} else if (code == 3) {
 			textoMueble = new JLabel("Seccion de Baño");
-			//lista = BD.obtenerListaBaños();
+			
+			if (codigo ==1) {
+				lista = BD.obtenerListaBaños();
+			}
+			
 		} else if (code == 4) {
 			textoMueble = new JLabel("Seccion de Jardineria");
-			//lista = BD.obtenerListaMJardinerias();
+			
+			if (codigo ==1) {
+				lista = BD.obtenerListaMJardinerias();
+			}
+			
 		}
 		
 		textoMueble.setFont(new Font("Arial", Font.BOLD, 18));
@@ -257,6 +267,17 @@ public class VentanaPostPrincipal extends JFrame {
 			
 			
 		case 2:
+			if (codigo==1) {
+				/*for(Producto p: lista) {
+					Cocina c= (Cocina)p;
+					ImageIcon im = new ImageIcon(c.getImagenC().getImage().getScaledInstance(200,
+							200, java.awt.Image.SCALE_SMOOTH));
+					labelImagen1 = new JLabel(im);
+					panelCentro.add(labelImagen1);
+				}*/
+			}else if(codigo==0) {
+				
+			
 			// Mostrar elementos de cocina
 			ImageIcon nevera = new ImageIcon(new ImageIcon("src/Imagenes/Nevera.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
@@ -336,10 +357,20 @@ public class VentanaPostPrincipal extends JFrame {
 					mostrarInformacionSeleccionada();
 				}
 			});
-
+			}
 			break;
 
 		case 3:
+			if (codigo==1) {
+				/*for(Producto p: lista) {
+					Baño b= (Baño)p;
+					ImageIcon im = new ImageIcon(b.getImagenB().getImage().getScaledInstance(200,
+							200, java.awt.Image.SCALE_SMOOTH));
+					labelImagen1 = new JLabel(im);
+					panelCentro.add(labelImagen1);
+				}*/
+			}else if(codigo==0) {
+				
 			// Mostrar elementos de baño
 			ImageIcon bide = new ImageIcon(new ImageIcon("src/Imagenes/bide.jpeg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
@@ -419,10 +450,19 @@ public class VentanaPostPrincipal extends JFrame {
 					mostrarInformacionSeleccionada();
 				}
 			});
-
+			}
 			break;
 			
 		case 4:
+			if (codigo==1) {
+				/*for(Producto p: lista) {
+					Jardineria j= (Jardineria)p;
+					ImageIcon im = new ImageIcon(j.getImagen().getImage().getScaledInstance(200,
+							200, java.awt.Image.SCALE_SMOOTH));
+					labelImagen1 = new JLabel(im);
+					panelCentro.add(labelImagen1);
+				}*/
+			}else if(codigo==0) {
 			// Mostrar elementos de Jardineria
 			ImageIcon barbacoa = new ImageIcon(new ImageIcon("src/Imagenes/barbacoa-40-cm.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
@@ -502,7 +542,7 @@ public class VentanaPostPrincipal extends JFrame {
 					mostrarInformacionSeleccionada();
 				}
 			});
-
+			}
 			break;
 			
 		default:
