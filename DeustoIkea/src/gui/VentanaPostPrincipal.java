@@ -255,6 +255,7 @@ public class VentanaPostPrincipal extends JFrame {
 			}
 			
 			
+			
 		case 2:
 			// Mostrar elementos de cocina
 			ImageIcon nevera = new ImageIcon(new ImageIcon("src/Imagenes/Nevera.jpg").getImage().getScaledInstance(200,
@@ -526,7 +527,18 @@ public class VentanaPostPrincipal extends JFrame {
 						"<html><b>Silla</b><br>Precio: $75<br>Peso: 5kg<br>Descripción: Silla ergonómica, perfecta para oficina o comedor.</html>");
 				labelDescripcion4.setText(
 						"<html><b>Mesa</b><br>Precio: $150<br>Peso: 20kg<br>Descripción: Mesa de comedor para seis personas, hecha de madera de alta calidad.</html>");
-			
+				panelCentro.add(labelImagen1);
+				panelCentro.add(labelDescripcion1);
+				panelCentro.add(labelImagen2);
+				panelCentro.add(labelDescripcion2);
+				panelCentro.add(labelImagen3);
+				panelCentro.add(labelDescripcion3);
+				panelCentro.add(labelImagen4);
+				panelCentro.add(labelDescripcion4);
+				
+				
+				
+				
 			}else if(codigo ==1) {
 				
 			}
@@ -541,7 +553,17 @@ public class VentanaPostPrincipal extends JFrame {
 					"<html><b>Fregadero</b><br>Precio: $280.87<br>Peso: 12.5kg<br>Descripción: Fregadero con dos cubetas.</html>");
 			labelDescripcion4.setText(
 					"<html><b>Encimera</b><br>Precio: $500.99<br>Peso: 100.7kg<br>Descripción: Encimera de granito.</html>");
+			panelCentro.add(labelImagen1);
+			panelCentro.add(labelDescripcion1);
+			panelCentro.add(labelImagen2);
+			panelCentro.add(labelDescripcion2);
+			panelCentro.add(labelImagen3);
+			panelCentro.add(labelDescripcion3);
+			panelCentro.add(labelImagen4);
+			panelCentro.add(labelDescripcion4);
 			break;
+			
+		
 			
 		case 3:
 			labelDescripcion1.setText(
@@ -552,6 +574,14 @@ public class VentanaPostPrincipal extends JFrame {
 					"<html><b>Inodoro</b><br>Precio: $180.50<br>Peso: 25kg<br>Descripción: Inodoro de porcelana con sistema de bajo consumo de agua.</html>");
 			labelDescripcion4.setText(
 					"<html><b>Lavamanos</b><br>Precio: $150.45<br>Peso: 15kg<br>Descripción: Lavamanos de cerámica con grifo monomando.</html>");
+			panelCentro.add(labelImagen1);
+			panelCentro.add(labelDescripcion1);
+			panelCentro.add(labelImagen2);
+			panelCentro.add(labelDescripcion2);
+			panelCentro.add(labelImagen3);
+			panelCentro.add(labelDescripcion3);
+			panelCentro.add(labelImagen4);
+			panelCentro.add(labelDescripcion4);
 			break;
 			
 		case 4: 
@@ -563,6 +593,14 @@ public class VentanaPostPrincipal extends JFrame {
 					"<html><b>Maceta</b><br>Precio: $10.75<br>Peso: 3.2kg<br>Descripción: Maceta para plantas tamaño mediano.</html>");
 			labelDescripcion4.setText(
 					"<html><b>Pala</b><br>Precio: $7.5<br>Peso: 1kg<br>Descripción: herramienta resistente con cabeza de acero para cavar y mover tierra, y mango de madera ergonómico para un agarre cómodo.</html>");
+			panelCentro.add(labelImagen1);
+			panelCentro.add(labelDescripcion1);
+			panelCentro.add(labelImagen2);
+			panelCentro.add(labelDescripcion2);
+			panelCentro.add(labelImagen3);
+			panelCentro.add(labelDescripcion3);
+			panelCentro.add(labelImagen4);
+			panelCentro.add(labelDescripcion4);
 			
 		default:
 			break;
@@ -572,7 +610,7 @@ public class VentanaPostPrincipal extends JFrame {
 		//panelCentroD.setLayout(new GridLayout(2, 2));
 
 		
-		panelCentro.add(labelImagen1);
+		/*panelCentro.add(labelImagen1);
 		panelCentro.add(labelDescripcion1);
 		panelCentro.add(labelImagen2);
 		panelCentro.add(labelDescripcion2);
@@ -580,7 +618,7 @@ public class VentanaPostPrincipal extends JFrame {
 		panelCentro.add(labelImagen3);
 		panelCentro.add(labelDescripcion3);
 		panelCentro.add(labelImagen4);
-		panelCentro.add(labelDescripcion4);
+		panelCentro.add(labelDescripcion4);*/
 		 	
 		getContentPane().add(panelAbajo, BorderLayout.SOUTH);
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
