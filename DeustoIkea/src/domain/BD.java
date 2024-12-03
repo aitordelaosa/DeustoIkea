@@ -664,7 +664,7 @@ public class BD {
 	public static List<Ducha> obtenerListaDuchas() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
-	               b.Material, b.Descripcion, b.RutaImagen,
+	               b.Material, b.Descripcion, b.RutaImagen, d.tipoRociador,
 	               d.tieneMampara
 	        FROM Producto p
 	        INNER JOIN Baño b ON p.idProducto = b.idProducto
