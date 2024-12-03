@@ -150,28 +150,30 @@ public class VentanaPostPrincipal extends JFrame {
 		panelCentro.setLayout(new GridLayout(0, 2));
 		switch (code) {
 		case 1:
-			
-			for(Producto p: lista) {
-				Mueble m = (Mueble)p;
-				ImageIcon im = new ImageIcon(m.getImagen().getImage().getScaledInstance(200,
-						200, java.awt.Image.SCALE_SMOOTH));
-				labelImagen1 = new JLabel(im);
-				panelCentro.add(labelImagen1);
-				labelImagen1.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						if (ultimaImagenSeleccionada != null) {
-				            ultimaImagenSeleccionada.setBorder(null);
-				        }
-						
-						objetoSeleccionado = m.getClass().toString();
-						labelImagen1.setBorder(borderResaltado);
-//				        JOptionPane.showMessageDialog(null, "Has seleccionado el Sofá");
-						ultimaImagenSeleccionada = labelImagen1;
-				        mostrarInformacionSeleccionada();
-					}
-				});
+			if (codigo == 1) {
+				for(Producto p: lista) {
+					Mueble m = (Mueble)p;
+					ImageIcon im = new ImageIcon(m.getImagen().getImage().getScaledInstance(200,
+							200, java.awt.Image.SCALE_SMOOTH));
+					labelImagen1 = new JLabel(im);
+					panelCentro.add(labelImagen1);
+					labelImagen1.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							if (ultimaImagenSeleccionada != null) {
+					            ultimaImagenSeleccionada.setBorder(null);
+					        }
+							
+							objetoSeleccionado = m.getClass().toString();
+							labelImagen1.setBorder(borderResaltado);
+//					        JOptionPane.showMessageDialog(null, "Has seleccionado el Sofá");
+							ultimaImagenSeleccionada = labelImagen1;
+					        mostrarInformacionSeleccionada();
+						}
+					});
+				}
 			}
+			
 			// Mostrar elementos de muebles
 			/*ImageIcon sofa = new ImageIcon(new ImageIcon("src/Imagenes/sofa.jpeg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));

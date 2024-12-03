@@ -397,6 +397,13 @@ public class BD {
 	}
 
 	//                                                                         Tipos de Cocina
+	public static List<Producto> obtenerListaCocinas(){
+		List<Producto> lista = new ArrayList<Producto>(obtenerListaHornos());
+		lista.addAll(obtenerListaEncimeras());
+		lista.addAll(obtenerListaFregaderos());
+		lista.addAll(obtenerListaNeveras());
+		return lista;
+	}
 	public static List<Encimera> obtenerListaEncimeras() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
@@ -566,7 +573,13 @@ public class BD {
 	    
 	}
  //                                                                                 Tipos de Baño
-	
+	public static List<Producto> obtenerListaBaños(){
+		List<Producto> lista = new ArrayList<Producto>(obtenerListaInodoros());
+		lista.addAll(obtenerListaLavamanos());
+		lista.addAll(obtenerListaDuchas());
+		lista.addAll(obtenerListaBides());
+		return lista;
+	}
 	public static List<Inodoro> obtenerListaInodoros() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio,
@@ -728,6 +741,13 @@ public class BD {
 	    return listaBides;
 	}
 //                                                                             Tipos de Jardineria
+	public static List<Producto> obtenerListaMJardinerias(){
+		List<Producto> lista = new ArrayList<Producto>(obtenerListaBarbacoas());
+		lista.addAll(obtenerListaPlantas());
+		lista.addAll(obtenerListaMacetas());
+		lista.addAll(obtenerListaHerramientas());
+		return lista;
+	}
 	
 	public static List<Barbacoa> obtenerListaBarbacoas() {
 	    String sql = """
