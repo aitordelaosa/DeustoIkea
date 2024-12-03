@@ -28,6 +28,7 @@ import domain.Datos;
 import domain.Jardineria;
 import domain.Mueble;
 import domain.Producto;
+import domain.BD;
 import domain.Baño;
 import domain.Cliente;
 import domain.Cocina;
@@ -49,7 +50,7 @@ public class VentanaPostPrincipal extends JFrame {
 	private Cliente cliente;
 	private int codigo;
 	private VentanaCarrito ventanaCarrito;
-	
+	private List<Producto> lista;
 	public VentanaPostPrincipal(int code, Cliente cliente, int codigo) {
 		this.codigo = codigo;
 		this.datos = new Datos();
@@ -113,10 +114,13 @@ public class VentanaPostPrincipal extends JFrame {
 
 		if (code == 1) {
 			textoMueble = new JLabel("Sección de Muebles");
+			lista = BD.obtenerListaMuebles();
 		} else if (code == 2) {
 			textoMueble = new JLabel("Sección de Cocina");
+			//lista = BD.obtenerlistaCocinas();
 		} else if (code == 3) {
 			textoMueble = new JLabel("Seccion de Baño");
+			//lista = BD.obtenerListaBaños();
 		} else if (code == 4) {
 			textoMueble = new JLabel("Seccion de Jardineria");
 		}
@@ -140,14 +144,36 @@ public class VentanaPostPrincipal extends JFrame {
 //		panelAbajo.add(botonSeleccionar);
 		panelAbajo.add(botonComprar);
 
-		panelCentro.setLayout(new GridLayout(1, 2));
-		panelCentro.add(panelCentroI);
-		panelCentro.add(panelCentroD);
-
+		//panelCentro.setLayout(new GridLayout(1, 2));
+		//panelCentro.add(panelCentroI);
+		//panelCentro.add(panelCentroD);
+		panelCentro.setLayout(new GridLayout(0, 2));
 		switch (code) {
 		case 1:
+			
+			for(Producto p: lista) {
+				Mueble m = (Mueble)p;
+				ImageIcon im = new ImageIcon(m.getImagen().getImage().getScaledInstance(200,
+						200, java.awt.Image.SCALE_SMOOTH));
+				labelImagen1 = new JLabel(im);
+				panelCentro.add(labelImagen1);
+				labelImagen1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (ultimaImagenSeleccionada != null) {
+				            ultimaImagenSeleccionada.setBorder(null);
+				        }
+						
+						objetoSeleccionado = m.getClass().toString();
+						labelImagen1.setBorder(borderResaltado);
+//				        JOptionPane.showMessageDialog(null, "Has seleccionado el Sofá");
+						ultimaImagenSeleccionada = labelImagen1;
+				        mostrarInformacionSeleccionada();
+					}
+				});
+			}
 			// Mostrar elementos de muebles
-			ImageIcon sofa = new ImageIcon(new ImageIcon("src/Imagenes/sofa.jpeg").getImage().getScaledInstance(200,
+			/*ImageIcon sofa = new ImageIcon(new ImageIcon("src/Imagenes/sofa.jpeg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
 			ImageIcon armario = new ImageIcon(new ImageIcon("src/Imagenes/Armario.jpeg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
@@ -224,7 +250,7 @@ public class VentanaPostPrincipal extends JFrame {
 					ultimaImagenSeleccionada = labelImagen4;
 			        mostrarInformacionSeleccionada();
 				}
-			});
+			});*/
 
 			break;
 
@@ -536,9 +562,10 @@ public class VentanaPostPrincipal extends JFrame {
 			break;
 		}
 		
-		panelCentroI.setLayout(new GridLayout(2, 2));
-		panelCentroD.setLayout(new GridLayout(2, 2));
+		//panelCentroI.setLayout(new GridLayout(2, 2));
+		//panelCentroD.setLayout(new GridLayout(2, 2));
 
+		/*
 		panelCentroI.add(labelImagen1);
 		panelCentroI.add(labelDescripcion1);
 		panelCentroI.add(labelImagen2);
@@ -548,7 +575,7 @@ public class VentanaPostPrincipal extends JFrame {
 		panelCentroD.add(labelDescripcion3);
 		panelCentroD.add(labelImagen4);
 		panelCentroD.add(labelDescripcion4);
-
+		 	*/
 		getContentPane().add(panelAbajo, BorderLayout.SOUTH);
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
 		getContentPane().add(panelArriba, BorderLayout.NORTH);

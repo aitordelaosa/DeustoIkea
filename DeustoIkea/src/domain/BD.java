@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BD {
@@ -220,6 +221,13 @@ public class BD {
 	
 	//                                                                       Tipos de Muebles
 	
+	public static List<Producto> obtenerListaMuebles(){
+		List<Producto> lista = new ArrayList<Producto>(obtenerListaArmarios());
+		lista.addAll(obtenerListaMesas());
+		lista.addAll(obtenerListaSillas());
+		lista.addAll(obtenerListaSofas());
+		return lista;
+	}
 	public static List<Armario> obtenerListaArmarios() {
 	    String sql = """
 	        SELECT p.idProducto, p.NumeroProductos, p.Peso, p.Precio, 
