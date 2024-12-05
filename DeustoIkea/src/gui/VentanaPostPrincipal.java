@@ -10,6 +10,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,12 @@ import javax.swing.border.Border;
 
 import domain.Datos;
 import domain.Jardineria;
+import domain.Mesa;
 import domain.Mueble;
 import domain.Producto;
+import domain.Silla;
+import domain.Sofa;
+import domain.Armario;
 import domain.BD;
 import domain.Baño;
 import domain.Cliente;
@@ -169,6 +174,8 @@ public class VentanaPostPrincipal extends JFrame {
 		switch (code) {
 		case 1:
 			if (codigo == 1) {
+				//JLabel labels[] = new JLabel[lista.size()];
+				//int i=0;
 				for(Producto p: lista) {
 					
 					Mueble m = (Mueble)p;
@@ -176,6 +183,70 @@ public class VentanaPostPrincipal extends JFrame {
 							200, java.awt.Image.SCALE_SMOOTH));
 					labelImagen1 = new JLabel(im);
 					panelCentro.add(labelImagen1);
+					labelImagen1.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							if(m instanceof Sofa) {
+								String nombre = "Sofá";
+								Sofa s = (Sofa)m;
+								double peso = s.getPeso();
+								String descripcion = s.getDescripcion();
+								JOptionPane.showMessageDialog(null, nombre+" "+peso+" "+descripcion);
+							}else if(m instanceof Silla) {
+								
+							}else if(m instanceof Mesa) {
+								
+							}else if(m instanceof Armario) {
+								
+							}
+						}
+					});
+					JLabel labelDescripcion1 = new JLabel();
+					if(m instanceof Sofa) {
+						String nombre = "Sofá";
+						Sofa s = (Sofa)m;
+						double peso = s.getPeso();
+						String descripcion = s.getDescripcion();
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(peso));
+						JLabel l3 = new JLabel(descripcion);
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+						panelCentro.add(pa);
+					}else if(m instanceof Silla) {
+						JLabel l1 = new JLabel("S");
+						JLabel l2 = new JLabel("P");
+						JLabel l3 = new JLabel("D");
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+						panelCentro.add(pa);
+					}else if(m instanceof Mesa) {
+						JLabel l1 = new JLabel("S");
+						JLabel l2 = new JLabel("P");
+						JLabel l3 = new JLabel("D");
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+						panelCentro.add(pa);
+					}else if(m instanceof Armario) {
+						JLabel l1 = new JLabel("S");
+						JLabel l2 = new JLabel("P");
+						JLabel l3 = new JLabel("D");
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+						panelCentro.add(pa);
+					}
+					/*labelDescripcion1.setText(
+							"<html><b>Sofá</b><br>Precio: $350<br>Peso: 40kg<br>Descripción: Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.</html>");
+					panelCentro.add(labelDescripcion1);*/
+			
 					
 				}
 			}else if(codigo ==0) {
