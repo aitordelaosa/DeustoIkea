@@ -190,6 +190,7 @@ public class VentanaInicioTrabajador extends JFrame{
 			        JOptionPane.showMessageDialog(null, "DNI, correo electrónico, teléfono o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
 			        return; 
 			    }
+			}
 			
 			
 		if (!contra.equals(t.getContrasenia())) {
@@ -203,7 +204,7 @@ public class VentanaInicioTrabajador extends JFrame{
 					dispose();
 					new VentanaTrabajador(codigo, datos);
 				}
-			}
+			
 		}
 	}
 	

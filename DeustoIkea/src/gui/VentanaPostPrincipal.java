@@ -10,6 +10,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,12 @@ import javax.swing.border.Border;
 
 import domain.Datos;
 import domain.Jardineria;
+import domain.Mesa;
 import domain.Mueble;
 import domain.Producto;
+import domain.Silla;
+import domain.Sofa;
+import domain.Armario;
 import domain.BD;
 import domain.Baño;
 import domain.Cliente;
@@ -51,6 +56,7 @@ public class VentanaPostPrincipal extends JFrame {
 	private int codigo;
 	private VentanaCarrito ventanaCarrito;
 	private List<Producto> lista;
+	
 	public VentanaPostPrincipal(int code, Cliente cliente, int codigo) {
 		this.codigo = codigo;
 		this.datos = new Datos();
@@ -114,15 +120,32 @@ public class VentanaPostPrincipal extends JFrame {
 
 		if (code == 1) {
 			textoMueble = new JLabel("Sección de Muebles");
-			lista = BD.obtenerListaMuebles();
+			
+			if(codigo==1) {
+				lista = BD.obtenerListaMuebles();
+			}
+			
 		} else if (code == 2) {
 			textoMueble = new JLabel("Sección de Cocina");
-			//lista = BD.obtenerlistaCocinas();
+			
+			if (codigo ==1) {
+				lista = BD.obtenerListaCocinas();
+			}
+			
 		} else if (code == 3) {
 			textoMueble = new JLabel("Seccion de Baño");
-			//lista = BD.obtenerListaBaños();
+			
+			if (codigo ==1) {
+				lista = BD.obtenerListaBaños();
+			}
+			
 		} else if (code == 4) {
 			textoMueble = new JLabel("Seccion de Jardineria");
+			
+			if (codigo ==1) {
+				lista = BD.obtenerListaMJardinerias();
+			}
+			
 		}
 		
 		textoMueble.setFont(new Font("Arial", Font.BOLD, 18));
@@ -151,7 +174,10 @@ public class VentanaPostPrincipal extends JFrame {
 		switch (code) {
 		case 1:
 			if (codigo == 1) {
+				//JLabel labels[] = new JLabel[lista.size()];
+				//int i=0;
 				for(Producto p: lista) {
+					
 					Mueble m = (Mueble)p;
 					ImageIcon im = new ImageIcon(m.getImagen().getImage().getScaledInstance(200,
 							200, java.awt.Image.SCALE_SMOOTH));
@@ -160,103 +186,169 @@ public class VentanaPostPrincipal extends JFrame {
 					labelImagen1.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent e) {
-							if (ultimaImagenSeleccionada != null) {
-					            ultimaImagenSeleccionada.setBorder(null);
-					        }
-							
-							objetoSeleccionado = m.getClass().toString();
-							labelImagen1.setBorder(borderResaltado);
-//					        JOptionPane.showMessageDialog(null, "Has seleccionado el Sofá");
-							ultimaImagenSeleccionada = labelImagen1;
-					        mostrarInformacionSeleccionada();
+							if(m instanceof Sofa) {
+								String nombre = "Sofá";
+								Sofa s = (Sofa)m;
+								double peso = s.getPeso();
+								String descripcion = s.getDescripcion();
+								JOptionPane.showMessageDialog(null, nombre+" "+peso+" "+descripcion);
+							}else if(m instanceof Silla) {
+								
+							}else if(m instanceof Mesa) {
+								
+							}else if(m instanceof Armario) {
+								
+							}
 						}
 					});
+					JLabel labelDescripcion1 = new JLabel();
+					if(m instanceof Sofa) {
+						String nombre = "Sofá";
+						Sofa s = (Sofa)m;
+						double peso = s.getPeso();
+						String descripcion = s.getDescripcion();
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(peso));
+						JLabel l3 = new JLabel(descripcion);
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+						panelCentro.add(pa);
+					}else if(m instanceof Silla) {
+						JLabel l1 = new JLabel("S");
+						JLabel l2 = new JLabel("P");
+						JLabel l3 = new JLabel("D");
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+						panelCentro.add(pa);
+					}else if(m instanceof Mesa) {
+						JLabel l1 = new JLabel("S");
+						JLabel l2 = new JLabel("P");
+						JLabel l3 = new JLabel("D");
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+						panelCentro.add(pa);
+					}else if(m instanceof Armario) {
+						JLabel l1 = new JLabel("S");
+						JLabel l2 = new JLabel("P");
+						JLabel l3 = new JLabel("D");
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+						panelCentro.add(pa);
+					}
+					/*labelDescripcion1.setText(
+							"<html><b>Sofá</b><br>Precio: $350<br>Peso: 40kg<br>Descripción: Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.</html>");
+					panelCentro.add(labelDescripcion1);*/
+			
+					
 				}
+			}else if(codigo ==0) {
+				// Mostrar elementos de muebles
+				
+				ImageIcon sofa = new ImageIcon(new ImageIcon("src/Imagenes/sofa.jpeg").getImage().getScaledInstance(200,
+						200, java.awt.Image.SCALE_SMOOTH));
+				ImageIcon armario = new ImageIcon(new ImageIcon("src/Imagenes/Armario.jpeg").getImage()
+						.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+				ImageIcon silla = new ImageIcon(new ImageIcon("src/Imagenes/silla.jpeg").getImage().getScaledInstance(200,
+						200, java.awt.Image.SCALE_SMOOTH));
+				ImageIcon mesa = new ImageIcon(new ImageIcon("src/Imagenes/mesa.jpeg").getImage().getScaledInstance(200,
+						200, java.awt.Image.SCALE_SMOOTH));
+
+				labelImagen1 = new JLabel(sofa);
+				labelImagen2 = new JLabel(armario);
+				labelImagen3 = new JLabel(silla);
+				labelImagen4 = new JLabel(mesa);
+				
+				labelImagen1.setToolTipText("Sofá - Perfecto para la sala de estar.");
+		        labelImagen2.setToolTipText("Armario - Gran capacidad de almacenamiento.");
+		        labelImagen3.setToolTipText("Silla - Ergonómica y cómoda.");
+		        labelImagen4.setToolTipText("Mesa - Ideal para el comedor.");
+
+				labelImagen1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (ultimaImagenSeleccionada != null) {
+				            ultimaImagenSeleccionada.setBorder(null);
+				        }
+						
+						objetoSeleccionado = "Sofá";
+						labelImagen1.setBorder(borderResaltado);
+//				        JOptionPane.showMessageDialog(null, "Has seleccionado el Sofá");
+						ultimaImagenSeleccionada = labelImagen1;
+				        mostrarInformacionSeleccionada();
+					}
+				});
+
+				labelImagen2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (ultimaImagenSeleccionada != null) {
+				            ultimaImagenSeleccionada.setBorder(null);
+				        }
+						
+						objetoSeleccionado = "Armario";
+						labelImagen2.setBorder(borderResaltado);
+//				        JOptionPane.showMessageDialog(null, "Has seleccionado el Armario");
+						ultimaImagenSeleccionada = labelImagen2;
+				        mostrarInformacionSeleccionada();
+					}
+				});
+
+				labelImagen3.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (ultimaImagenSeleccionada != null) {
+				            ultimaImagenSeleccionada.setBorder(null);
+				        }
+						
+						objetoSeleccionado = "Silla";
+						labelImagen3.setBorder(borderResaltado);
+//				        JOptionPane.showMessageDialog(null, "Has seleccionado la Silla");
+						ultimaImagenSeleccionada = labelImagen3;
+						mostrarInformacionSeleccionada();
+					}
+				});
+
+				labelImagen4.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (ultimaImagenSeleccionada != null) {
+				            ultimaImagenSeleccionada.setBorder(null);
+				        }
+						
+						objetoSeleccionado = "Mesa";
+						labelImagen4.setBorder(borderResaltado);
+//				        JOptionPane.showMessageDialog(null, "Has seleccionado la Mesa");
+						ultimaImagenSeleccionada = labelImagen4;
+				        mostrarInformacionSeleccionada();
+					}
+				});
+
+				break;
+
 			}
 			
-			// Mostrar elementos de muebles
-			/*ImageIcon sofa = new ImageIcon(new ImageIcon("src/Imagenes/sofa.jpeg").getImage().getScaledInstance(200,
-					200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon armario = new ImageIcon(new ImageIcon("src/Imagenes/Armario.jpeg").getImage()
-					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon silla = new ImageIcon(new ImageIcon("src/Imagenes/silla.jpeg").getImage().getScaledInstance(200,
-					200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon mesa = new ImageIcon(new ImageIcon("src/Imagenes/mesa.jpeg").getImage().getScaledInstance(200,
-					200, java.awt.Image.SCALE_SMOOTH));
-
-			labelImagen1 = new JLabel(sofa);
-			labelImagen2 = new JLabel(armario);
-			labelImagen3 = new JLabel(silla);
-			labelImagen4 = new JLabel(mesa);
 			
-			labelImagen1.setToolTipText("Sofá - Perfecto para la sala de estar.");
-	        labelImagen2.setToolTipText("Armario - Gran capacidad de almacenamiento.");
-	        labelImagen3.setToolTipText("Silla - Ergonómica y cómoda.");
-	        labelImagen4.setToolTipText("Mesa - Ideal para el comedor.");
-
-			labelImagen1.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					if (ultimaImagenSeleccionada != null) {
-			            ultimaImagenSeleccionada.setBorder(null);
-			        }
-					
-					objetoSeleccionado = "Sofá";
-					labelImagen1.setBorder(borderResaltado);
-//			        JOptionPane.showMessageDialog(null, "Has seleccionado el Sofá");
-					ultimaImagenSeleccionada = labelImagen1;
-			        mostrarInformacionSeleccionada();
-				}
-			});
-
-			labelImagen2.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					if (ultimaImagenSeleccionada != null) {
-			            ultimaImagenSeleccionada.setBorder(null);
-			        }
-					
-					objetoSeleccionado = "Armario";
-					labelImagen2.setBorder(borderResaltado);
-//			        JOptionPane.showMessageDialog(null, "Has seleccionado el Armario");
-					ultimaImagenSeleccionada = labelImagen2;
-			        mostrarInformacionSeleccionada();
-				}
-			});
-
-			labelImagen3.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					if (ultimaImagenSeleccionada != null) {
-			            ultimaImagenSeleccionada.setBorder(null);
-			        }
-					
-					objetoSeleccionado = "Silla";
-					labelImagen3.setBorder(borderResaltado);
-//			        JOptionPane.showMessageDialog(null, "Has seleccionado la Silla");
-					ultimaImagenSeleccionada = labelImagen3;
-					mostrarInformacionSeleccionada();
-				}
-			});
-
-			labelImagen4.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					if (ultimaImagenSeleccionada != null) {
-			            ultimaImagenSeleccionada.setBorder(null);
-			        }
-					
-					objetoSeleccionado = "Mesa";
-					labelImagen4.setBorder(borderResaltado);
-//			        JOptionPane.showMessageDialog(null, "Has seleccionado la Mesa");
-					ultimaImagenSeleccionada = labelImagen4;
-			        mostrarInformacionSeleccionada();
-				}
-			});*/
-
-			break;
-
+			
 		case 2:
+			if (codigo==1) {
+				/*for(Producto p: lista) {
+					Cocina c= (Cocina)p;
+					ImageIcon im = new ImageIcon(c.getImagenC().getImage().getScaledInstance(200,
+							200, java.awt.Image.SCALE_SMOOTH));
+					labelImagen1 = new JLabel(im);
+					panelCentro.add(labelImagen1);
+				}*/
+			}else if(codigo==0) {
+				
+			
 			// Mostrar elementos de cocina
 			ImageIcon nevera = new ImageIcon(new ImageIcon("src/Imagenes/Nevera.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
@@ -336,10 +428,20 @@ public class VentanaPostPrincipal extends JFrame {
 					mostrarInformacionSeleccionada();
 				}
 			});
-
+			}
 			break;
 
 		case 3:
+			if (codigo==1) {
+				/*for(Producto p: lista) {
+					Baño b= (Baño)p;
+					ImageIcon im = new ImageIcon(b.getImagenB().getImage().getScaledInstance(200,
+							200, java.awt.Image.SCALE_SMOOTH));
+					labelImagen1 = new JLabel(im);
+					panelCentro.add(labelImagen1);
+				}*/
+			}else if(codigo==0) {
+				
 			// Mostrar elementos de baño
 			ImageIcon bide = new ImageIcon(new ImageIcon("src/Imagenes/bide.jpeg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
@@ -419,10 +521,19 @@ public class VentanaPostPrincipal extends JFrame {
 					mostrarInformacionSeleccionada();
 				}
 			});
-
+			}
 			break;
 			
 		case 4:
+			if (codigo==1) {
+				/*for(Producto p: lista) {
+					Jardineria j= (Jardineria)p;
+					ImageIcon im = new ImageIcon(j.getImagen().getImage().getScaledInstance(200,
+							200, java.awt.Image.SCALE_SMOOTH));
+					labelImagen1 = new JLabel(im);
+					panelCentro.add(labelImagen1);
+				}*/
+			}else if(codigo==0) {
 			// Mostrar elementos de Jardineria
 			ImageIcon barbacoa = new ImageIcon(new ImageIcon("src/Imagenes/barbacoa-40-cm.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
@@ -502,7 +613,7 @@ public class VentanaPostPrincipal extends JFrame {
 					mostrarInformacionSeleccionada();
 				}
 			});
-
+			}
 			break;
 			
 		default:
@@ -518,15 +629,31 @@ public class VentanaPostPrincipal extends JFrame {
 		switch (code) {
 		
 		case 1:
-			labelDescripcion1.setText(
-					"<html><b>Sofá</b><br>Precio: $350<br>Peso: 40kg<br>Descripción: Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.</html>");
-			labelDescripcion2.setText(
-					"<html><b>Armario</b><br>Precio: $200<br>Peso: 50kg<br>Descripción: Armario espacioso de dos puertas, con estantes internos para optimizar el almacenamiento.</html>");
-			labelDescripcion3.setText(
-					"<html><b>Silla</b><br>Precio: $75<br>Peso: 5kg<br>Descripción: Silla ergonómica, perfecta para oficina o comedor.</html>");
-			labelDescripcion4.setText(
-					"<html><b>Mesa</b><br>Precio: $150<br>Peso: 20kg<br>Descripción: Mesa de comedor para seis personas, hecha de madera de alta calidad.</html>");
-			break;
+			if (codigo==0) {
+				labelDescripcion1.setText(
+						"<html><b>Sofá</b><br>Precio: $350<br>Peso: 40kg<br>Descripción: Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.</html>");
+				labelDescripcion2.setText(
+						"<html><b>Armario</b><br>Precio: $200<br>Peso: 50kg<br>Descripción: Armario espacioso de dos puertas, con estantes internos para optimizar el almacenamiento.</html>");
+				labelDescripcion3.setText(
+						"<html><b>Silla</b><br>Precio: $75<br>Peso: 5kg<br>Descripción: Silla ergonómica, perfecta para oficina o comedor.</html>");
+				labelDescripcion4.setText(
+						"<html><b>Mesa</b><br>Precio: $150<br>Peso: 20kg<br>Descripción: Mesa de comedor para seis personas, hecha de madera de alta calidad.</html>");
+				panelCentro.add(labelImagen1);
+				panelCentro.add(labelDescripcion1);
+				panelCentro.add(labelImagen2);
+				panelCentro.add(labelDescripcion2);
+				panelCentro.add(labelImagen3);
+				panelCentro.add(labelDescripcion3);
+				panelCentro.add(labelImagen4);
+				panelCentro.add(labelDescripcion4);
+				
+				
+				
+				
+			}else if(codigo ==1) {
+				
+			}
+				break;
 			
 		case 2:
 			labelDescripcion1.setText(
@@ -537,7 +664,17 @@ public class VentanaPostPrincipal extends JFrame {
 					"<html><b>Fregadero</b><br>Precio: $280.87<br>Peso: 12.5kg<br>Descripción: Fregadero con dos cubetas.</html>");
 			labelDescripcion4.setText(
 					"<html><b>Encimera</b><br>Precio: $500.99<br>Peso: 100.7kg<br>Descripción: Encimera de granito.</html>");
+			panelCentro.add(labelImagen1);
+			panelCentro.add(labelDescripcion1);
+			panelCentro.add(labelImagen2);
+			panelCentro.add(labelDescripcion2);
+			panelCentro.add(labelImagen3);
+			panelCentro.add(labelDescripcion3);
+			panelCentro.add(labelImagen4);
+			panelCentro.add(labelDescripcion4);
 			break;
+			
+		
 			
 		case 3:
 			labelDescripcion1.setText(
@@ -548,6 +685,14 @@ public class VentanaPostPrincipal extends JFrame {
 					"<html><b>Inodoro</b><br>Precio: $180.50<br>Peso: 25kg<br>Descripción: Inodoro de porcelana con sistema de bajo consumo de agua.</html>");
 			labelDescripcion4.setText(
 					"<html><b>Lavamanos</b><br>Precio: $150.45<br>Peso: 15kg<br>Descripción: Lavamanos de cerámica con grifo monomando.</html>");
+			panelCentro.add(labelImagen1);
+			panelCentro.add(labelDescripcion1);
+			panelCentro.add(labelImagen2);
+			panelCentro.add(labelDescripcion2);
+			panelCentro.add(labelImagen3);
+			panelCentro.add(labelDescripcion3);
+			panelCentro.add(labelImagen4);
+			panelCentro.add(labelDescripcion4);
 			break;
 			
 		case 4: 
@@ -559,6 +704,14 @@ public class VentanaPostPrincipal extends JFrame {
 					"<html><b>Maceta</b><br>Precio: $10.75<br>Peso: 3.2kg<br>Descripción: Maceta para plantas tamaño mediano.</html>");
 			labelDescripcion4.setText(
 					"<html><b>Pala</b><br>Precio: $7.5<br>Peso: 1kg<br>Descripción: herramienta resistente con cabeza de acero para cavar y mover tierra, y mango de madera ergonómico para un agarre cómodo.</html>");
+			panelCentro.add(labelImagen1);
+			panelCentro.add(labelDescripcion1);
+			panelCentro.add(labelImagen2);
+			panelCentro.add(labelDescripcion2);
+			panelCentro.add(labelImagen3);
+			panelCentro.add(labelDescripcion3);
+			panelCentro.add(labelImagen4);
+			panelCentro.add(labelDescripcion4);
 			
 		default:
 			break;
@@ -567,17 +720,17 @@ public class VentanaPostPrincipal extends JFrame {
 		//panelCentroI.setLayout(new GridLayout(2, 2));
 		//panelCentroD.setLayout(new GridLayout(2, 2));
 
-		/*
-		panelCentroI.add(labelImagen1);
-		panelCentroI.add(labelDescripcion1);
-		panelCentroI.add(labelImagen2);
-		panelCentroI.add(labelDescripcion2);
+		
+		/*panelCentro.add(labelImagen1);
+		panelCentro.add(labelDescripcion1);
+		panelCentro.add(labelImagen2);
+		panelCentro.add(labelDescripcion2);
 
-		panelCentroD.add(labelImagen3);
-		panelCentroD.add(labelDescripcion3);
-		panelCentroD.add(labelImagen4);
-		panelCentroD.add(labelDescripcion4);
-		 	*/
+		panelCentro.add(labelImagen3);
+		panelCentro.add(labelDescripcion3);
+		panelCentro.add(labelImagen4);
+		panelCentro.add(labelDescripcion4);*/
+		 	
 		getContentPane().add(panelAbajo, BorderLayout.SOUTH);
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
 		getContentPane().add(panelArriba, BorderLayout.NORTH);
@@ -615,7 +768,7 @@ public class VentanaPostPrincipal extends JFrame {
 		            int cantidad = Integer.parseInt(c);
 
 		            if ((cantidad > 0) && (cantidad < 4)) {
-		                System.out.println("Cantidad añadida al carrito: " + cantidad);
+		            	JOptionPane.showMessageDialog(null, "Cantidad añadida al carrito: " + cantidad, "Información", JOptionPane.INFORMATION_MESSAGE);
 		                // actualizar el carrito
 		                VentanaPrincipal.productoSeleccionado.setNumeroProductos(cantidad);
 		                VentanaPrincipal.lp.add(VentanaPrincipal.productoSeleccionado);
