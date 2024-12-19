@@ -26,15 +26,27 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import domain.Datos;
+import domain.Ducha;
+import domain.Encimera;
+import domain.Fregadero;
+import domain.Herramienta;
+import domain.Horno;
+import domain.Inodoro;
 import domain.Jardineria;
+import domain.Lavamanos;
+import domain.Maceta;
 import domain.Mesa;
 import domain.Mueble;
+import domain.Nevera;
+import domain.Planta;
 import domain.Producto;
 import domain.Silla;
 import domain.Sofa;
 import domain.Armario;
 import domain.BD;
+import domain.Barbacoa;
 import domain.Baño;
+import domain.Bide;
 import domain.Cliente;
 import domain.Cocina;
 
@@ -177,7 +189,7 @@ public class VentanaPostPrincipal extends JFrame {
 				//JLabel labels[] = new JLabel[lista.size()];
 				//int i=0;
 				for(Producto p: lista) {
-					
+					if (p instanceof Mueble) {
 					Mueble m = (Mueble)p;
 					ImageIcon im = new ImageIcon(m.getImagen().getImage().getScaledInstance(200,
 							200, java.awt.Image.SCALE_SMOOTH));
@@ -189,65 +201,141 @@ public class VentanaPostPrincipal extends JFrame {
 							if(m instanceof Sofa) {
 								String nombre = "Sofá";
 								Sofa s = (Sofa)m;
+								
+								double precio = s.getPrecio();
+								String color = s.getColor();
 								double peso = s.getPeso();
 								String descripcion = s.getDescripcion();
-								JOptionPane.showMessageDialog(null, nombre+" "+peso+" "+descripcion);
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+color+"\n"+peso+" kg"+"\n"+descripcion);	
+								
 							}else if(m instanceof Silla) {
+								String nombre = "Silla";
+								Silla si = (Silla)m;
 								
+								double precio = si.getPrecio();
+								String color = si.getColor();
+								double peso = si.getPeso();
+								String descripcion = si.getDescripcion();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+color+"\n"+peso+" kg"+"\n"+descripcion);
+																
 							}else if(m instanceof Mesa) {
+								String nombre = "Mesa";
+								Mesa me = (Mesa)m;
 								
+								double precio = me.getPrecio();
+								String color = me.getColor();
+								double peso = me.getPeso();
+								String descripcion = me.getDescripcion();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+color+"\n"+peso+" kg"+"\n"+descripcion);
+																
 							}else if(m instanceof Armario) {
+								String nombre = "Armario";
+								Armario a = (Armario)m;
 								
-							}
+								double precio = a.getPrecio();
+								String color = a.getColor();
+								double peso = a.getPeso();
+								String descripcion = a.getDescripcion();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+color+"\n"+peso+" kg"+"\n"+descripcion);	
+								
+								}
 						}
+						
+					
 					});
-					JLabel labelDescripcion1 = new JLabel();
+					
 					if(m instanceof Sofa) {
 						String nombre = "Sofá";
 						Sofa s = (Sofa)m;
-						double peso = s.getPeso();
+						double precio = s.getPrecio();
 						String descripcion = s.getDescripcion();
+						
 						JLabel l1 = new JLabel(nombre);
-						JLabel l2 = new JLabel(String.valueOf(peso));
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
 						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
 						JPanel pa = new JPanel(new GridLayout(3, 1));
 						pa.add(l1);
 						pa.add(l2);
 						pa.add(l3);
-						panelCentro.add(pa);
-					}else if(m instanceof Silla) {
-						JLabel l1 = new JLabel("S");
-						JLabel l2 = new JLabel("P");
-						JLabel l3 = new JLabel("D");
-						JPanel pa = new JPanel(new GridLayout(3, 1));
-						pa.add(l1);
-						pa.add(l2);
-						pa.add(l3);
-						panelCentro.add(pa);
-					}else if(m instanceof Mesa) {
-						JLabel l1 = new JLabel("S");
-						JLabel l2 = new JLabel("P");
-						JLabel l3 = new JLabel("D");
-						JPanel pa = new JPanel(new GridLayout(3, 1));
-						pa.add(l1);
-						pa.add(l2);
-						pa.add(l3);
-						panelCentro.add(pa);
-					}else if(m instanceof Armario) {
-						JLabel l1 = new JLabel("S");
-						JLabel l2 = new JLabel("P");
-						JLabel l3 = new JLabel("D");
-						JPanel pa = new JPanel(new GridLayout(3, 1));
-						pa.add(l1);
-						pa.add(l2);
-						pa.add(l3);
-						panelCentro.add(pa);
-					}
-					/*labelDescripcion1.setText(
-							"<html><b>Sofá</b><br>Precio: $350<br>Peso: 40kg<br>Descripción: Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.</html>");
-					panelCentro.add(labelDescripcion1);*/
-			
 					
+						panelCentro.add(pa);
+						
+					}else if(m instanceof Silla) {
+						String nombre = "Silla";
+						Silla si = (Silla)m;
+						double precio = si.getPrecio();
+						String descripcion = si.getDescripcion();
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}else if(m instanceof Mesa) {
+						String nombre = "Mesa";
+						Mesa me = (Mesa)m;
+						double precio = me.getPrecio();
+						String descripcion = me.getDescripcion();
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}else if(m instanceof Armario) {
+						String nombre = "Armario";
+						Armario a = (Armario)m;
+						double precio = a.getPrecio();
+						String descripcion = a.getDescripcion();
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}
+					
+					
+				}
 				}
 			}else if(codigo ==0) {
 				// Mostrar elementos de muebles
@@ -338,15 +426,159 @@ public class VentanaPostPrincipal extends JFrame {
 			
 			
 		case 2:
-			if (codigo==1) {
-				/*for(Producto p: lista) {
-					Cocina c= (Cocina)p;
-					ImageIcon im = new ImageIcon(c.getImagenC().getImage().getScaledInstance(200,
-							200, java.awt.Image.SCALE_SMOOTH));
-					labelImagen1 = new JLabel(im);
-					panelCentro.add(labelImagen1);
-				}*/
-			}else if(codigo==0) {
+			if (codigo == 1) {
+			    for (Producto p : lista) {
+			        if (p instanceof Cocina) { 
+			            Cocina c = (Cocina) p;
+			            ImageIcon im = new ImageIcon(c.getImagenC().getImage().getScaledInstance(200,
+			                    200, java.awt.Image.SCALE_SMOOTH));
+			            labelImagen2 = new JLabel(im);
+			            panelCentro.add(labelImagen2);
+			            labelImagen2.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseClicked(MouseEvent e) {
+								
+								if(c instanceof Horno) {
+									String nombre = "Horno";
+									Horno h = (Horno)c;
+									
+									double precio = h.getPrecio();
+									String material = h.getMaterialC();
+									double peso = h.getPeso();
+									String descripcion = h.getDescripcionC();
+									
+									JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);	
+																		
+								}else if(c instanceof Nevera) {
+									String nombre = "Nevera";
+									Nevera n = (Nevera)c;
+									
+									double precio = n.getPrecio();
+									String material = n.getMaterialC();
+									double peso = n.getPeso();
+									String descripcion = n.getDescripcionC();
+									
+									JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+									
+								}else if(c instanceof Encimera) {
+									String nombre = "Encimera";
+									Encimera en = (Encimera)c;
+									
+									double precio = en.getPrecio();
+									String material = en.getMaterialC();
+									double peso = en.getPeso();
+									String descripcion = en.getDescripcionC();
+									
+									JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+									
+									
+								}else if(c instanceof Fregadero) {
+									String nombre = "Fregadero";
+									Fregadero f = (Fregadero)c;
+									
+									double precio = f.getPrecio();
+									String material = f.getMaterialC();
+									double peso = f.getPeso();
+									String descripcion = f.getDescripcionC();
+									
+									JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+									
+									
+									}
+							}
+						
+						});
+						
+						if(c instanceof Horno) {
+							String nombre = "Horno";
+							Horno h = (Horno)c;
+							double precio = h.getPrecio();
+							String descripcion = h.getDescripcionC();
+							
+							JLabel l1 = new JLabel(nombre);
+							JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+							JLabel l3 = new JLabel(descripcion);
+							
+							l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+							l2.setFont(new Font("Arial", Font.BOLD, 14));
+							l3.setFont(new Font("Arial", Font.ITALIC, 14));
+							
+							JPanel pa = new JPanel(new GridLayout(3, 1));
+							pa.add(l1);
+							pa.add(l2);
+							pa.add(l3);
+						
+							panelCentro.add(pa);
+							
+						}else if(c instanceof Nevera) {
+							String nombre = "Nevera";
+							Nevera n = (Nevera)c;
+							double precio = n.getPrecio();
+							String descripcion = n.getDescripcionC();
+							
+							JLabel l1 = new JLabel(nombre);
+							JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+							JLabel l3 = new JLabel(descripcion);
+							
+							l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+							l2.setFont(new Font("Arial", Font.BOLD, 14));
+							l3.setFont(new Font("Arial", Font.ITALIC, 14));
+							
+							JPanel pa = new JPanel(new GridLayout(3, 1));
+							pa.add(l1);
+							pa.add(l2);
+							pa.add(l3);
+						
+							panelCentro.add(pa);
+							
+						}else if(c instanceof Encimera) {
+							String nombre = "Encimera";
+							Encimera en = (Encimera)c;
+							double precio = en.getPrecio();
+							String descripcion = en.getDescripcionC();
+							
+							JLabel l1 = new JLabel(nombre);
+							JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+							JLabel l3 = new JLabel(descripcion);
+							
+							l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+							l2.setFont(new Font("Arial", Font.BOLD, 14));
+							l3.setFont(new Font("Arial", Font.ITALIC, 14));
+							
+							JPanel pa = new JPanel(new GridLayout(3, 1));
+							pa.add(l1);
+							pa.add(l2);
+							pa.add(l3);
+						
+							panelCentro.add(pa);
+							
+						}else if(c instanceof Fregadero) {
+							String nombre = "Fregadero";
+							Fregadero f = (Fregadero)c;
+							double precio = f.getPrecio();
+							String descripcion = f.getDescripcionC();
+							
+							JLabel l1 = new JLabel(nombre);
+							JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+							JLabel l3 = new JLabel(descripcion);
+							
+							l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+							l2.setFont(new Font("Arial", Font.BOLD, 14));
+							l3.setFont(new Font("Arial", Font.ITALIC, 14));
+							
+							JPanel pa = new JPanel(new GridLayout(3, 1));
+							pa.add(l1);
+							pa.add(l2);
+							pa.add(l3);
+						
+							panelCentro.add(pa);
+							
+						}
+			            
+			        }
+			    }
+			}
+			else if(codigo==0) {
 				
 			
 			// Mostrar elementos de cocina
@@ -433,13 +665,156 @@ public class VentanaPostPrincipal extends JFrame {
 
 		case 3:
 			if (codigo==1) {
-				/*for(Producto p: lista) {
+				for(Producto p: lista) {
+					if (p instanceof Baño) {
 					Baño b= (Baño)p;
 					ImageIcon im = new ImageIcon(b.getImagenB().getImage().getScaledInstance(200,
 							200, java.awt.Image.SCALE_SMOOTH));
-					labelImagen1 = new JLabel(im);
-					panelCentro.add(labelImagen1);
-				}*/
+					labelImagen3 = new JLabel(im);
+					panelCentro.add(labelImagen3);
+					labelImagen3.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							
+							if(b instanceof Bide) {
+								String nombre = "Bide";
+								Bide bi = (Bide)b;
+								
+								double precio = bi.getPrecio();
+								String material = bi.getMaterialB();
+								double peso = bi.getPeso();
+								String descripcion = bi.getDescripcionB();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);	
+																	
+							}else if(b instanceof Ducha) {
+								String nombre = "Ducha";
+								Ducha d = (Ducha)b;
+								
+								double precio = d.getPrecio();
+								String material = d.getMaterialB();
+								double peso = d.getPeso();
+								String descripcion = d.getDescripcionB();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+								
+							}else if(b instanceof Inodoro) {
+								String nombre = "Inodoro";
+								Inodoro i = (Inodoro)b;
+								
+								double precio = i.getPrecio();
+								String material = i.getMaterialB();
+								double peso = i.getPeso();
+								String descripcion = i.getDescripcionB();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+								
+								
+							}else if(b instanceof Lavamanos) {
+								String nombre = "Lavamanos";
+								Lavamanos la = (Lavamanos)b;
+								
+								double precio = la.getPrecio();
+								String material = la.getMaterialB();
+								double peso = la.getPeso();
+								String descripcion = la.getDescripcionB();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+								
+								
+								}
+						}
+					
+					});
+					
+					if(b instanceof Bide) {
+						String nombre = "Bide";
+						Bide bi = (Bide)b;
+						double precio = bi.getPrecio();
+						String descripcion = bi.getDescripcionB();
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}else if(b instanceof Ducha) {
+						String nombre = "Ducha";
+						Ducha d = (Ducha)b;
+						double precio = d.getPrecio();
+						String descripcion = d.getDescripcionB();
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}else if(b instanceof Inodoro) {
+						String nombre = "Inodoro";
+						Inodoro i = (Inodoro)b;
+						double precio = i.getPrecio();
+						String descripcion = i.getDescripcionB();
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}else if(b instanceof Lavamanos) {
+						String nombre = "Lavamanos";
+						Lavamanos la = (Lavamanos)b;
+						double precio = la.getPrecio();
+						String descripcion = la.getDescripcionB();
+						
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}
+				}
+				}
 			}else if(codigo==0) {
 				
 			// Mostrar elementos de baño
@@ -526,13 +901,155 @@ public class VentanaPostPrincipal extends JFrame {
 			
 		case 4:
 			if (codigo==1) {
-				/*for(Producto p: lista) {
+				for(Producto p: lista) {
+					if (p instanceof Jardineria) {
 					Jardineria j= (Jardineria)p;
 					ImageIcon im = new ImageIcon(j.getImagen().getImage().getScaledInstance(200,
 							200, java.awt.Image.SCALE_SMOOTH));
-					labelImagen1 = new JLabel(im);
-					panelCentro.add(labelImagen1);
-				}*/
+					labelImagen4 = new JLabel(im);
+					panelCentro.add(labelImagen4);
+					labelImagen4.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							
+							if(j instanceof Barbacoa) {
+								String nombre = "Barbacoa";
+								Barbacoa bar = (Barbacoa)j;
+								
+								double precio = bar.getPrecio();
+								String material = bar.getMaterial();
+								double peso = bar.getPeso();
+								String descripcion = bar.getDescripcion();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);	
+																	
+							}else if(j instanceof Planta) {
+								String nombre = "Planta";
+								Planta pl = (Planta)j;
+								
+								double precio = pl.getPrecio();
+								String material = pl.getMaterial();
+								double peso = pl.getPeso();
+								String descripcion = pl.getDescripcion();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+								
+							}else if(j instanceof Maceta) {
+								String nombre = "Maceta";
+								Maceta ma = (Maceta)j;
+								
+								double precio = ma.getPrecio();
+								String material = ma.getMaterial();
+								double peso = ma.getPeso();
+								String descripcion = ma.getDescripcion();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+								
+								
+							}else if(j instanceof Herramienta) {
+								String nombre = "Herramienta";
+								Herramienta he = (Herramienta)j;
+								
+								double precio = he.getPrecio();
+								String material = he.getMaterial();
+								double peso = he.getPeso();
+								String descripcion = he.getDescripcion();
+								
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+								
+								}
+						}
+					
+					});
+					
+					if(j instanceof Barbacoa) {
+						String nombre = "Barbacoa";
+						Barbacoa bar = (Barbacoa)j;
+						double precio = bar.getPrecio();
+						String descripcion = bar.getDescripcion();
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}else if(j instanceof Planta) {
+						String nombre = "Planta";
+						Planta pl = (Planta)j;
+						double precio = pl.getPrecio();
+						String descripcion = pl.getDescripcion();
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}else if(j instanceof Maceta) {
+						String nombre = "Barbacoa";
+						Maceta mac = (Maceta)j;
+						double precio = mac.getPrecio();
+						String descripcion = mac.getDescripcion();
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}else if(j instanceof Herramienta) {
+						String nombre = "Herramienta";
+						Herramienta he = (Herramienta)j;
+						double precio = he.getPrecio();
+						String descripcion = he.getDescripcion();
+						
+						
+						JLabel l1 = new JLabel(nombre);
+						JLabel l2 = new JLabel(String.valueOf(precio)+" €");
+						JLabel l3 = new JLabel(descripcion);
+						
+						l1.setFont(new Font("Arial", Font.PLAIN, 14)); 
+						l2.setFont(new Font("Arial", Font.BOLD, 14));
+						l3.setFont(new Font("Arial", Font.ITALIC, 14));
+						
+						JPanel pa = new JPanel(new GridLayout(3, 1));
+						pa.add(l1);
+						pa.add(l2);
+						pa.add(l3);
+					
+						panelCentro.add(pa);
+						
+					}
+				}
+				}
 			}else if(codigo==0) {
 			// Mostrar elementos de Jardineria
 			ImageIcon barbacoa = new ImageIcon(new ImageIcon("src/Imagenes/barbacoa-40-cm.jpg").getImage().getScaledInstance(200,
@@ -646,16 +1163,13 @@ public class VentanaPostPrincipal extends JFrame {
 				panelCentro.add(labelDescripcion3);
 				panelCentro.add(labelImagen4);
 				panelCentro.add(labelDescripcion4);
-				
-				
-				
-				
-			}else if(codigo ==1) {
-				
 			}
 				break;
 			
 		case 2:
+			if (codigo == 0) {
+				
+			
 			labelDescripcion1.setText(
 					"<html><b>Nevera</b><br>Precio: $699.90<br>Peso: 81.5kg<br>Descripción: Nevera con dos puertas.</html>");
 			labelDescripcion2.setText(
@@ -672,11 +1186,14 @@ public class VentanaPostPrincipal extends JFrame {
 			panelCentro.add(labelDescripcion3);
 			panelCentro.add(labelImagen4);
 			panelCentro.add(labelDescripcion4);
+			}
 			break;
 			
 		
 			
 		case 3:
+			if (codigo ==0) {
+				
 			labelDescripcion1.setText(
 					"<html><b>Bidé</b><br>Precio: $200.60<br>Peso: 20kg<br>Descripción: Bidé compacto de fácil instalación.</html>");
 			labelDescripcion2.setText(
@@ -693,9 +1210,12 @@ public class VentanaPostPrincipal extends JFrame {
 			panelCentro.add(labelDescripcion3);
 			panelCentro.add(labelImagen4);
 			panelCentro.add(labelDescripcion4);
+			}
 			break;
 			
 		case 4: 
+			if (codigo ==0) {
+				
 			labelDescripcion1.setText(
 					"<html><b>Barbacoa</b><br>Precio: $50.99<br>Peso: 150kg<br>Descripción: resistente y duradera, ideal para exteriores. Incluye parrilla ajustable y espacio de almacenamiento,perfecta para disfrutar asados en el jardín.</html>");
 			labelDescripcion2.setText(
@@ -712,6 +1232,7 @@ public class VentanaPostPrincipal extends JFrame {
 			panelCentro.add(labelDescripcion3);
 			panelCentro.add(labelImagen4);
 			panelCentro.add(labelDescripcion4);
+			}
 			
 		default:
 			break;
