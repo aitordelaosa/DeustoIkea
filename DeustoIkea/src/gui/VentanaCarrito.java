@@ -49,10 +49,10 @@ public class VentanaCarrito extends JFrame{
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		ImageIcon iconoD = new ImageIcon(new ImageIcon("src/Imagenes/compras1.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoI = new ImageIcon(new ImageIcon("src/Imagenes/compras2.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoD1 = new ImageIcon(new ImageIcon("src/Imagenes/compras3.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoI1 = new ImageIcon(new ImageIcon("src/Imagenes/compras4.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
+		ImageIcon iconoD = new ImageIcon(new ImageIcon("resources/images/compras1.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoI = new ImageIcon(new ImageIcon("resources/images/compras2.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoD1 = new ImageIcon(new ImageIcon("resources/images/compras3.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoI1 = new ImageIcon(new ImageIcon("resources/images/compras4.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
         
         lblDerecha = new JLabel(iconoD);
         lblIzquierda = new JLabel(iconoI);

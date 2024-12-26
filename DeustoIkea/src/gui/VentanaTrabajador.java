@@ -46,20 +46,20 @@ public class VentanaTrabajador extends JFrame {
     protected JPanel panelPrincipal, panelBotones, panelDerecho;
     private JTree arbolFunciones;
     private String[] imagenes = {
-        "src/Imagenes/mesa.jpeg",//Regular
-        "src/Imagenes/silla.jpeg",//Regular
-        "src/Imagenes/Armario.jpeg",//Regular
-        "src/Imagenes/sofa.jpeg",//Regular
-        "src/Imagenes/lavamanos.jpg",
-        "src/Imagenes/ducha.jpg",
-        "src/Imagenes/bide.jpeg",//Regular
-        "src/Imagenes/inodoro.jpg",
-        "src/Imagenes/Maceta.jpg",
-        "src/Imagenes/adelfas-colores.jpg",//Regular
-        "src/Imagenes/Nevera.jpg",
-        "src/Imagenes/horno.jpg",
-        "src/Imagenes/encimera.jpg",
-        "src/Imagenes/fregadero.jpg"
+        "resources/images/mesa.jpeg",//Regular
+        "resources/images/silla.jpeg",//Regular
+        "resources/images/Armario.jpeg",//Regular
+        "resources/images/sofa.jpeg",//Regular
+        "resources/images/lavamanos.jpg",
+        "resources/images/ducha.jpg",
+        "resources/images/bide.jpeg",//Regular
+        "resources/images/inodoro.jpg",
+        "resources/images/Maceta.jpg",
+        "resources/images/adelfas-colores.jpg",//Regular
+        "resources/images/Nevera.jpg",
+        "resources/images/horno.jpg",
+        "resources/images/encimera.jpg",
+        "resources/images/fregadero.jpg"
     };
     private int indiceImagen = 0;
     private int codigo;

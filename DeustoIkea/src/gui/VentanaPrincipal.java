@@ -69,10 +69,10 @@ public class VentanaPrincipal extends JFrame {
         botonCerrar = new JButton("CERRAR");
         botonAtras = new JButton("ATRAS");
         
-        ImageIcon iconoPerfil = new ImageIcon(new ImageIcon("src/Imagenes/perfil1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("src/Imagenes/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoAyuda = new ImageIcon(new ImageIcon("src/Imagenes/ayuda1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoDescuentos = new ImageIcon(new ImageIcon("src/Imagenes/cupon.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoPerfil = new ImageIcon(new ImageIcon("resources/images/perfil1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("resources/images/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoAyuda = new ImageIcon(new ImageIcon("resources/images/ayuda1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoDescuentos = new ImageIcon(new ImageIcon("resources/images/cupon.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         
         botonPerfil = new JButton(iconoPerfil);
         botonCarrito = new JButton(iconoCarrito);
@@ -100,10 +100,10 @@ public class VentanaPrincipal extends JFrame {
         panelSeccionJardineria = new JPanel();
         panelAbajo = new JPanel();
         
-        ImageIcon cocina = new ImageIcon(new ImageIcon("src/Imagenes/Cocina1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon muebles = new ImageIcon(new ImageIcon("src/Imagenes/Muebles1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon baño = new ImageIcon(new ImageIcon("src/Imagenes/baño.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon jardineria = new ImageIcon(new ImageIcon("src/Imagenes/Jardineria.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon cocina = new ImageIcon(new ImageIcon("resources/images/Cocina1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon muebles = new ImageIcon(new ImageIcon("resources/images/Muebles1.jpeg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon baño = new ImageIcon(new ImageIcon("resources/images/baño.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon jardineria = new ImageIcon(new ImageIcon("resources/images/Jardineria.jpg").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 
         lblCocina = new JLabel(cocina);
         lblMuebles = new JLabel(muebles);

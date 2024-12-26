@@ -71,8 +71,8 @@ public class VentanaInicioSesion extends JFrame {
 		lblRegistro = new JLabel("<---    ¿No tienes cuenta? Regístrate aquí");
 		lblTexto = new JLabel("Bienvenido a la ventana de Inicio de sesión");
 
-		ImageIcon img = resizeImageIcon(new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg"), 400, 300);
-//        ImageIcon img = new ImageIcon("src/Imagenes/app_icon_login_screen.jpeg");
+		ImageIcon img = resizeImageIcon(new ImageIcon("resources/images/app_icon_login_screen.jpeg"), 400, 300);
+//        ImageIcon img = new ImageIcon("resources/images/app_icon_login_screen.jpeg");
 		lblImagen = new JLabel(img);
 
 		lblNombreUsuario.setBorder(new EmptyBorder(0, 0, 10, 20));

@@ -102,8 +102,8 @@ public class VentanaPostPrincipal extends JFrame {
 //		botonSeleccionar = new JButton("SELECCIONAR");
 		botonComprar = new JButton("AÑADIR AL CARRITO");
 
-		ImageIcon iconoPerfil = new ImageIcon(new ImageIcon("src/Imagenes/perfil1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
-		ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("src/Imagenes/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+		ImageIcon iconoPerfil = new ImageIcon(new ImageIcon("resources/images/perfil1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+		ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("resources/images/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
 		botonPerfil = new JButton(iconoPerfil);
 		botonCarrito = new JButton(iconoCarrito);
 		
@@ -340,13 +340,13 @@ public class VentanaPostPrincipal extends JFrame {
 			}else if(codigo ==0) {
 				// Mostrar elementos de muebles
 				
-				ImageIcon sofa = new ImageIcon(new ImageIcon("src/Imagenes/sofa.jpeg").getImage().getScaledInstance(200,
+				ImageIcon sofa = new ImageIcon(new ImageIcon("resources/images/sofa.jpeg").getImage().getScaledInstance(200,
 						200, java.awt.Image.SCALE_SMOOTH));
-				ImageIcon armario = new ImageIcon(new ImageIcon("src/Imagenes/Armario.jpeg").getImage()
+				ImageIcon armario = new ImageIcon(new ImageIcon("resources/images/Armario.jpeg").getImage()
 						.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-				ImageIcon silla = new ImageIcon(new ImageIcon("src/Imagenes/silla.jpeg").getImage().getScaledInstance(200,
+				ImageIcon silla = new ImageIcon(new ImageIcon("resources/images/silla.jpeg").getImage().getScaledInstance(200,
 						200, java.awt.Image.SCALE_SMOOTH));
-				ImageIcon mesa = new ImageIcon(new ImageIcon("src/Imagenes/mesa.jpeg").getImage().getScaledInstance(200,
+				ImageIcon mesa = new ImageIcon(new ImageIcon("resources/images/mesa.jpeg").getImage().getScaledInstance(200,
 						200, java.awt.Image.SCALE_SMOOTH));
 
 				labelImagen1 = new JLabel(sofa);
@@ -582,13 +582,13 @@ public class VentanaPostPrincipal extends JFrame {
 				
 			
 			// Mostrar elementos de cocina
-			ImageIcon nevera = new ImageIcon(new ImageIcon("src/Imagenes/Nevera.jpg").getImage().getScaledInstance(200,
+			ImageIcon nevera = new ImageIcon(new ImageIcon("resources/images/Nevera.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon horno = new ImageIcon(new ImageIcon("src/Imagenes/horno.jpg").getImage().getScaledInstance(200,
+			ImageIcon horno = new ImageIcon(new ImageIcon("resources/images/horno.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon fregadero = new ImageIcon(new ImageIcon("src/Imagenes/fregadero.jpg").getImage()
+			ImageIcon fregadero = new ImageIcon(new ImageIcon("resources/images/fregadero.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon encimera = new ImageIcon(new ImageIcon("src/Imagenes/encimera.jpg").getImage()
+			ImageIcon encimera = new ImageIcon(new ImageIcon("resources/images/encimera.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 
 			labelImagen1 = new JLabel(nevera);
@@ -818,13 +818,13 @@ public class VentanaPostPrincipal extends JFrame {
 			}else if(codigo==0) {
 				
 			// Mostrar elementos de baño
-			ImageIcon bide = new ImageIcon(new ImageIcon("src/Imagenes/bide.jpeg").getImage().getScaledInstance(200,
+			ImageIcon bide = new ImageIcon(new ImageIcon("resources/images/bide.jpeg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon ducha = new ImageIcon(new ImageIcon("src/Imagenes/ducha.jpg").getImage().getScaledInstance(200,
+			ImageIcon ducha = new ImageIcon(new ImageIcon("resources/images/ducha.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon inodoro = new ImageIcon(new ImageIcon("src/Imagenes/inodoro.jpg").getImage()
+			ImageIcon inodoro = new ImageIcon(new ImageIcon("resources/images/inodoro.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon lavamanos = new ImageIcon(new ImageIcon("src/Imagenes/lavamanos.jpg").getImage()
+			ImageIcon lavamanos = new ImageIcon(new ImageIcon("resources/images/lavamanos.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 
 			labelImagen1 = new JLabel(bide);
@@ -1052,13 +1052,13 @@ public class VentanaPostPrincipal extends JFrame {
 				}
 			}else if(codigo==0) {
 			// Mostrar elementos de Jardineria
-			ImageIcon barbacoa = new ImageIcon(new ImageIcon("src/Imagenes/barbacoa-40-cm.jpg").getImage().getScaledInstance(200,
+			ImageIcon barbacoa = new ImageIcon(new ImageIcon("resources/images/barbacoa-40-cm.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon planta = new ImageIcon(new ImageIcon("src/Imagenes/adelfas-colores.jpg").getImage().getScaledInstance(200,
+			ImageIcon planta = new ImageIcon(new ImageIcon("resources/images/adelfas-colores.jpg").getImage().getScaledInstance(200,
 					200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon maceta= new ImageIcon(new ImageIcon("src/Imagenes/Maceta.jpg").getImage()
+			ImageIcon maceta= new ImageIcon(new ImageIcon("resources/images/Maceta.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
-			ImageIcon pala = new ImageIcon(new ImageIcon("src/Imagenes/pala2.jpg").getImage()
+			ImageIcon pala = new ImageIcon(new ImageIcon("resources/images/pala2.jpg").getImage()
 					.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
 
 			labelImagen1 = new JLabel(barbacoa);
