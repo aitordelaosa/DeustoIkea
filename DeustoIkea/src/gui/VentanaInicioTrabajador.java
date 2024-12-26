@@ -20,7 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import domain.BD;
+import db.BD;
 import domain.Datos;
 import domain.Trabajador;
 

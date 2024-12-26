@@ -17,7 +17,7 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
-import domain.BD;
+import db.BD;
 import domain.Datos;
 
 public class VentanaDeCarga extends JFrame {

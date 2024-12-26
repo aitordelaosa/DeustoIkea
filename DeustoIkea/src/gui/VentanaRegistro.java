@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import domain.BD;
+import db.BD;
 import domain.Cliente;
 import domain.Descuento;
 import domain.SistemaUsuarios;

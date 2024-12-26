@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
-import domain.BD;
+import db.BD;
 import domain.Baño;
 import domain.Cliente;
 import domain.Cocina;

@@ -25,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import db.BD;
 import domain.Datos;
 import domain.Ducha;
 import domain.Encimera;
@@ -43,7 +44,6 @@ import domain.Producto;
 import domain.Silla;
 import domain.Sofa;
 import domain.Armario;
-import domain.BD;
 import domain.Barbacoa;
 import domain.Baño;
 import domain.Bide;

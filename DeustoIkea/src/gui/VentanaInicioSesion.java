@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import domain.BD;
+import db.BD;
 import domain.Cliente;
 import domain.Datos;
 import domain.SistemaUsuarios;

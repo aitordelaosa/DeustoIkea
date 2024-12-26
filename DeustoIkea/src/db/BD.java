@@ -1,4 +1,4 @@
-package domain;
+package db;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -11,8 +11,29 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
+
+import domain.Armario;
+import domain.Barbacoa;
+import domain.Bide;
+import domain.Cliente;
+import domain.Descuento;
+import domain.Ducha;
+import domain.Encimera;
+import domain.Fregadero;
+import domain.Herramienta;
+import domain.Horno;
+import domain.Inodoro;
+import domain.Lavamanos;
+import domain.Maceta;
+import domain.Mesa;
+import domain.Nevera;
+import domain.Planta;
+import domain.Producto;
+import domain.Silla;
+import domain.Sofa;
+import domain.Trabajador;
 
 public class BD {
 	private static Connection con;

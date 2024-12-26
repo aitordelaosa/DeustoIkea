@@ -3,7 +3,7 @@ package gui;
 import java.awt.*;
 import javax.swing.*;
 
-import domain.BD;
+import db.BD;
 import domain.Cliente;
 
 public class VentanaModificarDatos extends JFrame {
