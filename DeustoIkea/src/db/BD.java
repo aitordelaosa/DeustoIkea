@@ -925,6 +925,610 @@ public class BD {
 
 	    return listaHerramientas;
 	}
+	public static int obtenerSiguienteIdProducto() {
+	    String sql = "SELECT MAX(idProducto) AS ultimoId FROM Producto";
+	    int siguienteId = 1;
+
+	    try (Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+
+	        if (rs.next()) {
+	            int ultimoId = rs.getInt("ultimoId");
+	            siguienteId = ultimoId + 1;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return siguienteId;
+	}
+	
+	public static void insertarArmario(int idProducto, int numProductos, double peso, double precio,
+            String material, String color, String descripcion, String rutaImagen,
+            int numeroDePuertas, double altura, double anchura, double profundidad) {
+			String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+			String sqlMueble = "INSERT INTO Mueble (idProducto, Material, Color, Descripcion, RutaImagen) VALUES (?, ?, ?, ?, ?)";
+			String sqlArmario = "INSERT INTO Armario (idProducto, NumeroDePuertas, Altura, Anchura, Profundidad) VALUES (?, ?, ?, ?, ?)";
+
+			try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+					PreparedStatement stmtMueble = con.prepareStatement(sqlMueble);
+					PreparedStatement stmtArmario = con.prepareStatement(sqlArmario)) {
+
+			// Insertar en Producto
+			stmtProducto.setInt(1, idProducto);
+			stmtProducto.setInt(2, numProductos);
+			stmtProducto.setDouble(3, peso);
+			stmtProducto.setDouble(4, precio);
+			stmtProducto.executeUpdate();
+			
+			// Insertar en Mueble
+			stmtMueble.setInt(1, idProducto);
+			stmtMueble.setString(2, material);
+			stmtMueble.setString(3, color);
+			stmtMueble.setString(4, descripcion);
+			stmtMueble.setString(5, rutaImagen);
+			stmtMueble.executeUpdate();
+			
+			// Insertar en Armario
+			stmtArmario.setInt(1, idProducto);
+			stmtArmario.setInt(2, numeroDePuertas);
+			stmtArmario.setDouble(3, altura);
+			stmtArmario.setDouble(4, anchura);
+			stmtArmario.setDouble(5, profundidad);
+			stmtArmario.executeUpdate();
+			
+			} catch (SQLException e) {
+			e.printStackTrace();
+			}
+}
+	
+	public static void insertarMesa(int idProducto, int numProductos, double peso, double precio,
+	        String material, String color, String descripcion, String rutaImagen,
+	        double altura, int capacidad) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlMueble = "INSERT INTO Mueble (idProducto, Material, Color, Descripcion, RutaImagen) VALUES (?, ?, ?, ?, ?)";
+	    String sqlMesa = "INSERT INTO Mesa (idProducto, Altura, Capacidad) VALUES (?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtMueble = con.prepareStatement(sqlMueble);
+	         PreparedStatement stmtMesa = con.prepareStatement(sqlMesa)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Mueble
+	        stmtMueble.setInt(1, idProducto);
+	        stmtMueble.setString(2, material);
+	        stmtMueble.setString(3, color);
+	        stmtMueble.setString(4, descripcion);
+	        stmtMueble.setString(5, rutaImagen);
+	        stmtMueble.executeUpdate();
+
+	        // Insertar en Mesa
+	        stmtMesa.setInt(1, idProducto);
+	        stmtMesa.setDouble(2, altura);
+	        stmtMesa.setInt(3, capacidad);
+	        stmtMesa.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public static void insertarBarbacoa(int idProducto, int numProductos, double peso, double precio,
+	        String esExterior, String material, String descripcion, String rutaImagen,
+	        String tipoCombustible, double superficieCoccion, String tieneTapa) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlJardineria = "INSERT INTO Jardineria (idProducto, esExterior, Material, Descripcion, RutaImagem) VALUES (?, ?, ?, ?, ?)";
+	    String sqlBarbacoa = "INSERT INTO Barbacoa (idProducto, tipoCombustible, superficieCoccion, tieneTapa) VALUES (?, ?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtJardineria = con.prepareStatement(sqlJardineria);
+	         PreparedStatement stmtBarbacoa = con.prepareStatement(sqlBarbacoa)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Jardinería
+	        stmtJardineria.setInt(1, idProducto);
+	        stmtJardineria.setString(2, esExterior);
+	        stmtJardineria.setString(3, material);
+	        stmtJardineria.setString(4, descripcion);
+	        stmtJardineria.setString(5, rutaImagen);
+	        stmtJardineria.executeUpdate();
+
+	        // Insertar en Barbacoa
+	        stmtBarbacoa.setInt(1, idProducto);
+	        stmtBarbacoa.setString(2, tipoCombustible);
+	        stmtBarbacoa.setDouble(3, superficieCoccion);
+	        stmtBarbacoa.setString(4, tieneTapa);
+	        stmtBarbacoa.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public static void insertarInodoro(int idProducto, int numProductos, double peso, double precio,
+	        String material, String descripcion, String rutaImagen,
+	        String tipoDescarga, String tieneAsientoCalefaccionado) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlBaño = "INSERT INTO Baño (idProducto, Material, Descripcion, RutaImagen) VALUES (?, ?, ?, ?)";
+	    String sqlInodoro = "INSERT INTO Inodoro (idProducto, tipoDescarga, tieneAsientoCalefaccionado) VALUES (?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtBaño = con.prepareStatement(sqlBaño);
+	         PreparedStatement stmtInodoro = con.prepareStatement(sqlInodoro)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Baño
+	        stmtBaño.setInt(1, idProducto);
+	        stmtBaño.setString(2, material);
+	        stmtBaño.setString(3, descripcion);
+	        stmtBaño.setString(4, rutaImagen);
+	        stmtBaño.executeUpdate();
+
+	        // Insertar en Inodoro
+	        stmtInodoro.setInt(1, idProducto);
+	        stmtInodoro.setString(2, tipoDescarga);
+	        stmtInodoro.setString(3, tieneAsientoCalefaccionado);
+	        stmtInodoro.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public static void insertarSilla(int idProducto, int numProductos, double peso, double precio,
+	        String material, String color, String descripcion, String rutaImagen,
+	        double altura, double anchura, double capacidadDeCarga) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlMueble = "INSERT INTO Mueble (idProducto, Material, Color, Descripcion, RutaImagen) VALUES (?, ?, ?, ?, ?)";
+	    String sqlSilla = "INSERT INTO Silla (idProducto, Altura, Anchura, CapacidadDeCarga) VALUES (?, ?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtMueble = con.prepareStatement(sqlMueble);
+	         PreparedStatement stmtSilla = con.prepareStatement(sqlSilla)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Mueble
+	        stmtMueble.setInt(1, idProducto);
+	        stmtMueble.setString(2, material);
+	        stmtMueble.setString(3, color);
+	        stmtMueble.setString(4, descripcion);
+	        stmtMueble.setString(5, rutaImagen);
+	        stmtMueble.executeUpdate();
+
+	        // Insertar en Silla
+	        stmtSilla.setInt(1, idProducto);
+	        stmtSilla.setDouble(2, altura);
+	        stmtSilla.setDouble(3, anchura);
+	        stmtSilla.setDouble(4, capacidadDeCarga);
+	        stmtSilla.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public static void insertarPlanta(int idProducto, int numProductos, double peso, double precio,
+	        String esExterior, String material, String descripcion, String rutaImagen,
+	        double altura, String tipoDePlanta, double diametro) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlJardineria = "INSERT INTO Jardineria (idProducto, esExterior, Material, Descripcion, RutaImagem) VALUES (?, ?, ?, ?, ?)";
+	    String sqlPlanta = "INSERT INTO Planta (idProducto, Altura, TipoDePlanta, Diametro) VALUES (?, ?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtJardineria = con.prepareStatement(sqlJardineria);
+	         PreparedStatement stmtPlanta = con.prepareStatement(sqlPlanta)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Jardinería
+	        stmtJardineria.setInt(1, idProducto);
+	        stmtJardineria.setString(2, esExterior);
+	        stmtJardineria.setString(3, material);
+	        stmtJardineria.setString(4, descripcion);
+	        stmtJardineria.setString(5, rutaImagen);
+	        stmtJardineria.executeUpdate();
+
+	        // Insertar en Planta
+	        stmtPlanta.setInt(1, idProducto);
+	        stmtPlanta.setDouble(2, altura);
+	        stmtPlanta.setString(3, tipoDePlanta);
+	        stmtPlanta.setDouble(4, diametro);
+	        stmtPlanta.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public static void insertarBide(int idProducto, int numProductos, double peso, double precio,
+	        String material, String descripcion, String rutaImagen,
+	        String tieneCalefaccion, String esElectrico) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlBaño = "INSERT INTO Baño (idProducto, Material, Descripcion, RutaImagen) VALUES (?, ?, ?, ?)";
+	    String sqlBide = "INSERT INTO Bide (idProducto, tieneCalefaccion, esElectrico) VALUES (?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtBaño = con.prepareStatement(sqlBaño);
+	         PreparedStatement stmtBide = con.prepareStatement(sqlBide)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Baño
+	        stmtBaño.setInt(1, idProducto);
+	        stmtBaño.setString(2, material);
+	        stmtBaño.setString(3, descripcion);
+	        stmtBaño.setString(4, rutaImagen);
+	        stmtBaño.executeUpdate();
+
+	        // Insertar en Bidé
+	        stmtBide.setInt(1, idProducto);
+	        stmtBide.setString(2, tieneCalefaccion);
+	        stmtBide.setString(3, esElectrico);
+	        stmtBide.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public static void insertarHorno(int idProducto, int numProductos, double peso, double precio,
+	        String material, String descripcion, String rutaImagen,
+	        double altura, double anchura, double profundidad, int potencia, int numeroBandejas) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlCocina = "INSERT INTO Cocina (idProducto, Material, Descripcion, RutaImagen) VALUES (?, ?, ?, ?)";
+	    String sqlHorno = "INSERT INTO Horno (idProducto, Altura, Anchura, Profundida, Potencia, NumeroBandejas) VALUES (?, ?, ?, ?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtCocina = con.prepareStatement(sqlCocina);
+	         PreparedStatement stmtHorno = con.prepareStatement(sqlHorno)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Cocina
+	        stmtCocina.setInt(1, idProducto);
+	        stmtCocina.setString(2, material);
+	        stmtCocina.setString(3, descripcion);
+	        stmtCocina.setString(4, rutaImagen);
+	        stmtCocina.executeUpdate();
+
+	        // Insertar en Horno
+	        stmtHorno.setInt(1, idProducto);
+	        stmtHorno.setDouble(2, altura);
+	        stmtHorno.setDouble(3, anchura);
+	        stmtHorno.setDouble(4, profundidad);
+	        stmtHorno.setInt(5, potencia);
+	        stmtHorno.setInt(6, numeroBandejas);
+	        stmtHorno.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public static void insertarEncimera(int idProducto, int numProductos, double peso, double precio,
+	        String material, String descripcion, String rutaImagen,
+	        String resistenciaCalor, String grosor, String color) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlCocina = "INSERT INTO Cocina (idProducto, Material, Descripcion, RutaImagen) VALUES (?, ?, ?, ?)";
+	    String sqlEncimera = "INSERT INTO Encimera (idProducto, resistenciaCalor, Grosor, Color) VALUES (?, ?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtCocina = con.prepareStatement(sqlCocina);
+	         PreparedStatement stmtEncimera = con.prepareStatement(sqlEncimera)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Cocina
+	        stmtCocina.setInt(1, idProducto);
+	        stmtCocina.setString(2, material);
+	        stmtCocina.setString(3, descripcion);
+	        stmtCocina.setString(4, rutaImagen);
+	        stmtCocina.executeUpdate();
+
+	        // Insertar en Encimera
+	        stmtEncimera.setInt(1, idProducto);
+	        stmtEncimera.setString(2, resistenciaCalor);
+	        stmtEncimera.setString(3, grosor);
+	        stmtEncimera.setString(4, color);
+	        stmtEncimera.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	
+	
+	public static void insertarLavamanos(int idProducto, int numProductos, double peso, double precio,
+	        String material, String descripcion, String rutaImagen,
+	        String tipoGrifo, String tieneAlmacenamiento) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlBaño = "INSERT INTO Baño (idProducto, Material, Descripcion, RutaImagen) VALUES (?, ?, ?, ?)";
+	    String sqlLavamanos = "INSERT INTO Lavamanos (idProducto, tipoGrifo, tieneAlmacenamiento) VALUES (?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtBaño = con.prepareStatement(sqlBaño);
+	         PreparedStatement stmtLavamanos = con.prepareStatement(sqlLavamanos)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Baño
+	        stmtBaño.setInt(1, idProducto);
+	        stmtBaño.setString(2, material);
+	        stmtBaño.setString(3, descripcion);
+	        stmtBaño.setString(4, rutaImagen);
+	        stmtBaño.executeUpdate();
+
+	        // Insertar en Lavamanos
+	        stmtLavamanos.setInt(1, idProducto);
+	        stmtLavamanos.setString(2, tipoGrifo);
+	        stmtLavamanos.setString(3, tieneAlmacenamiento);
+	        stmtLavamanos.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public static void insertarMaceta(int idProducto, int numProductos, double peso, double precio,
+	        String esExterior, String material, String descripcion, String rutaImagen,
+	        double diametro) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlJardineria = "INSERT INTO Jardineria (idProducto, esExterior, Material, Descripcion, RutaImagem) VALUES (?, ?, ?, ?, ?)";
+	    String sqlMaceta = "INSERT INTO Maceta (idProducto, Diametro) VALUES (?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtJardineria = con.prepareStatement(sqlJardineria);
+	         PreparedStatement stmtMaceta = con.prepareStatement(sqlMaceta)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Jardinería
+	        stmtJardineria.setInt(1, idProducto);
+	        stmtJardineria.setString(2, esExterior);
+	        stmtJardineria.setString(3, material);
+	        stmtJardineria.setString(4, descripcion);
+	        stmtJardineria.setString(5, rutaImagen);
+	        stmtJardineria.executeUpdate();
+
+	        // Insertar en Maceta
+	        stmtMaceta.setInt(1, idProducto);
+	        stmtMaceta.setDouble(2, diametro);
+	        stmtMaceta.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public static void insertarSofa(int idProducto, int numProductos, double peso, double precio,
+	        String material, String color, String descripcion, String rutaImagen,
+	        int capacidadDeAsientos) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlMueble = "INSERT INTO Mueble (idProducto, Material, Color, Descripcion, RutaImagen) VALUES (?, ?, ?, ?, ?)";
+	    String sqlSofa = "INSERT INTO Sofa (idProducto, CapacidadDeAsientos) VALUES (?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtMueble = con.prepareStatement(sqlMueble);
+	         PreparedStatement stmtSofa = con.prepareStatement(sqlSofa)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Mueble
+	        stmtMueble.setInt(1, idProducto);
+	        stmtMueble.setString(2, material);
+	        stmtMueble.setString(3, color);
+	        stmtMueble.setString(4, descripcion);
+	        stmtMueble.setString(5, rutaImagen);
+	        stmtMueble.executeUpdate();
+
+	        // Insertar en Sofá
+	        stmtSofa.setInt(1, idProducto);
+	        stmtSofa.setInt(2, capacidadDeAsientos);
+	        stmtSofa.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public static void insertarHerramienta(int idProducto, int numProductos, double peso, double precio,
+	        String esExterior, String material, String descripcion, String rutaImagen,
+	        String tipo) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlJardineria = "INSERT INTO Jardineria (idProducto, esExterior, Material, Descripcion, RutaImagem) VALUES (?, ?, ?, ?, ?)";
+	    String sqlHerramienta = "INSERT INTO Herramienta (idProducto, Tipo) VALUES (?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtJardineria = con.prepareStatement(sqlJardineria);
+	         PreparedStatement stmtHerramienta = con.prepareStatement(sqlHerramienta)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Jardinería
+	        stmtJardineria.setInt(1, idProducto);
+	        stmtJardineria.setString(2, esExterior);
+	        stmtJardineria.setString(3, material);
+	        stmtJardineria.setString(4, descripcion);
+	        stmtJardineria.setString(5, rutaImagen);
+	        stmtJardineria.executeUpdate();
+
+	        // Insertar en Herramienta
+	        stmtHerramienta.setInt(1, idProducto);
+	        stmtHerramienta.setString(2, tipo);
+	        stmtHerramienta.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public static void insertarDucha(int idProducto, int numProductos, double peso, double precio,
+	        String material, String descripcion, String rutaImagen,
+	        String tipoRociador, String tieneMampara) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlBaño = "INSERT INTO Baño (idProducto, Material, Descripcion, RutaImagen) VALUES (?, ?, ?, ?)";
+	    String sqlDucha = "INSERT INTO Ducha (idProducto, tipoRociador, tieneMampara) VALUES (?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtBaño = con.prepareStatement(sqlBaño);
+	         PreparedStatement stmtDucha = con.prepareStatement(sqlDucha)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Baño
+	        stmtBaño.setInt(1, idProducto);
+	        stmtBaño.setString(2, material);
+	        stmtBaño.setString(3, descripcion);
+	        stmtBaño.setString(4, rutaImagen);
+	        stmtBaño.executeUpdate();
+
+	        // Insertar en Ducha
+	        stmtDucha.setInt(1, idProducto);
+	        stmtDucha.setString(2, tipoRociador);
+	        stmtDucha.setString(3, tieneMampara);
+	        stmtDucha.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public static void insertarNevera(int idProducto, int numProductos, double peso, double precio,
+	        String material, String descripcion, String rutaImagen,
+	        double altura, double anchura, double profundidad, double capacidad, String tipoNevera) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlCocina = "INSERT INTO Cocina (idProducto, Material, Descripcion, RutaImagen) VALUES (?, ?, ?, ?)";
+	    String sqlNevera = "INSERT INTO Nevera (idProducto, Altura, Anchura, Profundida, Capacidad, tipoNevera) VALUES (?, ?, ?, ?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtCocina = con.prepareStatement(sqlCocina);
+	         PreparedStatement stmtNevera = con.prepareStatement(sqlNevera)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Cocina
+	        stmtCocina.setInt(1, idProducto);
+	        stmtCocina.setString(2, material);
+	        stmtCocina.setString(3, descripcion);
+	        stmtCocina.setString(4, rutaImagen);
+	        stmtCocina.executeUpdate();
+
+	        // Insertar en Nevera
+	        stmtNevera.setInt(1, idProducto);
+	        stmtNevera.setDouble(2, altura);
+	        stmtNevera.setDouble(3, anchura);
+	        stmtNevera.setDouble(4, profundidad);
+	        stmtNevera.setDouble(5, capacidad);
+	        stmtNevera.setString(6, tipoNevera);
+	        stmtNevera.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public static void insertarFregadero(int idProducto, int numProductos, double peso, double precio,
+	        String material, String descripcion, String rutaImagen,
+	        int numCubetas, double profundidad, String grifo) {
+	    String sqlProducto = "INSERT INTO Producto (idProducto, NumeroProductos, Peso, Precio) VALUES (?, ?, ?, ?)";
+	    String sqlCocina = "INSERT INTO Cocina (idProducto, Material, Descripcion, RutaImagen) VALUES (?, ?, ?, ?)";
+	    String sqlFregadero = "INSERT INTO Fregadero (idProducto, numCubetas, Profundidad, Grifo) VALUES (?, ?, ?, ?)";
+
+	    try (PreparedStatement stmtProducto = con.prepareStatement(sqlProducto);
+	         PreparedStatement stmtCocina = con.prepareStatement(sqlCocina);
+	         PreparedStatement stmtFregadero = con.prepareStatement(sqlFregadero)) {
+
+	        // Insertar en Producto
+	        stmtProducto.setInt(1, idProducto);
+	        stmtProducto.setInt(2, numProductos);
+	        stmtProducto.setDouble(3, peso);
+	        stmtProducto.setDouble(4, precio);
+	        stmtProducto.executeUpdate();
+
+	        // Insertar en Cocina
+	        stmtCocina.setInt(1, idProducto);
+	        stmtCocina.setString(2, material);
+	        stmtCocina.setString(3, descripcion);
+	        stmtCocina.setString(4, rutaImagen);
+	        stmtCocina.executeUpdate();
+
+	        // Insertar en Fregadero
+	        stmtFregadero.setInt(1, idProducto);
+	        stmtFregadero.setInt(2, numCubetas);
+	        stmtFregadero.setDouble(3, profundidad);
+	        stmtFregadero.setString(4, grifo);
+	        stmtFregadero.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
 
 
 	public static void insertarCliente(String dni, String genero, String nombre, String apellido, String email, 
@@ -952,6 +1556,7 @@ public class BD {
 					System.err.println("Error al insertar el cliente: " + e.getMessage());
 				}
 	}
+	
 	
 	public static int obtenerUltimoIdCliente() throws SQLException {
 	    String sql = "SELECT MAX(id) AS ultimoId FROM Cliente";

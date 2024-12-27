@@ -695,15 +695,12 @@ public class VentanaTrabajador extends JFrame {
 	                        String opcionSeleccionada = (String) comboBox.getSelectedItem();
 
 	                        // Crear campos de texto para ingresar datos
-	                        JTextField idF = new JTextField();
 	                        JTextField numProductosF = new JTextField();
 	                        JTextField pesoF = new JTextField();
 	                        JTextField precioF = new JTextField();
 
 	                        // Crear un panel para contener los campos
-	                        JPanel Panel = new JPanel(new GridLayout(4, 2, 5, 5));
-	                        Panel.add(new JLabel("ID:"));
-	                        Panel.add(idF);
+	                        JPanel Panel = new JPanel(new GridLayout(3, 2, 5, 5));
 	                        Panel.add(new JLabel("Número de Productos:"));
 	                        Panel.add(numProductosF);
 	                        Panel.add(new JLabel("Peso:"));
@@ -716,147 +713,454 @@ public class VentanaTrabajador extends JFrame {
 	                        );
 
 	                        if (resultado == JOptionPane.OK_OPTION) {
+	                        	
 	                            // Obtener los valores ingresados
-	                            String id = idF.getText();
-	                            String numProductos = numProductosF.getText();
-	                            String peso = pesoF.getText();
-	                            String precio = precioF.getText();
-	                            
-	                          switch (opcionSeleccionada) {
-	                          case "Armario" -> {
-	                             boolean validInput = false;
-	                             while (!validInput) {
-	                                 // Crear los campos para los datos específicos
-	                                 JTextField numeroDePuertasF = new JTextField();
-	                                 JTextField alturaF = new JTextField();
-	                                 JTextField anchuraF = new JTextField();
-	                                 JTextField profundidadF = new JTextField();
+	                            int id = BD.obtenerSiguienteIdProducto();
+	                            int numProductos = Integer.parseInt(numProductosF.getText());
+	                            double peso = Double.parseDouble(pesoF.getText());
+	                            double precio = Double.parseDouble(precioF.getText());
 
-	                                 // Crear un panel con GridLayout para contener los campos
-	                                 JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
-	                                 panel.add(new JLabel("Número de Puertas:"));
-	                                 panel.add(numeroDePuertasF);
-	                                 panel.add(new JLabel("Altura:"));
-	                                 panel.add(alturaF);
-	                                 panel.add(new JLabel("Anchura:"));
-	                                 panel.add(anchuraF);
-	                                 panel.add(new JLabel("Profundidad:"));
-	                                 panel.add(profundidadF);
+	                         
+	                                // Verificar si es un tipo que hereda de Mueble
+	                         if (opcionSeleccionada.equals("Armario") || opcionSeleccionada.equals("Silla") ||
+	                                    opcionSeleccionada.equals("Sofá") || opcionSeleccionada.equals("Mesa")) {
 
-	                                 int result = JOptionPane.showConfirmDialog(null, panel,
-	                                         "Ingrese los datos para Armario", JOptionPane.OK_CANCEL_OPTION);
-	                                 if (result == JOptionPane.OK_OPTION) {
-	                                     try {
-	                                         int numeroDePuertas = Integer.parseInt(numeroDePuertasF.getText());
-	                                         double altura = Double.parseDouble(alturaF.getText());
-	                                         double anchura = Double.parseDouble(anchuraF.getText());
-	                                         double profundidad = Double.parseDouble(profundidadF.getText());
-	                                         validInput = true; // Los datos son válidos, salimos del bucle
-	                                     } catch (NumberFormatException a) {
-	                                         JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
-	                                                 "Error", JOptionPane.ERROR_MESSAGE);
-	                                     }
-	                                 } else {
-	                                     
-	                                     break;
+	                                    // Solicitar datos genéricos de Mueble
+	                                    JTextField materialF = new JTextField();
+	                                    JTextField colorF = new JTextField();
+	                                    JTextField descripcionF = new JTextField();
+	                                    JTextField rutaImagenF = new JTextField();
+
+	                                    JPanel mueblePanel = new JPanel(new GridLayout(4, 2, 5, 5));
+	                                    mueblePanel.add(new JLabel("Material:"));
+	                                    mueblePanel.add(materialF);
+	                                    mueblePanel.add(new JLabel("Color:"));
+	                                    mueblePanel.add(colorF);
+	                                    mueblePanel.add(new JLabel("Descripción:"));
+	                                    mueblePanel.add(descripcionF);
+	                                    mueblePanel.add(new JLabel("Ruta de Imagen:"));
+	                                    mueblePanel.add(rutaImagenF);
+
+	                                    int muebleResult = JOptionPane.showConfirmDialog(null, mueblePanel,
+	                                            "Ingrese los datos generales del Mueble", JOptionPane.OK_CANCEL_OPTION);
+
+	                                    if (muebleResult != JOptionPane.OK_OPTION) {
+	                                        return; // Si cancela, salir del flujo
+	                                    }
+
+	                                    String material = materialF.getText();
+	                                    String color = colorF.getText();
+	                                    String descripcion = descripcionF.getText();
+	                                    String rutaImagen = rutaImagenF.getText();
+	                                    switch (opcionSeleccionada) {
+	      	                          		case "Armario" -> {
+	      	                          			boolean validInput = false;
+		      	                             while (!validInput) {
+		      	                                 // Crear los campos para los datos específicos
+		      	                                 JTextField numeroDePuertasF = new JTextField();
+		      	                                 JTextField alturaF = new JTextField();
+		      	                                 JTextField anchuraF = new JTextField();
+		      	                                 JTextField profundidadF = new JTextField();
+	
+		      	                                 // Crear un panel con GridLayout para contener los campos
+		      	                                 JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
+		      	                                 panel.add(new JLabel("Número de Puertas:"));
+		      	                                 panel.add(numeroDePuertasF);
+		      	                                 panel.add(new JLabel("Altura:"));
+		      	                                 panel.add(alturaF);
+		      	                                 panel.add(new JLabel("Anchura:"));
+		      	                                 panel.add(anchuraF);
+		      	                                 panel.add(new JLabel("Profundidad:"));
+		      	                                 panel.add(profundidadF);
+	
+		      	                                 int result = JOptionPane.showConfirmDialog(null, panel,
+		      	                                         "Ingrese los datos para Armario", JOptionPane.OK_CANCEL_OPTION);
+		      	                                 if (result == JOptionPane.OK_OPTION) {
+		      	                                     try {
+		      	                                         int numeroDePuertas = Integer.parseInt(numeroDePuertasF.getText());
+		      	                                         double altura = Double.parseDouble(alturaF.getText());
+		      	                                         double anchura = Double.parseDouble(anchuraF.getText());
+		      	                                         double profundidad = Double.parseDouble(profundidadF.getText());
+		      	                                         validInput = true; // Los datos son válidos, salimos del bucle
+		      	                                         BD.insertarArmario(id, numProductos, peso, precio, material, color, descripcion,
+		      	                                                 rutaImagen, numeroDePuertas, altura, anchura, profundidad);
+	
+		      	                                         JOptionPane.showMessageDialog(null, "Armario añadido correctamente.");
+		      	                                     } catch (NumberFormatException a) {
+		      	                                         JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
+		      	                                                 "Error", JOptionPane.ERROR_MESSAGE);
+		      	                                     }
+		      	                                 } else {
+		      	                                     
+		      	                                     break;
+	      	                                 }
+	      	                             }
+	      	                         }
+	      	                          case "Silla" -> {
+	      	  	                        JTextField alturaF = new JTextField();
+	      	  	                        JTextField anchuraF = new JTextField();
+	      	  	                        JTextField capacidadDeCargaF = new JTextField();
+
+	      	  	                        JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
+	      	  	                        panel.add(new JLabel("Altura:"));
+	      	  	                        panel.add(alturaF);
+	      	  	                        panel.add(new JLabel("Anchura:"));
+	      	  	                        panel.add(anchuraF);
+	      	  	                        panel.add(new JLabel("Capacidad de Carga:"));
+	      	  	                        panel.add(capacidadDeCargaF);
+
+	      	  	                        int result = JOptionPane.showConfirmDialog(null, panel,
+	      	  	                                "Ingrese los datos para Silla", JOptionPane.OK_CANCEL_OPTION);
+
+	      	  	                        if (result == JOptionPane.OK_OPTION) {
+	      	  	                            try {
+	      	  	                                double altura = Double.parseDouble(alturaF.getText());
+	      	  	                                double anchura = Double.parseDouble(anchuraF.getText());
+	      	  	                                double capacidadDeCarga = Double.parseDouble(capacidadDeCargaF.getText());
+	      	  	                                System.out.println("Silla creada con altura: " + altura + ", anchura: " + anchura +
+	      	  	                                        ", capacidad de carga: " + capacidadDeCarga);
+	      	  	                            } catch (NumberFormatException a) {
+	      	  	                                JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
+	      	  	                                        "Error", JOptionPane.ERROR_MESSAGE);
+	      	  	                            }
+	      	  	                        }
+	      	  	                    }
+	      	  	                    case "Sofa" -> {
+	      	  	                       JTextField capacidadDeAsientosF = new JTextField();
+
+	      	  	                       JPanel panel = new JPanel(new GridLayout(1, 2, 5, 5));
+	      	  	                       panel.add(new JLabel("Capacidad de Asientos:"));
+	      	  	                       panel.add(capacidadDeAsientosF);
+
+	      	  	                       int result = JOptionPane.showConfirmDialog(null, panel,
+	      	  	                               "Ingrese los datos para Sofá", JOptionPane.OK_CANCEL_OPTION);
+
+	      	  	                       if (result == JOptionPane.OK_OPTION) {
+	      	  	                           try {
+	      	  	                               int capacidadDeAsientos = Integer.parseInt(capacidadDeAsientosF.getText());
+	      	  	                               System.out.println("Sofá creado con capacidad de asientos: " + capacidadDeAsientos);
+	      	  	                           } catch (NumberFormatException a) {
+	      	  	                               JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
+	      	  	                                       "Error", JOptionPane.ERROR_MESSAGE);
+	      	  	                           }
+	      	  	                       }
+	      	  	                   }
+	      	  	                  case "Mesa" -> {
+	      	                            JTextField alturaF = new JTextField();
+	      	                            JTextField capacidadF = new JTextField();
+
+	      	                            JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
+	      	                            panel.add(new JLabel("Altura:"));
+	      	                            panel.add(alturaF);
+	      	                            panel.add(new JLabel("Capacidad:"));
+	      	                            panel.add(capacidadF);
+
+	      	                            int result = JOptionPane.showConfirmDialog(null, panel,
+	      	                                    "Ingrese los datos para Mesa", JOptionPane.OK_CANCEL_OPTION);
+
+	      	                            if (result == JOptionPane.OK_OPTION) {
+	      	                                try {
+	      	                                    double altura = Double.parseDouble(alturaF.getText());
+	      	                                    int capacidad = Integer.parseInt(capacidadF.getText());
+	      	                                    System.out.println("Mesa creada con altura: " + altura + ", capacidad: " + capacidad);
+	      	                                } catch (NumberFormatException a) {
+	      	                                    JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
+	      	                                            "Error", JOptionPane.ERROR_MESSAGE);
+	      	                                }
+	      	                            }
+	      	                        }
+	                                    }
+	                         } else if (opcionSeleccionada.equals("Heramienta") || opcionSeleccionada.equals("Barbacoa") ||
+	                                    opcionSeleccionada.equals("Planta") || opcionSeleccionada.equals("Maceta")) {
+
+	                                    // Solicitar datos genéricos de Mueble
+	                                    JTextField materialF = new JTextField();
+	                                    JTextField esExteriorF = new JTextField();
+	                                    JTextField descripcionF = new JTextField();
+	                                    JTextField rutaImagenF = new JTextField();
+
+	                                    JPanel mueblePanel = new JPanel(new GridLayout(4, 2, 5, 5));
+	                                    mueblePanel.add(new JLabel("Material:"));
+	                                    mueblePanel.add(materialF);
+	                                    mueblePanel.add(new JLabel("Es Exterior(si/no):"));
+	                                    mueblePanel.add(esExteriorF);
+	                                    mueblePanel.add(new JLabel("Descripción:"));
+	                                    mueblePanel.add(descripcionF);
+	                                    mueblePanel.add(new JLabel("Ruta de Imagen:"));
+	                                    mueblePanel.add(rutaImagenF);
+
+	                                    int muebleResult = JOptionPane.showConfirmDialog(null, mueblePanel,
+	                                            "Ingrese los datos generales del Jardineria", JOptionPane.OK_CANCEL_OPTION);
+
+	                                    if (muebleResult != JOptionPane.OK_OPTION) {
+	                                        return; // Si cancela, salir del flujo
+	                                    }
+
+	                                    String material = materialF.getText();
+	                                    boolean esExterior = parseBoolean(esExteriorF.getText());;
+	                                    String descripcion = descripcionF.getText();
+	                                    String rutaImagen = rutaImagenF.getText();
+	                                    
+	                                    switch (opcionSeleccionada) {
+	       	                         case "Barbacoa" -> {
+	       	                            boolean validInput = false;
+	       	                            while (!validInput) {
+	       	                                JTextField tipoCombustibleF = new JTextField();
+	       	                                JTextField superficieCoccionF = new JTextField();
+	       	                                JTextField tieneTapaF = new JTextField();
+
+	       	                                JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
+	       	                                panel.add(new JLabel("Tipo de Combustible:"));
+	       	                                panel.add(tipoCombustibleF);
+	       	                                panel.add(new JLabel("Superficie de Cocción:"));
+	       	                                panel.add(superficieCoccionF);
+	       	                                panel.add(new JLabel("Tiene Tapa (Sí/No):"));
+	       	                                panel.add(tieneTapaF);
+
+	       	                                int result = JOptionPane.showConfirmDialog(null, panel,
+	       	                                        "Ingrese los datos para Barbacoa", JOptionPane.OK_CANCEL_OPTION);
+	       	                                if (result == JOptionPane.OK_OPTION) {
+	       	                                    try {
+	       	                                        String tipoCombustible = tipoCombustibleF.getText();
+	       	                                        double superficieCoccion = Double.parseDouble(superficieCoccionF.getText());
+	       	                                        boolean tieneTapa = parseBoolean(tieneTapaF.getText());
+	       	                                        System.out.println("Barbacoa creada con combustible: " + tipoCombustible +
+	       	                                                ", superficie: " + superficieCoccion + ", tiene tapa: " + tieneTapa);
+	       	                                        validInput = true; // Los datos son válidos, salimos del bucle
+	       	                                    } catch (NumberFormatException a) {
+	       	                                        JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
+	       	                                                "Error", JOptionPane.ERROR_MESSAGE);
+	       	                                    }
+	       	                                } else {
+	       	                                    // Si el usuario cancela, salimos del bucle sin procesar más
+	       	                                    break;
+	       	                                }
+	       	                            }
+	       	                        }
+	       	                         case "Herramienta" -> {
+	       		                         JTextField tipoF = new JTextField();
+
+	       		                         JPanel panel = new JPanel(new GridLayout(1, 2, 5, 5));
+	       		                         panel.add(new JLabel("Tipo:"));
+	       		                         panel.add(tipoF);
+
+	       		                         int result = JOptionPane.showConfirmDialog(null, panel,
+	       		                                 "Ingrese los datos para Herramienta", JOptionPane.OK_CANCEL_OPTION);
+
+	       		                         if (result == JOptionPane.OK_OPTION) {
+	       		                             try {
+	       		                                 String tipo = tipoF.getText();
+	       		                                 System.out.println("Herramienta creada con tipo: " + tipo);
+	       		                             } catch (Exception a) {
+	       		                                 JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
+	       		                                         "Error", JOptionPane.ERROR_MESSAGE);
+	       		                             }
+	       		                         }
+	       		                     }
+	       	                         case "Maceta" -> {
+	       	                        	 JTextField diametroF = new JTextField();
+
+	       	                            JPanel panel = new JPanel(new GridLayout(1, 2, 5, 5));
+	       	                            panel.add(new JLabel("Diámetro:"));
+	       	                            panel.add(diametroF);
+
+	       	                            int result = JOptionPane.showConfirmDialog(null, panel,
+	       	                                    "Ingrese los datos para Maceta", JOptionPane.OK_CANCEL_OPTION);
+
+	       	                            if (result == JOptionPane.OK_OPTION) {
+	       	                                try {
+	       	                                    double diametro = Double.parseDouble(diametroF.getText());
+	       	                                    System.out.println("Maceta creada con diámetro: " + diametro);
+	       	                                } catch (NumberFormatException a) {
+	       	                                    JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
+	       	                                            "Error", JOptionPane.ERROR_MESSAGE);
+	       	                                }
+	       	                            }
+	       	                        }
+	       	                         case "Planta" -> {
+	       		                         JTextField alturaF = new JTextField();
+	       		                         JTextField tipoDePlantaF = new JTextField();
+	       		                         JTextField diametroF = new JTextField();
+
+	       		                         JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
+	       		                         panel.add(new JLabel("Altura:"));
+	       		                         panel.add(alturaF);
+	       		                         panel.add(new JLabel("Tipo de Planta:"));
+	       		                         panel.add(tipoDePlantaF);
+	       		                         panel.add(new JLabel("Diámetro:"));
+	       		                         panel.add(diametroF);
+
+	       		                         int result = JOptionPane.showConfirmDialog(null, panel,
+	       		                                 "Ingrese los datos para Planta", JOptionPane.OK_CANCEL_OPTION);
+
+	       		                         if (result == JOptionPane.OK_OPTION) {
+	       		                             try {
+	       		                                 double altura = Double.parseDouble(alturaF.getText());
+	       		                                 String tipoDePlanta = tipoDePlantaF.getText();
+	       		                                 double diametro = Double.parseDouble(diametroF.getText());
+	       		                                 System.out.println("Planta creada con altura: " + altura + ", tipo: " + tipoDePlanta +
+	       		                                         ", diámetro: " + diametro);
+	       		                             } catch (NumberFormatException a) {
+	       		                                 JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
+	       		                                         "Error", JOptionPane.ERROR_MESSAGE);
+	       		                             }
+	       		                         }
+	       		                     }
 	                                 }
-	                             }
-	                         }
+	                         }  else if (opcionSeleccionada.equals("Bide") || opcionSeleccionada.equals("Lavamanos") ||
+	                                    opcionSeleccionada.equals("Ducha") || opcionSeleccionada.equals("Inodoro")) {
+
+	                                    // Solicitar datos genéricos de Mueble
+	                                    JTextField materialF = new JTextField();
+	                                    JTextField esExteriorF = new JTextField();
+	                                    JTextField descripcionF = new JTextField();
+	                                    JTextField rutaImagenF = new JTextField();
+
+	                                    JPanel mueblePanel = new JPanel(new GridLayout(3, 2, 5, 5));
+	                                    mueblePanel.add(new JLabel("Material:"));
+	                                    mueblePanel.add(materialF);
+	                                    mueblePanel.add(new JLabel("Descripción:"));
+	                                    mueblePanel.add(descripcionF);
+	                                    mueblePanel.add(new JLabel("Ruta de Imagen:"));
+	                                    mueblePanel.add(rutaImagenF);
+
+	                                    int muebleResult = JOptionPane.showConfirmDialog(null, mueblePanel,
+	                                            "Ingrese los datos generales del Baño", JOptionPane.OK_CANCEL_OPTION);
+
+	                                    if (muebleResult != JOptionPane.OK_OPTION) {
+	                                        return; // Si cancela, salir del flujo
+	                                    }
+
+	                                    String material = materialF.getText();
+	                                    String descripcion = descripcionF.getText();
+	                                    String rutaImagen = rutaImagenF.getText();
+	                                    
+	                                    switch (opcionSeleccionada) {
+	                                    case "Bidé" -> {
+	         	                           boolean validInput = false;
+	         	                           while (!validInput) {
+	         	                               JTextField tieneCalefaccionF = new JTextField();
+	         	                               JTextField esElectricoF = new JTextField();
+
+	         	                               JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
+	         	                               panel.add(new JLabel("Tiene Calefacción (Sí/No):"));
+	         	                               panel.add(tieneCalefaccionF);
+	         	                               panel.add(new JLabel("Es Eléctrico (Sí/No):"));
+	         	                               panel.add(esElectricoF);
+
+	         	                               int result = JOptionPane.showConfirmDialog(null, panel,
+	         	                                       "Ingrese los datos para Bidé", JOptionPane.OK_CANCEL_OPTION);
+	         	                               if (result == JOptionPane.OK_OPTION) {
+	         	                                   try {
+	         	                                       boolean tieneCalefaccion = parseBoolean(tieneCalefaccionF.getText());
+	         	                                       boolean esElectrico = parseBoolean(esElectricoF.getText());
+	         	                                       validInput = true;
+	         	                                   } catch (IllegalArgumentException a) {
+	         	                                       JOptionPane.showMessageDialog(null, "Por favor, ingrese 'Sí' o 'No'.",
+	         	                                               "Error", JOptionPane.ERROR_MESSAGE);
+	         	                                   }
+	         	                               } else {
+	         	                                   break;
+	         	                               }
+	         	                           }
+	         	                       }
+	         	                          
+	         	                         case "Ducha" -> {
+	         	                            boolean validInput = false;
+	         	                            while (!validInput) {
+	         	                                JTextField tipoRociadorF = new JTextField();
+	         	                                JTextField tieneMamparaF = new JTextField();
+
+	         	                                JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
+	         	                                panel.add(new JLabel("Tipo de Rociador:"));
+	         	                                panel.add(tipoRociadorF);
+	         	                                panel.add(new JLabel("Tiene Mampara (Sí/No):"));
+	         	                                panel.add(tieneMamparaF);
+
+	         	                                int result = JOptionPane.showConfirmDialog(null, panel,
+	         	                                        "Ingrese los datos para Ducha", JOptionPane.OK_CANCEL_OPTION);
+	         	                                if (result == JOptionPane.OK_OPTION) {
+	         	                                    try {
+	         	                                        String tipoRociador = tipoRociadorF.getText();
+	         	                                        boolean tieneMampara = parseBoolean(tieneMamparaF.getText());
+	         	                                        validInput = true;
+	         	                                    } catch (IllegalArgumentException a) {
+	         	                                        JOptionPane.showMessageDialog(null, "Por favor, ingrese 'Sí' o 'No' para Mampara.",
+	         	                                                "Error", JOptionPane.ERROR_MESSAGE);
+	         	                                    }
+	         	                                } else {
+	         	                                    break;
+	         	                                }
+	         	                            }
+	         	                        }
+	         	                         case "Inodoro" -> {
+	         		                            boolean validInput = false;
+	         		                            while (!validInput) {
+	         		                                JTextField tipoDescargaF = new JTextField();
+	         		                                JTextField tieneAsientoCalefaccionadoF = new JTextField();
+
+	         		                                JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
+	         		                                panel.add(new JLabel("Tipo de Descarga:"));
+	         		                                panel.add(tipoDescargaF);
+	         		                                panel.add(new JLabel("Tiene Asiento Calefaccionado (Sí/No):"));
+	         		                                panel.add(tieneAsientoCalefaccionadoF);
+
+	         		                                int result = JOptionPane.showConfirmDialog(null, panel,
+	         		                                        "Ingrese los datos para Inodoro", JOptionPane.OK_CANCEL_OPTION);
+
+	         		                                if (result == JOptionPane.OK_OPTION) {
+	         		                                    try {
+	         		                                        String tipoDescarga = tipoDescargaF.getText();
+	         		                                        boolean tieneAsientoCalefaccionado = parseBoolean(tieneAsientoCalefaccionadoF.getText());
+	         		                                        System.out.println("Inodoro creado con tipo de descarga: " + tipoDescarga +
+	         		                                                ", asiento calefaccionado: " + tieneAsientoCalefaccionado);
+	         		                                        validInput = true;
+	         		                                    } catch (IllegalArgumentException a) {
+	         		                                        JOptionPane.showMessageDialog(null, a.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	         		                                    }
+	         		                                } else {
+	         		                                    validInput = true; // Cerrar ventana
+	         		                                }
+	         		                            }
+	         	                         }
+	                                    }
+	         	                          
+	                         } else if (opcionSeleccionada.equals("Nevera") || opcionSeleccionada.equals("Horno") ||
+	                                    opcionSeleccionada.equals("Fregadero") || opcionSeleccionada.equals("Encimera")) {
+
+	                                    // Solicitar datos genéricos de Mueble
+	                                    JTextField materialF = new JTextField();
+	                                    JTextField esExteriorF = new JTextField();
+	                                    JTextField descripcionF = new JTextField();
+	                                    JTextField rutaImagenF = new JTextField();
+
+	                                    JPanel mueblePanel = new JPanel(new GridLayout(4, 2, 5, 5));
+	                                    mueblePanel.add(new JLabel("Material:"));
+	                                    mueblePanel.add(materialF);
+	                                    mueblePanel.add(new JLabel("Color:"));
+	                                    mueblePanel.add(esExteriorF);
+	                                    mueblePanel.add(new JLabel("Descripción:"));
+	                                    mueblePanel.add(descripcionF);
+	                                    mueblePanel.add(new JLabel("Ruta de Imagen:"));
+	                                    mueblePanel.add(rutaImagenF);
+
+	                                    int muebleResult = JOptionPane.showConfirmDialog(null, mueblePanel,
+	                                            "Ingrese los datos generales del Cocina", JOptionPane.OK_CANCEL_OPTION);
+
+	                                    if (muebleResult != JOptionPane.OK_OPTION) {
+	                                        return; // Si cancela, salir del flujo
+	                                    }
+
+	                                    String material = materialF.getText();
+	                                    String esExterior = esExteriorF.getText();
+	                                    String descripcion = descripcionF.getText();
+	                                    String rutaImagen = rutaImagenF.getText();
+	                         
+	                            
+	                          
 	                              
-	                          
-	                         case "Barbacoa" -> {
-	                            boolean validInput = false;
-	                            while (!validInput) {
-	                                JTextField tipoCombustibleF = new JTextField();
-	                                JTextField superficieCoccionF = new JTextField();
-	                                JTextField tieneTapaF = new JTextField();
-
-	                                JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
-	                                panel.add(new JLabel("Tipo de Combustible:"));
-	                                panel.add(tipoCombustibleF);
-	                                panel.add(new JLabel("Superficie de Cocción:"));
-	                                panel.add(superficieCoccionF);
-	                                panel.add(new JLabel("Tiene Tapa (Sí/No):"));
-	                                panel.add(tieneTapaF);
-
-	                                int result = JOptionPane.showConfirmDialog(null, panel,
-	                                        "Ingrese los datos para Barbacoa", JOptionPane.OK_CANCEL_OPTION);
-	                                if (result == JOptionPane.OK_OPTION) {
-	                                    try {
-	                                        String tipoCombustible = tipoCombustibleF.getText();
-	                                        double superficieCoccion = Double.parseDouble(superficieCoccionF.getText());
-	                                        boolean tieneTapa = parseBoolean(tieneTapaF.getText());
-	                                        System.out.println("Barbacoa creada con combustible: " + tipoCombustible +
-	                                                ", superficie: " + superficieCoccion + ", tiene tapa: " + tieneTapa);
-	                                        validInput = true; // Los datos son válidos, salimos del bucle
-	                                    } catch (NumberFormatException a) {
-	                                        JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
-	                                                "Error", JOptionPane.ERROR_MESSAGE);
-	                                    }
-	                                } else {
-	                                    // Si el usuario cancela, salimos del bucle sin procesar más
-	                                    break;
-	                                }
-	                            }
-	                        }
-	                        case "Bidé" -> {
-	                           boolean validInput = false;
-	                           while (!validInput) {
-	                               JTextField tieneCalefaccionF = new JTextField();
-	                               JTextField esElectricoF = new JTextField();
-
-	                               JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
-	                               panel.add(new JLabel("Tiene Calefacción (Sí/No):"));
-	                               panel.add(tieneCalefaccionF);
-	                               panel.add(new JLabel("Es Eléctrico (Sí/No):"));
-	                               panel.add(esElectricoF);
-
-	                               int result = JOptionPane.showConfirmDialog(null, panel,
-	                                       "Ingrese los datos para Bidé", JOptionPane.OK_CANCEL_OPTION);
-	                               if (result == JOptionPane.OK_OPTION) {
-	                                   try {
-	                                       boolean tieneCalefaccion = parseBoolean(tieneCalefaccionF.getText());
-	                                       boolean esElectrico = parseBoolean(esElectricoF.getText());
-	                                       validInput = true;
-	                                   } catch (IllegalArgumentException a) {
-	                                       JOptionPane.showMessageDialog(null, "Por favor, ingrese 'Sí' o 'No'.",
-	                                               "Error", JOptionPane.ERROR_MESSAGE);
-	                                   }
-	                               } else {
-	                                   break;
-	                               }
-	                           }
-	                       }
-	                          
-	                         case "Ducha" -> {
-	                            boolean validInput = false;
-	                            while (!validInput) {
-	                                JTextField tipoRociadorF = new JTextField();
-	                                JTextField tieneMamparaF = new JTextField();
-
-	                                JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
-	                                panel.add(new JLabel("Tipo de Rociador:"));
-	                                panel.add(tipoRociadorF);
-	                                panel.add(new JLabel("Tiene Mampara (Sí/No):"));
-	                                panel.add(tieneMamparaF);
-
-	                                int result = JOptionPane.showConfirmDialog(null, panel,
-	                                        "Ingrese los datos para Ducha", JOptionPane.OK_CANCEL_OPTION);
-	                                if (result == JOptionPane.OK_OPTION) {
-	                                    try {
-	                                        String tipoRociador = tipoRociadorF.getText();
-	                                        boolean tieneMampara = parseBoolean(tieneMamparaF.getText());
-	                                        validInput = true;
-	                                    } catch (IllegalArgumentException a) {
-	                                        JOptionPane.showMessageDialog(null, "Por favor, ingrese 'Sí' o 'No' para Mampara.",
-	                                                "Error", JOptionPane.ERROR_MESSAGE);
-	                                    }
-	                                } else {
-	                                    break;
-	                                }
-	                            }
-	                        }
-	                          
+	                        switch (opcionSeleccionada) {
+	                        
 	                        case "Encimera" -> {
 	                           boolean validInput = false;
 	                           while (!validInput) {
@@ -925,26 +1229,7 @@ public class VentanaTrabajador extends JFrame {
 	                              }
 	                          }
 	                      }
-	                      case "Herramienta" -> {
-	                         JTextField tipoF = new JTextField();
-
-	                         JPanel panel = new JPanel(new GridLayout(1, 2, 5, 5));
-	                         panel.add(new JLabel("Tipo:"));
-	                         panel.add(tipoF);
-
-	                         int result = JOptionPane.showConfirmDialog(null, panel,
-	                                 "Ingrese los datos para Herramienta", JOptionPane.OK_CANCEL_OPTION);
-
-	                         if (result == JOptionPane.OK_OPTION) {
-	                             try {
-	                                 String tipo = tipoF.getText();
-	                                 System.out.println("Herramienta creada con tipo: " + tipo);
-	                             } catch (Exception a) {
-	                                 JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
-	                                         "Error", JOptionPane.ERROR_MESSAGE);
-	                             }
-	                         }
-	                     }
+	                      
 	                         case "Horno" -> {
 	                            JTextField alturaF = new JTextField();
 	                            JTextField anchuraF = new JTextField();
@@ -984,110 +1269,8 @@ public class VentanaTrabajador extends JFrame {
 	                            }
 	                        }
 	                          
-	                         case "Inodoro" -> {
-	                            boolean validInput = false;
-	                            while (!validInput) {
-	                                JTextField tipoDescargaF = new JTextField();
-	                                JTextField tieneAsientoCalefaccionadoF = new JTextField();
-
-	                                JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
-	                                panel.add(new JLabel("Tipo de Descarga:"));
-	                                panel.add(tipoDescargaF);
-	                                panel.add(new JLabel("Tiene Asiento Calefaccionado (Sí/No):"));
-	                                panel.add(tieneAsientoCalefaccionadoF);
-
-	                                int result = JOptionPane.showConfirmDialog(null, panel,
-	                                        "Ingrese los datos para Inodoro", JOptionPane.OK_CANCEL_OPTION);
-
-	                                if (result == JOptionPane.OK_OPTION) {
-	                                    try {
-	                                        String tipoDescarga = tipoDescargaF.getText();
-	                                        boolean tieneAsientoCalefaccionado = parseBoolean(tieneAsientoCalefaccionadoF.getText());
-	                                        System.out.println("Inodoro creado con tipo de descarga: " + tipoDescarga +
-	                                                ", asiento calefaccionado: " + tieneAsientoCalefaccionado);
-	                                        validInput = true;
-	                                    } catch (IllegalArgumentException a) {
-	                                        JOptionPane.showMessageDialog(null, a.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-	                                    }
-	                                } else {
-	                                    validInput = true; // Cerrar ventana
-	                                }
-	                            }
-	                        }
+	                         
 	                          
-	                          case "Maceta" -> {
-	                        	 JTextField diametroF = new JTextField();
-
-	                            JPanel panel = new JPanel(new GridLayout(1, 2, 5, 5));
-	                            panel.add(new JLabel("Diámetro:"));
-	                            panel.add(diametroF);
-
-	                            int result = JOptionPane.showConfirmDialog(null, panel,
-	                                    "Ingrese los datos para Maceta", JOptionPane.OK_CANCEL_OPTION);
-
-	                            if (result == JOptionPane.OK_OPTION) {
-	                                try {
-	                                    double diametro = Double.parseDouble(diametroF.getText());
-	                                    System.out.println("Maceta creada con diámetro: " + diametro);
-	                                } catch (NumberFormatException a) {
-	                                    JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
-	                                            "Error", JOptionPane.ERROR_MESSAGE);
-	                                }
-	                            }
-	                        }
-	                         case "Mesa" -> {
-	                            JTextField alturaF = new JTextField();
-	                            JTextField capacidadF = new JTextField();
-
-	                            JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
-	                            panel.add(new JLabel("Altura:"));
-	                            panel.add(alturaF);
-	                            panel.add(new JLabel("Capacidad:"));
-	                            panel.add(capacidadF);
-
-	                            int result = JOptionPane.showConfirmDialog(null, panel,
-	                                    "Ingrese los datos para Mesa", JOptionPane.OK_CANCEL_OPTION);
-
-	                            if (result == JOptionPane.OK_OPTION) {
-	                                try {
-	                                    double altura = Double.parseDouble(alturaF.getText());
-	                                    int capacidad = Integer.parseInt(capacidadF.getText());
-	                                    System.out.println("Mesa creada con altura: " + altura + ", capacidad: " + capacidad);
-	                                } catch (NumberFormatException a) {
-	                                    JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
-	                                            "Error", JOptionPane.ERROR_MESSAGE);
-	                                }
-	                            }
-	                        }
-	                        case "Mueble" -> {
-	                           JTextField alturaF = new JTextField();
-	                           JTextField anchuraF = new JTextField();
-	                           JTextField profundidadF = new JTextField();
-
-	                           JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
-	                           panel.add(new JLabel("Altura:"));
-	                           panel.add(alturaF);
-	                           panel.add(new JLabel("Anchura:"));
-	                           panel.add(anchuraF);
-	                           panel.add(new JLabel("Profundidad:"));
-	                           panel.add(profundidadF);
-
-	                           int result = JOptionPane.showConfirmDialog(null, panel,
-	                                   "Ingrese los datos para Mueble", JOptionPane.OK_CANCEL_OPTION);
-
-	                           if (result == JOptionPane.OK_OPTION) {
-	                               try {
-	                                   double altura = Double.parseDouble(alturaF.getText());
-	                                   double anchura = Double.parseDouble(anchuraF.getText());
-	                                   double profundidad = Double.parseDouble(profundidadF.getText());
-	                                   System.out.println("Mueble creado con altura: " + altura + ", anchura: " + anchura +
-	                                           ", profundidad: " + profundidad);
-	                               } catch (NumberFormatException a) {
-	                                   JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
-	                                           "Error", JOptionPane.ERROR_MESSAGE);
-	                               }
-	                           }
-	                       }
 	                       case "Nevera" -> {
 	                          JTextField alturaF = new JTextField();
 	                          JTextField anchuraF = new JTextField();
@@ -1126,86 +1309,8 @@ public class VentanaTrabajador extends JFrame {
 	                              }
 	                          }
 	                      }
-	                      case "Planta" -> {
-	                         JTextField alturaF = new JTextField();
-	                         JTextField tipoDePlantaF = new JTextField();
-	                         JTextField diametroF = new JTextField();
-
-	                         JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
-	                         panel.add(new JLabel("Altura:"));
-	                         panel.add(alturaF);
-	                         panel.add(new JLabel("Tipo de Planta:"));
-	                         panel.add(tipoDePlantaF);
-	                         panel.add(new JLabel("Diámetro:"));
-	                         panel.add(diametroF);
-
-	                         int result = JOptionPane.showConfirmDialog(null, panel,
-	                                 "Ingrese los datos para Planta", JOptionPane.OK_CANCEL_OPTION);
-
-	                         if (result == JOptionPane.OK_OPTION) {
-	                             try {
-	                                 double altura = Double.parseDouble(alturaF.getText());
-	                                 String tipoDePlanta = tipoDePlantaF.getText();
-	                                 double diametro = Double.parseDouble(diametroF.getText());
-	                                 System.out.println("Planta creada con altura: " + altura + ", tipo: " + tipoDePlanta +
-	                                         ", diámetro: " + diametro);
-	                             } catch (NumberFormatException a) {
-	                                 JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
-	                                         "Error", JOptionPane.ERROR_MESSAGE);
-	                             }
-	                         }
-	                     } 		                          
-	                     case "Silla" -> {
-	                        JTextField alturaF = new JTextField();
-	                        JTextField anchuraF = new JTextField();
-	                        JTextField capacidadDeCargaF = new JTextField();
-
-	                        JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
-	                        panel.add(new JLabel("Altura:"));
-	                        panel.add(alturaF);
-	                        panel.add(new JLabel("Anchura:"));
-	                        panel.add(anchuraF);
-	                        panel.add(new JLabel("Capacidad de Carga:"));
-	                        panel.add(capacidadDeCargaF);
-
-	                        int result = JOptionPane.showConfirmDialog(null, panel,
-	                                "Ingrese los datos para Silla", JOptionPane.OK_CANCEL_OPTION);
-
-	                        if (result == JOptionPane.OK_OPTION) {
-	                            try {
-	                                double altura = Double.parseDouble(alturaF.getText());
-	                                double anchura = Double.parseDouble(anchuraF.getText());
-	                                double capacidadDeCarga = Double.parseDouble(capacidadDeCargaF.getText());
-	                                System.out.println("Silla creada con altura: " + altura + ", anchura: " + anchura +
-	                                        ", capacidad de carga: " + capacidadDeCarga);
-	                            } catch (NumberFormatException a) {
-	                                JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
-	                                        "Error", JOptionPane.ERROR_MESSAGE);
-	                            }
-	                        }
-	                    }
-	                    case "Sofa" -> {
-	                       JTextField capacidadDeAsientosF = new JTextField();
-
-	                       JPanel panel = new JPanel(new GridLayout(1, 2, 5, 5));
-	                       panel.add(new JLabel("Capacidad de Asientos:"));
-	                       panel.add(capacidadDeAsientosF);
-
-	                       int result = JOptionPane.showConfirmDialog(null, panel,
-	                               "Ingrese los datos para Sofá", JOptionPane.OK_CANCEL_OPTION);
-
-	                       if (result == JOptionPane.OK_OPTION) {
-	                           try {
-	                               int capacidadDeAsientos = Integer.parseInt(capacidadDeAsientosF.getText());
-	                               System.out.println("Sofá creado con capacidad de asientos: " + capacidadDeAsientos);
-	                           } catch (NumberFormatException a) {
-	                               JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
-	                                       "Error", JOptionPane.ERROR_MESSAGE);
-	                           }
-	                       }
-	                   }
-	                          default -> {
-	                              // Código para opciones no esperadas
+	                      		                          
+	                        // Código para opciones no esperadas
 	                          }
 	                      }
 	                            	

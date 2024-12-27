@@ -125,7 +125,7 @@ public class VentanaDeCarga extends JFrame {
                         @Override
                         public void run() {
                         	if(codigo==1) {
-                        	BD.initBD("src/data/DeustoIkea.db");
+                        	BD.initBD("resources/db/DeustoIkea.db");
                     		BD.crearTablas();
                         	}
                         	
