@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
 import domain.Armario;
@@ -40,7 +41,7 @@ public class VentanaPrincipal extends JFrame {
 
     protected JPanel panelPrincipal, panelSeccionCocina, panelSeccionMuebles, panelSeccionBaño, panelSeccionJardineria, panelAbajo, panelSuperior, panelSuperiorOeste, panelSuperiorEste;
     protected JLabel lblCocina, lblMuebles, lblBaño, lblJardineria, lblDescripcion;
-    protected JButton botonCerrar, botonAtras, botonPerfil, botonCarrito, botonAyuda, botonDescuentos;
+    protected JButton botonCerrar, botonAtras, botonPerfil, botonCarrito, botonAyuda, botonDescuentos, botonQueComprar;
     
     protected ModeloMuebles modeloTablaMuebles;
     protected JTable tablaMuebles;
@@ -73,11 +74,14 @@ public class VentanaPrincipal extends JFrame {
         ImageIcon iconoCarrito = new ImageIcon(new ImageIcon("resources/images/carrito1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         ImageIcon iconoAyuda = new ImageIcon(new ImageIcon("resources/images/ayuda1.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         ImageIcon iconoDescuentos = new ImageIcon(new ImageIcon("resources/images/cupon.png").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoQueComprar = new ImageIcon(new ImageIcon("resources/images/queComprar.jpg").getImage().getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH));
         
         botonPerfil = new JButton(iconoPerfil);
         botonCarrito = new JButton(iconoCarrito);
         botonAyuda = new JButton(iconoAyuda);
         botonDescuentos = new JButton(iconoDescuentos);
+        botonQueComprar = new JButton(iconoQueComprar);
+        		
 
         panelSuperior = new JPanel(new BorderLayout());
         panelSuperiorEste = new JPanel();
@@ -85,6 +89,7 @@ public class VentanaPrincipal extends JFrame {
         
         JPanel panelBotonesPerfilCarrito = new JPanel(new BorderLayout());
         panelSuperiorEste.add(botonCarrito);
+        panelSuperiorEste.add(botonQueComprar);
         panelSuperiorOeste.add(botonPerfil);
         panelSuperiorOeste.add(botonAyuda);
         panelSuperiorOeste.add(botonDescuentos);
@@ -265,6 +270,66 @@ public class VentanaPrincipal extends JFrame {
         	dispose();
         	new VentanaAyuda(cliente);
         });
+        
+        botonQueComprar.addActionListener((e) -> {
+        	
+            try {
+         
+                String presupuestoInput = JOptionPane.showInputDialog(null,"Introduce tu presupuesto (€):");
+                if (presupuestoInput == null || presupuestoInput.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor, ingresa un presupuesto válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; 
+                }
+                double presupuesto = Double.parseDouble(presupuestoInput);
+
+               
+                List<Producto> productos = Datos.getProductos();
+
+                // lista para almacenar las combinaciones de productos 
+                List<List<Producto>> combinaciones = new ArrayList<>();
+
+                Datos.generarCombinaciones(combinaciones, productos, presupuesto, new ArrayList<>());
+
+                StringBuilder resultados = new StringBuilder();
+                
+             
+                if (!combinaciones.isEmpty()) {
+                    resultados.append("Combinaciones posibles de los productos que puedes obtener con ").append(presupuestoInput).append("€ :\n\n");
+                 // IAG (herramienta: ChatGPT)
+                 // ADAPTADO: Se han modificado los parámetros del append y del JTextArea y JScrollPane para adaptarlos a nuestro gusto
+                       
+                    for (List<Producto> combinacion : combinaciones) {
+                        resultados.append("- ");
+                        for (Producto p : combinacion) {
+                        	resultados.append(p.getClass().getSimpleName()) 
+                            .append(" (€").append(p.getPrecio()).append("), ");                        }
+                        resultados.setLength(resultados.length() - 2); 
+                        resultados.append("\n");
+                    }
+                } else {
+                    resultados.append("No hay combinaciones posibles dentro del presupuesto.");
+                }
+
+                JTextArea textArea = new JTextArea(resultados.toString(), 20, 50); 
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true); 
+                textArea.setEditable(false); 
+
+               
+                JScrollPane scrollPane = new JScrollPane(textArea, 
+                        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
+                        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+             
+          
+                JOptionPane.showMessageDialog(null, scrollPane, "Resultados", JOptionPane.INFORMATION_MESSAGE);
+                } catch (NumberFormatException ex) {
+               
+                JOptionPane.showMessageDialog(null, "Por favor, ingresa un presupuesto válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            } // Hasta aqui ha sido modificado por el ChatGPT
+        });
+        
+       
+        
         
         Datos datos = new Datos();
         Mesa mesa = datos.getMesa();

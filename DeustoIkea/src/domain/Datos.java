@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+
+
 public class Datos {
 
 	protected List<Mueble> lMuebles;
@@ -122,15 +124,6 @@ public class Datos {
 		Datos.productos = productos;
 	}
 	public Datos() {
-//		mesa: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, double altura, int capacidad
-//		silla: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, double altura, double ancho, double capacidadDeCarga
-//		armario: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, int numeroDePuertas, double altura, double anchura, double profundidad
-//		sofa: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, int capacidadDeAsientos
-
-//		int idProducto, int numeroProductos, double peso, double precio, String materialC, String descripcionC, String rutaImagen, double altura, double anchura, double profundidad, double capacidad, String tipoNevera
-//		int idProducto, int numeroProductos, double peso, double precio, String materialC, String descripcionC, String rutaImagen, double altura, double anchura, double profundidad, int potencia,int numeroBandejas
-//		int idProducto, int numeroProductos, double peso, double precio, String materialC, String descripcionC, String rutaImagen, double resistenciaCalor, double grosor, String color
-//		int idProducto, int numeroProductos, double peso, double precio, String materialC, String descripcionC, String rutaImagen, int numCubetas, double profundidad, boolean grifo
 
 		// Listas
 		lMuebles = new ArrayList<>();
@@ -139,6 +132,7 @@ public class Datos {
 		lCliente = new ArrayList<>();
 		lBaño = new ArrayList<>();
 		lJardineria = new ArrayList<>();
+		productos = new ArrayList<>();
 
 		// Muebles
 		mesa = new Mesa(1, 10, 20.0, 150.0, "Madera", "Marrón",
@@ -243,7 +237,41 @@ public class Datos {
 		lCliente.add(cliente3);
 		lCliente.add(cliente4);
 		lCliente.add(cliente5);
+		
+		 productos.addAll(lMuebles);
+		 productos.addAll(lCocina);
+		 productos.addAll(lBaño);
+		 productos.addAll(lJardineria);
 	}
+	
+	List<Producto> elementos = getProductos();//Lista declarada para pasarla como paramentro al metodo recursivo
+    
+	 public static void generarCombinaciones(List<List<Producto>> result, List<Producto> elementos, double presupuesto, List<Producto> temp) {
+     	
+		 // Caso base
+     	if (presupuesto < 0) {
+     		return;
+     	}
+
+     	// Caso base
+     	if (presupuesto >= 0 && !temp.isEmpty()) {
+     		// Ordenar temporalmente por ID para evitar duplicados
+     		temp.sort((o1, o2) -> Integer.compare(o1.getIdProducto(), o2.getIdProducto()));
+     		if (!result.contains(temp)) {
+     			result.add(new ArrayList<>(temp));
+     		}
+     	}
+     	
+     	// Caso recursivo
+     	for (Producto e : elementos) {
+     		if (presupuesto - e.getPrecio() >= 0 && !temp.contains(e)) { 
+     			temp.add(e);
+     			generarCombinaciones(result, elementos, presupuesto - e.getPrecio(), temp);
+     			temp.remove(temp.size() - 1); 
+     		}
+
+     	}
+	 }
 
 	// Muebles
 	public String obtenerDetallesMueble(Mueble m) {
