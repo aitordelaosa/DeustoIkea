@@ -819,6 +819,7 @@ public class VentanaTrabajador extends JFrame {
 	      	  	                                double capacidadDeCarga = Double.parseDouble(capacidadDeCargaF.getText());
 	      	  	                                System.out.println("Silla creada con altura: " + altura + ", anchura: " + anchura +
 	      	  	                                        ", capacidad de carga: " + capacidadDeCarga);
+	      	  	                                BD.insertarSilla(id, numProductos, peso, precio, material, color, descripcion, rutaImagen, altura, anchura, capacidadDeCarga);
 	      	  	                            } catch (NumberFormatException a) {
 	      	  	                                JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
 	      	  	                                        "Error", JOptionPane.ERROR_MESSAGE);
@@ -839,6 +840,7 @@ public class VentanaTrabajador extends JFrame {
 	      	  	                           try {
 	      	  	                               int capacidadDeAsientos = Integer.parseInt(capacidadDeAsientosF.getText());
 	      	  	                               System.out.println("Sofá creado con capacidad de asientos: " + capacidadDeAsientos);
+	      	  	                               BD.insertarSofa(id, numProductos, peso, precio, material, color, descripcion, rutaImagen, capacidadDeAsientos);
 	      	  	                           } catch (NumberFormatException a) {
 	      	  	                               JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
 	      	  	                                       "Error", JOptionPane.ERROR_MESSAGE);
@@ -863,6 +865,7 @@ public class VentanaTrabajador extends JFrame {
 	      	                                    double altura = Double.parseDouble(alturaF.getText());
 	      	                                    int capacidad = Integer.parseInt(capacidadF.getText());
 	      	                                    System.out.println("Mesa creada con altura: " + altura + ", capacidad: " + capacidad);
+	      	                                    BD.insertarMesa(id, numProductos, peso, precio, material, color, descripcion, rutaImagen, altura, capacidad);
 	      	                                } catch (NumberFormatException a) {
 	      	                                    JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
 	      	                                            "Error", JOptionPane.ERROR_MESSAGE);
@@ -927,6 +930,7 @@ public class VentanaTrabajador extends JFrame {
 	       	                                        System.out.println("Barbacoa creada con combustible: " + tipoCombustible +
 	       	                                                ", superficie: " + superficieCoccion + ", tiene tapa: " + tieneTapa);
 	       	                                        validInput = true; // Los datos son válidos, salimos del bucle
+	       	                                        BD.insertarBarbacoa(id, numProductos, peso, precio, opcionSeleccionada, material, descripcion, rutaImagen, tipoCombustible, superficieCoccion, tipoCombustible);
 	       	                                    } catch (NumberFormatException a) {
 	       	                                        JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
 	       	                                                "Error", JOptionPane.ERROR_MESSAGE);
@@ -951,6 +955,7 @@ public class VentanaTrabajador extends JFrame {
 	       		                             try {
 	       		                                 String tipo = tipoF.getText();
 	       		                                 System.out.println("Herramienta creada con tipo: " + tipo);
+	       		                                 BD.insertarHerramienta(id, numProductos, peso, precio, opcionSeleccionada, material, descripcion, rutaImagen, tipo);
 	       		                             } catch (Exception a) {
 	       		                                 JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
 	       		                                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -971,6 +976,7 @@ public class VentanaTrabajador extends JFrame {
 	       	                                try {
 	       	                                    double diametro = Double.parseDouble(diametroF.getText());
 	       	                                    System.out.println("Maceta creada con diámetro: " + diametro);
+	       	                                    BD.insertarMaceta(id, numProductos, peso, precio, opcionSeleccionada, material, descripcion, rutaImagen, diametro);
 	       	                                } catch (NumberFormatException a) {
 	       	                                    JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
 	       	                                            "Error", JOptionPane.ERROR_MESSAGE);
@@ -1000,6 +1006,7 @@ public class VentanaTrabajador extends JFrame {
 	       		                                 double diametro = Double.parseDouble(diametroF.getText());
 	       		                                 System.out.println("Planta creada con altura: " + altura + ", tipo: " + tipoDePlanta +
 	       		                                         ", diámetro: " + diametro);
+	       		                                 BD.insertarPlanta(id, numProductos, peso, precio, opcionSeleccionada, material, descripcion, rutaImagen, altura, tipoDePlanta, diametro);
 	       		                             } catch (NumberFormatException a) {
 	       		                                 JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
 	       		                                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -1055,6 +1062,7 @@ public class VentanaTrabajador extends JFrame {
 	         	                                       boolean tieneCalefaccion = parseBoolean(tieneCalefaccionF.getText());
 	         	                                       boolean esElectrico = parseBoolean(esElectricoF.getText());
 	         	                                       validInput = true;
+	         	                                       BD.insertarBide(id, numProductos, peso, precio, material, descripcion, rutaImagen, descripcion, rutaImagen);
 	         	                                   } catch (IllegalArgumentException a) {
 	         	                                       JOptionPane.showMessageDialog(null, "Por favor, ingrese 'Sí' o 'No'.",
 	         	                                               "Error", JOptionPane.ERROR_MESSAGE);
@@ -1084,6 +1092,7 @@ public class VentanaTrabajador extends JFrame {
 	         	                                        String tipoRociador = tipoRociadorF.getText();
 	         	                                        boolean tieneMampara = parseBoolean(tieneMamparaF.getText());
 	         	                                        validInput = true;
+	         	                                        BD.insertarDucha(id, numProductos, peso, precio, material, descripcion, rutaImagen, tipoRociador, tipoRociador);
 	         	                                    } catch (IllegalArgumentException a) {
 	         	                                        JOptionPane.showMessageDialog(null, "Por favor, ingrese 'Sí' o 'No' para Mampara.",
 	         	                                                "Error", JOptionPane.ERROR_MESSAGE);
@@ -1115,6 +1124,7 @@ public class VentanaTrabajador extends JFrame {
 	         		                                        System.out.println("Inodoro creado con tipo de descarga: " + tipoDescarga +
 	         		                                                ", asiento calefaccionado: " + tieneAsientoCalefaccionado);
 	         		                                        validInput = true;
+	         		                                        BD.insertarInodoro(id, numProductos, peso, precio, material, descripcion, rutaImagen, tipoDescarga, tipoDescarga);
 	         		                                    } catch (IllegalArgumentException a) {
 	         		                                        JOptionPane.showMessageDialog(null, a.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	         		                                    }
@@ -1186,6 +1196,7 @@ public class VentanaTrabajador extends JFrame {
 	                                       System.out.println("Encimera creada con resistencia al calor: " + resistenciaCalor +
 	                                               ", grosor: " + grosor + ", color: " + color);
 	                                       validInput = true;
+	                                       BD.insertarEncimera(id, numProductos, peso, precio, material, descripcion, rutaImagen, color, grosor, color);
 	                                   } catch (IllegalArgumentException a) {
 	                                       JOptionPane.showMessageDialog(null, "Por favor, ingrese 'Sí' o 'No' para Resistencia al Calor.",
 	                                               "Error", JOptionPane.ERROR_MESSAGE);
@@ -1220,6 +1231,7 @@ public class VentanaTrabajador extends JFrame {
 	                                      System.out.println("Fregadero creado con " + numCubetas +
 	                                              " cubetas, profundidad: " + profundidad + ", grifo: " + grifo);
 	                                      validInput = true;
+	                                      BD.insertarFregadero(id, numProductos, peso, precio, material, descripcion, rutaImagen, numCubetas, profundidad, rutaImagen);
 	                                  } catch (NumberFormatException a) {
 	                                      JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos para Cubetas o Profundidad.",
 	                                              "Error", JOptionPane.ERROR_MESSAGE);
@@ -1262,6 +1274,7 @@ public class VentanaTrabajador extends JFrame {
 	                                    System.out.println("Horno creado con altura: " + altura + ", anchura: " + anchura +
 	                                            ", profundidad: " + profundidad + ", potencia: " + potencia +
 	                                            ", número de bandejas: " + numeroBandejas);
+	                                    BD.insertarHorno(id, numProductos, peso, precio, material, descripcion, rutaImagen, altura, anchura, profundidad, potencia, numeroBandejas);
 	                                } catch (NumberFormatException a) {
 	                                    JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
 	                                            "Error", JOptionPane.ERROR_MESSAGE);
@@ -1303,6 +1316,7 @@ public class VentanaTrabajador extends JFrame {
 	                                  System.out.println("Nevera creada con altura: " + altura + ", anchura: " + anchura +
 	                                          ", profundidad: " + profundidad + ", capacidad: " + capacidad +
 	                                          ", tipo: " + tipoNevera);
+	                                  BD.insertarNevera(id, numProductos, peso, precio, material, descripcion, rutaImagen, altura, anchura, profundidad, capacidad, tipoNevera);
 	                              } catch (NumberFormatException a) {
 	                                  JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos.",
 	                                          "Error", JOptionPane.ERROR_MESSAGE);
@@ -1327,6 +1341,7 @@ public class VentanaTrabajador extends JFrame {
 	            }
 	        }
 	    });
+	    panelDerecho.repaint();
 	}
   		        
   		  }
