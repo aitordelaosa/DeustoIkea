@@ -271,7 +271,7 @@ public class VentanaPrincipal extends JFrame {
         	new VentanaAyuda(cliente);
         });
         
-        botonQueComprar.addActionListener((e) -> {
+botonQueComprar.addActionListener((e) -> {
         	
             try {
          
@@ -284,11 +284,21 @@ public class VentanaPrincipal extends JFrame {
 
                
                 List<Producto> productos = Datos.getProductos();
+                
+                
+                List<Producto> productosFiltrados = new ArrayList<>();
+                for (Producto p : productos) {
+                    if (p.getPrecio() <= presupuesto) {
+                        productosFiltrados.add(p);
+                        
+                    }
+                }
+                
 
                 // lista para almacenar las combinaciones de productos 
                 List<List<Producto>> combinaciones = new ArrayList<>();
 
-                Datos.generarCombinaciones(combinaciones, productos, presupuesto, new ArrayList<>());
+                Datos.generarCombinaciones(combinaciones, productosFiltrados, presupuesto, new ArrayList<>());
 
                 StringBuilder resultados = new StringBuilder();
                 

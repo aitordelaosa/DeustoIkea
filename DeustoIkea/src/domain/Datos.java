@@ -244,34 +244,35 @@ public class Datos {
 		 productos.addAll(lJardineria);
 	}
 	
-	List<Producto> elementos = getProductos();//Lista declarada para pasarla como paramentro al metodo recursivo
+List<Producto> elementos = getProductos();//Lista declarada para pasarla como paramentro al metodo recursivo
     
-	 public static void generarCombinaciones(List<List<Producto>> result, List<Producto> elementos, double presupuesto, List<Producto> temp) {
-     	
-		 // Caso base
-     	if (presupuesto < 0) {
-     		return;
-     	}
+	public static void generarCombinaciones(List<List<Producto>> result, List<Producto> elementos, double presupuesto, List<Producto> temp) {
+	   
+	    if (presupuesto < 0) {
+	        return;
+	    }
 
-     	// Caso base
-     	if (presupuesto >= 0 && !temp.isEmpty()) {
-     		// Ordenar temporalmente por ID para evitar duplicados
-     		temp.sort((o1, o2) -> Integer.compare(o1.getIdProducto(), o2.getIdProducto()));
-     		if (!result.contains(temp)) {
-     			result.add(new ArrayList<>(temp));
-     		}
-     	}
-     	
-     	// Caso recursivo
-     	for (Producto e : elementos) {
-     		if (presupuesto - e.getPrecio() >= 0 && !temp.contains(e)) { 
-     			temp.add(e);
-     			generarCombinaciones(result, elementos, presupuesto - e.getPrecio(), temp);
-     			temp.remove(temp.size() - 1); 
-     		}
+	    if (presupuesto >= 0 && !temp.isEmpty()) {
+	        
+	        List<Producto> tempOrdenada = new ArrayList<>(temp);
+	        tempOrdenada.sort((o1, o2) -> Integer.compare(o1.getIdProducto(), o2.getIdProducto()));
 
-     	}
-	 }
+	        
+	        if (!result.contains(tempOrdenada)) {
+	            result.add(tempOrdenada);
+	        }
+	    }
+
+	    for (int i = 0; i < elementos.size(); i++) {
+	        Producto e = elementos.get(i);
+
+	        if (presupuesto - e.getPrecio() >= 0 && !temp.contains(e)) {
+	            temp.add(e); 
+	            generarCombinaciones(result, elementos, presupuesto - e.getPrecio(), temp);
+	            temp.remove(temp.size() - 1); 
+	            }
+	    }
+	}
 
 	// Muebles
 	public String obtenerDetallesMueble(Mueble m) {
