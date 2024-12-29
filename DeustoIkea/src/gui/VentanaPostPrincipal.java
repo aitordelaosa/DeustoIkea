@@ -1283,40 +1283,41 @@ public class VentanaPostPrincipal extends JFrame {
 		        "Seleccionar cantidad", 
 		        JOptionPane.PLAIN_MESSAGE
 		    );
-
-		    if (c != null) {
-		        try {
-		            int cantidad = Integer.parseInt(c);
-
-		            if ((cantidad > 0) && (cantidad < 4)) {
-		            	JOptionPane.showMessageDialog(null, "Cantidad añadida al carrito: " + cantidad, "Información", JOptionPane.INFORMATION_MESSAGE);
-		                // actualizar el carrito
-		                VentanaPrincipal.productoSeleccionado.setNumeroProductos(cantidad);
-		                VentanaPrincipal.lp.add(VentanaPrincipal.productoSeleccionado);
-		            } else if (cantidad > 4){
-		                JOptionPane.showMessageDialog(
-		                    null, 
-		                    "Por favor, ingrese una cantidad válida menor a 4.", 
-		                    "Cantidad no válida", 
-		                    JOptionPane.WARNING_MESSAGE
-		                );
-		            } else {
-		                JOptionPane.showMessageDialog(
+		    if (codigo == 0) {
+			    if (c != null) {
+			        try {
+			            int cantidad = Integer.parseInt(c);
+	
+			            if ((cantidad > 0) && (cantidad < 4)) {
+			            	JOptionPane.showMessageDialog(null, "Cantidad añadida al carrito: " + cantidad, "Información", JOptionPane.INFORMATION_MESSAGE);
+			                // actualizar el carrito
+			                VentanaPrincipal.productoSeleccionado.setNumeroProductos(cantidad);
+			                VentanaPrincipal.lp.add(VentanaPrincipal.productoSeleccionado);
+			            } else if (cantidad > 4){
+			                JOptionPane.showMessageDialog(
 			                    null, 
-			                    "Por favor, ingrese una cantidad válida mayor a 0.", 
+			                    "Por favor, ingrese una cantidad válida menor a 4.", 
 			                    "Cantidad no válida", 
 			                    JOptionPane.WARNING_MESSAGE
 			                );
-			            }
-		        } catch (NumberFormatException ex) {
-		            JOptionPane.showMessageDialog(
-		                null, 
-		                "Por favor, ingrese un número válido.", 
-		                "Entrada no válida", 
-		                JOptionPane.ERROR_MESSAGE
-		            );
-		        }
-		    }
+			            } else {
+			                JOptionPane.showMessageDialog(
+				                    null, 
+				                    "Por favor, ingrese una cantidad válida mayor a 0.", 
+				                    "Cantidad no válida", 
+				                    JOptionPane.WARNING_MESSAGE
+				                );
+				            }
+			        } catch (NumberFormatException ex) {
+			            JOptionPane.showMessageDialog(
+			                null, 
+			                "Por favor, ingrese un número válido.", 
+			                "Entrada no válida", 
+			                JOptionPane.ERROR_MESSAGE
+			            );
+			        }
+			    }
+			}
 		});
 		
 		

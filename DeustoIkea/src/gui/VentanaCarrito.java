@@ -1,7 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
-
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -19,7 +19,7 @@ import javax.swing.JTable;
 
 
 import domain.Cliente;
-import domain.Datos;
+
 import domain.Producto;
 
 
@@ -30,8 +30,8 @@ public class VentanaCarrito extends JFrame{
 	private JScrollPane scrollTablaProductos;
 	protected JButton botonAtras, pagar, aplicarDescuento;
 	//protected JButton eliminarProducto;
-	protected JPanel panelPrincipal, panelBotones, panelIzq, panelDrch;
-	protected JLabel lblDerecha, lblIzquierda, lblDerecha1, lblIzquierda1;
+	protected JPanel panelPrincipal, panelBotones, panelIzq, panelDrch,panelTotal;
+	protected JLabel lblDerecha, lblIzquierda, lblDerecha1, lblIzquierda1,lblTotal;
 	
 	private Cliente cliente;
 	private int codigo;
@@ -90,6 +90,11 @@ public class VentanaCarrito extends JFrame{
         JScrollPane scrollPane = new JScrollPane(tablaProductos);
         scrollTablaProductos = new JScrollPane(tablaProductos);
         
+        panelTotal = new JPanel(new BorderLayout());
+        lblTotal = new JLabel("Total: " + calcularTotal(lp) + " €");
+        lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
+        panelTotal.add(lblTotal, BorderLayout.CENTER);
+        
         tablaProductos.addMouseListener(new MouseAdapter() {
 	        @Override
 	        public void mouseClicked(MouseEvent e) {
@@ -132,10 +137,18 @@ public class VentanaCarrito extends JFrame{
         panelPrincipal.add(panelIzq, BorderLayout.WEST);
         panelPrincipal.add(scrollTablaProductos, BorderLayout.CENTER);
         panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
+        panelPrincipal.add(panelTotal, BorderLayout.NORTH); 
         getContentPane().add(panelPrincipal, BorderLayout.CENTER);
         getContentPane().add(scrollPane);
         add(panelPrincipal);
         
         setVisible(true);
     }
+	 private double calcularTotal(List<Producto> productos) {
+	        double total = 0;
+	        for (Producto p : productos) {
+	            total += p.getPrecio() * p.getNumeroProductos();
+	        }
+	        return total;
+	    }
 }
