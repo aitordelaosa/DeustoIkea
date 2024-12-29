@@ -82,6 +82,10 @@ public class VentanaCarrito extends JFrame{
 			//new VentanaPrincipal(cliente, codigo);
 			VentanaDeCarga.vp.setVisible(true);
 		});
+        pagar.addActionListener((e) -> {
+            dispose();
+            new VentanaPagar(lp);
+        });
         
         //modeloCarrito = new ModeloCarrito(Datos.getProductos());
         modeloCarrito = new ModeloCarrito(lp);
