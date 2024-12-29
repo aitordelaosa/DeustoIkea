@@ -9,14 +9,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.Timer;
-
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,6 +30,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.KeyStroke;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -67,7 +74,7 @@ public class VentanaTrabajador extends JFrame {
     private JTable tabla;
     private JScrollPane scrollpane;
     private Modelo modelo;
-
+    
     public VentanaTrabajador(int codigo, Datos datos) {
     	this.codigo = codigo;
     	this.datos = datos;
@@ -602,6 +609,8 @@ public class VentanaTrabajador extends JFrame {
  		List<String> titulos = new ArrayList<>();
  		List<Producto> Productos = BD.obtenerListaProductosV(); 
  	     titulos = Arrays.asList("Nombre", "ID", "Numero", "Peso", "Precio");
+ 	    Productos.sort(Comparator.comparingInt(Producto::getIdProducto));
+ 	   
  	     
  	    for (Producto p : Productos ) {
  	         datos.add(new Object[]{
@@ -610,7 +619,7 @@ public class VentanaTrabajador extends JFrame {
  	         });
  	     }
  	   Modelo modelo = new Modelo(datos, titulos);
- 	     JTable tabla = new JTable(modelo);
+ 	   JTable tabla = new JTable(modelo);
  	     
  	     JScrollPane scrollPane = new JScrollPane(tabla);
  	     
@@ -657,7 +666,24 @@ public class VentanaTrabajador extends JFrame {
          }
      });*/
 
-     
+ 	   /*tabla.addMouseListener(new MouseAdapter() {
+ 	       @Override
+ 	       public void mouseClicked(MouseEvent e) {
+ 	           int clickedRow = tabla.rowAtPoint(e.getPoint()); // Obtener la fila donde se hizo clic
+ 	           if (clickedRow != -1) { // Asegurarse de que se hizo clic en una fila válida
+ 	               if (tabla.isRowSelected(clickedRow)) {
+ 	                   // Si la fila ya está seleccionada, deseleccionarla
+ 	                   tabla.removeRowSelectionInterval(clickedRow, clickedRow);
+ 	                   System.out.println("Fila " + clickedRow + " deseleccionada");
+ 	               } else {
+ 	                   // Si la fila no está seleccionada, seleccionarla
+ 	                   tabla.setRowSelectionInterval(clickedRow, clickedRow);
+ 	                   
+ 	                   System.out.println("Fila " + clickedRow + " seleccionada");
+ 	               }
+ 	           }
+ 	       }
+ 	   });*/
      
  
 
@@ -666,18 +692,29 @@ public class VentanaTrabajador extends JFrame {
      panelDerecho.add(scrollPane, BorderLayout.CENTER);
      panelDerecho.revalidate();
      panelDerecho.repaint();
-    panelDerecho.setFocusable(true);
+     panelDerecho.setFocusable(true);
+     
 
-// Solicitar el foco para capturar eventos de teclado
     panelDerecho.requestFocusInWindow();
-    // FALTA POR TERMINAR EN BD Y AQUI añadir productos y arreglar cosas.
-   if (arbolFunciones.getLastSelectedPathComponent().toString().equals("Ver Productos")) {
-	    panelDerecho.addKeyListener(new KeyAdapter() {
-	        @Override
-	        public void keyPressed(KeyEvent e) {
-	            if (e.getKeyCode() == KeyEvent.VK_P) {
-	                try {
-	                    System.out.println("Tecla P presionada.");
+ 
+    InputMap inputMap = panelDerecho.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+    ActionMap actionMap = panelDerecho.getActionMap();
+
+    
+    inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_P, 0), "teclaP");
+
+    // Definir la acción asociada a la tecla "P"
+    actionMap.put("teclaP", new AbstractAction() {
+        private boolean esperandoEntrada = false;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (!esperandoEntrada) {
+                esperandoEntrada = true; // Bloquear nuevas ejecuciones mientras se procesa
+
+                try {
+                    if (arbolFunciones.getLastSelectedPathComponent().toString().equals("Ver Productos")) {
+                        System.out.println("Tecla P presionada.");
 	                    String[] opciones = {"Armario", "Barbacoa", "Bide", "Ducha", "Encimera", "Fregadero", "Herramienta", "Horno", "Inodoro", "Maceta", "Mesa", "Nevera", "Planta", "Silla", "Sofa"};
 
 	                    // Crear un JComboBox con las opciones
@@ -689,6 +726,7 @@ public class VentanaTrabajador extends JFrame {
 	                        comboBox,
 	                        "Seleccione una opción",
 	                        JOptionPane.OK_CANCEL_OPTION
+	                        
 	                    );
 
 	                    if (seleccion == JOptionPane.OK_OPTION) {
@@ -1333,16 +1371,22 @@ public class VentanaTrabajador extends JFrame {
 	                        }
 	                    } else {
 	                        JOptionPane.showMessageDialog(null, "Cancelaste la selección.");
+	                        
 	                    }
-	                } catch (Exception ex) {
+	                }
+                    }
+                catch (Exception ex) {
 	                    System.err.println("Error al manejar el evento de teclado:");
 	                    ex.printStackTrace();
-	                }
+	                } 
 	            }
+	            esperandoEntrada = false;
 	        }
+	        
 	    });
 	    panelDerecho.repaint();
-	}
+	    
+	
   		        
   		  }
 private boolean parseBoolean(String input) throws IllegalArgumentException {
