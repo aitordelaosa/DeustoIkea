@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+
+
 public class Datos {
 
 	protected List<Mueble> lMuebles;
@@ -122,15 +124,6 @@ public class Datos {
 		Datos.productos = productos;
 	}
 	public Datos() {
-//		mesa: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, double altura, int capacidad
-//		silla: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, double altura, double ancho, double capacidadDeCarga
-//		armario: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, int numeroDePuertas, double altura, double anchura, double profundidad
-//		sofa: int idProducto, int numeroProductos, double peso, double precio, String material, String color, String descripcion, String rutaImagen, int capacidadDeAsientos
-
-//		int idProducto, int numeroProductos, double peso, double precio, String materialC, String descripcionC, String rutaImagen, double altura, double anchura, double profundidad, double capacidad, String tipoNevera
-//		int idProducto, int numeroProductos, double peso, double precio, String materialC, String descripcionC, String rutaImagen, double altura, double anchura, double profundidad, int potencia,int numeroBandejas
-//		int idProducto, int numeroProductos, double peso, double precio, String materialC, String descripcionC, String rutaImagen, double resistenciaCalor, double grosor, String color
-//		int idProducto, int numeroProductos, double peso, double precio, String materialC, String descripcionC, String rutaImagen, int numCubetas, double profundidad, boolean grifo
 
 		// Listas
 		lMuebles = new ArrayList<>();
@@ -139,18 +132,19 @@ public class Datos {
 		lCliente = new ArrayList<>();
 		lBaño = new ArrayList<>();
 		lJardineria = new ArrayList<>();
+		productos = new ArrayList<>();
 
 		// Muebles
 		mesa = new Mesa(1, 10, 20.0, 150.0, "Madera", "Marrón",
-				"Mesa de comedor para seis personas, hecha de madera de alta calidad.", "src/Imagenes/mesa.jpeg", 140.0,
+				"Mesa de comedor para seis personas, hecha de madera de alta calidad.", "resources/images/mesa.jpeg", 140.0,
 				6);
 		silla = new Silla(2, 15, 5.0, 75.0, "Plástico", "Negro", "Silla ergonómica, perfecta para oficina o comedor.",
-				"src/Imagenes/silla.jpeg", 120.3, 50, 120.0);
+				"resources/images/silla.jpeg", 120.3, 50, 120.0);
 		armario = new Armario(3, 8, 50.0, 200.0, "Madera", "Blanco",
 				"Armario espacioso de dos puertas, con estantes internos para optimizar el almacenamiento.",
-				"src/Imagenes/Armario.jpeg", 2, 200.0, 100.0, 50.0);
+				"resources/images/Armario.jpeg", 2, 200.0, 100.0, 50.0);
 		sofa = new Sofa(4, 5, 40.0, 350.0, "Tela", "Gris",
-				"Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.", "src/Imagenes/sofa.jpeg",
+				"Sofá de tres plazas, cómodo y moderno, ideal para cualquier sala de estar.", "resources/images/sofa.jpeg",
 				3);
 		lMuebles.add(mesa);
 		lMuebles.add(silla);
@@ -158,15 +152,15 @@ public class Datos {
 		lMuebles.add(sofa);
 
 		// Baño
-		lavamanos = new Lavamanos(1, 10, 5.5, 150.0, "Cerámica", "Lavamanos moderno", "src/Imagenes/lavamanos.jpg",
+		lavamanos = new Lavamanos(1, 10, 5.5, 150.0, "Cerámica", "Lavamanos moderno", "resources/images/lavamanos.jpg",
 				"Monomando", true);
 
 		ducha = new Ducha(2, 5, 7.0, 250.0, "Acero inoxidable", "Ducha con rociador ajustable",
-				"src/Imagenes/ducha.jpg", "Circular", true);
+				"resources/images/ducha.jpg", "Circular", true);
 
-		bide = new Bide(3, 8, 4.0, 120.0, "Porcelana", "Bide compacto", "src/Imagenes/bide.jpeg", true, false);
+		bide = new Bide(3, 8, 4.0, 120.0, "Porcelana", "Bide compacto", "resources/images/bide.jpeg", true, false);
 
-		inodoro = new Inodoro(4, 6, 10.0, 300.0, "Cerámica", "Inodoro eficiente", "src/Imagenes/inodoro.jpg", "Doble",
+		inodoro = new Inodoro(4, 6, 10.0, 300.0, "Cerámica", "Inodoro eficiente", "resources/images/inodoro.jpg", "Doble",
 				false);
 
 		lBaño.add(bide);
@@ -177,16 +171,16 @@ public class Datos {
 		//Jardineria
 		
 		maceta = new Maceta(21, 3, 3.2, 10.75, true, "Cerámica", "Maceta para plantas tamaño mediano", 
-				"src/Imagenes/Maceta.jpg", 17.5);
+				"resources/images/Maceta.jpg", 17.5);
 		
 		barbacoa = new Barbacoa(22, 5, 150, 50.99, true, "Hormigón", "resistente y duradera, ideal para exteriores. Incluye parrilla ajustable y espacio de almacenamiento,perfecta para disfrutar asados en el jardín.", 
-				"src/Imagenes/Barbacoa.jpg", "Carbón", 19.0, false);
+				"resources/images/Barbacoa.jpg", "Carbón", 19.0, false);
 		
 		planta = new Planta(23, 8, 20, 21.99, true, "madera", "Es una planta de exterior de tamaño medio, ideal para jardines y patios. Con follaje perenne y flores en tonos rosa, blanco o rojo", 
-				"src/Imagenes/adelfas-colores.jpg", 2.5,"Adelfa", 27.0);
+				"resources/images/adelfas-colores.jpg", 2.5,"Adelfa", 27.0);
 		
 		herramienta = new Herramienta(24, 4, 1, 7.5, false, "Madera", "herramienta resistente con cabeza de acero para cavar y mover tierra, y mango de madera ergonómico para un agarre cómodo",
-				"src/Imagenes/Pala.jpg", "Pala");
+				"resources/images/Pala.jpg", "Pala");
 		
 		lJardineria.add(maceta);
 		lJardineria.add(barbacoa);
@@ -197,14 +191,14 @@ public class Datos {
 
 		// Cocina
 		nevera = new Nevera(5, 12, 81.5, 699.90, "Aluminio", "Nevera con dos puertas, ideal para familias",
-				"src/Imagenes/Nevera.jpg", 198.8, 70.2, 57.2, 150, "Nevera con congelador");
+				"resources/images/Nevera.jpg", 198.8, 70.2, 57.2, 150, "Nevera con congelador");
 		horno = new Horno(6, 4, 67.2, 250.8, "Metal", "Horno con gran capacidad para tus mejores recetas",
-				"src/Imagenes/horno.jpg", 59.5, 59.5, 56.9, 95, 2);
+				"resources/images/horno.jpg", 59.5, 59.5, 56.9, 95, 2);
 		encimera = new Encimera(7, 9, 34, 190.95, "Granito",
-				"Elegante encimera para darle un toque moderno a tu cocina", "src/Imagenes/encimera.jpg", 80.8, 23.9,
+				"Elegante encimera para darle un toque moderno a tu cocina", "resources/images/encimera.jpg", 80.8, 23.9,
 				"Blanco");
 		fregadero = new Fregadero(8, 9, 12.5, 280.87, "Metal", "Fregadero con dos cubetas y grifo incluido",
-				"src/Imagenes/fregadero.jpg", 2, 28.6, true);
+				"resources/images/fregadero.jpg", 2, 28.6, true);
 		lCocina.add(nevera);
 		lCocina.add(horno);
 		lCocina.add(encimera);
@@ -243,6 +237,41 @@ public class Datos {
 		lCliente.add(cliente3);
 		lCliente.add(cliente4);
 		lCliente.add(cliente5);
+		
+		 productos.addAll(lMuebles);
+		 productos.addAll(lCocina);
+		 productos.addAll(lBaño);
+		 productos.addAll(lJardineria);
+	}
+	
+List<Producto> elementos = getProductos();//Lista declarada para pasarla como paramentro al metodo recursivo
+    
+	public static void generarCombinaciones(List<List<Producto>> result, List<Producto> elementos, double presupuesto, List<Producto> temp) {
+	   
+	    if (presupuesto < 0) {
+	        return;
+	    }
+
+	    if (presupuesto >= 0 && !temp.isEmpty()) {
+	        
+	        List<Producto> tempOrdenada = new ArrayList<>(temp);
+	        tempOrdenada.sort((o1, o2) -> Integer.compare(o1.getIdProducto(), o2.getIdProducto()));
+
+	        
+	        if (!result.contains(tempOrdenada)) {
+	            result.add(tempOrdenada);
+	        }
+	    }
+
+	    for (int i = 0; i < elementos.size(); i++) {
+	        Producto e = elementos.get(i);
+
+	        if (presupuesto - e.getPrecio() >= 0 && !temp.contains(e)) {
+	            temp.add(e); 
+	            generarCombinaciones(result, elementos, presupuesto - e.getPrecio(), temp);
+	            temp.remove(temp.size() - 1); 
+	            }
+	    }
 	}
 
 	// Muebles

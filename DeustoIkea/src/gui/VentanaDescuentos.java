@@ -35,9 +35,9 @@ public class VentanaDescuentos extends JFrame {
         panelImagenes = new JPanel(new GridLayout(1, 3, 10, 10));
         panelBotones = new JPanel();
         
-        ImageIcon iconoD1 = new ImageIcon(new ImageIcon("src/Imagenes/descuento1.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoD2 = new ImageIcon(new ImageIcon("src/Imagenes/descuento2.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoD3 = new ImageIcon(new ImageIcon("src/Imagenes/descuento3.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoD1 = new ImageIcon(new ImageIcon("resources/images/descuento1.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoD2 = new ImageIcon(new ImageIcon("resources/images/descuento2.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoD3 = new ImageIcon(new ImageIcon("resources/images/descuento3.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
         
         descuento1 = new JLabel(iconoD1);
         descuento2 = new JLabel(iconoD2);

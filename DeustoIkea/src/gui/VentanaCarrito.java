@@ -1,7 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
-
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -19,7 +19,7 @@ import javax.swing.JTable;
 
 
 import domain.Cliente;
-import domain.Datos;
+
 import domain.Producto;
 
 
@@ -30,8 +30,8 @@ public class VentanaCarrito extends JFrame{
 	private JScrollPane scrollTablaProductos;
 	protected JButton botonAtras, pagar, aplicarDescuento;
 	//protected JButton eliminarProducto;
-	protected JPanel panelPrincipal, panelBotones, panelIzq, panelDrch;
-	protected JLabel lblDerecha, lblIzquierda, lblDerecha1, lblIzquierda1;
+	protected JPanel panelPrincipal, panelBotones, panelIzq, panelDrch,panelTotal, panelAbajo;
+	protected JLabel lblDerecha, lblIzquierda, lblDerecha1, lblIzquierda1,lblTotal;
 	
 	private Cliente cliente;
 	private int codigo;
@@ -49,10 +49,10 @@ public class VentanaCarrito extends JFrame{
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		ImageIcon iconoD = new ImageIcon(new ImageIcon("src/Imagenes/compras1.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoI = new ImageIcon(new ImageIcon("src/Imagenes/compras2.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoD1 = new ImageIcon(new ImageIcon("src/Imagenes/compras3.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoI1 = new ImageIcon(new ImageIcon("src/Imagenes/compras4.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
+		ImageIcon iconoD = new ImageIcon(new ImageIcon("resources/images/compras1.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoI = new ImageIcon(new ImageIcon("resources/images/compras2.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoD1 = new ImageIcon(new ImageIcon("resources/images/compras3.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoI1 = new ImageIcon(new ImageIcon("resources/images/compras4.jpg").getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
         
         lblDerecha = new JLabel(iconoD);
         lblIzquierda = new JLabel(iconoI);
@@ -68,9 +68,11 @@ public class VentanaCarrito extends JFrame{
         panelPrincipal = new JPanel(new BorderLayout());
         panelIzq = new JPanel();
         panelDrch = new JPanel();
+        panelAbajo = new JPanel();
 
         panelDrch.setLayout(new GridLayout(2, 1));
         panelIzq.setLayout(new GridLayout(2, 1));
+        panelAbajo.setLayout(new GridLayout(2, 1));
         
         panelBotones.add(botonAtras);
         panelBotones.add(pagar);
@@ -82,6 +84,10 @@ public class VentanaCarrito extends JFrame{
 			//new VentanaPrincipal(cliente, codigo);
 			VentanaDeCarga.vp.setVisible(true);
 		});
+        pagar.addActionListener((e) -> {
+            dispose();
+            new VentanaPagar(lp);
+        });
         
         //modeloCarrito = new ModeloCarrito(Datos.getProductos());
         modeloCarrito = new ModeloCarrito(lp);
@@ -89,6 +95,11 @@ public class VentanaCarrito extends JFrame{
         this.tablaProductos.setRowHeight(50);
         JScrollPane scrollPane = new JScrollPane(tablaProductos);
         scrollTablaProductos = new JScrollPane(tablaProductos);
+        
+        panelTotal = new JPanel();
+        lblTotal = new JLabel("Total: " + calcularTotal(lp) + " €");
+        lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
+        panelTotal.add(lblTotal, BorderLayout.CENTER);
         
         tablaProductos.addMouseListener(new MouseAdapter() {
 	        @Override
@@ -131,11 +142,20 @@ public class VentanaCarrito extends JFrame{
         panelPrincipal.add(panelDrch, BorderLayout.EAST);
         panelPrincipal.add(panelIzq, BorderLayout.WEST);
         panelPrincipal.add(scrollTablaProductos, BorderLayout.CENTER);
-        panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
+        panelAbajo.add(panelTotal, BorderLayout.CENTER);
+        panelAbajo.add(panelBotones, BorderLayout.CENTER); 
+        panelPrincipal.add(panelAbajo, BorderLayout.SOUTH);
         getContentPane().add(panelPrincipal, BorderLayout.CENTER);
         getContentPane().add(scrollPane);
         add(panelPrincipal);
         
         setVisible(true);
     }
+	 private double calcularTotal(List<Producto> productos) {
+	        double total = 0;
+	        for (Producto p : productos) {
+	            total += p.getPrecio() * p.getNumeroProductos();
+	        }
+	        return total;
+	    }
 }

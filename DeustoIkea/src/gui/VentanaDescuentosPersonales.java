@@ -27,9 +27,9 @@ public class VentanaDescuentosPersonales extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        ImageIcon iconoD1 = new ImageIcon(new ImageIcon("src/Imagenes/descuento1.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoD2 = new ImageIcon(new ImageIcon("src/Imagenes/descuento2.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
-        ImageIcon iconoD3 = new ImageIcon(new ImageIcon("src/Imagenes/descuento3.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoD1 = new ImageIcon(new ImageIcon("resources/images/descuento1.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoD2 = new ImageIcon(new ImageIcon("resources/images/descuento2.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
+        ImageIcon iconoD3 = new ImageIcon(new ImageIcon("resources/images/descuento3.jpeg").getImage().getScaledInstance(200, 150, java.awt.Image.SCALE_SMOOTH));
 
         JLabel descuento1 = new JLabel(iconoD1);
         descuento1.setText("20% de Descuento en la app");

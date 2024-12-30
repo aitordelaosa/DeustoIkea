@@ -5,7 +5,7 @@ import java.awt.GraphicsConfiguration;
 
 import javax.swing.SwingUtilities;
 
-import domain.BD;
+import db.BD;
 import domain.Datos;
 import gui.VentanaDeCarga;
 

@@ -20,7 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import domain.BD;
+import db.BD;
 import domain.Datos;
 import domain.Trabajador;
 
@@ -52,7 +52,7 @@ public class VentanaInicioTrabajador extends JFrame{
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
                 .getHeight();
         setSize(anchoP, altoP);
-//        setExtendedState(MAXIMIZED_BOTH);
+        setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         

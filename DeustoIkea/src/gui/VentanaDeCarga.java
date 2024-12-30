@@ -17,7 +17,7 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
-import domain.BD;
+import db.BD;
 import domain.Datos;
 
 public class VentanaDeCarga extends JFrame {
@@ -38,7 +38,7 @@ public class VentanaDeCarga extends JFrame {
         setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
-        ImageIcon i = new ImageIcon("src/Imagenes/DeustoIkea_app_icon.png");
+        ImageIcon i = new ImageIcon("resources/images/DeustoIkea_app_icon.png");
         setIconImage(i.getImage());
 
         botonCerrar = new JButton("CERRAR");
@@ -51,7 +51,7 @@ public class VentanaDeCarga extends JFrame {
         panelCombo = new JPanel();
         panelSuperior = new JPanel();
         
-		ImageIcon imIkea = new ImageIcon("src/Imagenes/DeustoIkea_app_icon.png");
+		ImageIcon imIkea = new ImageIcon("resources/images/DeustoIkea_app_icon.png");
 		Image imagen = imIkea.getImage();
 		Image imagenRedimensionada = imagen.getScaledInstance(325, 350, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
@@ -125,7 +125,7 @@ public class VentanaDeCarga extends JFrame {
                         @Override
                         public void run() {
                         	if(codigo==1) {
-                        	BD.initBD("src/data/DeustoIkea.db");
+                        	BD.initBD("resources/db/DeustoIkea.db");
                     		BD.crearTablas();
                         	}
                         	
