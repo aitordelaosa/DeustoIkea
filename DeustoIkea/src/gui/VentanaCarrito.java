@@ -30,7 +30,7 @@ public class VentanaCarrito extends JFrame{
 	private JScrollPane scrollTablaProductos;
 	protected JButton botonAtras, pagar, aplicarDescuento;
 	//protected JButton eliminarProducto;
-	protected JPanel panelPrincipal, panelBotones, panelIzq, panelDrch,panelTotal;
+	protected JPanel panelPrincipal, panelBotones, panelIzq, panelDrch,panelTotal, panelAbajo;
 	protected JLabel lblDerecha, lblIzquierda, lblDerecha1, lblIzquierda1,lblTotal;
 	
 	private Cliente cliente;
@@ -68,9 +68,11 @@ public class VentanaCarrito extends JFrame{
         panelPrincipal = new JPanel(new BorderLayout());
         panelIzq = new JPanel();
         panelDrch = new JPanel();
+        panelAbajo = new JPanel();
 
         panelDrch.setLayout(new GridLayout(2, 1));
         panelIzq.setLayout(new GridLayout(2, 1));
+        panelAbajo.setLayout(new GridLayout(2, 1));
         
         panelBotones.add(botonAtras);
         panelBotones.add(pagar);
@@ -94,7 +96,7 @@ public class VentanaCarrito extends JFrame{
         JScrollPane scrollPane = new JScrollPane(tablaProductos);
         scrollTablaProductos = new JScrollPane(tablaProductos);
         
-        panelTotal = new JPanel(new BorderLayout());
+        panelTotal = new JPanel();
         lblTotal = new JLabel("Total: " + calcularTotal(lp) + " €");
         lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
         panelTotal.add(lblTotal, BorderLayout.CENTER);
@@ -140,8 +142,9 @@ public class VentanaCarrito extends JFrame{
         panelPrincipal.add(panelDrch, BorderLayout.EAST);
         panelPrincipal.add(panelIzq, BorderLayout.WEST);
         panelPrincipal.add(scrollTablaProductos, BorderLayout.CENTER);
-        panelPrincipal.add(panelBotones, BorderLayout.SOUTH);
-        panelPrincipal.add(panelTotal, BorderLayout.NORTH); 
+        panelAbajo.add(panelTotal, BorderLayout.CENTER);
+        panelAbajo.add(panelBotones, BorderLayout.CENTER); 
+        panelPrincipal.add(panelAbajo, BorderLayout.SOUTH);
         getContentPane().add(panelPrincipal, BorderLayout.CENTER);
         getContentPane().add(scrollPane);
         add(panelPrincipal);
