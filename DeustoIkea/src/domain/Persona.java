@@ -33,7 +33,7 @@ public class Persona {
 		this.fNacimiento = fNacimiento;
 		this.contrasenia = contrasenia;
 		this.telefono = telefono;
-		this.id = contador;
+		this.id = id;
 		contador++;
 	}
 	
@@ -48,7 +48,7 @@ public class Persona {
 		this.fNacimiento = LocalDate.now();
 		this.contrasenia = "";
 		this.telefono = "";
-		this.id = contador;
+		this.id = 0;
 		contador++;
 	}
 	public static int getContador() {
@@ -129,12 +129,23 @@ public class Persona {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+		
+	}
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(apellido, contrasenia, direccion, dni, email, fNacimiento, genero, id, nombre, telefono);
 	}
+	
 
 	@Override
 	public boolean equals(Object obj) {
