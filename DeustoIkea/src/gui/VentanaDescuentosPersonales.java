@@ -11,7 +11,8 @@ public class VentanaDescuentosPersonales extends JFrame {
     private JLabel etiquetaDescuento;
     private JButton botonCerrar, botonAtras;
     
-    private int codigo;
+    @SuppressWarnings("unused")
+	private int codigo;
 
     public VentanaDescuentosPersonales(Cliente cliente, int codigo) {
     	this.codigo = codigo;

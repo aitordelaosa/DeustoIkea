@@ -10,8 +10,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -61,12 +60,13 @@ public class VentanaPostPrincipal extends JFrame {
 	private JLabel ultimaImagenSeleccionada = null;
 	
 	@SuppressWarnings("unused")
-	
 	private Datos datos;
 	private String objetoSeleccionado;
+	@SuppressWarnings("unused")
 	private Cliente cliente;
+	@SuppressWarnings("unused")
 	private int codigo;
-	private VentanaCarrito ventanaCarrito;
+	
 	private List<Producto> lista;
 	
 	public VentanaPostPrincipal(int code, Cliente cliente, int codigo) {

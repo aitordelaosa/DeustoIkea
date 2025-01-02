@@ -6,7 +6,7 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Random;
+
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -36,6 +36,7 @@ public class VentanaRegistro extends JFrame{
 	private JComboBox<String> comboGenero;
 	private JButton btnRegistro, btnCerrar, btnInicioSesion;	
 	
+	@SuppressWarnings("unused")
 	private int codigo;
 	
 	public VentanaRegistro(int codigo) {

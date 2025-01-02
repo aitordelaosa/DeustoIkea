@@ -32,8 +32,9 @@ public class VentanaCarrito extends JFrame{
 	//protected JButton eliminarProducto;
 	protected JPanel panelPrincipal, panelBotones, panelIzq, panelDrch,panelTotal, panelAbajo;
 	protected JLabel lblDerecha, lblIzquierda, lblDerecha1, lblIzquierda1,lblTotal;
-	
+	@SuppressWarnings("unused")
 	private Cliente cliente;
+	@SuppressWarnings("unused")
 	private int codigo;
 	
 	public VentanaCarrito(Cliente cliente, int codigo, List<Producto> lp) {

@@ -12,9 +12,10 @@ public class VentanaAyuda extends JFrame {
     private JTextArea textArea;
     private JScrollPane scrollPane;
 
-    @SuppressWarnings("unused")
+    
+	@SuppressWarnings("unused")
 	private Cliente cliente;
-    private int codigo;
+    
 
     public VentanaAyuda(Cliente cliente) {
         this.cliente = cliente;

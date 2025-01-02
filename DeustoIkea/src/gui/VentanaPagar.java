@@ -1,7 +1,7 @@
 package gui;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+
 
 import domain.Producto;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class VentanaPagar extends JFrame {
     private static final long serialVersionUID = 1L;
-    private JPanel panelIzquierda, panelDerecha, panelInferior, panelCentro, panelderecho, panelizquierdo, panelmain;;
+    private JPanel panelIzquierda, panelDerecha, panelCentro, panelderecho, panelizquierdo, panelmain;;
     private JTextArea resumenCompra;
     private JTextField campoTarjeta;
     private JButton botonFinalizar;

@@ -5,14 +5,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import domain.Armario;
-import domain.Baño;
-import domain.Tipo;
 
-
-
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 public class Modelo extends DefaultTableModel {
     private static final long serialVersionUID = 1L;

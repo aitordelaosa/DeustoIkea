@@ -1,12 +1,11 @@
 package main;
 
-import java.awt.GraphicsConfiguration;
+
 
 
 import javax.swing.SwingUtilities;
 
-import db.BD;
-import domain.Datos;
+
 import gui.VentanaDeCarga;
 
 public class Main {

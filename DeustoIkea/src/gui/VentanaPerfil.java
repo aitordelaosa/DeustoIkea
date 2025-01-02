@@ -26,7 +26,9 @@ public class VentanaPerfil extends JFrame{
             direccion, lbDNI, DNI, lbContrasenia;
     private JPasswordField contrasenia;
     private JCheckBox mostrarContrasenia;
+	@SuppressWarnings("unused")
 	private Cliente cliente;
+	@SuppressWarnings("unused")
 	private int codigo;
 	
 	public VentanaPerfil(Cliente cliente, int codigo) {

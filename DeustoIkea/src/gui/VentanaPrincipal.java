@@ -23,14 +23,12 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
 import domain.Armario;
-import domain.Barbacoa;
 import domain.Bide;
 import domain.Cliente;
 import domain.Datos;
 import domain.Descuento;
 import domain.Ducha;
 import domain.Encimera;
-import domain.Fregadero;
 import domain.Mesa;
 import domain.Producto;
 import domain.Silla;
@@ -48,8 +46,10 @@ public class VentanaPrincipal extends JFrame {
     protected JScrollPane scrollTablaMuebles;
     
     protected Datos datos;
-    private Cliente cliente;
-    private int codigo;
+    @SuppressWarnings("unused")
+	private Cliente cliente;
+    @SuppressWarnings("unused")
+	private int codigo;
     public static  List<Producto> lp;
 	public static  Producto productoSeleccionado;
 	
@@ -347,7 +347,6 @@ botonQueComprar.addActionListener((e) -> {
         Armario armario = datos.getArmario();
         Sofa sofa = datos.getSofa();
         Bide bide = datos.getBide();
-        Fregadero fregadero = datos.getFregadero();
         Ducha ducha = datos.getDucha();
         Encimera encimera= datos.getEncimera();
         

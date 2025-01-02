@@ -8,7 +8,8 @@ import domain.Cliente;
 
 public class VentanaModificarDatos extends JFrame {
     private static final long serialVersionUID = 1L;
-    private int codigo;
+    @SuppressWarnings("unused")
+	private int codigo;
 
     public VentanaModificarDatos(Cliente cliente, JFrame ventanaAnterior, int codigo) {
     	this.codigo = codigo;

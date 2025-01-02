@@ -11,9 +11,8 @@ import domain.Mesa;
 import domain.Producto;
 import domain.Silla;
 import domain.Sofa;
-import domain.Baño;
 import domain.Bide;
-import domain.Barbacoa;
+
 import domain.Fregadero;
 import domain.Ducha;
 import domain.Encimera;

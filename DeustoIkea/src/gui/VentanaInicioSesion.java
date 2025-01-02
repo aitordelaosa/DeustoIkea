@@ -5,8 +5,7 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.KeyEventDispatcher;
-import java.awt.KeyboardFocusManager;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -28,14 +27,10 @@ public class VentanaInicioSesion extends JFrame {
 	protected JLabel lblNombreUsuario, lblContrasenia, lblRegistro, lblImagen, lblTexto;
 	protected JTextField txtNombreUsuario;
 	protected JPasswordField txtContrasenia;
-	private static Cliente cli;
-
-	public static Cliente getCliente() {
-		return cli;
-	}
+	
 
 	protected Datos datos;
-	protected static Cliente cliente;
+	protected  Cliente cliente;
 	private int code;
 
 	public VentanaInicioSesion(Cliente c, int code) {

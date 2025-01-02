@@ -13,6 +13,7 @@ public class VentanaDescuentos extends JFrame {
 	protected JPanel panelPrincipal, panelImagenes, panelBotones;
 	protected JLabel descuento1, descuento2, descuento3;
 	
+	@SuppressWarnings("unused")
 	private int codigo;
 	
 	public VentanaDescuentos(Cliente cliente, int codigo) {
