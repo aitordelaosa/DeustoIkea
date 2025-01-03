@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.*;
 
-
+import db.BD;
 import domain.Producto;
 
 import java.awt.*;
@@ -96,6 +96,7 @@ public class VentanaPagar extends JFrame {
                 JOptionPane.showMessageDialog(VentanaPagar.this, "El número de tarjeta debe tener 16 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(VentanaPagar.this, "Compra finalizada correctamente.\nGracias por tu compra!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                BD.borrarCarrito(VentanaInicioSesion.cliente.getDni());
                 dispose();
             }
         });

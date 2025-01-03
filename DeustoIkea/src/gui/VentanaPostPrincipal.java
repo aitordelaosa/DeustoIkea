@@ -46,6 +46,7 @@ import domain.Armario;
 import domain.Barbacoa;
 import domain.Baño;
 import domain.Bide;
+import domain.Carrito;
 import domain.Cliente;
 import domain.Cocina;
 
@@ -920,6 +921,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String material = bar.getMaterial();
 								double peso = bar.getPeso();
 								String descripcion = bar.getDescripcion();
+								objetoSeleccionado = "Barbacoa";
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);	
 																	
@@ -1317,6 +1319,44 @@ public class VentanaPostPrincipal extends JFrame {
 			            );
 			        }
 			    }
+			}if (codigo == 1) {
+				 if (c != null) {
+				        try {
+				            int cantidad = Integer.parseInt(c);
+		
+				            if ((cantidad > 0) && (cantidad < 4)) {
+				            	JOptionPane.showMessageDialog(null, "Cantidad añadida al carrito: " + cantidad, "Información", JOptionPane.INFORMATION_MESSAGE);
+				                // actualizar el carrito
+				                VentanaPrincipal.productoSeleccionado.setNumeroProductos(cantidad);
+				                VentanaPrincipal.lp.add(VentanaPrincipal.productoSeleccionado);
+				                Carrito ca = new Carrito(VentanaPrincipal.productoSeleccionado.getIdProducto(), VentanaPrincipal.productoSeleccionado.getClass().getName(), VentanaPrincipal.productoSeleccionado.getNumeroProductos(), (float)VentanaPrincipal.productoSeleccionado.getPrecio(), VentanaInicioSesion.cliente.getDni());
+				                VentanaInicioSesion.carrito.add(ca);
+				                BD.insertarCarrito(ca);
+				            } else if (cantidad > 4){
+				                JOptionPane.showMessageDialog(
+				                    null, 
+				                    "Por favor, ingrese una cantidad válida menor a 4.", 
+				                    "Cantidad no válida", 
+				                    JOptionPane.WARNING_MESSAGE
+				                );
+				            } else {
+				                JOptionPane.showMessageDialog(
+					                    null, 
+					                    "Por favor, ingrese una cantidad válida mayor a 0.", 
+					                    "Cantidad no válida", 
+					                    JOptionPane.WARNING_MESSAGE
+					                );
+					            }
+				        } catch (NumberFormatException ex) {
+				            JOptionPane.showMessageDialog(
+				                null, 
+				                "Por favor, ingrese un número válido.", 
+				                "Entrada no válida", 
+				                JOptionPane.ERROR_MESSAGE
+				            );
+				        }
+				    }
+		
 			}
 		});
 		
@@ -1359,94 +1399,97 @@ public class VentanaPostPrincipal extends JFrame {
 			Cocina cocinaSeleccionada = null;
 			Baño bañoSeleccionado = null;
 			Jardineria jardineriaSeleccionado = null;
-
-			switch (objetoSeleccionado) {
-			case "Sofá":
-				muebleSeleccionado = datos.getSofa();
-				VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
-				break;
-			case "Armario":
-				muebleSeleccionado = datos.getArmario();
-				VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
-				break;
-			case "Silla":
-				muebleSeleccionado = datos.getSilla();
-				VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
-				break;
-			case "Mesa":
-				muebleSeleccionado = datos.getMesa();
-				VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
-				break;
+			if (codigo ==0) {
+				switch (objetoSeleccionado) {
+				case "Sofá":
+					muebleSeleccionado = datos.getSofa();
+					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
+					break;
+				case "Armario":
+					muebleSeleccionado = datos.getArmario();
+					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
+					break;
+				case "Silla":
+					muebleSeleccionado = datos.getSilla();
+					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
+					break;
+				case "Mesa":
+					muebleSeleccionado = datos.getMesa();
+					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
+					break;
+					
+				case "Nevera":
+					cocinaSeleccionada = datos.getNevera();
+					VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
+					break;
+				case "Horno":
+					cocinaSeleccionada = datos.getHorno();
+					VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
+					break;
+				case "Encimera":
+					cocinaSeleccionada = datos.getEncimera();
+					VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
+					break;
+				case "Fregadero":
+					cocinaSeleccionada = datos.getFregadero();
+					VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
+					break;
+					
+				case "Bide":
+					bañoSeleccionado = datos.getBide();
+					VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
+					break;
+				case "Ducha":
+					bañoSeleccionado = datos.getDucha();
+					VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
+					break;
+				case "Inodoro":
+					bañoSeleccionado = datos.getInodoro();
+					VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
+					break;
+				case "Lavamanos":
+					bañoSeleccionado = datos.getLavamanos();
+					VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
+					break;
+					
+				case "Barbacoa":
+					jardineriaSeleccionado = datos.getBarbacoa();
+					VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
+					break;
+				case "Planta":
+					jardineriaSeleccionado = datos.getPlanta();
+					VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
+					break;
+				case "Maceta":
+					jardineriaSeleccionado = datos.getMaceta();
+					VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
+					break;
+				case "Pala":
+					jardineriaSeleccionado = datos.getHerramienta();
+					VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
+					break;
+					
+				}
+	
+				String detalles;
 				
-			case "Nevera":
-				cocinaSeleccionada = datos.getNevera();
-				VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
-				break;
-			case "Horno":
-				cocinaSeleccionada = datos.getHorno();
-				VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
-				break;
-			case "Encimera":
-				cocinaSeleccionada = datos.getEncimera();
-				VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
-				break;
-			case "Fregadero":
-				cocinaSeleccionada = datos.getFregadero();
-				VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
-				break;
+				if (muebleSeleccionado != null) {
+					detalles = datos.obtenerDetallesMueble(muebleSeleccionado);
+				} else if (cocinaSeleccionada != null) {
+					detalles = datos.obtenerDetallesCocina(cocinaSeleccionada);
+				} else if(bañoSeleccionado != null){
+					detalles = datos.obtenerDetallesBaño(bañoSeleccionado);
+					
+				} else if(jardineriaSeleccionado !=null){
+					detalles = datos.obtenerDetallesJardineria(jardineriaSeleccionado);
+				} else {
+					detalles = "No se encontraron detalles para el objeto seleccionado.";
+				}
+				JOptionPane.showMessageDialog(this, detalles);
 				
-			case "Bide":
-				bañoSeleccionado = datos.getBide();
-				VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
-				break;
-			case "Ducha":
-				bañoSeleccionado = datos.getDucha();
-				VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
-				break;
-			case "Inodoro":
-				bañoSeleccionado = datos.getInodoro();
-				VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
-				break;
-			case "Lavamanos":
-				bañoSeleccionado = datos.getLavamanos();
-				VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
-				break;
-				
-			case "Barbacoa":
-				jardineriaSeleccionado = datos.getBarbacoa();
-				VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
-				break;
-			case "Planta":
-				jardineriaSeleccionado = datos.getPlanta();
-				VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
-				break;
-			case "Maceta":
-				jardineriaSeleccionado = datos.getMaceta();
-				VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
-				break;
-			case "Pala":
-				jardineriaSeleccionado = datos.getHerramienta();
-				VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
-				break;
+			}else {
 				
 			}
-
-			String detalles;
-			
-			if (muebleSeleccionado != null) {
-				detalles = datos.obtenerDetallesMueble(muebleSeleccionado);
-			} else if (cocinaSeleccionada != null) {
-				detalles = datos.obtenerDetallesCocina(cocinaSeleccionada);
-			} else if(bañoSeleccionado != null){
-				detalles = datos.obtenerDetallesBaño(bañoSeleccionado);
-				
-			} else if(jardineriaSeleccionado !=null){
-				detalles = datos.obtenerDetallesJardineria(jardineriaSeleccionado);
-			} else {
-				detalles = "No se encontraron detalles para el objeto seleccionado.";
-			}
-			JOptionPane.showMessageDialog(this, detalles);
-			
 		}
 	}
 

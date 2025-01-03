@@ -24,6 +24,7 @@ import javax.swing.JScrollPane;
 
 import domain.Armario;
 import domain.Bide;
+import domain.Carrito;
 import domain.Cliente;
 import domain.Datos;
 import domain.Descuento;
@@ -55,6 +56,13 @@ public class VentanaPrincipal extends JFrame {
 	
     public VentanaPrincipal(Cliente cliente, int codigo) {
     	lp = new ArrayList<Producto>();
+    	if(VentanaInicioSesion.carrito.size()!=0) {
+    		for(Carrito c: VentanaInicioSesion.carrito) {
+    			Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    			lp.add(p);
+    		}
+    	}
+        	
     	this.codigo = codigo;
     	this.cliente = cliente;
         setTitle("Ventana Principal - DeustoIkea");
@@ -271,7 +279,7 @@ public class VentanaPrincipal extends JFrame {
         	new VentanaAyuda(cliente);
         });
         
-botonQueComprar.addActionListener((e) -> {
+        botonQueComprar.addActionListener((e) -> {
         	
             try {
          

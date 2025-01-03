@@ -9,11 +9,13 @@ import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import db.BD;
+import domain.Carrito;
 import domain.Cliente;
 import domain.Datos;
 import domain.SistemaUsuarios;
@@ -30,8 +32,9 @@ public class VentanaInicioSesion extends JFrame {
 	
 
 	protected Datos datos;
-	protected  Cliente cliente;
+	protected  static Cliente cliente;
 	private int code;
+	static ArrayList<Carrito> carrito;
 
 	public VentanaInicioSesion(Cliente c, int code) {
 		this.code = code;
@@ -256,6 +259,7 @@ public class VentanaInicioSesion extends JFrame {
 	        JOptionPane.showMessageDialog(null, "¡BIENVENID@! " + c.getNombre().toUpperCase(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
 	        if (code == 1) {
 	            BD.actualizarUltimoLogin(c.getDni());
+	            carrito = BD.recuperarCarrito(c.getDni());
 	        }
 	        cliente = c;
 	        txtNombreUsuario.setText("");

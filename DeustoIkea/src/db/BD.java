@@ -18,6 +18,7 @@ import java.util.List;
 import domain.Armario;
 import domain.Barbacoa;
 import domain.Bide;
+import domain.Carrito;
 import domain.Cliente;
 import domain.Descuento;
 import domain.Ducha;
@@ -86,7 +87,7 @@ public class BD {
 			
 			
 			//Tablas para las clases que heredan de Producto
-			sql = "CREATE TABLE IF NOT EXISTS Mueble(idProducto INT PRIMARY KEY, Material String, Color String, Descripcion String, RutaImagen String, FOREIGN KEY (idProducto) REFERENCES Producto(idProducto))";
+			sql = "CREATE TABLE IF NOT EXISTS Mueble(idProducto INT PRIMARY KEY, Material String, Color String, Descripcion String, RutaImagen String, FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)) ";
 			stmt.executeUpdate(sql);	
 			sql = "CREATE TABLE IF NOT EXISTS Cocina(idProducto INT PRIMARY KEY, Material String, Descripcion String, RutaImagen String, FOREIGN KEY (idProducto) REFERENCES Producto(idProducto))";
 			stmt.executeUpdate(sql);	
@@ -140,7 +141,64 @@ public class BD {
 			sql = "CREATE TABLE IF NOT EXISTS Nevera(idProducto INT PRIMARY KEY, Altura double, Anchura double, Profundida double, Capacidad double, tipoNevera String, FOREIGN KEY (idProducto) REFERENCES Cocina(idProducto))";
 			stmt.executeUpdate(sql);
 			
+			//Tablas para el carrito
+			sql = "CREATE TABLE IF NOT EXISTS Carrito(idProducto INT PRIMARY KEY, nombreP STRING, cantidad INT, precio FLOAT, dniC STRING"
+					+ ")";
+			stmt.executeUpdate(sql);
+				
 			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void insertarCarrito(Carrito c) {
+		String sql = "INSERT INTO Carrito VALUES(?,?,?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, c.getIdP());
+			ps.setString(2, c.getNomP());
+			ps.setInt(3, c.getCant());
+			ps.setFloat(4, c.getPrecio());
+			ps.setString(5, c.getDni());
+			ps.execute();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static ArrayList<Carrito> recuperarCarrito(String dni) {
+		ArrayList<Carrito> al = new ArrayList<Carrito>();
+		String sql = "SELECT * FROM Carrito WHERE dniC = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, dni);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int codP = rs.getInt(1);
+				String nomP = rs.getString(2);
+				int cant = rs.getInt(3);
+				float prec = rs.getFloat(4);
+				Carrito c = new Carrito(codP, nomP, cant, prec, dni);
+				al.add(c);
+			}
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return al;
+	}
+	
+	public static void borrarCarrito(String dni) {
+		String sql = "DELETE FROM Carrito WHERE dni = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, dni);
+			ps.execute();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
