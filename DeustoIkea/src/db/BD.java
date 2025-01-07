@@ -193,7 +193,7 @@ public class BD {
 	}
 	
 	public static void borrarCarrito(String dni) {
-		String sql = "DELETE FROM Carrito WHERE dni = ?";
+		String sql = "DELETE FROM Carrito WHERE dniC = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, dni);
