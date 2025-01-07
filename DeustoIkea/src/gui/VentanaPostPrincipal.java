@@ -209,7 +209,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = s.getDescripcion();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+color+"\n"+peso+" kg"+"\n"+descripcion);	
-								
+								VentanaPrincipal.productoSeleccionado = s;
 							}else if(m instanceof Silla) {
 								String nombre = "Silla";
 								Silla si = (Silla)m;
@@ -220,7 +220,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = si.getDescripcion();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+color+"\n"+peso+" kg"+"\n"+descripcion);
-																
+								VentanaPrincipal.productoSeleccionado = si;
 							}else if(m instanceof Mesa) {
 								String nombre = "Mesa";
 								Mesa me = (Mesa)m;
@@ -231,7 +231,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = me.getDescripcion();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+color+"\n"+peso+" kg"+"\n"+descripcion);
-																
+								VentanaPrincipal.productoSeleccionado = me;
 							}else if(m instanceof Armario) {
 								String nombre = "Armario";
 								Armario a = (Armario)m;
@@ -242,7 +242,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = a.getDescripcion();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+color+"\n"+peso+" kg"+"\n"+descripcion);	
-								
+								VentanaPrincipal.productoSeleccionado = a;
 								}
 						}
 						
@@ -449,7 +449,7 @@ public class VentanaPostPrincipal extends JFrame {
 									String descripcion = h.getDescripcionC();
 									
 									JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);	
-																		
+									VentanaPrincipal.productoSeleccionado = h;							
 								}else if(c instanceof Nevera) {
 									String nombre = "Nevera";
 									Nevera n = (Nevera)c;
@@ -460,7 +460,7 @@ public class VentanaPostPrincipal extends JFrame {
 									String descripcion = n.getDescripcionC();
 									
 									JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
-									
+									VentanaPrincipal.productoSeleccionado = n;
 								}else if(c instanceof Encimera) {
 									String nombre = "Encimera";
 									Encimera en = (Encimera)c;
@@ -471,7 +471,7 @@ public class VentanaPostPrincipal extends JFrame {
 									String descripcion = en.getDescripcionC();
 									
 									JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
-									
+									VentanaPrincipal.productoSeleccionado = en;
 									
 								}else if(c instanceof Fregadero) {
 									String nombre = "Fregadero";
@@ -483,7 +483,7 @@ public class VentanaPostPrincipal extends JFrame {
 									String descripcion = f.getDescripcionC();
 									
 									JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
-									
+									VentanaPrincipal.productoSeleccionado = f;
 									
 									}
 							}
@@ -686,7 +686,8 @@ public class VentanaPostPrincipal extends JFrame {
 								double peso = bi.getPeso();
 								String descripcion = bi.getDescripcionB();
 								
-								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);	
+								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+								VentanaPrincipal.productoSeleccionado = bi;
 																	
 							}else if(b instanceof Ducha) {
 								String nombre = "Ducha";
@@ -698,6 +699,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = d.getDescripcionB();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
+								VentanaPrincipal.productoSeleccionado = d;
 								
 							}else if(b instanceof Inodoro) {
 								String nombre = "Inodoro";
@@ -709,7 +711,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = i.getDescripcionB();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
-								
+								VentanaPrincipal.productoSeleccionado = i;
 								
 							}else if(b instanceof Lavamanos) {
 								String nombre = "Lavamanos";
@@ -721,7 +723,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = la.getDescripcionB();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
-								
+								VentanaPrincipal.productoSeleccionado = la;
 								
 								}
 						}
@@ -924,7 +926,7 @@ public class VentanaPostPrincipal extends JFrame {
 								objetoSeleccionado = "Barbacoa";
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);	
-																	
+								VentanaPrincipal.productoSeleccionado = bar;								
 							}else if(j instanceof Planta) {
 								String nombre = "Planta";
 								Planta pl = (Planta)j;
@@ -935,7 +937,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = pl.getDescripcion();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
-								
+								VentanaPrincipal.productoSeleccionado = pl;
 							}else if(j instanceof Maceta) {
 								String nombre = "Maceta";
 								Maceta ma = (Maceta)j;
@@ -946,7 +948,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = ma.getDescripcion();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
-								
+								VentanaPrincipal.productoSeleccionado = ma;
 								
 							}else if(j instanceof Herramienta) {
 								String nombre = "Herramienta";
@@ -958,7 +960,7 @@ public class VentanaPostPrincipal extends JFrame {
 								String descripcion = he.getDescripcion();
 								
 								JOptionPane.showMessageDialog(null, nombre+"\n"+precio+" €"+"\n"+material+"\n"+peso+" kg"+"\n"+descripcion);
-								
+								VentanaPrincipal.productoSeleccionado = he;
 								}
 						}
 					
@@ -1328,10 +1330,14 @@ public class VentanaPostPrincipal extends JFrame {
 				            	JOptionPane.showMessageDialog(null, "Cantidad añadida al carrito: " + cantidad, "Información", JOptionPane.INFORMATION_MESSAGE);
 				                // actualizar el carrito
 				                VentanaPrincipal.productoSeleccionado.setNumeroProductos(cantidad);
+				                System.out.println(VentanaPrincipal.productoSeleccionado.getIdProducto());
 				                VentanaPrincipal.lp.add(VentanaPrincipal.productoSeleccionado);
+				                System.out.println("añadido a la lista");
 				                Carrito ca = new Carrito(VentanaPrincipal.productoSeleccionado.getIdProducto(), VentanaPrincipal.productoSeleccionado.getClass().getName(), VentanaPrincipal.productoSeleccionado.getNumeroProductos(), (float)VentanaPrincipal.productoSeleccionado.getPrecio(), VentanaInicioSesion.cliente.getDni());
 				                VentanaInicioSesion.carrito.add(ca);
+				                System.out.println("Añadido al carrito");
 				                BD.insertarCarrito(ca);
+				                System.out.println("BD");
 				            } else if (cantidad > 4){
 				                JOptionPane.showMessageDialog(
 				                    null, 
@@ -1488,7 +1494,97 @@ public class VentanaPostPrincipal extends JFrame {
 				JOptionPane.showMessageDialog(this, detalles);
 				
 			}else {
+				if(objetoSeleccionado.equals("Armario")) {
+					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
+					System.out.println("Producto: "+VentanaPrincipal.productoSeleccionado);
+				}
+				switch (objetoSeleccionado) {
+				case "Sofá":
+					muebleSeleccionado = datos.getSofa();
+					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
+					break;
+				case "Armario":
+					muebleSeleccionado = datos.getArmario();
+					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
+					break;
+				case "Silla":
+					muebleSeleccionado = datos.getSilla();
+					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
+					break;
+				case "Mesa":
+					muebleSeleccionado = datos.getMesa();
+					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
+					break;
+					
+				case "Nevera":
+					cocinaSeleccionada = datos.getNevera();
+					VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
+					break;
+				case "Horno":
+					cocinaSeleccionada = datos.getHorno();
+					VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
+					break;
+				case "Encimera":
+					cocinaSeleccionada = datos.getEncimera();
+					VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
+					break;
+				case "Fregadero":
+					cocinaSeleccionada = datos.getFregadero();
+					VentanaPrincipal.productoSeleccionado = cocinaSeleccionada;
+					break;
+					
+				case "Bide":
+					bañoSeleccionado = datos.getBide();
+					VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
+					break;
+				case "Ducha":
+					bañoSeleccionado = datos.getDucha();
+					VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
+					break;
+				case "Inodoro":
+					bañoSeleccionado = datos.getInodoro();
+					VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
+					break;
+				case "Lavamanos":
+					bañoSeleccionado = datos.getLavamanos();
+					VentanaPrincipal.productoSeleccionado = bañoSeleccionado;
+					break;
+					
+				case "Barbacoa":
+					jardineriaSeleccionado = datos.getBarbacoa();
+					VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
+					break;
+				case "Planta":
+					jardineriaSeleccionado = datos.getPlanta();
+					VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
+					break;
+				case "Maceta":
+					jardineriaSeleccionado = datos.getMaceta();
+					VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
+					break;
+				case "Pala":
+					jardineriaSeleccionado = datos.getHerramienta();
+					VentanaPrincipal.productoSeleccionado = jardineriaSeleccionado;
+					break;
+					
+				}
+	
+				String detalles;
 				
+				if (muebleSeleccionado != null) {
+					detalles = datos.obtenerDetallesMueble(muebleSeleccionado);
+				} else if (cocinaSeleccionada != null) {
+					detalles = datos.obtenerDetallesCocina(cocinaSeleccionada);
+				} else if(bañoSeleccionado != null){
+					detalles = datos.obtenerDetallesBaño(bañoSeleccionado);
+					
+				} else if(jardineriaSeleccionado !=null){
+					detalles = datos.obtenerDetallesJardineria(jardineriaSeleccionado);
+				} else {
+					detalles = "No se encontraron detalles para el objeto seleccionado.";
+				}
+				JOptionPane.showMessageDialog(this, detalles);
+
 			}
 		}
 	}

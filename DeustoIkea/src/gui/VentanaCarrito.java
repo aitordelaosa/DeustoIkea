@@ -87,7 +87,7 @@ public class VentanaCarrito extends JFrame{
 		});
         pagar.addActionListener((e) -> {
             dispose();
-            new VentanaPagar(lp);
+            new VentanaPagar(lp, codigo);
         });
         
         //modeloCarrito = new ModeloCarrito(Datos.getProductos());

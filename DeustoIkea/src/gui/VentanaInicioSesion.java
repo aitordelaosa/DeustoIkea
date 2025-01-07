@@ -37,6 +37,7 @@ public class VentanaInicioSesion extends JFrame {
 	static ArrayList<Carrito> carrito;
 
 	public VentanaInicioSesion(Cliente c, int code) {
+		carrito = new ArrayList<Carrito>();
 		this.code = code;
 		setTitle("Inicio de Sesión");
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode()
