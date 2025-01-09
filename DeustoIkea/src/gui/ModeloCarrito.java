@@ -60,6 +60,7 @@ public class ModeloCarrito extends DefaultTableModel{
     public void actualizarTabla() {
         fireTableDataChanged(); 
     }
+    
 
     public Producto getProductoAtRow(int row) {
         return lProductos.get(row);

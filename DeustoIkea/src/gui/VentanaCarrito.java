@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-
+import db.BD;
 import domain.Cliente;
 
 import domain.Producto;
@@ -122,6 +122,7 @@ public class VentanaCarrito extends JFrame{
 
 	                        if (confirmacion == JOptionPane.YES_OPTION) {
 	                        	modeloCarrito.eliminarProducto(productoSeleccionado);
+	                        	BD.borrarProducto(cliente.getDni(), productoSeleccionado.getIdProducto());
 	                        }
 	                    } else if (opcion == JOptionPane.NO_OPTION) {
 	                        String cantidadStr = JOptionPane.showInputDialog(null, "Ingrese la nueva cantidad:");

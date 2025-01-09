@@ -1333,7 +1333,7 @@ public class VentanaPostPrincipal extends JFrame {
 				                System.out.println(VentanaPrincipal.productoSeleccionado.getIdProducto());
 				                VentanaPrincipal.lp.add(VentanaPrincipal.productoSeleccionado);
 				                System.out.println("añadido a la lista");
-				                Carrito ca = new Carrito(VentanaPrincipal.productoSeleccionado.getIdProducto(), VentanaPrincipal.productoSeleccionado.getClass().getName(), VentanaPrincipal.productoSeleccionado.getNumeroProductos(), (float)VentanaPrincipal.productoSeleccionado.getPrecio(), VentanaInicioSesion.cliente.getDni());
+				                Carrito ca = new Carrito(VentanaPrincipal.productoSeleccionado.getIdProducto(), VentanaPrincipal.productoSeleccionado.getClass().getSimpleName(), VentanaPrincipal.productoSeleccionado.getNumeroProductos(), (float)VentanaPrincipal.productoSeleccionado.getPrecio(), VentanaInicioSesion.cliente.getDni());
 				                VentanaInicioSesion.carrito.add(ca);
 				                System.out.println("Añadido al carrito");
 				                BD.insertarCarrito(ca);
@@ -1494,10 +1494,7 @@ public class VentanaPostPrincipal extends JFrame {
 				JOptionPane.showMessageDialog(this, detalles);
 				
 			}else {
-				if(objetoSeleccionado.equals("Armario")) {
-					VentanaPrincipal.productoSeleccionado = muebleSeleccionado;
-					System.out.println("Producto: "+VentanaPrincipal.productoSeleccionado);
-				}
+				
 				switch (objetoSeleccionado) {
 				case "Sofá":
 					muebleSeleccionado = datos.getSofa();

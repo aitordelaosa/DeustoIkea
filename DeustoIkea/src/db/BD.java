@@ -153,20 +153,41 @@ public class BD {
 	}
 	
 	public static void insertarCarrito(Carrito c) {
-		String sql = "INSERT INTO Carrito VALUES(?,?,?,?,?)";
-		try {
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, c.getIdP());
-			ps.setString(2, c.getNomP());
-			ps.setInt(3, c.getCant());
-			ps.setFloat(4, c.getPrecio());
-			ps.setString(5, c.getDni());
-			ps.execute();
-			ps.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+	    String checkSql = "SELECT cantidad FROM Carrito WHERE idProducto = ? AND dniC = ?";
+	    String updateSql = "UPDATE Carrito SET cantidad = cantidad + ? WHERE idProducto = ? AND dniC = ?";
+	    String insertSql = "INSERT INTO Carrito VALUES(?,?,?,?,?)";
+
+	    try {
+	        // Paso 1: Verificar si el producto ya está en el carrito
+	        PreparedStatement checkPs = con.prepareStatement(checkSql);
+	        checkPs.setInt(1, c.getIdP());
+	        checkPs.setString(2, c.getDni());
+	        ResultSet rs = checkPs.executeQuery();
+
+	        if (rs.next()) {
+	            // Paso 2: El producto ya está en el carrito, actualizar la cantidad
+	            PreparedStatement updatePs = con.prepareStatement(updateSql);
+	            updatePs.setInt(1, c.getCant());
+	            updatePs.setInt(2, c.getIdP());
+	            updatePs.setString(3, c.getDni());
+	            updatePs.executeUpdate();
+	            updatePs.close();
+	        } else {
+	            // Paso 3: El producto no está en el carrito, insertar un nuevo registro
+	            PreparedStatement insertPs = con.prepareStatement(insertSql);
+	            insertPs.setInt(1, c.getIdP());
+	            insertPs.setString(2, c.getNomP());
+	            insertPs.setInt(3, c.getCant());
+	            insertPs.setFloat(4, c.getPrecio());
+	            insertPs.setString(5, c.getDni());
+	            insertPs.execute();
+	            insertPs.close();
+	        }
+
+	        checkPs.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
 	
 	public static ArrayList<Carrito> recuperarCarrito(String dni) {
@@ -182,6 +203,7 @@ public class BD {
 				int cant = rs.getInt(3);
 				float prec = rs.getFloat(4);
 				Carrito c = new Carrito(codP, nomP, cant, prec, dni);
+				System.out.println(c);
 				al.add(c);
 			}
 			rs.close();
@@ -202,6 +224,19 @@ public class BD {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void borrarProducto(String dni, int idP) {
+	    String sql = "DELETE FROM Carrito WHERE dniC = ? AND idProducto = ?";
+	    try {
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setString(1, dni);
+	        ps.setInt(2, idP);
+	        ps.executeUpdate(); 
+	        ps.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
 	
 	public static void borrarTabla() throws SQLException{
