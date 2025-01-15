@@ -30,6 +30,7 @@ import domain.Datos;
 import domain.Descuento;
 import domain.Ducha;
 import domain.Encimera;
+import domain.Horno;
 import domain.Mesa;
 import domain.Producto;
 import domain.Silla;
@@ -58,8 +59,16 @@ public class VentanaPrincipal extends JFrame {
     	lp = new ArrayList<Producto>();
     	if(VentanaInicioSesion.carrito.size()!=0) {
     		for(Carrito c: VentanaInicioSesion.carrito) {
-    			Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
-    			lp.add(p);
+    			if(c.getNomP().equals("Armario")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Armario(p));
+    			}else if(c.getNomP().equals("Horno")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}
+    			else{Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(p);
+    			}
     		}
     	}
         	

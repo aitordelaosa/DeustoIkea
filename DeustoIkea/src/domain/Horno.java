@@ -9,6 +9,9 @@ public class Horno extends Cocina{
 	protected int potencia;
 	protected int numeroBandejas;
 	
+	public Horno(Producto p) {
+		super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "");
+	}
 	public Horno() {
 		super();
 		
