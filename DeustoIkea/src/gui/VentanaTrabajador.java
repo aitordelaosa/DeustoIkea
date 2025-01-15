@@ -2,7 +2,9 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -15,6 +17,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
@@ -30,6 +34,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -73,8 +78,10 @@ public class VentanaTrabajador extends JFrame {
     private JTable tabla;
     private JScrollPane scrollpane;
     private Modelo modelo;
+    private List<String> titulos;
     
     public VentanaTrabajador(int codigo, Datos datos) {
+    	titulos = Arrays.asList("");
     	this.codigo = codigo;
     	this.datos = datos;
         setTitle("Ventana-Trabajador");
@@ -228,37 +235,36 @@ public class VentanaTrabajador extends JFrame {
          timer.setRepeats(false);
          timer.start();
      } else {
-  	List<Object[]> datos = new ArrayList<>();
-		List<String> titulos = new ArrayList<>();
+    	 List<Object[]> datos = new ArrayList<>();
+    	 List<String> titulos = Arrays.asList("DNI", "Género", "Nombre", "Apellido", "Email", 
+    	                                       "Dirección", "Fecha Nacimiento", "Contraseña", 
+    	                                       "Teléfono", "ID", "Ultimo Login", "Descuento");
 
-	        
-   	  List<Cliente> clientes = BD.ObtenerListaCliente(); 
-      titulos = Arrays.asList("DNI", "Género", "Nombre", "Apellido", "Email", 
-                               "Dirección", "Fecha Nacimiento", "Contraseña", 
-                               "Teléfono", "ID", "Ultimo Login", "Descuento");
+    	 List<Cliente> clientes = BD.ObtenerListaCliente();
 
-      for (Cliente c : clientes) {
-          datos.add(new Object[]{
-              c.getDni(), c.getGenero(), c.getNombre(), c.getApellido(),
-              c.getEmail(), c.getDireccion(), c.getfNacimiento(),
-              c.getContrasenia(), c.getTelefono(), c.getId(), c.getUltimoLogin(),
-              c.getDescuento()
-          });
-      }
+    	 for (Cliente c : clientes) {
+    	     datos.add(new Object[]{
+    	         c.getDni(), c.getGenero(), c.getNombre(), c.getApellido(),
+    	         c.getEmail(), c.getDireccion(), c.getfNacimiento(),
+    	         c.getContrasenia(), c.getTelefono(), c.getId(), c.getUltimoLogin(),
+    	         c.getDescuento()
+    	     });
+    	 }
 
-      modelo = new Modelo(datos, titulos);
-      tabla = new JTable(modelo);
-      
-      
-      scrollpane = new JScrollPane(tabla);
-      System.out.println("Datos iniciales en el modelo:");
-      for (int i = 0; i < modelo.getRowCount(); i++) {
-          for (int j = 0; j < modelo.getColumnCount(); j++) {
-              System.out.print(modelo.getValueAt(i, j) + "\t");
-          }
-          System.out.println();
-      }
-     
+    	 modelo = new Modelo(datos, titulos);
+    	 tabla = new JTable(modelo);
+
+    	 scrollpane = new JScrollPane(tabla);
+
+    	 System.out.println("Datos iniciales en el modelo:");
+    	 for (int i = 0; i < modelo.getRowCount(); i++) {
+    	     for (int j = 0; j < modelo.getColumnCount(); j++) {
+    	         System.out.print(modelo.getValueAt(i, j) + "\t");
+    	     }
+    	     System.out.println();
+    	 }
+
+    	
       tabla.addKeyListener(new KeyAdapter() {
           @Override
           public void keyPressed(KeyEvent e) {
@@ -665,26 +671,83 @@ public class VentanaTrabajador extends JFrame {
          }
      });*/
 
- 	   /*tabla.addMouseListener(new MouseAdapter() {
- 	       @Override
- 	       public void mouseClicked(MouseEvent e) {
- 	           int clickedRow = tabla.rowAtPoint(e.getPoint()); // Obtener la fila donde se hizo clic
- 	           if (clickedRow != -1) { // Asegurarse de que se hizo clic en una fila válida
- 	               if (tabla.isRowSelected(clickedRow)) {
- 	                   // Si la fila ya está seleccionada, deseleccionarla
- 	                   tabla.removeRowSelectionInterval(clickedRow, clickedRow);
- 	                   System.out.println("Fila " + clickedRow + " deseleccionada");
- 	               } else {
- 	                   // Si la fila no está seleccionada, seleccionarla
- 	                   tabla.setRowSelectionInterval(clickedRow, clickedRow);
- 	                   
- 	                   System.out.println("Fila " + clickedRow + " seleccionada");
+ 	    JTableHeader header = tabla.getTableHeader();
+
+ 	
+ 	    header.setDefaultRenderer(new DefaultTableCellRenderer() {
+ 	    private static final long serialVersionUID = 1L;
+
+		@Override
+ 	    public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus,int row, int column) {
+ 	        Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+ 	        cellComponent.setFont(new Font("Times New Roman", Font.BOLD, 20));        
+ 	        setHorizontalAlignment(SwingConstants.CENTER);        
+ 	        cellComponent.setBackground(new Color(220, 220, 220)); 
+ 	        cellComponent.setForeground(Color.BLACK); 
+ 	        return cellComponent;
+ 	    }
+ 	});
+ 	     
+ 	    tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+ 	       private static final long serialVersionUID = 1L;
+ 	       
+
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+ 	        
+ 	           Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+ 	           cellComponent.setFont(new Font("Arial", Font.BOLD, 14));
+ 	           setHorizontalAlignment(SwingConstants.CENTER);
+
+ 	           if (isSelected) {
+ 	               cellComponent.setBackground(new Color(184, 207, 229)); // Azul claro
+ 	               cellComponent.setForeground(Color.BLACK);
+ 	           } else {
+ 	               cellComponent.setBackground(Color.WHITE);
+ 	               cellComponent.setForeground(Color.BLACK);
+ 	           }
+ 	           
+ 	          if (column == 0) { // Suponiendo que los nombres están en la columna 0
+ 	             String nombre = value.toString();
+ 	             if (nombre.equalsIgnoreCase("Armario") || 
+ 	                 nombre.equalsIgnoreCase("Mesa") || 
+ 	                 nombre.equalsIgnoreCase("Silla") || 
+ 	                 nombre.equalsIgnoreCase("Sofa")) {
+ 	                 cellComponent.setForeground(new Color(0, 51, 102)); // Azul oscuro
+ 	             } else if(nombre.equalsIgnoreCase("Lavamanos") || 
+ 	                 nombre.equalsIgnoreCase("Ducha") || 
+ 	                 nombre.equalsIgnoreCase("Bide") || 
+ 	                 nombre.equalsIgnoreCase("Inodoro")){
+ 	            	 cellComponent.setForeground(new Color(0, 0, 102));
+ 	             } else if(nombre.equalsIgnoreCase("Maceta") || 
+ 	 	                 nombre.equalsIgnoreCase("Barbacoa") || 
+ 	 	                 nombre.equalsIgnoreCase("Planta") || 
+ 	 	                 nombre.equalsIgnoreCase("Herramienta")){
+ 	 	            	 cellComponent.setForeground(new Color(51, 23, 102));
+ 	             } else if(nombre.equalsIgnoreCase("Nevera") || 
+ 	 	                 nombre.equalsIgnoreCase("Horno") || 
+ 	 	                 nombre.equalsIgnoreCase("Encimera") || 
+ 	 	                 nombre.equalsIgnoreCase("Fregadero")){
+ 	 	            	 cellComponent.setForeground(new Color(70, 23, 0));
+ 	             }
+ 	         
+ 	         }
+
+ 	           if (column == 2) {
+ 	               try {
+ 	                   int numero = Integer.parseInt(value.toString());
+ 	                   if (numero <= 8) {
+ 	                       cellComponent.setForeground(Color.RED);
+ 	                   } else if (numero >= 9) {
+ 	                       cellComponent.setForeground(Color.GREEN);
+ 	                   }
+ 	               } catch (NumberFormatException e) {
+ 	                   cellComponent.setForeground(Color.BLACK); 
  	               }
  	           }
+ 	           return cellComponent;
  	       }
- 	   });*/
-     
- 
+ 	   });
 
      panelDerecho.setLayout(new BorderLayout());
      panelDerecho.removeAll();
@@ -1404,6 +1467,8 @@ public class VentanaTrabajador extends JFrame {
 	        
 	    });
 	    panelDerecho.repaint();
+	    
+	    
 	    
 	
   		        
