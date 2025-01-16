@@ -55,7 +55,7 @@ public class VentanaPrincipal extends JFrame {
     public static  List<Producto> lp;
 	public static  Producto productoSeleccionado;
 	
-    public VentanaPrincipal(Cliente cliente, int codigo) {
+	public VentanaPrincipal(Cliente cliente, int codigo) {
     	lp = new ArrayList<Producto>();
     	if(VentanaInicioSesion.carrito.size()!=0) {
     		for(Carrito c: VentanaInicioSesion.carrito) {
@@ -65,8 +65,49 @@ public class VentanaPrincipal extends JFrame {
     			}else if(c.getNomP().equals("Horno")) {
     				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
     				lp.add(new Horno(p));
-    			}
-    			else{Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    			}else if(c.getNomP().equals("Barbacoa")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Bide")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Ducha")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Encimera")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Fregadero")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Herramienta")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Inodoro")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Lavamanos")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Maceta")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Mesa")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Nevera")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Planta")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Silla")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else if(c.getNomP().equals("Sofa")) {
+    				Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
+    				lp.add(new Horno(p));
+    			}else{Producto p = new Producto(c.getIdP(), c.getCant(), 0, c.getPrecio());
     				lp.add(p);
     			}
     		}

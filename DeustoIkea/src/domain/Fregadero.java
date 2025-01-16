@@ -15,6 +15,11 @@ public class Fregadero extends Cocina {
 		this.profundidad = 0.0;
 		this.grifo = false;
 	}
+	
+	public Fregadero(Producto p) {
+		super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "");
+	}
+	
 	public Fregadero(int idProducto, int numeroProductos, double peso, double precio, String materialC,
 			String descripcionC, String rutaImagen,int numCubetas, double profundidad, boolean grifo) {
 		super(idProducto, numeroProductos, peso, precio, materialC, descripcionC, rutaImagen);

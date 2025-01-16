@@ -10,6 +10,11 @@ public class Maceta extends Jardineria {
         super(idProducto, numeroProductos, peso, precio, esExterior, material, descripcion, rutaimagen );
         this.diametro = diametro;
     }
+    
+    public Maceta(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, false, "", "", "");
+		
+    }
 
     public Maceta() {
         super();

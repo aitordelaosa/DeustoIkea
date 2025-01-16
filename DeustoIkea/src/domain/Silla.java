@@ -14,7 +14,12 @@ public class Silla extends Mueble {
 		this.ancho = ancho;
 		this.capacidadDeCarga = capacidadDeCarga;
 	}
-
+    
+    public Silla(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "", "");
+		
+    }
+    
 	public Silla() {
 		super();
 		this.altura = 0.0;

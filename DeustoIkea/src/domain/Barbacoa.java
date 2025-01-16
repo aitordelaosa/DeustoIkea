@@ -14,6 +14,10 @@ public class Barbacoa extends Jardineria {
 	        this.superficieCoccion = superficieCoccion;
 	        this.tieneTapa = tieneTapa;
 	    }
+	    public Barbacoa(Producto p) {
+	    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, false, "", "", "");
+			
+	    }
 
 	    public Barbacoa() {
 	        super();

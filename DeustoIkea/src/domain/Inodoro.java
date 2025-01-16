@@ -10,7 +10,11 @@ public class Inodoro extends Baño {
         this.tipoDescarga = "";
         this.tieneAsientoCalefaccionado = false;
     }
-
+    
+    public Inodoro(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "");
+		
+    }
     // Constructor con parámetros
     public Inodoro(int idProducto, int numeroProductos, double peso, double precio, 
                    String materialB, String descripcionB, String rutaImagen, 

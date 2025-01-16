@@ -10,6 +10,10 @@ public class Bide extends Baño {
         this.tieneCalefaccion = false;
         this.esElectrico = false;
     }
+    public Bide(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "");
+		
+    }
 
     // Constructor con parámetros
     public Bide(int idProducto, int numeroProductos, double peso, double precio, 

@@ -1,6 +1,8 @@
+
 package gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -51,6 +53,7 @@ import domain.Producto;
 import domain.Trabajador;
 
 public class VentanaTrabajador extends JFrame {
+	
     private static final long serialVersionUID = 1L;
 
     protected JButton botonAtras, botonCerrar;
@@ -63,10 +66,10 @@ public class VentanaTrabajador extends JFrame {
         "resources/images/sofa.jpeg",//Regular
         "resources/images/lavamanos.jpg",
         "resources/images/ducha.jpg",
-        "resources/images/bide.jpeg",//Regular
+        "resources/images/bide.jpeg",
         "resources/images/inodoro.jpg",
         "resources/images/Maceta.jpg",
-        "resources/images/adelfas-colores.jpg",//Regular
+        "resources/images/adelfas-colores.jpg",
         "resources/images/Nevera.jpg",
         "resources/images/horno.jpg",
         "resources/images/encimera.jpg",
@@ -78,7 +81,8 @@ public class VentanaTrabajador extends JFrame {
     private JTable tabla;
     private JScrollPane scrollpane;
     private Modelo modelo;
-    private List<String> titulos;
+    @SuppressWarnings("unused")
+	private List<String> titulos;
     
     public VentanaTrabajador(int codigo, Datos datos) {
     	titulos = Arrays.asList("");
@@ -253,6 +257,28 @@ public class VentanaTrabajador extends JFrame {
 
     	 modelo = new Modelo(datos, titulos);
     	 tabla = new JTable(modelo);
+         
+    	 tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+  	       private static final long serialVersionUID = 1L;
+  	       
+
+  		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+  	        
+  	           Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+  	           cellComponent.setFont(new Font("Arial", Font.BOLD, 14));
+  	           setHorizontalAlignment(SwingConstants.CENTER);
+
+  	           if (isSelected) {
+  	               cellComponent.setBackground(new Color(184, 207, 229)); 
+  	               cellComponent.setForeground(Color.BLACK);
+  	           } else {
+  	               cellComponent.setBackground(Color.WHITE);
+  	               cellComponent.setForeground(Color.BLACK);
+  	           }
+  	           return cellComponent;
+  		}
+       });
 
     	 scrollpane = new JScrollPane(tabla);
 
@@ -263,6 +289,22 @@ public class VentanaTrabajador extends JFrame {
     	     }
     	     System.out.println();
     	 }
+    	 JTableHeader header = tabla.getTableHeader();
+
+    	 	
+  	    header.setDefaultRenderer(new DefaultTableCellRenderer() {
+  	    private static final long serialVersionUID = 1L;
+
+ 		@Override
+  	    public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus,int row, int column) {
+  	        Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+  	        cellComponent.setFont(new Font("Times New Roman", Font.BOLD, 20));        
+  	        setHorizontalAlignment(SwingConstants.CENTER);        
+  	        cellComponent.setBackground(new Color(220, 220, 220)); 
+  	        cellComponent.setForeground(Color.BLACK); 
+  	        return cellComponent;
+  	    }
+  	});
 
     	
       tabla.addKeyListener(new KeyAdapter() {
@@ -384,8 +426,49 @@ public class VentanaTrabajador extends JFrame {
 
      Modelo modelo = new Modelo(datos, titulos);
      JTable tabla = new JTable(modelo);
+     tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+	       private static final long serialVersionUID = 1L;
+	       
+
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+	        
+	           Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+	           cellComponent.setFont(new Font("Arial", Font.BOLD, 14));
+	           setHorizontalAlignment(SwingConstants.CENTER);
+
+	           if (isSelected) {
+	               cellComponent.setBackground(new Color(184, 207, 229)); 
+	               cellComponent.setForeground(Color.BLACK);
+	           } else {
+	               cellComponent.setBackground(Color.WHITE);
+	               cellComponent.setForeground(Color.BLACK);
+	           }
+	           return cellComponent;
+		}
+     });
+		
+	           
      
      JScrollPane scrollPane = new JScrollPane(tabla);
+     
+     JTableHeader header = tabla.getTableHeader();
+
+  		
+	    header.setDefaultRenderer(new DefaultTableCellRenderer() {
+	    private static final long serialVersionUID = 1L;
+
+		@Override
+	    public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus,int row, int column) {
+	        Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+	        cellComponent.setFont(new Font("Times New Roman", Font.BOLD, 20));        
+	        setHorizontalAlignment(SwingConstants.CENTER);        
+	        cellComponent.setBackground(new Color(220, 220, 220)); 
+	        cellComponent.setForeground(Color.BLACK); 
+	        return cellComponent;
+	    }
+	});
+	    
      
      
  
@@ -628,7 +711,7 @@ public class VentanaTrabajador extends JFrame {
  	     
  	     JScrollPane scrollPane = new JScrollPane(tabla);
  	     
- 	    /*tabla.addKeyListener(new KeyAdapter() {
+ 	    tabla.addKeyListener(new KeyAdapter() {
          @Override
          public void keyPressed(KeyEvent e) {
              if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
@@ -669,7 +752,7 @@ public class VentanaTrabajador extends JFrame {
                  }
              }
          }
-     });*/
+     });
 
  	    JTableHeader header = tabla.getTableHeader();
 
@@ -700,35 +783,35 @@ public class VentanaTrabajador extends JFrame {
  	           setHorizontalAlignment(SwingConstants.CENTER);
 
  	           if (isSelected) {
- 	               cellComponent.setBackground(new Color(184, 207, 229)); // Azul claro
+ 	               cellComponent.setBackground(new Color(184, 207, 229)); 
  	               cellComponent.setForeground(Color.BLACK);
  	           } else {
  	               cellComponent.setBackground(Color.WHITE);
  	               cellComponent.setForeground(Color.BLACK);
  	           }
  	           
- 	          if (column == 0) { // Suponiendo que los nombres están en la columna 0
+ 	          if (column == 0) { 
  	             String nombre = value.toString();
  	             if (nombre.equalsIgnoreCase("Armario") || 
  	                 nombre.equalsIgnoreCase("Mesa") || 
  	                 nombre.equalsIgnoreCase("Silla") || 
  	                 nombre.equalsIgnoreCase("Sofa")) {
- 	                 cellComponent.setForeground(new Color(0, 51, 102)); // Azul oscuro
+ 	                 	cellComponent.setForeground(new Color(0, 51, 102)); 
  	             } else if(nombre.equalsIgnoreCase("Lavamanos") || 
  	                 nombre.equalsIgnoreCase("Ducha") || 
  	                 nombre.equalsIgnoreCase("Bide") || 
  	                 nombre.equalsIgnoreCase("Inodoro")){
- 	            	 cellComponent.setForeground(new Color(0, 0, 102));
+ 	            	 	cellComponent.setForeground(new Color(229, 0, 102));
  	             } else if(nombre.equalsIgnoreCase("Maceta") || 
- 	 	                 nombre.equalsIgnoreCase("Barbacoa") || 
- 	 	                 nombre.equalsIgnoreCase("Planta") || 
- 	 	                 nombre.equalsIgnoreCase("Herramienta")){
- 	 	            	 cellComponent.setForeground(new Color(51, 23, 102));
+ 	 	              nombre.equalsIgnoreCase("Barbacoa") || 
+ 	 	              nombre.equalsIgnoreCase("Planta") || 
+ 	 	              nombre.equalsIgnoreCase("Herramienta")){
+ 	            	 	cellComponent.setForeground(new Color(150, 23, 102));
  	             } else if(nombre.equalsIgnoreCase("Nevera") || 
- 	 	                 nombre.equalsIgnoreCase("Horno") || 
- 	 	                 nombre.equalsIgnoreCase("Encimera") || 
- 	 	                 nombre.equalsIgnoreCase("Fregadero")){
- 	 	            	 cellComponent.setForeground(new Color(70, 23, 0));
+ 	 	              nombre.equalsIgnoreCase("Horno") || 
+ 	 	              nombre.equalsIgnoreCase("Encimera") || 
+ 	 	              nombre.equalsIgnoreCase("Fregadero")){
+ 	 	            	cellComponent.setForeground(new Color(70, 23, 0));
  	             }
  	         
  	         }
@@ -758,7 +841,7 @@ public class VentanaTrabajador extends JFrame {
      
 
     panelDerecho.requestFocusInWindow();
- 
+    // Creado por IA generativa
     InputMap inputMap = panelDerecho.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
     ActionMap actionMap = panelDerecho.getActionMap();
 
@@ -774,16 +857,17 @@ public class VentanaTrabajador extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (!esperandoEntrada) {
                 esperandoEntrada = true; // Bloquear nuevas ejecuciones mientras se procesa
-
+                
                 try {
+                	// Hasta aqui creado por IA Generativa
                     if (arbolFunciones.getLastSelectedPathComponent().toString().equals("Ver Productos")) {
                         System.out.println("Tecla P presionada.");
 	                    String[] opciones = {"Armario", "Barbacoa", "Bide", "Ducha", "Encimera", "Fregadero", "Herramienta", "Horno", "Inodoro", "Maceta", "Mesa", "Nevera", "Planta", "Silla", "Sofa"};
 
-	                    // Crear un JComboBox con las opciones
+	                    
 	                    JComboBox<String> comboBox = new JComboBox<>(opciones);
 
-	                    // Mostrar el JComboBox dentro de un JOptionPane
+	                    
 	                    int seleccion = JOptionPane.showConfirmDialog(
 	                        null,
 	                        comboBox,
@@ -795,12 +879,17 @@ public class VentanaTrabajador extends JFrame {
 	                    if (seleccion == JOptionPane.OK_OPTION) {
 	                        String opcionSeleccionada = (String) comboBox.getSelectedItem();
 
-	                        // Crear campos de texto para ingresar datos
+	                        
 	                        JTextField numProductosF = new JTextField();
 	                        JTextField pesoF = new JTextField();
 	                        JTextField precioF = new JTextField();
+	                        
+	                        addNumericFilter(numProductosF, false); 
+	                        addNumericFilter(pesoF, true);          
+	                        addNumericFilter(precioF, true);        
 
-	                        // Crear un panel para contener los campos
+
+	                        
 	                        JPanel Panel = new JPanel(new GridLayout(3, 2, 5, 5));
 	                        Panel.add(new JLabel("Número de Productos:"));
 	                        Panel.add(numProductosF);
@@ -809,24 +898,24 @@ public class VentanaTrabajador extends JFrame {
 	                        Panel.add(new JLabel("Precio:"));
 	                        Panel.add(precioF);
 
-	                        // Mostrar el segundo JOptionPane
+	                        
 	                        int resultado = JOptionPane.showConfirmDialog(null,Panel,"Ingrese los detalles del producto",JOptionPane.OK_CANCEL_OPTION
 	                        );
 
 	                        if (resultado == JOptionPane.OK_OPTION) {
 	                        	
-	                            // Obtener los valores ingresados
+	                            
 	                            int id = BD.obtenerSiguienteIdProducto();
 	                            int numProductos = Integer.parseInt(numProductosF.getText());
 	                            double peso = Double.parseDouble(pesoF.getText());
 	                            double precio = Double.parseDouble(precioF.getText());
 
 	                         
-	                                // Verificar si es un tipo que hereda de Mueble
+	                                
 	                         if (opcionSeleccionada.equals("Armario") || opcionSeleccionada.equals("Silla") ||
 	                                    opcionSeleccionada.equals("Sofá") || opcionSeleccionada.equals("Mesa")) {
 
-	                                    // Solicitar datos genéricos de Mueble
+	                                    
 	                                    JTextField materialF = new JTextField();
 	                                    JTextField colorF = new JTextField();
 	                                    JTextField descripcionF = new JTextField();
@@ -846,24 +935,30 @@ public class VentanaTrabajador extends JFrame {
 	                                            "Ingrese los datos generales del Mueble", JOptionPane.OK_CANCEL_OPTION);
 
 	                                    if (muebleResult != JOptionPane.OK_OPTION) {
-	                                        return; // Si cancela, salir del flujo
+	                                        return; 
 	                                    }
 
 	                                    String material = materialF.getText();
 	                                    String color = colorF.getText();
 	                                    String descripcion = descripcionF.getText();
-	                                    String rutaImagen = rutaImagenF.getText();
+	                                    String rutaImagen = "resources/images/" + rutaImagenF.getText();
 	                                    switch (opcionSeleccionada) {
 	      	                          		case "Armario" -> {
 	      	                          			boolean validInput = false;
 		      	                             while (!validInput) {
-		      	                                 // Crear los campos para los datos específicos
+		      	                                 
 		      	                                 JTextField numeroDePuertasF = new JTextField();
 		      	                                 JTextField alturaF = new JTextField();
 		      	                                 JTextField anchuraF = new JTextField();
 		      	                                 JTextField profundidadF = new JTextField();
+		      	                                 
+		      	                               addNumericFilter(numeroDePuertasF, false); 
+		      	                               addNumericFilter(alturaF, true);          
+		      	                               addNumericFilter(anchuraF, true); 
+		      	                               addNumericFilter(profundidadF, true);
+
 	
-		      	                                 // Crear un panel con GridLayout para contener los campos
+		      	                                 
 		      	                                 JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
 		      	                                 panel.add(new JLabel("Número de Puertas:"));
 		      	                                 panel.add(numeroDePuertasF);
@@ -902,6 +997,10 @@ public class VentanaTrabajador extends JFrame {
 	      	  	                        JTextField alturaF = new JTextField();
 	      	  	                        JTextField anchuraF = new JTextField();
 	      	  	                        JTextField capacidadDeCargaF = new JTextField();
+	      	  	                        
+	      	  	                    addNumericFilter(anchuraF, true);
+	      	  	                    addNumericFilter(alturaF, true);
+	      	  	                    addNumericFilter(capacidadDeCargaF, true);
 
 	      	  	                        JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
 	      	  	                        panel.add(new JLabel("Altura:"));
@@ -931,6 +1030,9 @@ public class VentanaTrabajador extends JFrame {
 	      	  	                    }
 	      	  	                    case "Sofa" -> {
 	      	  	                       JTextField capacidadDeAsientosF = new JTextField();
+	      	  	                       
+	      	  	                   addNumericFilter(capacidadDeAsientosF, false); 
+  	                               
 
 	      	  	                       JPanel panel = new JPanel(new GridLayout(1, 2, 5, 5));
 	      	  	                       panel.add(new JLabel("Capacidad de Asientos:"));
@@ -954,6 +1056,9 @@ public class VentanaTrabajador extends JFrame {
 	      	  	                  case "Mesa" -> {
 	      	                            JTextField alturaF = new JTextField();
 	      	                            JTextField capacidadF = new JTextField();
+	      	                            addNumericFilter(capacidadF, false); 
+	      	                            addNumericFilter(alturaF, true);          
+     	                               
 
 	      	                            JPanel panel = new JPanel(new GridLayout(2, 2, 5, 5));
 	      	                            panel.add(new JLabel("Altura:"));
@@ -981,7 +1086,7 @@ public class VentanaTrabajador extends JFrame {
 	                         } else if (opcionSeleccionada.equals("Heramienta") || opcionSeleccionada.equals("Barbacoa") ||
 	                                    opcionSeleccionada.equals("Planta") || opcionSeleccionada.equals("Maceta")) {
 
-	                                    // Solicitar datos genéricos de Mueble
+	                                    
 	                                    JTextField materialF = new JTextField();
 	                                    JTextField esExteriorF = new JTextField();
 	                                    JTextField descripcionF = new JTextField();
@@ -1001,14 +1106,14 @@ public class VentanaTrabajador extends JFrame {
 	                                            "Ingrese los datos generales del Jardineria", JOptionPane.OK_CANCEL_OPTION);
 
 	                                    if (muebleResult != JOptionPane.OK_OPTION) {
-	                                        return; // Si cancela, salir del flujo
+	                                        return; 
 	                                    }
 
 	                                    String material = materialF.getText();
 	                                    boolean esExterior =parseBoolean(esExteriorF.getText());
 	                                    String esExteriorString = String.valueOf(esExterior);
 	                                    String descripcion = descripcionF.getText();
-	                                    String rutaImagen = rutaImagenF.getText();
+	                                    String rutaImagen = "resources/images/" + rutaImagenF.getText();;
 	                                    
 	                                    switch (opcionSeleccionada) {
 	       	                         case "Barbacoa" -> {
@@ -1017,6 +1122,10 @@ public class VentanaTrabajador extends JFrame {
 	       	                                JTextField tipoCombustibleF = new JTextField();
 	       	                                JTextField superficieCoccionF = new JTextField();
 	       	                                JTextField tieneTapaF = new JTextField();
+	       	                                
+	       	                            
+	      	                               addNumericFilter(superficieCoccionF, true);          
+	      	                               
 
 	       	                                JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
 	       	                                panel.add(new JLabel("Tipo de Combustible:"));
@@ -1035,7 +1144,7 @@ public class VentanaTrabajador extends JFrame {
 	       	                                        boolean tieneTapa = parseBoolean(tieneTapaF.getText());
 	       	                                        System.out.println("Barbacoa creada con combustible: " + tipoCombustible +
 	       	                                                ", superficie: " + superficieCoccion + ", tiene tapa: " + tieneTapa);
-	       	                                        validInput = true; // Los datos son válidos, salimos del bucle
+	       	                                        validInput = true; 
 	       	                                        BD.insertarBarbacoa(id, numProductos, peso, precio, esExteriorString, material, descripcion, rutaImagen, tipoCombustible, superficieCoccion, tipoCombustible);
 	       	                                        verProductos();
 	       	                                    } catch (NumberFormatException a) {
@@ -1043,7 +1152,7 @@ public class VentanaTrabajador extends JFrame {
 	       	                                                "Error", JOptionPane.ERROR_MESSAGE);
 	       	                                    }
 	       	                                } else {
-	       	                                    // Si el usuario cancela, salimos del bucle sin procesar más
+	       	                                   
 	       	                                    break;
 	       	                                }
 	       	                            }
@@ -1072,6 +1181,10 @@ public class VentanaTrabajador extends JFrame {
 	       		                     }
 	       	                         case "Maceta" -> {
 	       	                        	 JTextField diametroF = new JTextField();
+	       	                        	 
+	       	                        	 
+	      	                               addNumericFilter(diametroF, true);          
+	      	                               
 
 	       	                            JPanel panel = new JPanel(new GridLayout(1, 2, 5, 5));
 	       	                            panel.add(new JLabel("Diámetro:"));
@@ -1096,6 +1209,9 @@ public class VentanaTrabajador extends JFrame {
 	       		                         JTextField alturaF = new JTextField();
 	       		                         JTextField tipoDePlantaF = new JTextField();
 	       		                         JTextField diametroF = new JTextField();
+	       		                         
+	       		                      addNumericFilter(diametroF, true);
+	       		                      addNumericFilter(alturaF, true);
 
 	       		                         JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
 	       		                         panel.add(new JLabel("Altura:"));
@@ -1127,7 +1243,7 @@ public class VentanaTrabajador extends JFrame {
 	                         }  else if (opcionSeleccionada.equals("Bide") || opcionSeleccionada.equals("Lavamanos") ||
 	                                    opcionSeleccionada.equals("Ducha") || opcionSeleccionada.equals("Inodoro")) {
 
-	                                    // Solicitar datos genéricos de Mueble
+	                                    
 	                                    JTextField materialF = new JTextField();
 	                                    JTextField descripcionF = new JTextField();
 	                                    JTextField rutaImagenF = new JTextField();
@@ -1144,12 +1260,12 @@ public class VentanaTrabajador extends JFrame {
 	                                            "Ingrese los datos generales del Baño", JOptionPane.OK_CANCEL_OPTION);
 
 	                                    if (muebleResult != JOptionPane.OK_OPTION) {
-	                                        return; // Si cancela, salir del flujo
+	                                        return; 
 	                                    }
 
 	                                    String material = materialF.getText();
 	                                    String descripcion = descripcionF.getText();
-	                                    String rutaImagen = rutaImagenF.getText();
+	                                    String rutaImagen = "resources/images/" + rutaImagenF.getText();
 	                                    
 	                                    switch (opcionSeleccionada) {
 	                                    case "Bidé" -> {
@@ -1245,7 +1361,7 @@ public class VentanaTrabajador extends JFrame {
 	         		                                        JOptionPane.showMessageDialog(null, a.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	         		                                    }
 	         		                                } else {
-	         		                                    validInput = true; // Cerrar ventana
+	         		                                    validInput = true; 
 	         		                                }
 	         		                            }
 	         	                         }
@@ -1254,17 +1370,15 @@ public class VentanaTrabajador extends JFrame {
 	                         } else if (opcionSeleccionada.equals("Nevera") || opcionSeleccionada.equals("Horno") ||
 	                                    opcionSeleccionada.equals("Fregadero") || opcionSeleccionada.equals("Encimera")) {
 
-	                                    // Solicitar datos genéricos de Mueble
+	                                    
 	                                    JTextField materialF = new JTextField();
-	                                    JTextField esExteriorF = new JTextField();
+	                                    
 	                                    JTextField descripcionF = new JTextField();
 	                                    JTextField rutaImagenF = new JTextField();
 
 	                                    JPanel mueblePanel = new JPanel(new GridLayout(4, 2, 5, 5));
 	                                    mueblePanel.add(new JLabel("Material:"));
-	                                    mueblePanel.add(materialF);
-	                                    mueblePanel.add(new JLabel("Color:"));
-	                                    mueblePanel.add(esExteriorF);
+	                                    mueblePanel.add(materialF);   
 	                                    mueblePanel.add(new JLabel("Descripción:"));
 	                                    mueblePanel.add(descripcionF);
 	                                    mueblePanel.add(new JLabel("Ruta de Imagen:"));
@@ -1274,13 +1388,13 @@ public class VentanaTrabajador extends JFrame {
 	                                            "Ingrese los datos generales del Cocina", JOptionPane.OK_CANCEL_OPTION);
 
 	                                    if (muebleResult != JOptionPane.OK_OPTION) {
-	                                        return; // Si cancela, salir del flujo
+	                                        return; 
 	                                    }
 
 	                                    String material = materialF.getText();
 	         
 	                                    String descripcion = descripcionF.getText();
-	                                    String rutaImagen = rutaImagenF.getText();
+	                                    String rutaImagen = "resources/images/" + rutaImagenF.getText();
 	                         
 	                            
 	                          
@@ -1293,6 +1407,8 @@ public class VentanaTrabajador extends JFrame {
 	                               JTextField resistenciaCalorF = new JTextField();
 	                               JTextField grosorF = new JTextField();
 	                               JTextField colorF = new JTextField();
+	                               
+	                               
 
 	                               JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
 	                               panel.add(new JLabel("Resistencia al Calor (Sí/No):"));
@@ -1329,6 +1445,9 @@ public class VentanaTrabajador extends JFrame {
 	                              JTextField numCubetasF = new JTextField();
 	                              JTextField profundidadF = new JTextField();
 	                              JTextField grifoF = new JTextField();
+	                              
+	                              addNumericFilter(numCubetasF, false);
+	                              addNumericFilter(profundidadF, true);
 
 	                              JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
 	                              panel.add(new JLabel("Número de Cubetas:"));
@@ -1366,6 +1485,12 @@ public class VentanaTrabajador extends JFrame {
 	                            JTextField profundidadF = new JTextField();
 	                            JTextField potenciaF = new JTextField();
 	                            JTextField numeroBandejasF = new JTextField();
+	                            
+	                            addNumericFilter(alturaF, true);
+	                            addNumericFilter(anchuraF, true);
+	                            addNumericFilter(profundidadF, true);
+	                            addNumericFilter(potenciaF, false);
+	                            addNumericFilter(numeroBandejasF, false);
 
 	                            JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
 	                            panel.add(new JLabel("Altura:"));
@@ -1409,6 +1534,10 @@ public class VentanaTrabajador extends JFrame {
 	                          JTextField profundidadF = new JTextField();
 	                          JTextField capacidadF = new JTextField();
 	                          JTextField tipoNeveraF = new JTextField();
+	                          addNumericFilter(alturaF, true);
+	                          addNumericFilter(anchuraF, true);
+	                          addNumericFilter(profundidadF, true);
+	                          addNumericFilter(capacidadF, true);
 
 	                          JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
 	                          panel.add(new JLabel("Altura:"));
@@ -1444,7 +1573,7 @@ public class VentanaTrabajador extends JFrame {
 	                          }
 	                      }
 	                      		                          
-	                        // Código para opciones no esperadas
+	                        
 	                          }
 	                      }
 	                            	
@@ -1473,15 +1602,38 @@ public class VentanaTrabajador extends JFrame {
 	
   		        
   		  }
+   // Metodo Creado por IA generativa
+   private static void addNumericFilter(JTextField textField, boolean allowDecimal) {
+       textField.addKeyListener(new KeyAdapter() {
+           @Override
+           public void keyTyped(KeyEvent e) {
+               char c = e.getKeyChar();
+               // Permitir borrar (backspace) y punto si se permiten decimales
+               if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && (!allowDecimal || c != '.')) {
+                   e.consume(); // Ignorar caracteres no válidos
+               }
+
+               // Prevenir más de un punto decimal
+               if (allowDecimal && c == '.' && textField.getText().contains(".")) {
+                   e.consume();
+               }
+           }
+       });
+   }
+   
+   
+
+   // Metodo Creado por IA generativa
 private boolean parseBoolean(String input) throws IllegalArgumentException {
    if (input.equalsIgnoreCase("Sí")) {
-       return true; // "Sí" se convierte a true
+       return true;
    } else if (input.equalsIgnoreCase("No")) {
-       return false; // "No" se convierte a false
+       return false;
    } else {
        throw new IllegalArgumentException("Entrada inválida para boolean."); // Manejo de error si no es válido
    }
 }
+
    
 }
 

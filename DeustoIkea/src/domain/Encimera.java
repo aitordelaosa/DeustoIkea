@@ -14,6 +14,11 @@ public class Encimera extends Cocina{
 		this.grosor = 0.0;
 		this.color = "";
 	}
+	
+	public Encimera(Producto p) {
+		super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "");
+	}
+	
 	public Encimera(int idProducto, int numeroProductos, double peso, double precio, String materialC,
 			String descripcionC, String rutaImagen,double resistenciaCalor, double grosor, String color) {
 		super(idProducto, numeroProductos, peso, precio, materialC, descripcionC, rutaImagen);

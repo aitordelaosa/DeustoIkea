@@ -10,6 +10,11 @@ public class Ducha extends Baño {
         this.tipoRociador = "";
         this.tieneMampara = false;
     }
+    
+    public Ducha(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "");
+		
+    }
 
     // Constructor con parámetros
     public Ducha(int idProducto, int numeroProductos, double peso, double precio, 

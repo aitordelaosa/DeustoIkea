@@ -17,6 +17,11 @@ public class Nevera extends Cocina {
 		this.capacidad = 0.0;
 		this.tipoNevera = "";
 	}
+	
+	public Nevera(Producto p) {
+		super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "");
+	}
+	
 	public Nevera(int idProducto, int numeroProductos, double peso, double precio, String materialC,
 			String descripcionC, String rutaImagen, double altura,double anchura,
 			double profundidad, double capacidad, String tipoNevera) {

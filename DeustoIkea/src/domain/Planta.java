@@ -13,7 +13,11 @@ public class Planta extends Jardineria {
         this.diametro = diametro;
         this.tipoDePlanta = tipoDePlanta;
     }
-
+    
+    public Planta(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, false, "", "", "");
+		
+    }
     public Planta() {
         super();
         this.altura = 0.0;

@@ -8,6 +8,11 @@ public class Sofa extends Mueble {
 		super(idProducto, numeroProductos, peso, precio, material, color, descripcion, rutaImagen);
 		this.capacidadDeAsientos = capacidadDeAsientos;
 	}
+	
+	public Sofa(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "", "");
+		
+    }
 
 
 	public Sofa() {

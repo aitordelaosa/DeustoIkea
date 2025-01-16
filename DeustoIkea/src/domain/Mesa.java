@@ -14,6 +14,11 @@ public class Mesa extends Mueble {
 		this.capacidad = capacidad;
 	}
     
+    public Mesa(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "", "");
+		
+    }
+    
     public Mesa() {
 		super();
 		this.altura = 0.0;

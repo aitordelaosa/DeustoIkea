@@ -10,6 +10,11 @@ public class Lavamanos extends Baño {
         this.tipoGrifo = "";
         this.tieneAlmacenamiento = false;
     }
+    
+    public Lavamanos(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, "", "", "");
+		
+    }
 
     // Constructor con parámetros
     public Lavamanos(int idProducto, int numeroProductos, double peso, double precio, 

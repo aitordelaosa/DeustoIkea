@@ -9,6 +9,11 @@ public class Herramienta extends Jardineria {
         super(idProducto, numeroProductos, peso, precio, esExterior, material, descripcion, rutaImagen);
         this.tipo = tipo;
     }
+    
+    public Herramienta(Producto p) {
+    	super(p.idProducto, p.numeroProductos, p.peso, p.precio, false , "", "", "");
+		
+    }
 
     public Herramienta() {
         super();

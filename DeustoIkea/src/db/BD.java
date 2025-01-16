@@ -1908,6 +1908,18 @@ public class BD {
             return false;
         }
     }
+	
+	public static boolean eliminarProducto(int idP) {
+        String sql = "DELETE FROM Producto WHERE idProducto = ?";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setInt(1, idP);
+            int filas = pstmt.executeUpdate();
+            return filas > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar el cliente: " + e.getMessage());
+            return false;
+        }
+    }
 	public static List<Producto> obtenerListaProductosV(){
 		List<Producto> listaProductos = new ArrayList<Producto>(obtenerListaArmarios());
 		listaProductos.addAll(obtenerListaMesas());
