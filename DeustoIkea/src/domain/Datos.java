@@ -180,7 +180,7 @@ public class Datos {
 				"resources/images/adelfas-colores.jpg", 2.5,"Adelfa", 27.0);
 		
 		herramienta = new Herramienta(24, 4, 1, 7.5, false, "Madera", "herramienta resistente con cabeza de acero para cavar y mover tierra, y mango de madera ergonómico para un agarre cómodo",
-				"resources/images/Pala.jpg", "Pala");
+				"resources/images/pala2.jpg", "Pala");
 		
 		lJardineria.add(maceta);
 		lJardineria.add(barbacoa);
