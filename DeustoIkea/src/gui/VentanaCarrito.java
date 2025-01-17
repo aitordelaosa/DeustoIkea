@@ -158,6 +158,5 @@ public class VentanaCarrito extends JFrame{
 	        for (Producto p : productos) {
 	            total += p.getPrecio() * p.getNumeroProductos();
 	        }
-	        return total;
-	    }
+	        return Math.round(total * 100.0) / 100.0;	    }
 }

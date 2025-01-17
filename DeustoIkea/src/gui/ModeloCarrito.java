@@ -47,7 +47,8 @@ public class ModeloCarrito extends DefaultTableModel{
 			case 0: return p.getIdProducto();
 			case 1: return p.getClass().getSimpleName();
 			case 2: return p.getNumeroProductos();
-			case 3:return p.getPrecio()*p.getNumeroProductos();
+			case 3:double total = p.getPrecio() * p.getNumeroProductos();
+            	return String.format("%.2f", total);
 			default: return null;
 		}
 	}

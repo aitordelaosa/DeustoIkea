@@ -1330,14 +1330,10 @@ public class VentanaPostPrincipal extends JFrame {
 				            	JOptionPane.showMessageDialog(null, "Cantidad añadida al carrito: " + cantidad, "Información", JOptionPane.INFORMATION_MESSAGE);
 				                // actualizar el carrito
 				                VentanaPrincipal.productoSeleccionado.setNumeroProductos(cantidad);
-				                System.out.println(VentanaPrincipal.productoSeleccionado.getIdProducto());
 				                VentanaPrincipal.lp.add(VentanaPrincipal.productoSeleccionado);
-				                System.out.println("añadido a la lista");
 				                Carrito ca = new Carrito(VentanaPrincipal.productoSeleccionado.getIdProducto(), VentanaPrincipal.productoSeleccionado.getClass().getSimpleName(), VentanaPrincipal.productoSeleccionado.getNumeroProductos(), (float)VentanaPrincipal.productoSeleccionado.getPrecio(), VentanaInicioSesion.cliente.getDni());
 				                VentanaInicioSesion.carrito.add(ca);
-				                System.out.println("Añadido al carrito");
 				                BD.insertarCarrito(ca);
-				                System.out.println("BD");
 				            } else if (cantidad > 4){
 				                JOptionPane.showMessageDialog(
 				                    null, 
