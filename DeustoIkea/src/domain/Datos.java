@@ -244,7 +244,7 @@ public class Datos {
 		 productos.addAll(lJardineria);
 	}
 	
-List<Producto> elementos = getProductos();//Lista declarada para pasarla como paramentro al metodo recursivo
+List<Producto> elementos = getProductos();
     
 	public static void generarCombinaciones(List<List<Producto>> result, List<Producto> elementos, double presupuesto, List<Producto> temp) {
 	   

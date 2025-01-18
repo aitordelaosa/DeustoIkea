@@ -434,7 +434,6 @@ public class VentanaPrincipal extends JFrame {
 		scrollTablaMuebles = new JScrollPane(tablaMuebles);
 		panelDescripcion.add(scrollTablaMuebles, BorderLayout.CENTER);
 		
-		//Panel contenedor para todo
         JPanel panelContenedor = new JPanel(new BorderLayout());
         panelSuperior.add(panelPrincipal, BorderLayout.CENTER);
         panelContenedor.add(panelSuperior, BorderLayout.NORTH);

@@ -191,35 +191,7 @@ public class VentanaInicioSesion extends JFrame {
 		return new ImageIcon(newImg);
 	}
 
-//	private void iniciarSesion() {
-//		String user = txtNombreUsuario.getText();
-//		String contra = new String(txtContrasenia.getPassword());
-//
-//		if (user.isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "Inserte un telefono, mail o nombre de usuario valido");
-//		} else if (contra.isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "Inserte la contraseña");
-//		} else {
-//			Cliente c = datos.buscarCliente(user);
-//			if (c == null
-//					|| (!user.equals(c.getDni()) && !user.equals(c.getEmail()) && !user.equals(c.getTelefono()))) {
-//				JOptionPane.showMessageDialog(null, "Nombre de usuario, correo electrónico o teléfono no válido",
-//						"Error", JOptionPane.ERROR_MESSAGE);
-//			} else {
-//				if (!contra.equals(c.getContrasenia())) {
-//					JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-//				} else {
-//					JOptionPane.showMessageDialog(null, "¡BIENVENID@! " + c.getNombre().toUpperCase(), "Éxito",
-//							JOptionPane.INFORMATION_MESSAGE);
-//					cliente = c;
-//					txtNombreUsuario.setText("");
-//					txtContrasenia.setText("");
-//					dispose();
-//					new VentanaPrincipal(c);
-//				}
-//			}
-//		}
-//	}
+
 	
 	private void iniciarSesion() {
 	    String user = txtNombreUsuario.getText();

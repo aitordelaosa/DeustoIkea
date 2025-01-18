@@ -265,7 +265,9 @@ public class ModeloMuebles extends DefaultTableModel {
 	        }
 	    }
 	}
-	
+	// IAG (herramienta: ChatGPT)
+    // ADAPTADO: no sabiamos como hacer para que apareceria un nuevo producto, y la IAG nos ayudo para poner el fireTableRowsInserted
+   
 	public void addProducto(Producto producto) {
 	    productos.add(producto);
 	    fireTableRowsInserted(productos.size() - 1, productos.size() - 1);

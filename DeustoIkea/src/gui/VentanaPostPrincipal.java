@@ -115,10 +115,15 @@ public class VentanaPostPrincipal extends JFrame {
 		panelArriba = new JPanel(new BorderLayout());
 		panelSuperior = new JPanel(new BorderLayout());
 
-		areaTexto = new JTextArea(3, 40);
-		areaTexto.setLineWrap(true); // Permitir que el texto se ajuste a la línea
-		areaTexto.setWrapStyleWord(true); // Ajustar solo en palabras completas
+		areaTexto = new JTextArea(2, 40);
+		areaTexto.setLineWrap(true); 
+		areaTexto.setWrapStyleWord(true); 
 		areaTexto.setEditable(false);
+		areaTexto.setFont(new Font("Arial", Font.PLAIN, 14)); 
+		areaTexto.setForeground(Color.DARK_GRAY); 
+		areaTexto.setLineWrap(true); 
+		
+		
 		
 		if (code == 1) {
 			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de muebles asequibles y modernos.");
@@ -129,6 +134,7 @@ public class VentanaPostPrincipal extends JFrame {
 		} else if (code == 4) {
 			areaTexto.setText("Bienvenido a DeustoIkea, tu tienda de Jardineria y herramientas.");
 		}
+		
 		
 
 		if (code == 1) {
@@ -177,18 +183,15 @@ public class VentanaPostPrincipal extends JFrame {
 		panelArriba.add(panelSuperior, BorderLayout.NORTH);
 
 		panelAbajo.add(botonAtras);
-//		panelAbajo.add(botonSeleccionar);
+
 		panelAbajo.add(botonComprar);
 
-		//panelCentro.setLayout(new GridLayout(1, 2));
-		//panelCentro.add(panelCentroI);
-		//panelCentro.add(panelCentroD);
+		
 		panelCentro.setLayout(new GridLayout(0, 2));
 		switch (code) {
 		case 1:
 			if (codigo == 1) {
-				//JLabel labels[] = new JLabel[lista.size()];
-				//int i=0;
+				
 				for(Producto p: lista) {
 					if (p instanceof Mueble) {
 					Mueble m = (Mueble)p;
@@ -1241,20 +1244,7 @@ public class VentanaPostPrincipal extends JFrame {
 		default:
 			break;
 		}
-		
-		//panelCentroI.setLayout(new GridLayout(2, 2));
-		//panelCentroD.setLayout(new GridLayout(2, 2));
 
-		
-		/*panelCentro.add(labelImagen1);
-		panelCentro.add(labelDescripcion1);
-		panelCentro.add(labelImagen2);
-		panelCentro.add(labelDescripcion2);
-
-		panelCentro.add(labelImagen3);
-		panelCentro.add(labelDescripcion3);
-		panelCentro.add(labelImagen4);
-		panelCentro.add(labelDescripcion4);*/
 		 	
 		getContentPane().add(panelAbajo, BorderLayout.SOUTH);
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
@@ -1266,9 +1256,7 @@ public class VentanaPostPrincipal extends JFrame {
 			VentanaDeCarga.vp.setVisible(true);
 		});
 
-//		botonSeleccionar.addActionListener((e) -> {
-//			mostrarInformacionSeleccionada();
-//		});
+
 
 		botonPerfil.addActionListener((e) -> {
 			dispose();

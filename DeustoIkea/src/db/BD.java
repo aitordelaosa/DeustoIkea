@@ -203,7 +203,6 @@ public class BD {
 				int cant = rs.getInt(3);
 				float prec = rs.getFloat(4);
 				Carrito c = new Carrito(codP, nomP, cant, prec, dni);
-				System.out.println(c);
 				al.add(c);
 			}
 			rs.close();

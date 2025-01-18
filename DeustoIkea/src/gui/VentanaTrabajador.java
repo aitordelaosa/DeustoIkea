@@ -841,7 +841,9 @@ public class VentanaTrabajador extends JFrame {
      
 
     panelDerecho.requestFocusInWindow();
-    // Creado por IA generativa
+    // IAG (herramienta: ChatGPT)
+    // ADAPTADO: el codigo que nos ha generado la IAG lo hemos modificado para añadirlo a nuestros paneles y hemos puesto la tecla que queriamos usar en este caso la P
+   
     InputMap inputMap = panelDerecho.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
     ActionMap actionMap = panelDerecho.getActionMap();
 
@@ -1602,7 +1604,9 @@ public class VentanaTrabajador extends JFrame {
 	
   		        
   		  }
-   // Metodo Creado por IA generativa
+   // IAG (herramienta: ChatGPT)
+   // SIN CAMBIOS
+  
    private static void addNumericFilter(JTextField textField, boolean allowDecimal) {
        textField.addKeyListener(new KeyAdapter() {
            @Override
@@ -1623,14 +1627,16 @@ public class VentanaTrabajador extends JFrame {
    
    
 
-   // Metodo Creado por IA generativa
+   // IAG (herramienta: ChatGPT)
+   // SIN CAMBIOS
+  
 private boolean parseBoolean(String input) throws IllegalArgumentException {
    if (input.equalsIgnoreCase("Sí")) {
        return true;
    } else if (input.equalsIgnoreCase("No")) {
        return false;
    } else {
-       throw new IllegalArgumentException("Entrada inválida para boolean."); // Manejo de error si no es válido
+       throw new IllegalArgumentException("Entrada inválida para boolean."); 
    }
 }
 

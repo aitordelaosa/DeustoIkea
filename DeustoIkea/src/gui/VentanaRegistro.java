@@ -243,7 +243,7 @@ public class VentanaRegistro extends JFrame{
             		try {
     					ultimoId = BD.obtenerUltimoIdCliente();
     				} catch (SQLException e1) {
-    					// TODO Auto-generated catch block
+    					
     					e1.printStackTrace();
     				}
                     int nuevoId = ultimoId + 1;
