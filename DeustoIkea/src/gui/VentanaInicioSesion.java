@@ -36,6 +36,7 @@ public class VentanaInicioSesion extends JFrame {
 	private int code;
 	static ArrayList<Carrito> carrito;
 
+	@SuppressWarnings("static-access")
 	public VentanaInicioSesion(Cliente c, int code) {
 		carrito = new ArrayList<Carrito>();
 		this.code = code;
