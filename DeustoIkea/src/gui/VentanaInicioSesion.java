@@ -36,6 +36,7 @@ public class VentanaInicioSesion extends JFrame {
 	private int code;
 	static ArrayList<Carrito> carrito;
 
+	
 	@SuppressWarnings("static-access")
 	public VentanaInicioSesion(Cliente c, int code) {
 		carrito = new ArrayList<Carrito>();
@@ -49,6 +50,7 @@ public class VentanaInicioSesion extends JFrame {
 		setExtendedState(MAXIMIZED_BOTH);
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 
 		datos = new Datos();
 		this.cliente = c;
